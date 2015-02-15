@@ -351,7 +351,6 @@ FileUtils.rm_rf(out_path_abs+configs['output_dirname'])
 safe_copy_dir(gen_path_abs+"Resources/webknife", out_path_abs+configs['output_dirname']+"webknife",[".svn"])
 safe_copy_dir(gen_path_abs+"Resources/css", out_path_abs+configs['output_dirname']+"css",[".svn"])
 safe_copy_dir(gen_path_abs+"Resources/images", out_path_abs+configs['output_dirname']+"images",[".svn"])
-safe_copy_dir(gen_path_abs+"Resources/Style", out_path_abs+configs['output_dirname']+"Style",[".svn"])
 safe_copy_dir(src_path_abs+"Images",out_path_abs+configs['output_dirname']+"Images",[".svn"])
 safe_copy_dir(src_path_abs+"Docs",out_path_abs+configs['output_dirname']+"Docs",[".svn"])
 
