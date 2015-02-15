@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="webknife/framework.min.css" type="text/css" />
   <link rel="stylesheet" href="webknife/highlight.min.css" type="text/css" />
   <link rel="stylesheet" href="css/docgen.css" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
 
   <!--load scripts second-->
 
