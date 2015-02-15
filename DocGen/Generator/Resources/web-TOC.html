@@ -1,17 +1,20 @@
 ﻿<div>
 <table>
  <tr>
-  <td class="TOC_group edge_column"><ul><%column1%></ul></td>
-  <td class="TOC_group"><ul><%column2%></ul></td>
-  <td class="TOC_group"><ul><%column3%></ul></td>
-  <td class="TOC_group"><ul><%column4%></ul></td>
-  <td class="TOC_group" id="invariable_TOC_column">
+  <td class="toc-group"><ul><%column1%></ul></td>
+  <td class="toc-group"><ul><%column2%></ul></td>
+  <td class="toc-group"><ul><%column3%></ul></td>
+  <td class="toc-group"><ul><%column4%></ul></td>
+  <td class="toc-group" id="toc-fixed-column">
    <ul>
-   <li id="ownership"><a href="ownership.html">Ownership</a></li>
-   <li id="change"><a href="change-log.html">Change Log</a></li>
+   <li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li>
+   <li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="change-log.html">Release Notes</a></li>
    </ul>
    <div>
-    <a href="<%PDF_file%>" class="w-button-link w-dark">PDF Copy</a>
+    <button class="w-icon-button" onclick="window.location='<%PDF_file%>';">
+      <span class="w-icon" data-name="document"></span>
+      <span>PDF copy</span>
+    </button>
    </div>
   </td>
  </tr>

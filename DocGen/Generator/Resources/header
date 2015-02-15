@@ -25,32 +25,19 @@
 
 <script type="text/javascript">
 
-$(document).ready(function()
-{
- $("#TOC").hide(); //hide the table of contents
- 
- //Add .prettyprint class to all 'pre' tags. This makes google-code-prettify work automatically on Markdown "code" output.
- //(see also http://www.codingthewheel.com/archives/syntax-highlighting-stackoverflow-google-prettify, but this version uses jQuery)
- //$('pre').addClass('prettyprint');
- //prettyPrint(); //call google-code-prettify
- 
- /*Effects - toggle visibility of TOC*/
- $("#TOC-select").click(function()
- {
-  //fixed_slideToggle("#TOC"); /*see jquery-fix.js (repairs a known bug in jQuery core). Replace with below once core is fixed:
-  $("#TOC").slideToggle("fast");
-  $(this).toggleClass("active");
- });
- 
- $(".button").hover(function()
- {
-  this.src = this.src.replace("_off","_on");
- },
- function()
- {
-  this.src = this.src.replace("_on","_off");
- }
-);
+$(document).ready( function () {
+  $("#toc").hide(); //hide the table of contents
+
+  //instantiate an svg injector to show SVG icons
+  var injector = new svgInject();
+  injector.inject();
+
+  //toggle visibility of table of contents
+  $("#navigator").click(function()
+  {
+    $("#toc").slideToggle("fast");
+    $(this).toggleClass("active");
+  });
  
 });
 </script>
@@ -61,15 +48,14 @@ $(document).ready(function()
 
  <body>
 
- <div id="TOC"><%TOC_html%></div>
- <div id="navigator"><img src="Style/TOC.png" alt="Table of Contents" id="TOC-select" /></div>
+ <div id="toc"><%TOC_html%></div>
+ <div id="navigator">Table of contents</div>
 
- <header>
-
+<header>
  <div class="w-fixed-width">
-  <a href="<%homepage%>" id="title">
-    <div style="background-image:url('images/logo.png');">
-      <span><%name%> <%release%></span>
+  <a href="<%homepage%>">
+    <div style="background-image:url('docs/images/logo.png');">
+      <%name%> - a documentation generator<span style="font-weight:normal;"> <%release%></span>
     </div>
   </a>
   <div>

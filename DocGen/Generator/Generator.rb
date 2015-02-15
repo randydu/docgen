@@ -208,7 +208,7 @@ def generate_TOC(table_of_contents,pdf_filename,src_path_abs,gen_path_abs)
   heading=h['heading']
   col=h['column']
   links=h['links']
-  html_columns[col-1]<<'<li class="TOC_heading">'+heading+'</li>'
+  html_columns[col-1]<<'<li class="toc-heading">'+heading+'</li>'
   if (links && !links.empty?) 
     links.each { |link|
     if (Regexp.compile('.html').match(link['url']) ) #(For PDF) - exclude web TOC links to non-html pages

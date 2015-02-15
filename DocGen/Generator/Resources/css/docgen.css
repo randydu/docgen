@@ -4,131 +4,106 @@ header>div>a div {
 	padding-left: 230px;
 }
 
-#navigator {
-	float: right;
-}
-
-#TOC {
-	background-color: #4d4d4d!important;
-}
-
 /******************************** TABLE OF CONTENTS ****************************/
 
-/*Warning with vertical margins applied to TOC - can cause jQuery jumpiness */
-
 /*Table of contents button to initiate show/hide*/
 #navigator 
 {
- background: white url("TOC-base.png") repeat-x;
+ float: right;
+ background-color: #385691;
  color: white;
  text-align:right;
- padding-right:200px;
+ padding: 10px 20px 10px 20px;
+ margin-right: 200px;
+ border-radius: 0 0 10px 10px;
+ cursor: pointer;
+ font-weight: bold;
 }
 
-/*container for whole TOC*/ 
-#TOC 
-{
- color: white;
-}
-#TOC table { table-layout:auto;  width: 100%;}
-#TOC div { padding: 15px 0 10px 0; }
-
-/*Styles for all columns within the TOC*/
-#TOC td 
-{
- background: url("../images/TOC-separator.jpg") repeat-y top left;
- vertical-align: top;
- text-align:left;
- padding: 0 20px 0 20px;
-}
-#TOC li
-{
- font-size:11px;
- font-weight:bold;
- line-height:16px;
-}
-#TOC table td a
-{
- color:white;
- font-weight: normal;
- text-decoration:none;
- margin-left: 10px;
-}
-#TOC table td a:hover { text-decoration:underline; }
-.edge_column {  background-image:none!important; } 
-
-/*Only the first TOC columns (with user generated content)*/
-.TOC_group {  width:22%; }
-.TOC_heading
-{
- font-size:12px!important;
- background: none!important;
- padding: 7px 0 2px 0!important; 
+/*Table of contents container*/ 
+#toc {
+	color: white;
+	background-color: #4d4d4d;
 }
 
-/*final TOC columns with fixed content. Mostly override settings for other columns*/
-#invariable_TOC_column  { width:12%; }
-#button-area {margin-left: 0!important;}
-#ownership, #change { padding-left: 8px; background: no-repeat left center; }
-#ownership { background-image: url("group-icon.png"); }
-#change{ background-image: url("change-icon.png"); }
-/*Warning with vertical margins applied to TOC - can cause jQuery jumpiness */
-
-/*Table of contents button to initiate show/hide*/
-#navigator 
-{
- background: white url("TOC-base.png") repeat-x;
- color: white;
- text-align:right;
- padding-right:200px;
+#toc table {
+	table-layout: auto; 
+	width: 100%;
 }
 
-/*container for whole TOC*/ 
-#TOC 
-{
- background:url("TOC-shading.png") repeat-x; 
- /*display:none;*/
- color: white;
-}
-#TOC table { table-layout:auto;  width: 100%;}
-#TOC div { padding: 15px 0 10px 0; }
-
-/*Styles for all columns within the TOC*/
-#TOC td 
-{
- background: url("TOC-separator.jpg") repeat-y top left;
- vertical-align: top;
- text-align:left;
- padding: 0 20px 0 20px;
-}
-#TOC li
-{
- font-size:11px;
- font-weight:bold;
- line-height:16px;
-}
-#TOC table td a
-{
- color:white;
- font-weight: normal;
- text-decoration:none;
- margin-left: 10px;
-}
-#TOC table td a:hover { text-decoration:underline; }
-.edge_column {  background-image:none!important; } 
-
-/*Only the first TOC columns (with user generated content)*/
-.TOC_group {  width:22%; }
-.TOC_heading
-{
- font-size:12px!important;
- background: none!important;
- padding: 7px 0 2px 0!important; 
+#toc div {
+	padding: 15px 0 15px 0;
 }
 
-/*final TOC columns with fixed content. Mostly override settings for other columns*/
-#invariable_TOC_column  { width:12%; }
-#button-area {margin-left: 0!important;}
-#ownership, #change { padding-left: 8px; background: no-repeat left center; }
-#ownership { background-image: url("group-icon.png"); }
-#change{ background-image: url("change-icon.png"); }
+/*Columns in table of contents*/
+
+#toc td {
+	border-right: 1px solid #666;
+	vertical-align: top;
+	text-align: left;
+	padding: 0 20px 0 20px;
+}
+
+#toc ul {
+	padding: 0;
+	list-style-type: none;
+}
+
+#toc li {
+	font-weight: bold;
+}
+
+#toc table td a {
+	color: white;
+	font-weight: normal;
+	text-decoration: none;
+	margin-left: 10px;
+}
+
+#toc table td a:hover { 
+	text-decoration: underline;
+}
+
+#toc-fixed-column { 
+	border-right: none; 
+}
+
+#toc table #toc-fixed-column a {
+	vertical-align: middle;
+	margin-left: 4px;
+}
+
+.toc-group {
+	width: 22%;
+}
+
+.toc-heading {
+	font-size: 16px;
+}
+
+.toc-icon {width: 18px; height: 18px; float: left;}
+.toc-icon svg {fill: white;}
+
+/**********************************************************/
+
+#banner {
+  color: #385691;
+  font-weight: bold;
+  padding-top: 30px;
+  background-color: #f7f7f7;
+  box-shadow: inset 0px 5px 5px 0px #e7e7e7;
+}
+
+#banner img {
+  padding: 25px 0 25px 0;
+}
+
+#banner-buttons {
+  background-color: #f7f7f7;
+  padding: 20px 0 20px 0;
+  background-color: #999;
+}
+
+.spaced {
+  margin-right: 15px;
+}
