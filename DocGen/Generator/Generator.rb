@@ -348,6 +348,9 @@ Log.log_message("* Creating output structure",false)
 FileUtils.rm_f(out_path_abs+configs['HTML_filename'])
 FileUtils.rm_rf(out_path_abs+configs['output_dirname'])
 
+safe_copy_dir(gen_path_abs+"Resources/webknife", out_path_abs+configs['output_dirname']+"webknife",[".svn"])
+safe_copy_dir(gen_path_abs+"Resources/css", out_path_abs+configs['output_dirname']+"css",[".svn"])
+safe_copy_dir(gen_path_abs+"Resources/images", out_path_abs+configs['output_dirname']+"images",[".svn"])
 safe_copy_dir(gen_path_abs+"Resources/Style", out_path_abs+configs['output_dirname']+"Style",[".svn"])
 safe_copy_dir(src_path_abs+"Images",out_path_abs+configs['output_dirname']+"Images",[".svn"])
 safe_copy_dir(src_path_abs+"Docs",out_path_abs+configs['output_dirname']+"Docs",[".svn"])
@@ -401,7 +404,7 @@ write_file(gen_path_abs+"Resources/temp_footer.html",print_footer)
 
 OutputPDF=PDF.new((out_path_abs+configs['output_dirname']).to_s,file_TOC)
 Log.log_PDF_engine_environment
-OutputPDF.generate(configs["PDF_filename"].to_s)
+#OutputPDF.generate(configs["PDF_filename"].to_s)
 
 Log.log_message("* Tidying up files",false)
 File.delete(gen_path_abs+"Resources/temp_cover.html")

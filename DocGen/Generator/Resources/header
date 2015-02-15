@@ -1,29 +1,27 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+﻿<!doctype html>
+<!-- MOTW-DISABLEDsaved from url=(0014)about:internet -->
+<!-- delete MOTW-DISABLED to enable Mark of the Web (http://msdn.microsoft.com/en-us/library/ms537628%28VS.85%29.aspx)-->
+<html>
+ <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" ><!--Prevent IE using compatibility mode on local or intranet pages. Do not put scripts before this line.-->
+  <meta name="viewport" content="width=device-width, user-scalable=yes"><!--Mobile device scaling-->
+  <meta charset="UTF-8">
+  <title>DocGen</title>
 
-<head>
-<!--[if lte IE 6]>
-<link rel="stylesheet" type="text/css" href="Style/IE-fix.css" />
-<script type="text/javascript">
-  window.onerror = function() {
-  return true;
-  };
-</script>
-<![endif]-->
+  <!--load stylesheets first (rationale: https://developers.google.com/speed/docs/best-practices/rtt#PutStylesBeforeScripts)-->
+  <link rel="stylesheet" href="webknife/framework.min.css" type="text/css" />
+  <link rel="stylesheet" href="webknife/highlight.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/docgen.css" type="text/css" />
 
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
- <title><%name%></title>
- <link rel="stylesheet" type="text/css" href="Style/google-code-prettify/src/prettify.css" />
- <link rel="stylesheet" type="text/css" href="Style/reset.css" />
- <link rel="stylesheet" type="text/css" href="Style/style.css" />
- <link rel="stylesheet" type="text/css" href="Style/content.css" />
- <link rel="stylesheet" type="text/css" href="Style/print.css" media="print" />
+  <!--load scripts second-->
 
 <%exclude_IE_top%> 
 
- <script type="text/javascript" src="Style/jquery.js"></script>
- <script type="text/javascript" src="Style/jquery-fix.js"></script>
- <script type="text/javascript" src="Style/google-code-prettify/src/prettify.js"></script>
+  <script src="webknife/framework.min.js"></script>
+  <script src="webknife/framework.icons.js"></script>
+  <script src="webknife/highlight.min.js"></script>
+
+  <!--inline scripts last-->
 
 <script type="text/javascript">
 
@@ -33,15 +31,15 @@ $(document).ready(function()
  
  //Add .prettyprint class to all 'pre' tags. This makes google-code-prettify work automatically on Markdown "code" output.
  //(see also http://www.codingthewheel.com/archives/syntax-highlighting-stackoverflow-google-prettify, but this version uses jQuery)
- $('pre').addClass('prettyprint');
- prettyPrint(); //call google-code-prettify
+ //$('pre').addClass('prettyprint');
+ //prettyPrint(); //call google-code-prettify
  
  /*Effects - toggle visibility of TOC*/
  $("#TOC-select").click(function()
  {
-  fixed_slideToggle("#TOC"); /*see jquery-fix.js (repairs a known bug in jQuery core). Replace with below once core is fixed:
-  /*$("#TOC").slideToggle("fast");
-  $(this).toggleClass("active"); */
+  //fixed_slideToggle("#TOC"); /*see jquery-fix.js (repairs a known bug in jQuery core). Replace with below once core is fixed:
+  $("#TOC").slideToggle("fast");
+  $(this).toggleClass("active");
  });
  
  $(".button").hover(function()
@@ -59,19 +57,27 @@ $(document).ready(function()
 
 <%exclude_IE_bottom%> 
 
-</head>
+ </head>
 
-<body>
-<div id="TOC"><%TOC_html%></div>
-<div id="navigator"><img src="Style/TOC.png" alt="Table of Contents" id="TOC-select" /></div>
-<div id="site_header"><div class="fixed_width">
- 
- <a href="<%homepage%>" id="title">
-  <img src="Style/logo.png" id="logo" alt="logo"/>
-  <span><%name%> <%release%></span>
- </a>
- 
-</div></div>
+ <body>
 
-<div id="content"><div class="fixed_width">
-<div id="ie-warning" style="display:none">Your version of Internet Explorer is not supported. Consider upgrading to version 7+, or using another browser.</div>
+ <div id="TOC"><%TOC_html%></div>
+ <div id="navigator"><img src="Style/TOC.png" alt="Table of Contents" id="TOC-select" /></div>
+
+ <header>
+
+ <div class="w-fixed-width">
+  <a href="<%homepage%>" id="title">
+    <div style="background-image:url('images/logo.png');">
+      <span><%name%> <%release%></span>
+    </div>
+  </a>
+  <div>
+  </div>
+ </div>
+ </header>
+
+ <section>
+ <div class="w-fixed-width">
+
+ <!--paste <HTML elements here-->

@@ -1,16 +1,13 @@
-﻿</div></div>
+﻿ </div>
+ </section>
 
-<div id="base"><div class="fixed_width">
- <span>Release <%release%> generated on <%date%> by DocGen (<%docgen_version%>).</span>
-</div></div>
-
-<div id="footer"><div class="fixed_width">
- <div><%protective_marking%></div>
- <p>&copy;<%year%> <%company%>.
- <%legalese%>
- </p>
+ <footer>
+	<div><p class="w-fixed-width">Release <%release%> generated on <%date%> by DocGen (<%docgen_version%>).</p></div>
+	<div class="w-fixed-width">
+		<p>&copy; <%year%> <%company%>.</p>
+		<p><%legalese%></p>
+	</div>
+ </footer>
  
-</div></div>
-
-</body>
+ </body>
 </html>

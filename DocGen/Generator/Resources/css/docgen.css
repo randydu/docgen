@@ -1,0 +1,134 @@
+header>div>a div {
+	height: 48px;
+	line-height: 48px;
+	padding-left: 230px;
+}
+
+#navigator {
+	float: right;
+}
+
+#TOC {
+	background-color: #4d4d4d!important;
+}
+
+/******************************** TABLE OF CONTENTS ****************************/
+
+/*Warning with vertical margins applied to TOC - can cause jQuery jumpiness */
+
+/*Table of contents button to initiate show/hide*/
+#navigator 
+{
+ background: white url("TOC-base.png") repeat-x;
+ color: white;
+ text-align:right;
+ padding-right:200px;
+}
+
+/*container for whole TOC*/ 
+#TOC 
+{
+ color: white;
+}
+#TOC table { table-layout:auto;  width: 100%;}
+#TOC div { padding: 15px 0 10px 0; }
+
+/*Styles for all columns within the TOC*/
+#TOC td 
+{
+ background: url("../images/TOC-separator.jpg") repeat-y top left;
+ vertical-align: top;
+ text-align:left;
+ padding: 0 20px 0 20px;
+}
+#TOC li
+{
+ font-size:11px;
+ font-weight:bold;
+ line-height:16px;
+}
+#TOC table td a
+{
+ color:white;
+ font-weight: normal;
+ text-decoration:none;
+ margin-left: 10px;
+}
+#TOC table td a:hover { text-decoration:underline; }
+.edge_column {  background-image:none!important; } 
+
+/*Only the first TOC columns (with user generated content)*/
+.TOC_group {  width:22%; }
+.TOC_heading
+{
+ font-size:12px!important;
+ background: none!important;
+ padding: 7px 0 2px 0!important; 
+}
+
+/*final TOC columns with fixed content. Mostly override settings for other columns*/
+#invariable_TOC_column  { width:12%; }
+#button-area {margin-left: 0!important;}
+#ownership, #change { padding-left: 8px; background: no-repeat left center; }
+#ownership { background-image: url("group-icon.png"); }
+#change{ background-image: url("change-icon.png"); }
+/*Warning with vertical margins applied to TOC - can cause jQuery jumpiness */
+
+/*Table of contents button to initiate show/hide*/
+#navigator 
+{
+ background: white url("TOC-base.png") repeat-x;
+ color: white;
+ text-align:right;
+ padding-right:200px;
+}
+
+/*container for whole TOC*/ 
+#TOC 
+{
+ background:url("TOC-shading.png") repeat-x; 
+ /*display:none;*/
+ color: white;
+}
+#TOC table { table-layout:auto;  width: 100%;}
+#TOC div { padding: 15px 0 10px 0; }
+
+/*Styles for all columns within the TOC*/
+#TOC td 
+{
+ background: url("TOC-separator.jpg") repeat-y top left;
+ vertical-align: top;
+ text-align:left;
+ padding: 0 20px 0 20px;
+}
+#TOC li
+{
+ font-size:11px;
+ font-weight:bold;
+ line-height:16px;
+}
+#TOC table td a
+{
+ color:white;
+ font-weight: normal;
+ text-decoration:none;
+ margin-left: 10px;
+}
+#TOC table td a:hover { text-decoration:underline; }
+.edge_column {  background-image:none!important; } 
+
+/*Only the first TOC columns (with user generated content)*/
+.TOC_group {  width:22%; }
+.TOC_heading
+{
+ font-size:12px!important;
+ background: none!important;
+ padding: 7px 0 2px 0!important; 
+}
+
+/*final TOC columns with fixed content. Mostly override settings for other columns*/
+#invariable_TOC_column  { width:12%; }
+#button-area {margin-left: 0!important;}
+#ownership, #change { padding-left: 8px; background: no-repeat left center; }
+#ownership { background-image: url("group-icon.png"); }
+#change{ background-image: url("change-icon.png"); }
