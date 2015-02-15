@@ -1,0 +1,75 @@
+﻿<html>
+<head>
+
+<script> /*script stolen straight from wkhtmltopdf documenation - substitutes in parameters like page numbers at runtime. Works but not understood!*/
+function subst() {
+  var vars={};
+  var x=document.location.search.substring(1).split('&');
+  for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+  var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+  for(var i in x) {
+    var y = document.getElementsByClassName(x[i]);
+    for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+  }
+}
+</script>
+
+<style>
+#footer
+{
+ border-top:1px solid #ccc;
+ padding: 10px 0 10px 0;
+
+}
+.weak
+{
+ color:#999;
+ font-size: 8px;
+}
+
+body
+{
+ width:100%
+ text-align:center;
+ font-family:verdana;
+ color:#444;
+}
+
+table
+{ 
+ font-size: 11px;
+ width:100%;
+}
+
+td
+{
+ padding: 5px 0 5px 0;
+ width:33%;
+ text-align:center;
+}
+
+</style>
+
+</head>
+<body onload="subst()">
+<div id="footer">
+ <table>
+  <tr>
+   <td><%name%> <%release%></td>
+   <td><%protective_marking%></td>
+   <td>Page <span class="page"></span> of <span class="topage"></span></td>
+  </tr>
+  <tr>
+   <td class="weak" colspan="3">
+    <span class="weaker"><%legalese%>
+    </span><span>Release <%release%> generated on <%date%> by DocGen (<%docgen_version%>).</span>
+   </td>
+  </tr>
+ </table> 
+
+</div>
+
+</body>
+</html>
+
+

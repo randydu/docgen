@@ -1,0 +1,167 @@
+﻿/*******************************************************************************
+/*******************************  STYLE CSS  ***********************************
+/*******************************************************************************
+/
+/ Styles the page (not user generated content).
+/
+/*******************************************************************************/
+
+/******************************** WHOLE PAGE ***********************************/
+
+/*make short pages appear to stretch to bottom. Note - prevents use of margin on 
+top-level blocks (delete this feature if these margins are needed)*/
+html 
+{
+ background-color:#4d4d4d;
+}
+
+body
+{
+ min-width:850px;
+ font-family:verdana;
+ font-size:14px;
+ text-align:center;
+}
+
+/*any block that should be fixed width (centered) should have this class*/
+.fixed_width 
+{
+ padding: 0 15px 0 15px; /*stop text touching window edge when window is small*/
+ margin: 0 auto; /*cause fixed width*/
+ width: 800px;
+ text-align:left;
+}
+
+/******************************** TABLE OF CONTENTS ****************************/
+/*Warning with vertical margins applied to TOC - can cause jQuery jumpiness */
+
+/*Table of contents button to initiate show/hide*/
+#navigator 
+{
+ background: white url("TOC-base.png") repeat-x;
+ color: white;
+ text-align:right;
+ padding-right:200px;
+}
+
+/*container for whole TOC*/ 
+#TOC 
+{
+ background:url("TOC-shading.png") repeat-x; 
+ /*display:none;*/
+ color: white;
+}
+#TOC table { table-layout:auto;  width: 100%;}
+#TOC div { padding: 15px 0 10px 0; }
+
+/*Styles for all columns within the TOC*/
+#TOC td 
+{
+ background: url("TOC-separator.jpg") repeat-y top left;
+ vertical-align: top;
+ text-align:left;
+ padding: 0 20px 0 20px;
+}
+#TOC li
+{
+ font-size:11px;
+ font-weight:bold;
+ line-height:16px;
+}
+#TOC table td a
+{
+ color:white;
+ font-weight: normal;
+ text-decoration:none;
+ margin-left: 10px;
+}
+#TOC table td a:hover { text-decoration:underline; }
+.edge_column {  background-image:none!important; } 
+
+/*Only the first TOC columns (with user generated content)*/
+.TOC_group {  width:22%; }
+.TOC_heading
+{
+ font-size:12px!important;
+ background: none!important;
+ padding: 7px 0 2px 0!important; 
+}
+
+/*final TOC columns with fixed content. Mostly override settings for other columns*/
+#invariable_TOC_column  { width:12%; }
+#button-area {margin-left: 0!important;}
+#ownership, #change { padding-left: 8px; background: no-repeat left center; }
+#ownership { background-image: url("group-icon.png"); }
+#change{ background-image: url("change-icon.png"); }
+
+/******************************** SITE HEADER **********************************/
+
+#site_header
+{
+padding: 0px 0px 30px 0px;
+background-color:white;
+height: 42px;
+line-height: 42px;
+border-bottom: 1px solid #888;
+border-top: 0px;
+}
+
+#logo
+{
+ float:left;
+}
+
+#title
+{
+ text-decoration:none; 
+ padding:0 0 0 30px;
+ font-weight: bold;
+ color: #003972;
+ font-size:14px;
+}
+
+#system-header /*this is the PDF button at the moment*/
+{
+  padding: 0px 0px 0px 0px;
+  float:right;
+}
+
+/*end of site header - start of content
+ FOR CONTENT STYLES SEE SEPARATE STYLE SHEET
+end of content - start of base*/
+
+#base
+{
+ background-color:#c4c4c4;
+ background: url("brushed-metal.png") repeat top left;
+ color: #555;
+ border-top: 1px solid #888;
+ padding:15px 0 15px 0;
+ font-size:11px;
+}
+
+/******************************** OWNERSHIP PAGE *******************************/
+.web_ownership th{color:white; background-color:#003972 }
+
+/******************************** BASED AND FOOTER *****************************/
+
+#footer
+{
+ background: url("TOC-shading.png") repeat-x; 
+ background-color:#4d4d4d;
+ height:70px;
+ line-height: 70px;
+ border-top: 1px solid #888;
+ font-size:12px;
+ color:white;
+}
+#footer div
+{ 
+ text-align:center;
+}
+#footer p
+{ 
+ padding: 0 0 15px 0;
+ font-size:9px;
+ line-height: 15px;
+}

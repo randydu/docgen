@@ -1,0 +1,41 @@
+﻿#DOCUMENT PARAMETERS FOR DOCGEN. 
+#These appear in the output pages and can be any desired freetext value.
+
+#name of product this documentation describes
+ name: DocGen
+
+#organisation that owns this product
+ owner: ""
+
+#author of the document
+ author: Mark Macdonald
+
+#author's email
+ email: ""
+
+#OPTIONAL - submodule
+ module: DocGen
+
+#Indicate the unique ID for this product or module in its change management system / bug tracker
+ module_id: 
+
+#product or process release number (e.g. "1.0.0")
+ release: 1.0.x
+
+#Executive summary
+ summary: >
+    DocGen is a documentation tool for product software assets. 
+    It takes plain text (Markdown) input, and generates both a static website version
+    and a PDF version of the documentation, in a standardised format. 
+
+
+#legal organisation
+ company: "Mark Macdonald"
+
+#protective marking
+ protective_marking: MIT License
+
+#protective description
+ legalese: >
+    
+

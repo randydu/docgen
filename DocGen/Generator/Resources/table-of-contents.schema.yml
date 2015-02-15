@@ -1,0 +1,22 @@
+﻿type:  seq
+sequence:
+  - type:  map
+    mapping: 
+     "heading":
+        type:  str
+        required:  true
+     "column":
+        type:  int
+        required:  true
+        range:  { max:  4, min:  1 } #range is inclusive
+     "links":
+        type:  seq
+        sequence:
+          - type:  map
+            mapping:
+             "title":
+                type:  str
+                required:  true
+             "url":
+                type:  str
+                required:  true

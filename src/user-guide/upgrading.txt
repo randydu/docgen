@@ -1,0 +1,12 @@
+﻿How to upgrade to new versions of DocGen
+========================================
+
+If you want to upgrade to a newer version of DocGen but still use your existing content from a previous project, this is trivial:
+
+1. Download the latest version of DocGen
+2. Delete the Source folder
+3. Replace with your existing Source folder
+
+Sometimes new features will require you to update the configuration files to match those expected by the latest version. In this case look at the reference example in the DocGen Source folder. 
+
+> You should check the styling in the latest version still works well with your old content.

@@ -1,0 +1,248 @@
+﻿How to create content with DocGen
+=================================
+
+Overview
+--------
+
+Using DocGen involves working with three folders:
+
+* **Source** (the document master, where all your content goes)
+* **Generator** (the only task you perform here is to run **Generator.rb** when publishing the content)
+* **Output** (where the generated HTML website and PDF will appear)
+
+'Source' and 'Generator' are included in the DocGen download, and 'Output' will appear the first time you run Generator.rb.
+
+Writing content
+---------------
+
+DocGen takes any text file (extension .txt) in the Source folder and converts it. 
+Each text file will be a separate page in the website and a separate chapter in the PDF.
+You can create as many new files as you wish (start by editing the example file called index.txt).
+
+> Make sure you save content files (.txt) with **UTF-8 encoding**. This makes non-standard characters (ø © é etc) work.
+
+You mostly write paragraphs of plain text using any text editor. Stylistic effects can be achieved by using a plain-text 
+publishing format called [Markdown](http://daringfireball.net/projects/markdown/basics). 
+The best way to learn is to see an example (below), and then read the [Markdown reference](#markdown-reference).
+
+-------------------------------
+
+<p class="false-heading">What you type:</p>
+
+<code>
+Headings give structure<br/>
+-----------------------<br/>
+<br/>
+Paragraphs are big blocks of text with lots of sentences.<br/>
+Some sentences have *significant* concepts or **very important ones**.<br/>
+<br/>
+A new paragraph starts when the line before looks blank.<br/>
+Some paragraphs will contain [example links](http://www.google.com).<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//To make a code block, just indent with a tab. "Hello World" in Ruby:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;5.times { puts "Hello!" }
+<br/>
+</code>
+
+-------------------------------
+
+<p class="false-heading">What it looks like in the website and the PDF:</p>
+
+<div style="text-decoration:none; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin: 25px 0 25px 0; font-weight: bold;  color: #003972;  font-size:14px;">
+ Headings give structure
+</div>
+
+Paragraphs are big blocks of text with lots of sentences.
+Some sentences have *significant* concepts or **very important ones**.
+
+A new paragraph starts when the line before looks blank.
+Some paragraphs will contain [example links](http://www.google.com).
+
+	#To make a code block, just indent with a tab. "Hello World" in Ruby:
+	5.times { puts "Hello!" }
+
+-------------------------------
+
+Adding diagrams and other files
+-------------------------------
+
+* Any diagrams (in image form, e.g. JPEG, PNG, GIF etc) should be put the Source/Images folder.
+* Any other files you want to attach should go into Source/Docs. 
+
+See the [Markdown reference](#markdown-reference) for how to attach them. Images are embedded 
+directly into the website and PDF, but files are only attached as links.
+
+
+Markdown Reference
+------------------
+
+Markdown is a human-friendly, plain text publishing format (the text files are easily readable without
+being obfuscated by markup tags). The most useful Markdown features
+are shown below. Some specialist topics are explained on the [advanced content](advanced-content.html) page. 
+See also the original [Markdown specification](http://daringfireball.net/projects/markdown/)
+and the documentation for the [kramdown](http://kramdown.rubyforge.org/) engine used by DocGen.
+
+> **Note:** a page will only appear in the PDF table of contents if it has a **page heading** (see below).
+
+<style>
+#reference table { }
+#reference tr {  }
+#reference th { font-weight: bold; height: 50px; line-height: 50px; font-size:16px; color:white; background-color:#666; }
+#reference td { padding:10px; margin:0; text-align:left; }
+#reference td pre, #reference td code { background:none;}
+.r1 { font-weight:bold; background-color:#ddd; text-align:center!important; }
+</style>
+
+<div id="reference">
+
+<table>
+
+<tr><th>Style</th><th>What you type</th><th>What it looks like</th></tr>
+
+<tr>
+ <td class="r1">Page Heading</td>
+ <td><code>  
+  Page Heading<br/>
+  ============
+ </code></td>
+ <td>
+  <div style="text-decoration:none; margin: 32px 0 30px 0; font-weight: bold; color: #003972; font-size:18px;">
+  Page heading
+  </div>
+</td>
+</tr>
+
+<tr>
+ <td class="r1">Section Heading</td>
+ <td><code>  
+  Section Heading<br/>
+  ---------------
+ </code></td>
+ <td>
+  <div style="text-decoration:none; border-bottom: 1px solid #003972; padding-bottom: 5px; margin: 25px 0 25px 0; font-weight: bold;  color: #003972;  font-size:14px;">
+  Section Heading
+  </div>
+ </td>
+</tr>
+
+<tr>
+ <td class="r1">Minor Heading</td>
+ <td><code>  
+  ###Minor Heading<br/>
+ </code></td>
+ <td>
+  <div style="text-decoration:none; border-bottom: 1px solid #ddd; padding-bottom: 2px; margin: 32px 0 15px 0; font-weight: bold;  color: #003972;  font-size:14px;">
+  Minor Heading
+  </div>
+ </td>
+</tr>
+
+<tr>
+ <td class="r1">False Heading<br />(not in PDF contents list)</td>
+ <td><code>
+  &lt;p class="false-heading">False&lt;/p>
+ </code></td>
+ <td>
+  <div style="text-decoration:none; border-bottom: 1px solid #ddd; padding-bottom: 2px; margin: 32x 0 15px 0; font-weight: bold;  color: #003972;  font-size:14px;">
+  False
+  </div>
+ </td>
+</tr>
+
+<tr>
+ <td class="r1">Emphasis (italic)</td>
+ <td><code>  
+  This text has *emphasis*
+ </code></td>
+ <td>This text has <em>emphasis</em></td>
+</tr>
+
+<tr>
+ <td class="r1">Strong (bold)</td>
+ <td><code>  
+  This text is **bold**
+ </code></td>
+ <td>This text is <strong>bold</strong></td>
+</tr>
+
+<tr>
+ <td class="r1">Block quotes</td>
+ <td><code>  
+  > This is a block quote.
+ </code></td>
+ <td><blockquote style="padding-top:5px;padding-bottom:5px;">This is a block quote</blockquote></td>
+</tr>
+
+<tr>
+ <td class="r1">Code block<br/> (indent with tab)</td>
+ <td><code>  
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int some_code=0
+ </code></td>
+ <td><pre style="background-color:#eee!important; padding: 0px;"><code style="padding:7px;">  
+  int some_code=0
+ </code></pre></td>
+</tr>
+
+<tr>
+ <td class="r1">Unordered List</td>
+ <td><code>  
+  * unordered list<br/>
+  * (items)
+ </code></td>
+ <td><ul><li>unordered list</li><li>(items)</li></ul></td>
+</tr>
+
+<tr>
+ <td class="r1">Ordered List</td>
+ <td><code>  
+  1. ordered list<br/>
+  2. (items)
+ </code></td>
+ <td><ol><li>ordered list</li><li>(items)</li></ol></td>
+</tr>
+
+<tr>
+ <td class="r1">External Links</td>
+ <td><code>  
+  [link to Google](http://www.google.com)
+ </code></td>
+ <td><a href="http://www.google.com">link to Google</a></td>
+</tr>
+
+<tr>
+ <td class="r1">Links to a local file</td>
+ <td><code>  
+  [user guide](user_guide.pdf)
+ </code></td>
+ <td><a href="user_guide.pdf">user guide</a></td>
+</tr>
+
+
+<tr>
+ <td class="r1">Diagrams<br/> (embedding images)</td>
+ <td><code>  
+  ![](Style/logo.png)
+ </code></td>
+ <td><img src="Style/logo.png"></td>
+</tr>
+
+<tr>
+ <td class="r1">Simple table</td>
+ <td><code>  
+  | Cell 1 | Cell 2 | Cell 3 |<br/>
+  | Cell 4 | Cell 5 | Cell 6 |
+ </code></td>
+ <td>
+ 
+ 
+  <table style="width:200px; text-align:center!important;">
+   <tr><td style="text-align:center;">Cell 1</td><td style="text-align:center;">Cell 2</td><td style="text-align:center;">Cell 3</td></tr><tr><td style="text-align:center;">Cell 4</td><td style="text-align:center;">Cell 5</td><td style="text-align:center;">Cell 6</td></tr>
+  </table>
+ 
+ 
+ </td>
+</tr>
+
+</table>
+</div>
+

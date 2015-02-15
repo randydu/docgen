@@ -1,0 +1,35 @@
+﻿type:  map
+mapping:
+ "name":
+    type: str
+    required:  true
+ "owner":
+    type: str
+    required:  true
+ "author":
+    type: str
+    required:  true
+ "email":
+    type: str
+    required:  true
+ "module":
+    type: str
+    required:  true
+ "module_id":
+    type: scalar
+    required:  true
+ "release":
+    type: scalar
+    required:  true
+ "summary":
+    type: str
+    required:  true
+ "company":
+    type: str
+    required:  true
+ "protective_marking":
+    type: str
+    required:  true
+ "legalese":
+    type: str
+    required:  true

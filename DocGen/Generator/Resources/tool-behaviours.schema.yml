@@ -1,0 +1,21 @@
+﻿type:  map
+mapping:
+ "output_path":
+    type: str
+    required:  yes
+ "output_filename":
+    type: str
+    required:  yes
+ "output_dirname":
+    type: str
+    required:  yes
+ "homepage":
+    type: str
+    required:  yes
+ "suppress_IE_warning":
+    type: bool
+    required:  yes
+ "generate_page_TOC":
+    type: bool
+    required:  yes
+

@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="Style/IE-fix.css" />
+<script type="text/javascript">
+  window.onerror = function() {
+  return true;
+  };
+</script>
+<![endif]-->
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title><%name%></title>
+ <link rel="stylesheet" type="text/css" href="Style/google-code-prettify/src/prettify.css" />
+ <link rel="stylesheet" type="text/css" href="Style/reset.css" />
+ <link rel="stylesheet" type="text/css" href="Style/style.css" />
+ <link rel="stylesheet" type="text/css" href="Style/content.css" />
+ <link rel="stylesheet" type="text/css" href="Style/print.css" media="print" />
+
+<%exclude_IE_top%> 
+
+ <script type="text/javascript" src="Style/jquery.js"></script>
+ <script type="text/javascript" src="Style/jquery-fix.js"></script>
+ <script type="text/javascript" src="Style/google-code-prettify/src/prettify.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+ $("#TOC").hide(); //hide the table of contents
+ 
+ //Add .prettyprint class to all 'pre' tags. This makes google-code-prettify work automatically on Markdown "code" output.
+ //(see also http://www.codingthewheel.com/archives/syntax-highlighting-stackoverflow-google-prettify, but this version uses jQuery)
+ $('pre').addClass('prettyprint');
+ prettyPrint(); //call google-code-prettify
+ 
+ /*Effects - toggle visibility of TOC*/
+ $("#TOC-select").click(function()
+ {
+  fixed_slideToggle("#TOC"); /*see jquery-fix.js (repairs a known bug in jQuery core). Replace with below once core is fixed:
+  /*$("#TOC").slideToggle("fast");
+  $(this).toggleClass("active"); */
+ });
+ 
+ $(".button").hover(function()
+ {
+  this.src = this.src.replace("_off","_on");
+ },
+ function()
+ {
+  this.src = this.src.replace("_on","_off");
+ }
+);
+ 
+});
+</script>
+
+<%exclude_IE_bottom%> 
+
+</head>
+
+<body>
+<div id="TOC"><%TOC_html%></div>
+<div id="navigator"><img src="Style/TOC.png" alt="Table of Contents" id="TOC-select" /></div>
+<div id="site_header"><div class="fixed_width">
+ 
+ <a href="<%homepage%>" id="title">
+  <img src="Style/logo.png" id="logo" alt="logo"/>
+  <span><%name%> <%release%></span>
+ </a>
+ 
+</div></div>
+
+<div id="content"><div class="fixed_width">
+<div id="ie-warning" style="display:none">Your version of Internet Explorer is not supported. Consider upgrading to version 7+, or using another browser.</div>

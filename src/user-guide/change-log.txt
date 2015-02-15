@@ -1,0 +1,14 @@
+﻿Changes
+=======
+
+<p class="false-heading">1.1.0 (xx/xx/xxxx)</p> 
+
+- fixed defect where spurious text appeared on some pages with a page table of contents
+
+<p class="false-heading">1.0.1 (18/01/2012)</p> 
+
+- Fixed a bug causing the table of contents headings to sometimes appear in the wrong order
+
+<p class="false-heading">1.0.0 (04/11/2011)</p> 
+
+- Initial release
