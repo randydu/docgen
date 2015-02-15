@@ -44,12 +44,12 @@ $(document).ready( function () {
 
 <%exclude_IE_bottom%> 
 
- </head>
+</head>
 
- <body>
+<body>
 
- <div id="toc"><%TOC_html%></div>
- <div id="navigator">Table of contents</div>
+<div id="toc"><%TOC_html%></div>
+<div id="navigator">Table of contents</div>
 
 <header>
  <div class="w-fixed-width">
@@ -61,9 +61,9 @@ $(document).ready( function () {
   <div>
   </div>
  </div>
- </header>
+</header>
 
- <section>
- <div class="w-fixed-width">
+<section>
+<div class="w-fixed-width">
 
  <!--paste <HTML elements here-->

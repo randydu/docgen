@@ -1,16 +1,15 @@
 ﻿
- <div id="banner" class="segment"><div class="w-fixed-width">
-   <h1 class="w-massive w-center w-no-underline">Better documentation for software projects.</h1>
-   <img class="w-center" src="Images/DocGenOverview.png"  alt="overview" />
- </div></div>
+<div id="banner" class="segment"><div class="w-fixed-width">
+  <h1 class="w-massive w-center w-no-underline">Better documentation for software projects.</h1>
+  <img class="w-center" src="Images/DocGenOverview.png"  alt="overview" />
+</div></div>
  
- <div id="banner-buttons" class="segment"><div class="w-fixed-width">
+<div id="banner-buttons" class="segment"><div class="w-fixed-width">
   <span class="w-center">
   <a href="https://github.com/mtmacdonald/docgen/releases" class="w-button-link w-colored w-large spaced">Download</a>
   <a href="https://github.com/mtmacdonald/docgen/issues" class="w-button-link w-dark">Report Issues</a>
   </span>
- </div></div>
- <section>
+</div></div>
 
 How it works
 ------------
