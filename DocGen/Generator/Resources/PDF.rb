@@ -45,39 +45,18 @@ class PDF
     if(Regexp.compile('darwin').match(o_s) or Regexp.compile('linux').match(o_s) )
 	 @options['zoom'] = ' --zoom 0.7297'
 	end
-	
-	if (@wkhtmltopdf_version == "0.10.0" || @wkhtmltopdf_version == "0.11.0") 
+
      @options['image_quality'] = ' --image-quality 100'
-	end
-	
-    if (@wkhtmltopdf_version == "0.9.9")
-	 #version 0.9.0 has issues with links in the PDF. DocGen disables them for this version.
-	 #http://code.google.com/p/wkhtmltopdf/issues/detail?id=332
-     @options['disable_links'] = ' --disable-external-links'
-	end
 	
 	#Cover page
-	if (@wkhtmltopdf_version == "0.9.9") 
-	 @options['cover'] = ' --cover "'+File.dirname(__FILE__)+'/temp_cover.html"'
-	elsif (@wkhtmltopdf_version == "0.10.0" || @wkhtmltopdf_version == "0.11.0") 
 	 @options['cover'] = ' cover "'+File.dirname(__FILE__)+'/temp_cover.html"'
-	end
 	
 	#Table of contents
-	if (@wkhtmltopdf_version == "0.9.9")
-     @options['TOC'] = " --toc"
-	 @options['TOC-depth'] = " --toc-depth 2"
-	 @options['TOC-font'] = " --toc-font-name Verdana"
-	 @options['TOC-h1-font'] = " --toc-l1-font-size 11"
-	 @options['TOC-h2-font'] = " --toc-l2-font-size 9"
-	 @options['TOC-header-font-size'] =" --toc-header-font-size 11"
-	elsif (@wkhtmltopdf_version == "0.10.0" || @wkhtmltopdf_version == "0.11.0")
 	 # Workaround for http://code.google.com/p/wkhtmltopdf/issues/detail?id=460
 	 # Issue that causes TOC not to be displayed in Windows only. Workaround (which fixes problem) is to explicitly pass an XSL style sheet for the TOC.
 	 #@options['TOC'] = " toc"
 	 #@options['TOC-header-text'] = ' --toc-header-text "Table of Contents"'
 	 @options['TOC'] = ' toc --xsl-style-sheet "'+File.dirname(__FILE__)+'/PDF-TOC-style.xsl"'
-	end
 end
 
 #example getter - put rest in later
@@ -135,7 +114,7 @@ end
 	puts
 	puts "***********************************************************"
 	puts
-	puts "* PDF Engine finished - returning to DocGem"
+	puts "* PDF Engine finished - returning to DocGen"
 	
  end
 
@@ -174,15 +153,6 @@ def setup_paths(html_dir_abs)
 	  version_result=stdout+stderr
 	end
 
-   if(Regexp.compile('0.11.0').match(version_result.to_s))
-	   @wkhtmltopdf_version = "0.11.0"  
-   elsif(Regexp.compile('0.10.0').match(version_result.to_s))
-	   @wkhtmltopdf_version = "0.10.0"
-   elsif Regexp.compile('0.9.9').match(version_result.to_s)
-	   @wkhtmltopdf_version = "0.9.9"
-   else
-	  puts "Your version of wkhtmltopdf is not supported"
-      Process.exit
-   end
+   @wkhtmltopdf_version = "not relevant anymore"
 
  end
