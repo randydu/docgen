@@ -1,0 +1,17 @@
+
+DocGen 2.0.0
+
+- rewrite in Node/JS
+- simpler installation (automated script)
+- upgraded UI framework (drops support for IE 8)
+- upgraded to support latest version of wkhtmltopdf
+- added support for list of document contributors
+
+?
+- switch on or off PDF copy
+- override the version info
+- mathematical expressions with mathjax
+- 'permalinks' to headings
+- ability to link to figure numbers
+- automatic section numbering
+- check validity of links
