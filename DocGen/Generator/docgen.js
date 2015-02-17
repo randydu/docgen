@@ -2,6 +2,7 @@
 var fs = require('fs');
 var yaml = require('js-yaml');
 var cheerio = require('cheerio');
+var marked = require('marked');
 
 /**
 * DocGen class
@@ -32,9 +33,13 @@ function DocGen() {
 		legalese: 'Copyright notices. \n'
 	}
 
-	this.table_of_contents = {
+	this.table_of_contents = [
+		{ heading: 'Quick Start',
+		  column: 1,
+		  links: [ { title: 'Overview', url: 'index.txt' } ] }
+	];
 
-	}
+	this.pages = [];
 
 	this.loadTemplate = function () {
 		fs.readFile('Resources/template.html', 'utf8', function (err, template) {
@@ -48,20 +53,43 @@ function DocGen() {
 
 	this.loadConfig = function () {
 		try {
-		  var doc = yaml.safeLoad(fs.readFileSync('sample_document.yml', 'utf8'));
-		  console.log(doc);
+		  var doc = yaml.safeLoad(fs.readFileSync('example.yml', 'utf8'));
+		  //console.log(doc);
 		} catch (e) {
 		  console.log(e);
 		}
 	}
 
+	this.loadPages = function () {
+
+		this.table_of_contents.forEach( function (section) {
+			section.links.forEach( function (page) {
+				
+				fs.readFile(page.url, {encoding: 'utf-8'}, function (err, data) {
+				    if (!err) {
+				    	console.log(marked(data));
+				    } else {
+				        console.log(err);
+				    }
+				});
+
+			}, this);
+		}, this);
+
+	}
+
 	this.writeFiles = function () {
-		
+
+	}
+
+	this.callExternal = function () {
+
 	}
 
 	this.run = function () {
 		this.loadTemplate();
 		this.loadConfig();
+		this.loadPages();
 		this.writeFiles();
 	}
 
