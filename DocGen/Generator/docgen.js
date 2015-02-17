@@ -4,6 +4,8 @@ var yaml = require('js-yaml');
 var cheerio = require('cheerio');
 var marked = require('marked');
 
+var child_process = require("child_process");
+
 /**
 * DocGen class
 */
@@ -83,13 +85,16 @@ function DocGen() {
 	}
 
 	this.callExternal = function () {
-
+		var child = child_process.exec('ls', function (error, stdout, stderr) {
+			console.log(stdout);
+		});
 	}
 
 	this.run = function () {
 		this.loadTemplate();
 		this.loadConfig();
 		this.loadPages();
+		this.callExternal();
 		this.writeFiles();
 	}
 
