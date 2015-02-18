@@ -91,11 +91,15 @@ function DocGen() {
 	}
 
 	this.run = function () {
-		this.loadTemplate();
-		this.loadConfig();
-		this.loadPages();
-		this.callExternal();
-		this.writeFiles();
+		var Options = require('./options.js');
+		var options = new Options();
+		options.load();
+
+		//this.loadTemplate();
+		//this.loadConfig();
+		//this.loadPages();
+		//this.callExternal();
+		//this.writeFiles();
 	}
 
 };

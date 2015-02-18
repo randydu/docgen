@@ -4,6 +4,7 @@
   "description": "A documentation generator",
   "main": "docgen.js",
   "dependencies": {
+    "commander": "2.6.0",
     "cheerio": "0.18.0",
     "js-yaml": "3.2.6",
     "marked": "0.3.3"
