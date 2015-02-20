@@ -1,0 +1,20 @@
+{
+	"name" : "Empty Template",
+	"module" : "",
+	"reference" : "",
+	"company" : "",
+	"owner" : "",
+	"author" : {
+		"name" : "",
+		"email" : ""
+	},
+	"contributors" : [
+		{
+			"name" : "",
+			"email" : ""
+		}
+	],
+	"summary" : "This is the empty template for DocGen",
+	"marking" : "Protective marking",
+	"legalese" : "Copyright notices"
+}
