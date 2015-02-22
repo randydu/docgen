@@ -1,6 +1,0 @@
-﻿DocGen - Empty template
-===========================
-
-This is the default template page for DocGen.
-
-To get started, edit **Source/index.txt** and run **Generator/Generator.rb**. For more information see the user guide.
