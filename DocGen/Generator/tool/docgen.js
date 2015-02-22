@@ -63,7 +63,13 @@ function DocGen (options)
 	   			if (error) {
 		      		reject(error);
 	    		}
-				resolve(data);
+			    try{
+			    	//todo - validate json against a schema
+			        var result = JSON.parse(data);
+			        resolve(result);
+			    } catch (error) {
+			    	reject(error);
+			    }
 			});
 		});
 	};
@@ -78,7 +84,7 @@ function DocGen (options)
 
 		loadJSON('src/parameters.json').then(function (parameters) {
 			console.log(parameters);
-		  	return loadJSON('src/contents.json');
+		  	return loadJSON('src/index.txt');
 		}).then(function (contents) {
 			console.log(contents);
 		}).catch(function (error) {
