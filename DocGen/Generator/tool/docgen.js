@@ -1,3 +1,5 @@
+
+var rsvp = require('rsvp');
 var fs = require('fs');
 var cheerio = require('cheerio');
 var marked = require('marked');
@@ -64,23 +66,19 @@ function DocGen (options)
 		});
 	}
 
-	var loadJson = function () {
-		fs.readFileSync('src/contents.json', 'utf8', function (err, data) {
-		  if (err) {
-		    console.log(err);
-		  }
-
-		  tableOfContents = JSON.parse(data);
+	var loadJSON = function (url) {
+		var promise = new rsvp.Promise(function (resolve, reject) {
+			fs.readFile ('src/contents.json', 'utf8', function (error, data) {
+	   			if (error) {
+		      		reject(error);
+	    		}
+				resolve(data);
+			});
 		});
-	}
+		return promise;
+	};
 
 	this.run = function () {
-		//var generator = new DocGen();
-		//generator.foo();
-
-		//var Options = require('./options.js');
-		//var options = new Options();
-		//options.load();
 
 		//this.loadTemplate();
 		//this.loadConfig();
@@ -88,12 +86,16 @@ function DocGen (options)
 		//this.callExternal();
 		//this.writeFiles();
 
-		loadJson();
-		console.log(tableOfContents);
+		loadJSON('src/contents.json').then(function (json) {
+			console.log(json);
+		//  	return loadJSON('src/parameters.json');
+		//}).then(function (json) {
+		//	console.log(json);
+		  // proceed with access to post and comments
+		}).catch(function (error) {
+			console.log(error);
+		});
 	}
-
-
-
 }
 
 module.exports = DocGen;
