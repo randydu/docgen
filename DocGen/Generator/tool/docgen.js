@@ -66,9 +66,9 @@ function DocGen (options)
 		});
 	}
 
-	var loadJSON = function (url) {
+	var loadJSON = function (path) {
 		var promise = new rsvp.Promise(function (resolve, reject) {
-			fs.readFile ('src/contents.json', 'utf8', function (error, data) {
+			fs.readFile (path, 'utf8', function (error, data) {
 	   			if (error) {
 		      		reject(error);
 	    		}
@@ -86,12 +86,11 @@ function DocGen (options)
 		//this.callExternal();
 		//this.writeFiles();
 
-		loadJSON('src/contents.json').then(function (json) {
-			console.log(json);
-		//  	return loadJSON('src/parameters.json');
-		//}).then(function (json) {
-		//	console.log(json);
-		  // proceed with access to post and comments
+		loadJSON('src/parameters.json').then(function (parameters) {
+			console.log(parameters);
+		  	return loadJSON('src/contents.json');
+		}).then(function (contents) {
+			console.log(contents);
 		}).catch(function (error) {
 			console.log(error);
 		});
