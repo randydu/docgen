@@ -29,15 +29,6 @@ function DocGen (options)
 		});
 	};
 
-	this.loadConfig = function () {
-		try {
-		  var doc = yaml.safeLoad(fs.readFileSync('example.yml', 'utf8'));
-		  //console.log(doc);
-		} catch (e) {
-		  console.log(e);
-		}
-	}
-
 	this.loadPages = function () {
 
 		this.table_of_contents.forEach( function (section) {
@@ -67,7 +58,7 @@ function DocGen (options)
 	}
 
 	var loadJSON = function (path) {
-		var promise = new rsvp.Promise(function (resolve, reject) {
+		return new rsvp.Promise(function (resolve, reject) {
 			fs.readFile (path, 'utf8', function (error, data) {
 	   			if (error) {
 		      		reject(error);
@@ -75,7 +66,6 @@ function DocGen (options)
 				resolve(data);
 			});
 		});
-		return promise;
 	};
 
 	this.run = function () {
