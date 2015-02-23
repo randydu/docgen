@@ -29,9 +29,7 @@ function DocGen (options)
         });
     };
 
-    this.writeFiles = function () {
 
-    }
 
     this.callExternal = function () {
         var child = child_process.exec('ls', function (error, stdout, stderr) {
@@ -70,22 +68,10 @@ function DocGen (options)
                 }
             });
         });
+    }
 
-/*
-        this.table_of_contents.forEach( function (section) {
-            section.links.forEach( function (page) {
-                
-                fs.readFile(page.url, {encoding: 'utf-8'}, function (err, data) {
-                    if (!err) {
-                        console.log(marked(data));
-                    } else {
-                        console.log(err);
-                    }
-                });
-
-            }, this);
-        }, this);
-*/
+    var writeFiles = function () {
+        return 'done';
     }
 
     this.run = function () {
@@ -101,7 +87,21 @@ function DocGen (options)
             return loadJSON('src/contents.json');
         }).then(function (contents) {
             console.log(contents);
-            return loadMarkdown('src/index.txt');
+
+            var files = [];
+            contents.forEach( function (section) {
+                section.links.forEach( function (page) {
+                    files.push('src/'+page.src);
+                });
+            });
+
+            rsvp.all(files.map(loadMarkdown)).then(function(files) {
+              console.log(files);
+              return writeFiles();
+            }).catch(function(error) {
+              console.log(error);
+            });
+
         }).then(function (markdown) {
             console.log(markdown);
         }).catch(function (error) {
