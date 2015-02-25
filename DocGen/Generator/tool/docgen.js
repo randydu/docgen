@@ -47,7 +47,7 @@ function DocGen (options)
 
     var loadTemplates = function () {
         var files = {
-            main: readFile('Resources/template.html'),
+            main: readFile('tool/templates/main.html'),
         };
         rsvp.hash(files).then(function(files) {
             for (var key in files) {
