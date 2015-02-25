@@ -45,10 +45,10 @@ function DocGen (options)
         write any file
     */
 
-    var writeFile = function (path) {
+    var writeFile = function (path, data) {
         return new rsvp.Promise(function (resolve, reject) {
-            fs.writeFile("/tmp/test", "Hey there!", function (error) {
-                if(error) {
+            fs.writeFile(path, data, function (error) {
+                if (error) {
                     reject(error);
                 } else {
                     resolve(true);
@@ -134,6 +134,10 @@ function DocGen (options)
         });
     }
 
+    /*
+        process each input into an output
+    */
+
     var process = function () {
         meta.contents.forEach( function (section) {
             section.links.forEach( function (page) {
@@ -144,11 +148,31 @@ function DocGen (options)
                 pages[key] =  $;
             });
         });
-        console.log(pages['index.txt'].html());
+        writePages();
     }
 
-    //var name = page.src.substr(0, page.src.lastIndexOf('.'));
-    //outputs.push('out/'+name+'.html');
+    /*
+        write each html page
+    */
+
+    var writePages = function () {
+        var promises = {};
+        meta.contents.forEach( function (section) {
+            section.links.forEach( function (page) {
+                var key = page.src;
+                var name = key.substr(0, page.src.lastIndexOf('.'));
+                var path = 'out/'+name+'.html';
+                var html = pages['index.txt'].html();
+                promises[key] = writeFile(path, html);
+            });
+        });
+
+        rsvp.hash(promises).then(function (files) {
+             
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }
 
     this.run = function () {
         loadTemplates();
