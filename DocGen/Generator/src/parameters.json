@@ -1,8 +1,9 @@
 {
 	"name" : "Empty Template",
+	"version" : "1.0.0",
 	"module" : "",
 	"reference" : "",
-	"company" : "",
+	"organization" : "Company",
 	"owner" : "",
 	"author" : {
 		"name" : "",

@@ -3,6 +3,7 @@ var rsvp = require('rsvp');
 var fs = require('fs');
 var cheerio = require('cheerio');
 var marked = require('marked');
+var moment = require('moment');
 var ncp = require ('ncp');
 var child_process = require("child_process");
 
@@ -136,10 +137,34 @@ function DocGen (options)
     }
 
     /*
+        insert the parameters into the template
+    */
+
+    var insertParameters = function () {
+        var $ = templates.main;
+
+        var timestamp = moment().format('DD/MM/YYYY HH:mm:ss');
+        var year = moment().format('YYYY');
+
+        $('#name').text(meta.parameters.name);
+        if (meta.parameters.version !== '') {
+            $('#version').text(' ('+meta.parameters.version+')');
+            $('#version-date').text('Version '+meta.parameters.version+' generated '+timestamp);
+        } else {
+            $('#version-date').text('Generated '+timestamp);
+        }
+        $('#year').text(year);
+        $('#organization').text(meta.parameters.organization);
+        $('#legalese').text(meta.parameters.legalese);
+        $('#attribution').text('Created by DocGen version '/*+options.version*/);
+    }
+
+    /*
         process each input into an output
     */
 
     var process = function () {
+        insertParameters();
         meta.contents.forEach( function (section) {
             section.links.forEach( function (page) {
                 var key = page.src;

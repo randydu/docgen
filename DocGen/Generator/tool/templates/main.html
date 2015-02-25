@@ -14,8 +14,6 @@
 
   <!--load scripts second-->
 
-<%exclude_IE_top%> 
-
   <script src="require/webknife/framework.min.js"></script>
   <script src="require/webknife/framework.icons.js"></script>
   <script src="require/webknife/highlight.min.js"></script>
@@ -46,20 +44,19 @@ $(document).ready( function () {
 });
 </script>
 
-<%exclude_IE_bottom%> 
 
 </head>
 
 <body>
 
-<div id="toc"><%TOC_html%></div>
+<div id="toc"></div>
 <div id="navigator">Table of contents</div>
 
 <header>
  <div class="w-fixed-width">
   <a href="<%homepage%>">
     <div style="background-image:url('docs/images/logo.png');">
-      <%name%> - a documentation generator<span style="font-weight:normal;"> <%release%></span>
+      <span id="name"></span><span id="version" style="font-weight:normal;"></span>
     </div>
   </a>
   <div>
@@ -76,10 +73,13 @@ $(document).ready( function () {
 </section>
 
  <footer>
-  <div><p class="w-fixed-width">Release <%release%> generated on <%date%> by DocGen (<%docgen_version%>).</p></div>
+  <div><p class="w-fixed-width"><span id="version-date">.</p></div>
   <div class="w-fixed-width">
-    <p>&copy; <%year%> <%company%>.</p>
-    <p><%legalese%></p>
+    <p>&copy; <span id="year"></span> <span id="organization"></span></p>
+    <p>
+      <p id="legalese"></p>
+      <p id="attribution"</p>
+    </p>
   </div>
  </footer>
  
