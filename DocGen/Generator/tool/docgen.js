@@ -42,6 +42,22 @@ function DocGen (options)
     }
 
     /*
+        write any file
+    */
+
+    var writeFile = function (path) {
+        return new rsvp.Promise(function (resolve, reject) {
+            fs.writeFile("/tmp/test", "Hey there!", function (error) {
+                if(error) {
+                    reject(error);
+                } else {
+                    resolve(true);
+                }
+            });
+        });
+    }
+
+    /*
         load all HTML template files
     */
 
@@ -100,8 +116,6 @@ function DocGen (options)
             section.links.forEach( function (page) {
                 keys.push(page.src);
                 files.push('src/'+page.src);
-                //var name = page.src.substr(0, page.src.lastIndexOf('.'));
-                //outputs.push('out/'+name+'.html');
             });
         });
         rsvp.all(files.map(readFile)).then(function (files) {
@@ -114,11 +128,27 @@ function DocGen (options)
                     console.log(error);
                 }
             });
-            console.log(pages); 
+            process(); 
         }).catch(function(error) {
             console.log(error);
         });
     }
+
+    var process = function () {
+        meta.contents.forEach( function (section) {
+            section.links.forEach( function (page) {
+                var key = page.src;
+                var content = pages[key];
+                var $ = templates.main;
+                $('#content').html(content);
+                pages[key] =  $;
+            });
+        });
+        console.log(pages['index.txt'].html());
+    }
+
+    //var name = page.src.substr(0, page.src.lastIndexOf('.'));
+    //outputs.push('out/'+name+'.html');
 
     this.run = function () {
         loadTemplates();
