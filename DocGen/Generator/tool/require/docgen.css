@@ -1,0 +1,109 @@
+header>div>a div {
+	height: 48px;
+	line-height: 48px;
+	padding-left: 230px;
+}
+
+/******************************** TABLE OF CONTENTS ****************************/
+
+/*Table of contents button to initiate show/hide*/
+#navigator 
+{
+ float: right;
+ background-color: #4d4d4d;
+ color: white;
+ text-align:right;
+ padding: 10px 20px 10px 20px;
+ margin-right: 200px;
+ border-radius: 0 0 10px 10px;
+ cursor: pointer;
+ font-weight: bold;
+}
+
+/*Table of contents container*/ 
+#toc {
+	color: white;
+	background-color: #4d4d4d;
+}
+
+#toc table {
+	table-layout: auto; 
+	width: 100%;
+}
+
+#toc div {
+	padding: 15px 0 15px 0;
+}
+
+/*Columns in table of contents*/
+
+#toc td {
+	border-right: 1px solid #666;
+	vertical-align: top;
+	text-align: left;
+	padding: 0 20px 0 20px;
+}
+
+#toc ul {
+	padding: 0;
+	list-style-type: none;
+}
+
+#toc li {
+	font-weight: bold;
+}
+
+#toc table td a {
+	color: white;
+	font-weight: normal;
+	text-decoration: none;
+	margin-left: 10px;
+}
+
+#toc table td a:hover { 
+	text-decoration: underline;
+}
+
+#toc-fixed-column { 
+	border-right: none; 
+}
+
+#toc table #toc-fixed-column a {
+	vertical-align: middle;
+	margin-left: 4px;
+}
+
+.toc-group {
+	width: 22%;
+}
+
+.toc-heading {
+	font-size: 16px;
+}
+
+.toc-icon {width: 18px; height: 18px; float: left;}
+.toc-icon svg {fill: white;}
+
+/**********************************************************/
+
+#banner {
+  color: #385691;
+  font-weight: bold;
+  padding-top: 30px;
+  background-color: #f7f7f7;
+  box-shadow: inset 0px 5px 5px 0px #e7e7e7;
+}
+
+#banner img {
+  padding: 25px 0 25px 0;
+}
+
+#banner-buttons {
+  background-color: #f7f7f7;
+  padding: 20px 0 20px 0;
+  background-color: #999;
+}
+
+.spaced {
+  margin-right: 15px;
+}

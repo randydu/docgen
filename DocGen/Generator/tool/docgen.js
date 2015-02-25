@@ -3,6 +3,7 @@ var rsvp = require('rsvp');
 var fs = require('fs');
 var cheerio = require('cheerio');
 var marked = require('marked');
+var ncp = require ('ncp');
 var child_process = require("child_process");
 
 /**
@@ -168,9 +169,22 @@ function DocGen (options)
         });
 
         rsvp.hash(promises).then(function (files) {
-             
+            copyRequire();
         }).catch(function(error) {
             console.log(error);
+        });
+    }
+
+    /*
+        copy the require directory (CSS, JavaScript)
+    */
+
+    var copyRequire = function () {
+        ncp('tool/require', 'out/require', function (error) {
+            if (error) {
+                console.error(err);
+            }
+            console.log('done!');
         });
     }
 
