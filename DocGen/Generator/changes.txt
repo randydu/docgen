@@ -2,7 +2,8 @@
 DocGen 2.0.0
 
 - flexible number of TOC columns
-
+- easier to install (uses node package manager)
+- dependencies are now versioned
 
 - rewrite in Node/JS
 - simpler installation (automated script)

@@ -83,8 +83,8 @@ function DocGen (options)
 
     var loadMeta = function () {
         var files = {
-            parameters: readFile('src/parameters.json'),
-            contents: readFile('src/contents.json'),
+            parameters: readFile(options.input+'/parameters.json'),
+            contents: readFile(options.input+'/contents.json'),
         };
         rsvp.hash(files).then(function(files) {
             for(var key in files) {
@@ -114,7 +114,7 @@ function DocGen (options)
         meta.contents.forEach( function (section) {
             section.links.forEach( function (page) {
                 keys.push(page.src);
-                files.push('src/'+page.src);
+                files.push(options.input+'/'+page.src);
             });
         });
         rsvp.all(files.map(readFile)).then(function (files) {
