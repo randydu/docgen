@@ -7,6 +7,14 @@ var moment = require('moment');
 var ncp = require ('ncp');
 var child_process = require("child_process");
 
+/*
+    wkthmltopdf option
+*/
+
+var wkhtmltopdfOptions = [
+    ''
+];
+
 /**
 * DocGen class
 */
@@ -21,6 +29,16 @@ function DocGen (options)
     this.callExternal = function () {
         var child = child_process.exec('ls', function (error, stdout, stderr) {
             console.log(stdout);
+        });
+    }
+
+    /*
+        call wkhtmltopdf as an external executable
+    */
+
+    var generatePdf = function () {
+        var child = child_process.exec('wkhtmltopdf out/index.html out/documentation.pdf', function (error, stdout, stderr) {
+            //
         });
     }
 
@@ -224,6 +242,7 @@ function DocGen (options)
         rsvp.hash(promises).then(function (files) {
             copyRequire();
             copyUserFiles();
+            generatePdf();
         }).catch(function(error) {
             console.log(error);
         });
@@ -238,7 +257,6 @@ function DocGen (options)
             if (error) {
                 console.error(err);
             }
-            console.log('done!');
         });
     }
 
@@ -251,7 +269,6 @@ function DocGen (options)
             if (error) {
                 console.error(err);
             }
-            console.log('done!');
         });
     }
 
