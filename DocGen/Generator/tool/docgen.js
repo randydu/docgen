@@ -137,6 +137,28 @@ function DocGen (options)
     }
 
     /*
+        build the HTML for the table of contents
+    */
+
+    var webToc = function () {
+        var $ = templates.main;
+        var html = [], i = -1;
+        html[++i] = '<div><table><tr>';
+        meta.contents.forEach( function (section) {
+            html[++i] = '<td class="toc-group"><ul><li class="toc-heading">'+section.heading+'</li>';
+            section.links.forEach( function (page) {
+                var name = page.src.substr(0, page.src.lastIndexOf('.'));
+                var path = name+'.html';
+                html[++i] = '<li><a href="'+path+'">'+page.title+'</a></li>';
+            });
+            html[++i] = '</li></ul></td>';
+        });
+        html[++i] = '</tr></table></div>';
+        $('#toc').html(html.join(''));
+        templates.main = $;
+    }
+
+    /*
         insert the parameters into the template
     */
 
@@ -164,6 +186,7 @@ function DocGen (options)
     */
 
     var process = function () {
+        webToc();
         insertParameters();
         meta.contents.forEach( function (section) {
             section.links.forEach( function (page) {
