@@ -196,9 +196,9 @@ function DocGen (options)
         insertParameters();
         meta.contents.forEach( function (section) {
             section.links.forEach( function (page) {
+                var $ = cheerio.load(templates.main.html()); //todo - better implementation of clone?
                 var key = page.src;
                 var content = pages[key];
-                var $ = templates.main;
                 $('#content').html(content);
                 pages[key] =  $;
             });
@@ -217,11 +217,10 @@ function DocGen (options)
                 var key = page.src;
                 var name = key.substr(0, page.src.lastIndexOf('.'));
                 var path = 'out/'+name+'.html';
-                var html = pages['index.txt'].html();
+                var html = pages[key].html();
                 promises[key] = writeFile(path, html);
             });
         });
-
         rsvp.hash(promises).then(function (files) {
             copyRequire();
         }).catch(function(error) {
