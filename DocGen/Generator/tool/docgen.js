@@ -34,11 +34,7 @@ function DocGen (options)
                 if (error) {
                     reject(error);
                 }
-                try{
-                    resolve(data);
-                } catch (error) {
-                    reject(error);
-                }
+                resolve(data);
             });
         });
     }
