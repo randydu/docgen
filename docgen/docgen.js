@@ -26,18 +26,12 @@ function DocGen (options)
     var meta = {};
     var pages = {};
 
-    this.callExternal = function () {
-        var child = child_process.exec('ls', function (error, stdout, stderr) {
-            console.log(stdout);
-        });
-    }
-
     /*
         call wkhtmltopdf as an external executable
     */
 
     var generatePdf = function () {
-        var child = child_process.exec('wkhtmltopdf out/index.html out/documentation.pdf', function (error, stdout, stderr) {
+        var child = child_process.exec('wkhtmltopdf '+options.output+'/index.html '+options.output+'/user-guide.pdf', function (error, stdout, stderr) {
             //
         });
     }
@@ -79,7 +73,7 @@ function DocGen (options)
 
     var loadTemplates = function () {
         var files = {
-            main: readFile('tool/templates/main.html'),
+            main: readFile('docgen/templates/main.html'),
         };
         rsvp.hash(files).then(function(files) {
             for (var key in files) {
@@ -234,7 +228,7 @@ function DocGen (options)
             section.links.forEach( function (page) {
                 var key = page.src;
                 var name = key.substr(0, page.src.lastIndexOf('.'));
-                var path = 'out/'+name+'.html';
+                var path = options.output+'/'+name+'.html';
                 var html = pages[key].html();
                 promises[key] = writeFile(path, html);
             });
@@ -253,7 +247,7 @@ function DocGen (options)
     */
 
     var copyRequire = function () {
-        ncp('tool/require', 'out/require', function (error) {
+        ncp('docgen/require', options.output+'/require', function (error) {
             if (error) {
                 console.error(err);
             }
@@ -265,7 +259,7 @@ function DocGen (options)
     */
 
     var copyUserFiles = function () {
-        ncp(options.input+'/files', 'out/files', function (error) {
+        ncp(options.input+'/files', options.output+'/files', function (error) {
             if (error) {
                 console.error(err);
             }

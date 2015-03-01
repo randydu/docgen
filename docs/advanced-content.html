@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+ <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Prevent IE using compatibility mode on local or intranet pages. Do not put scripts before this line.-->
+  <meta name="viewport" content="width=device-width, user-scalable=yes"><!--Mobile device scaling-->
+  <meta charset="UTF-8">
+  <title>DocGen</title>
+
+  <!--load stylesheets first (rationale: https://developers.google.com/speed/docs/best-practices/rtt#PutStylesBeforeScripts)-->
+  <link rel="stylesheet" href="require/webknife/framework.min.css" type="text/css">
+  <link rel="stylesheet" href="require/webknife/highlight.min.css" type="text/css">
+  <link rel="stylesheet" href="require/docgen.css" type="text/css">
+  <link rel="stylesheet" href="require/print.css" media="print">
+
+  <!--load scripts second-->
+
+  <script src="require/webknife/framework.min.js"></script>
+  <script src="require/webknife/framework.icons.js"></script>
+  <script src="require/webknife/highlight.min.js"></script>
+
+  <!--inline scripts last-->
+
+<script type="text/javascript">
+
+$(document).ready( function () {
+  $("#toc").hide(); //hide the table of contents
+
+  //instantiate an svg injector to show SVG icons
+  var injector = new svgInject();
+  injector.inject();
+
+  //code syntax highlighting
+  $('pre code, .w-inline-code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  //toggle visibility of table of contents
+  $("#navigator").click(function()
+  {
+    $("#toc").slideToggle("fast");
+    $(this).toggleClass("active");
+  });
+ 
+});
+</script>
+
+
+</head>
+
+<body>
+
+<div id="toc"><div><table><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="change-log.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;user-guide.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
+<div id="navigator">Table of contents</div>
+
+<header>
+ <div class="w-fixed-width">
+  <a href="&lt;%homepage%&gt;">
+    <div style="background-image:url(&apos;docs/images/logo.png&apos;);">
+      <span id="name">DocGen</span><span id="version" style="font-weight:normal;"> (2.0.0)</span>
+    </div>
+  </a>
+  <div>
+  </div>
+ </div>
+</header>
+
+<section>
+<div class="w-fixed-width">
+
+<div id="content"><h1 id="-writing-advanced-content">&#xFEFF;Writing Advanced Content</h1>
+<h2 id="overview">Overview</h2>
+<p>Any standard <strong>HTML</strong> can be entered in a content (.txt) file if needed (useful in cases where Markdown features are too simple).</p>
+<h2 id="creating-internal-links-to-page-sections">Creating internal links to page sections</h2>
+<p>To create links to other sections within one content page, put hyphens between the words in the heading and prepend with #:</p>
+<pre><code>[link to heading](#this-is-a-heading)
+
+... other page content here ...
+
+This is a heading
+-----------------
+</code></pre><h2 id="creating-internal-links-to-other-pages">Creating internal links to other pages</h2>
+<p>To create links to <em>other</em> content pages provide the relative url to the page:</p>
+<pre><code>[link to heading](example-page.html)
+</code></pre><h2 id="control-of-page-breaks-in-the-pdf">Control of page breaks in the PDF</h2>
+<p>DocGen does not provide precision control over PDF layout. However, some steps can be taken in case of page break issues (the most common problem).</p>
+<p>To <em>force</em> a page break, insert the following before the item you want to appear on a new page:</p>
+<pre><code>&lt;span class=&quot;force-break&quot;&gt;&lt;/span&gt;
+</code></pre><p>DocGen already tries to eliminate unsightly page breaks <em>inside</em> code blocks, block quotes, and table rows. To apply the same technique to other elements, revert to HTML and apply the <strong>avoid-break</strong> class. For example:</p>
+<pre><code>&lt;p class=&quot;avoid-break&quot;&gt;A long paragraph&lt;/p&gt;
+</code></pre><h2 id="basic-tables">Basic Tables</h2>
+<p>An extended Markdown syntax allows basic tables to be created. Basic tables: </p>
+<ul>
+<li>have fixed width</li>
+<li>do not allow control of column widths</li>
+<li>do not provide for custom styling</li>
+</ul>
+<p class="false-heading">What you type</p>
+
+<pre><code>| Heading    | Heading          | Heading |
+|:-----------|:----------------:|--------:|
+| Something  | Some commentary  | ?       |
+| Another    | More commentary  | ?       |
+| One more   | More commentary  | ?       |
+</code></pre><p class="false-heading">What it looks like</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Heading</th>
+<th style="text-align:center">Heading</th>
+<th style="text-align:right">Heading</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Something</td>
+<td style="text-align:center">Some commentary</td>
+<td style="text-align:right">?</td>
+</tr>
+<tr>
+<td style="text-align:left">Another</td>
+<td style="text-align:center">More commentary</td>
+<td style="text-align:right">?</td>
+</tr>
+<tr>
+<td style="text-align:left">One more</td>
+<td style="text-align:center">More commentary</td>
+<td style="text-align:right">?</td>
+</tr>
+</tbody>
+</table>
+<h2 id="custom-tables">Custom Tables</h2>
+<p>For better control of table styling, revert to HTML. Either embed custom CSS styles in the 
+content page (total control), or use the DocGen built-in style called <strong>styled-table</strong>. 
+With <strong>styled-table</strong> it is possible to:</p>
+<ul>
+<li>adjust the table width and set the column widths exactly</li>
+<li>have zebra (alternate shaded) rows and bold columns</li>
+<li>have red or green text in cells, or ticks and crosses</li>
+</ul>
+<p class="false-heading">What you type</p>
+
+<pre><code>&lt;table class=&quot;styled-table&quot; style=&quot;width:100%;&quot;&gt;
+
+ &lt;tr&gt;
+  &lt;th style=&quot;width:200px;&quot;&gt;Heading&lt;/th&gt;
+  &lt;th style=&quot;width:500px;&quot;&gt;Heading&lt;/th&gt;
+  &lt;th&gt;Heading&lt;/th&gt;
+ &lt;/tr&gt;
+
+ &lt;tr&gt;
+  &lt;td class=&quot;bold&quot;&gt;Example&lt;/td&gt;
+  &lt;td&gt;Example&lt;/td&gt;
+  &lt;td&gt;Example&lt;/td&gt;
+ &lt;/tr&gt;
+
+ &lt;tr class=&quot;shaded&quot;&gt;
+  &lt;td class=&quot;bold&quot;&gt;Example&lt;/td&gt;
+  &lt;td&gt;Example&lt;/td&gt;
+  &lt;td&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+
+ &lt;tr&gt;
+  &lt;td class=&quot;bold&quot;&gt;Example&lt;/td&gt;
+  &lt;td class=&quot;green&quot;&gt;Example&lt;/td&gt;
+  &lt;td class=&quot;tick&quot;&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+
+ &lt;tr class=&quot;shaded&quot;&gt;
+  &lt;td class=&quot;bold&quot;&gt;Example&lt;/td&gt;
+  &lt;td class=&quot;red&quot;&gt;Example&lt;/td&gt;
+  &lt;td class=&quot;cross&quot;&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+
+&lt;/table&gt;
+</code></pre><p class="false-heading">What it looks like</p>
+
+<table class="styled-table" style="width:100%;">
+
+ <tr>
+  <th style="width:200px;">Heading</th>
+  <th style="width:500px;">Heading</th>
+  <th>Heading</th>
+ </tr>
+
+ <tr>
+  <td class="bold">Example</td>
+  <td>Example</td>
+  <td>Example</td>
+ </tr>
+
+ <tr class="shaded">
+  <td class="bold">Example</td>
+  <td>Example</td>
+  <td></td>
+ </tr>
+
+ <tr>
+  <td class="bold">Example</td>
+  <td class="green">Example</td>
+  <td class="tick"></td>
+ </tr>
+
+ <tr class="shaded">
+  <td class="bold">Example</td>
+  <td class="red">Example</td>
+  <td class="cross"></td>
+ </tr>
+
+</table></div>
+
+</div>
+</section>
+
+ <footer>
+  <div><p class="w-fixed-width"><span id="version-date">Version 2.0.0 generated 01/03/2015 19:13:18</span></p></div>
+  <div class="w-fixed-width">
+    <p>&#xA9; <span id="year">2015</span> <span id="organization">Mark Macdonald</span></p>
+    <p>
+      </p><p id="legalese"></p>
+      <p id="attribution" <="" p="">Created by DocGen version </p>
+  </div>
+ </footer>
+ 
+ </body>
+</html>

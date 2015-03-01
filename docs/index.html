@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+ <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Prevent IE using compatibility mode on local or intranet pages. Do not put scripts before this line.-->
+  <meta name="viewport" content="width=device-width, user-scalable=yes"><!--Mobile device scaling-->
+  <meta charset="UTF-8">
+  <title>DocGen</title>
+
+  <!--load stylesheets first (rationale: https://developers.google.com/speed/docs/best-practices/rtt#PutStylesBeforeScripts)-->
+  <link rel="stylesheet" href="require/webknife/framework.min.css" type="text/css">
+  <link rel="stylesheet" href="require/webknife/highlight.min.css" type="text/css">
+  <link rel="stylesheet" href="require/docgen.css" type="text/css">
+  <link rel="stylesheet" href="require/print.css" media="print">
+
+  <!--load scripts second-->
+
+  <script src="require/webknife/framework.min.js"></script>
+  <script src="require/webknife/framework.icons.js"></script>
+  <script src="require/webknife/highlight.min.js"></script>
+
+  <!--inline scripts last-->
+
+<script type="text/javascript">
+
+$(document).ready( function () {
+  $("#toc").hide(); //hide the table of contents
+
+  //instantiate an svg injector to show SVG icons
+  var injector = new svgInject();
+  injector.inject();
+
+  //code syntax highlighting
+  $('pre code, .w-inline-code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  //toggle visibility of table of contents
+  $("#navigator").click(function()
+  {
+    $("#toc").slideToggle("fast");
+    $(this).toggleClass("active");
+  });
+ 
+});
+</script>
+
+
+</head>
+
+<body>
+
+<div id="toc"><div><table><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="change-log.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;user-guide.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
+<div id="navigator">Table of contents</div>
+
+<header>
+ <div class="w-fixed-width">
+  <a href="&lt;%homepage%&gt;">
+    <div style="background-image:url(&apos;docs/images/logo.png&apos;);">
+      <span id="name">DocGen</span><span id="version" style="font-weight:normal;"> (2.0.0)</span>
+    </div>
+  </a>
+  <div>
+  </div>
+ </div>
+</header>
+
+<section>
+<div class="w-fixed-width">
+
+<div id="content"><p>&#xFEFF;</p>
+<div id="banner" class="segment"><div class="w-fixed-width">
+  <h1 class="w-massive w-center w-no-underline">Better documentation for software projects.</h1>
+  <img class="w-center" src="files/images/DocGenOverview.png" alt="overview">
+</div></div>
+
+<div id="banner-buttons" class="segment"><div class="w-fixed-width">
+  <span class="w-center">
+  <a href="https://github.com/mtmacdonald/docgen/releases" class="w-button-link w-colored w-large spaced">Download</a>
+  <a href="https://github.com/mtmacdonald/docgen/issues" class="w-button-link w-dark">Report Issues</a>
+  </span>
+</div></div>
+
+<h2 id="how-it-works">How it works</h2>
+<table style="color:white; text-align:center; width:100%; border: none; border-collapse: separate; border-spacing: 10px 0px; font-weight:bold; font-style:italic; font-size:14px;padding:0;">
+ <tr>
+  <td style="background-color:#999; height:70px; padding:5px; width:33%;text-align:center;">
+   &quot;You write in plain text or human-friendly <a href="http://daringfireball.net/projects/markdown/basics" style="color:white">Markdown</a>&quot;
+  </td>
+  <td style="background-color:#999; height:70px; padding:5px; width:33%;text-align:center;">
+   &quot;DocGen styles and publishes all your content as a website&quot;</td>
+  <td style="background-color:#999; height:70px; padding:5px; width:33%;text-align:center;">
+   &quot;DocGen also creates an equivalent PDF copy&quot;
+  </td>
+ </tr>
+ <tr style="padding:0; margin:0; ">
+  <td style="padding:0; margin:0; height:392px; background-image:url(&apos;files/images/Text.png&apos;); background-repeat:no-repeat;"></td>
+  <td style="padding:0; margin:0; height:392px; background-image:url(&apos;files/images/Web.png&apos;); background-repeat:no-repeat;"></td>
+  <td style="padding:0; margin:0; height:392px; background-image:url(&apos;files/images/PDF.png&apos;); background-repeat:no-repeat;"></td>
+ </tr>
+</table>
+
+<h2 id="features">Features</h2>
+<p>DocGen makes it easy for anyone to make high-quality technical documentation. It is particularly intended for software library &apos;user guides&apos; and tutorials which need to be versioned <strong>in sync</strong> with the software. It may be useful in other situations where versioned documentation needs to be made accessible, such as process guides or technical product manuals.</p>
+<p style="page-break-before: always"></p>
+
+<table style="width:100%; border:none; padding:0;">
+ <tr style="border:none; padding:0;">
+
+  <td style="border:none; text-align:left; padding:0;"><ul>
+   <li class="list-heading">Input Formats</li>
+   <li>Plain text</li>
+   <li>Markdown</li>
+   <li>HTML</li>
+   <li>Image diagrams</li>
+   <li>Attach other documents</li>
+  </ul></td>
+
+  <td style="border:none; text-align:left; padding:0;"><ul>
+   <li class="list-heading">Configurable Generator</li>
+   <li>Code syntax highlighting</li>
+   <li>Automatic tables of contents</li>
+   <li>Branding and legal markings</li>
+   <li>Ownership and versioning</li>
+   <li>Change log feature</li>
+  </ul></td>
+
+  <td style="border:none; text-align:left; padding:0;"><ul>
+   <li class="list-heading">Flexible output formats</li>
+   <li>Self-contained HTML website</li>
+   <li>Publish to any web server</li>
+   <li>Publish to CD, shared drive, local folder</li>
+   <li>Author next to code in Subversion</li>
+   <li>Automatic PDF version</li>
+  </ul></td>
+
+ </tr>
+</table>
+
+<blockquote>
+<p>DocGen is probably not the right tool for precision PDF layout, or repeated generation of similar documents from standard templates (e.g. in product configurators). It is meant for free-form, human generated content which is regularly updated and refactored.</p>
+</blockquote>
+<p><br><span style="color:#003972; font-size: 16px; font-weight:bold;">Support for multiple platforms</span></p>
+<p>DocGen can be used to publish documentation on <strong>Microsoft Windows</strong>, <strong>Mac OS X</strong>, and <strong>Linux</strong>.</p>
+<p>Content published by DocGen is tested against these browsers:</p>
+<table style="width:400px; border:none;padding:0;">
+ <tr style="border:none;padding:0;">
+  <td style="border:none; padding:0; text-align:center;"><img src="files/images/browsers.png"></td>
+  <td style="border:none; padding:0; text-align:left;"><ul>
+   <li>Internet Explorer 7+</li>
+   <li>Firefox</li>
+   <li>Safari</li>
+   <li>Chrome</li>
+  </ul></td>
+ </tr>
+</table></div>
+
+</div>
+</section>
+
+ <footer>
+  <div><p class="w-fixed-width"><span id="version-date">Version 2.0.0 generated 01/03/2015 19:13:18</span></p></div>
+  <div class="w-fixed-width">
+    <p>&#xA9; <span id="year">2015</span> <span id="organization">Mark Macdonald</span></p>
+    <p>
+      </p><p id="legalese"></p>
+      <p id="attribution" <="" p="">Created by DocGen version </p>
+  </div>
+ </footer>
+ 
+ </body>
+</html>

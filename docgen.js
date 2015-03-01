@@ -1,5 +1,5 @@
 
-var docgen = require ('./tool/docgen.js');
+var docgen = require ('./docgen/docgen.js');
 var options = require('commander');
 
 options
