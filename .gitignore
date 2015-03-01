@@ -1,3 +1,2 @@
-DocGen/Generator/log.txt
-DocGen/Generator/npm-debug.log
-DocGen/Generator/node_modules
+node_modules
+example/output

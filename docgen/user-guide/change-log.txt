@@ -1,0 +1,36 @@
+﻿Changes
+=======
+
+DocGen 2.0.0
+
+- flexible number of TOC columns
+- easier to install (uses node package manager)
+- dependencies are now versioned
+- added time to generation timestamp
+
+- rewrite in Node/JS
+- simpler installation (automated script)
+- upgraded UI framework (drops support for IE 8)
+- upgraded to support latest version of wkhtmltopdf
+- added support for list of document contributors
+
+?
+- switch on or off PDF copy
+- override the version info
+- mathematical expressions with mathjax
+- 'permalinks' to headings
+- ability to link to figure numbers
+- automatic section numbering
+- check validity of links
+
+<p class="false-heading">1.1.0 (xx/xx/xxxx)</p> 
+
+- fixed defect where spurious text appeared on some pages with a page table of contents
+
+<p class="false-heading">1.0.1 (18/01/2012)</p> 
+
+- Fixed a bug causing the table of contents headings to sometimes appear in the wrong order
+
+<p class="false-heading">1.0.0 (04/11/2011)</p> 
+
+- Initial release
