@@ -1,0 +1,21 @@
+{
+	"name" : "DocGen",
+	"version" : "2.0.0",
+	"module" : "",
+	"reference" : "",
+	"organization" : "Mark Macdonald",
+	"owner" : "",
+	"author" : {
+		"name" : "Mark Macdonald",
+		"email" : ""
+	},
+	"contributors" : [
+		{
+			"name" : "",
+			"email" : ""
+		}
+	],
+	"summary" : "DocGen is a documentation tool for product software assets. It takes plain text (Markdown) input, and generates both a static website version and a PDF version of the documentation, in a standardised format.",
+	"marking" : "MIT License",
+	"legalese" : ""
+}

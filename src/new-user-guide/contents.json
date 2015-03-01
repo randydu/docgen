@@ -1,0 +1,52 @@
+[
+	{
+		"heading" : "Quick Start",
+		"column" : 1,
+		"links" : [
+			{
+				"title": "Overview",
+				"src": "index.txt"
+			},
+			{
+				"title": "Installation",
+				"src": "installation.txt"
+			}
+		]
+	},
+	{
+		"heading" : "User Guide",
+		"column" : 2,
+		"links" : [
+			{
+				"title": "Writing content",
+				"src": "writing-content.txt"
+			},
+			{
+				"title": "Advanced content",
+				"src": "advanced-content.txt"
+			},
+			{
+				"title": "Publishing with DocGen",
+				"src": "publishing.txt"
+			}
+		]
+	},
+	{
+		"heading" : "Troubleshooting",
+		"column" : 2,
+		"links" : [
+			{
+				"title": "Troubleshooting",
+				"src": "troubleshooting.txt"
+			},
+			{
+				"title": "Using with Subversion",
+				"src": "subversion.txt"
+			},
+			{
+				"title": "Upgrading",
+				"src": "upgrading.txt"
+			}
+		]
+	}
+]
