@@ -1,7 +1,7 @@
 ﻿
 <div id="banner" class="segment"><div class="w-fixed-width">
   <h1 class="w-massive w-center w-no-underline">Better documentation for software projects.</h1>
-  <img class="w-center" src="Images/DocGenOverview.png"  alt="overview" />
+  <img class="w-center" src="files/images/DocGenOverview.png"  alt="overview" />
 </div></div>
  
 <div id="banner-buttons" class="segment"><div class="w-fixed-width">
@@ -26,9 +26,9 @@ How it works
   </td>
  </tr>
  <tr style="padding:0; margin:0; ">
-  <td style="padding:0; margin:0; height:392px; background-image:url('Images/Text.png'); background-repeat:no-repeat;"></td>
-  <td style="padding:0; margin:0; height:392px; background-image:url('Images/Web.png'); background-repeat:no-repeat;"></td>
-  <td style="padding:0; margin:0; height:392px; background-image:url('Images/PDF.png'); background-repeat:no-repeat;"></td>
+  <td style="padding:0; margin:0; height:392px; background-image:url('files/images/Text.png'); background-repeat:no-repeat;"></td>
+  <td style="padding:0; margin:0; height:392px; background-image:url('files/images/Web.png'); background-repeat:no-repeat;"></td>
+  <td style="padding:0; margin:0; height:392px; background-image:url('files/images/PDF.png'); background-repeat:no-repeat;"></td>
  </tr>
 </table>
 
@@ -82,7 +82,7 @@ Content published by DocGen is tested against these browsers:
 
 <table style="width:400px; border:none;padding:0;">
  <tr style="border:none;padding:0;">
-  <td style="border:none; padding:0; text-align:center;"><img src="Images/browsers.png" /></td>
+  <td style="border:none; padding:0; text-align:center;"><img src="files/images/browsers.png" /></td>
   <td style="border:none; padding:0; text-align:left;"><ul>
    <li>Internet Explorer 7+</li>
    <li>Firefox</li>

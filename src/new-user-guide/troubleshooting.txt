@@ -22,7 +22,7 @@ Why is there an "Internet Explorer has restricted this webpage" warning?
 
 It is a known issue that Internet Explorer prevents pages opened from a local folder from running scripts. The following warning may be seen:
 
-![](Images/warning.png)
+![](files/images/warning.png)
 
 There are two solutions:
 
