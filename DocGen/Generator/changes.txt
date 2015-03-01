@@ -1,6 +1,9 @@
 
 DocGen 2.0.0
 
+- flexible number of TOC columns
+
+
 - rewrite in Node/JS
 - simpler installation (automated script)
 - upgraded UI framework (drops support for IE 8)

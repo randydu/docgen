@@ -150,6 +150,15 @@ function DocGen (options)
             });
             html[++i] = '</li></ul></td>';
         });
+        //fixed-width column at end
+        html[++i] = '<td class="toc-group" id="toc-fixed-column"><ul>';
+        html[++i] = '<li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li>';
+        html[++i] = '<li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="change-log.html">Release Notes</a></li>';
+        html[++i] = '</ul><div>';
+        html[++i] = '<button class="w-icon-button" onclick="window.location=\'user-guide.pdf\';">';
+        html[++i] = '<span class="w-icon" data-name="document"></span>';
+        html[++i] = '<span>PDF copy</span>';
+        html[++i] = '</button></div></td>';
         html[++i] = '</tr></table></div>';
         $('#toc').html(html.join(''));
         templates.main = $;
