@@ -223,6 +223,7 @@ function DocGen (options)
         });
         rsvp.hash(promises).then(function (files) {
             copyRequire();
+            copyUserFiles();
         }).catch(function(error) {
             console.log(error);
         });
@@ -234,6 +235,19 @@ function DocGen (options)
 
     var copyRequire = function () {
         ncp('tool/require', 'out/require', function (error) {
+            if (error) {
+                console.error(err);
+            }
+            console.log('done!');
+        });
+    }
+
+    /*
+        copy the files directory (user attached files)
+    */
+
+    var copyUserFiles = function () {
+        ncp(options.input+'/files', 'out/files', function (error) {
             if (error) {
                 console.error(err);
             }
