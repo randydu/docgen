@@ -66,7 +66,8 @@ function DocGen (options)
         rsvp.hash(files).then(function(files) {
             for (var key in files) {
                 if (files.hasOwnProperty(key)) { //ignore prototype
-                    var dom = cheerio.load(files[key]);
+                    var file = files[key].replace(/^\uFEFF/, ''); //remove BOM, if present
+                    var dom = cheerio.load(file);
                     templates[key] = dom;
                 }
             }
