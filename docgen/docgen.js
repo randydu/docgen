@@ -49,12 +49,26 @@ function DocGen (options)
     */
 
     var generatePdf = function () {
+        var allPages = '';
+        meta.contents.forEach( function (section) {
+            section.links.forEach( function (page) {
+                var key = page.src;
+                var name = key.substr(0, page.src.lastIndexOf('.'));
+                var path = options.output+'/'+name+'.html';
+                allPages += ' '+path;
+            });
+        });
         var command = 'wkhtmltopdf';
         command += wkhtmltopdfOptions.join('');
-        command += ' '+options.output+'/index.html';
+        command += allPages;
         command += ' '+options.output+'/user-guide.pdf';
+
         var child = child_process.exec(command, function (error, stdout, stderr) {
-            //
+            if (error) {
+                //console.log(error);
+            } else if (stderr) {
+                //console.log(stderr);
+            }
         });
     }
 
