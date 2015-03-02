@@ -11,8 +11,26 @@ var child_process = require("child_process");
     wkthmltopdf option
 */
 
+/*
+--header-html "'+File.dirname(__FILE__)+'/temp_header.html"'
+--footer-html "'+File.dirname(__FILE__)+'/temp_footer.html"'
+ cover "'+File.dirname(__FILE__)+'/temp_cover.html"
+*/
+
 var wkhtmltopdfOptions = [
-    ''
+    ' --zoom 0.7297',
+    ' --image-quality 100',
+    ' --print-media-type',
+    ' --orientation portrait',
+    ' --page-size A4',
+    ' --margin-top 25',
+    ' --margin-right 15',
+    ' --margin-bottom 25',
+    ' --margin-left 15',
+    ' --header-spacing 5',
+    ' --footer-spacing 5',
+    ' toc',
+    ' --toc-header-text "Table of Contents"'
 ];
 
 /**
@@ -31,7 +49,11 @@ function DocGen (options)
     */
 
     var generatePdf = function () {
-        var child = child_process.exec('wkhtmltopdf '+options.output+'/index.html '+options.output+'/user-guide.pdf', function (error, stdout, stderr) {
+        var command = 'wkhtmltopdf';
+        command += wkhtmltopdfOptions.join('');
+        command += ' '+options.output+'/index.html';
+        command += ' '+options.output+'/user-guide.pdf';
+        var child = child_process.exec(command, function (error, stdout, stderr) {
             //
         });
     }
