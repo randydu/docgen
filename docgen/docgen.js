@@ -7,31 +7,7 @@ var moment = require('moment');
 var ncp = require ('ncp');
 var child_process = require("child_process");
 
-/*
-    wkthmltopdf option
-*/
 
-/*
---header-html "'+File.dirname(__FILE__)+'/temp_header.html"'
---footer-html "'+File.dirname(__FILE__)+'/temp_footer.html"'
- cover "'+File.dirname(__FILE__)+'/temp_cover.html"
-*/
-
-var wkhtmltopdfOptions = [
-    ' --zoom 0.7297',
-    ' --image-quality 100',
-    ' --print-media-type',
-    ' --orientation portrait',
-    ' --page-size A4',
-    ' --margin-top 25',
-    ' --margin-right 15',
-    ' --margin-bottom 25',
-    ' --margin-left 15',
-    ' --header-spacing 5',
-    ' --footer-spacing 5',
-    ' toc',
-    ' --toc-header-text "Table of Contents"'
-];
 
 /**
 * DocGen class
@@ -45,32 +21,22 @@ function DocGen (options)
     var pages = {};
 
     /*
-        call wkhtmltopdf as an external executable
+        wkthmltopdf option
     */
 
-    var generatePdf = function () {
-        var allPages = '';
-        meta.contents.forEach( function (section) {
-            section.links.forEach( function (page) {
-                var key = page.src;
-                var name = key.substr(0, page.src.lastIndexOf('.'));
-                var path = options.output+'/'+name+'.html';
-                allPages += ' '+path;
-            });
-        });
-        var command = 'wkhtmltopdf';
-        command += wkhtmltopdfOptions.join('');
-        command += allPages;
-        command += ' '+options.output+'/user-guide.pdf';
-
-        var child = child_process.exec(command, function (error, stdout, stderr) {
-            if (error) {
-                //console.log(error);
-            } else if (stderr) {
-                //console.log(stderr);
-            }
-        });
-    }
+    var wkhtmltopdfOptions = [
+        ' --zoom 0.7297',
+        ' --image-quality 100',
+        ' --print-media-type',
+        ' --orientation portrait',
+        ' --page-size A4',
+        ' --margin-top 25',
+        ' --margin-right 15',
+        ' --margin-bottom 25',
+        ' --margin-left 15',
+        ' --header-spacing 5',
+        ' --footer-spacing 5'
+    ];
 
     /*
         read any file
@@ -110,6 +76,9 @@ function DocGen (options)
     var loadTemplates = function () {
         var files = {
             main: readFile('docgen/templates/main.html'),
+            pdfCover: readFile('docgen/templates/pdfCover.html'),
+            pdfHeader: readFile('docgen/templates/pdfHeader.html'),
+            pdfFooter: readFile('docgen/templates/pdfFooter.html'),
         };
         rsvp.hash(files).then(function(files) {
             for (var key in files) {
@@ -200,7 +169,7 @@ function DocGen (options)
         });
         //fixed-width column at end
         html[++i] = '<td class="toc-group" id="toc-fixed-column"><ul>';
-        html[++i] = '<li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li>';
+        html[++i] = '<li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="cover.html">Ownership</a></li>';
         html[++i] = '<li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="change-log.html">Release Notes</a></li>';
         html[++i] = '</ul><div>';
         html[++i] = '<button class="w-icon-button" onclick="window.location=\'user-guide.pdf\';">';
@@ -217,11 +186,12 @@ function DocGen (options)
     */
 
     var insertParameters = function () {
-        var $ = templates.main;
-
         var timestamp = moment().format('DD/MM/YYYY HH:mm:ss');
         var year = moment().format('YYYY');
 
+        //--------------------------------------------------------------------------------------------------------------
+        // main template
+        var $ = templates.main;
         $('#name').text(meta.parameters.name);
         if (meta.parameters.version !== '') {
             $('#version').text(' ('+meta.parameters.version+')');
@@ -233,6 +203,10 @@ function DocGen (options)
         $('#organization').text(meta.parameters.organization);
         $('#legalese').text(meta.parameters.legalese);
         $('#attribution').text('Created by DocGen version '/*+options.version*/);
+
+        //--------------------------------------------------------------------------------------------------------------
+        // PDF cover template 
+        var $ = templates.pdfCover;
     }
 
     /*
@@ -269,10 +243,12 @@ function DocGen (options)
                 promises[key] = writeFile(path, html);
             });
         });
+        //add extra files
+        promises['docgenPdfCover'] = writeFile(options.output+'/pdfCover.html', templates.pdfCover.html());
         rsvp.hash(promises).then(function (files) {
             copyRequire();
             copyUserFiles();
-            generatePdf();
+            preparePdfTemplates();
         }).catch(function(error) {
             console.log(error);
         });
@@ -300,6 +276,60 @@ function DocGen (options)
                 console.error(err);
             }
         });
+    }
+
+    /*
+        insert the parameters into the PDF templates, and copy them to a temporary directory
+    */
+
+    var preparePdfTemplates = function () {
+        generatePdf();
+    }
+
+    /*
+        call wkhtmltopdf as an external executable
+    */
+
+/*
+--header-html "'+File.dirname(__FILE__)+'/temp_header.html"'
+--footer-html "'+File.dirname(__FILE__)+'/temp_footer.html"'
+ cover "'+File.dirname(__FILE__)+'/temp_cover.html"
+*/
+
+    var generatePdf = function () {
+        wkhtmltopdfOptions.push(' cover '+options.output+'/pdfCover.html');
+        wkhtmltopdfOptions.push(' toc');
+        wkhtmltopdfOptions.push(' --toc-header-text "Table of Contents"');
+        var allPages = '';
+        meta.contents.forEach( function (section) {
+            section.links.forEach( function (page) {
+                var key = page.src;
+                var name = key.substr(0, page.src.lastIndexOf('.'));
+                var path = options.output+'/'+name+'.html';
+                allPages += ' '+path;
+            });
+        });
+        var command = 'wkhtmltopdf';
+        command += wkhtmltopdfOptions.join('');
+        command += allPages;
+        command += ' '+options.output+'/user-guide.pdf';
+console.log(command);
+        var child = child_process.exec(command, function (error, stdout, stderr) {
+            if (error) {
+                //console.log(error);
+            } else if (stderr) {
+                //console.log(stderr);
+            }
+        });
+
+    }
+
+    /*
+        cleanup
+    */
+
+    var cleanUp = function () {
+
     }
 
     this.run = function () {
