@@ -1,7 +1,7 @@
-header>div>a div {
-	height: 48px;
-	line-height: 48px;
-	padding-left: 230px;
+header > div > a div {
+	height: 42px;
+	line-height: 42px;
+	padding-left: 85px; /*width+25*/
 }
 
 /******************************** TABLE OF CONTENTS ****************************/
