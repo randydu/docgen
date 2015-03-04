@@ -195,11 +195,11 @@ function DocGen (options)
             organization += meta.parameters.organization.name;
         }
 
-        var link = '';
-        if (meta.parameters.link.url !== '') {
-            link += '<a href="'+meta.parameters.link.url+'">'+meta.parameters.link.name+'</a>';
+        var website = '';
+        if (meta.parameters.website.url !== '') {
+            website += '<a href="'+meta.parameters.website.url+'">'+meta.parameters.website.name+'</a>';
         } else {
-            link += meta.parameters.link.name;
+            website += meta.parameters.websitename;
         }
 
         var contributors = '';
@@ -231,7 +231,7 @@ function DocGen (options)
                 $('#dg-contributors').html(contributors);
                 $('#dg-module').text(meta.parameters.module);
                 $('#dg-id').html(meta.parameters.id);
-                $('#dg-link').html(link);
+                $('#dg-website').html(website);
                 $('#dg-summary').text(meta.parameters.summary);
                 $('#dg-copyright').html(copyright);
                 $('#dg-marking').text(meta.parameters.marking);
