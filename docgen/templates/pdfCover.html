@@ -12,72 +12,78 @@
   <link rel="stylesheet" href="require/print.css" media="print" />
 
 <style>
+
 html {
   background: none;
 }
 
+#dg-logo {
+  display: inline-block;
+  float: right;
+}
+
+#dg-cover-info {
+  width: 100%;
+  border-radius: 6px;
+}
+
+#dg-cover-info th {
+  background-color: #385691;
+  color: white;
+  font-size: 24px;
+  padding: 15px;
+}
+
+#dg-footer {
+   position: fixed;
+   left: 0px;
+   bottom: 0px;
+   width: 100%;
+   text-align: center;
+}
+
 </style>
 
-  <!--load scripts second-->
 
-  <script src="require/webknife/framework.min.js"></script>
+<script src="require/webknife/framework.min.js"></script>
 
 </head>
-
 <body>
 
-<table class="w-table" id="header">
+<div class="w-clear-after"><div id="dg-logo"><img src="files/images/logo.png" /></div></div>
+
+<table class="w-table w-fixed" id="dg-cover-info">
  <tr>
-  <td><%protective_marking%></td>
-  <td id="logo"><img src="files/images/logo.png" /></td>
+  <th colspan="3" id="dg-title"></th>
  </tr>
+ <tr>
+  <td><strong>Owner: </strong> <span id="dg-owner"></span></td>
+  <td><strong>Version: </strong> <span id="dg-version"></span></td>
+  <td><strong>Released: </strong> <span id="dg-release-date"></span></td>
+ </tr>
+ <tr>
+  <td><strong>Author: </strong> <span id="dg-author"></span></td>
+  <td colspan="2"><strong>Contributors: </strong> <span id="dg-contributors"></span></td>
+ </tr>
+ <tr>
+  <td><strong>Module: </strong> <span id="dg-module"></span></td>
+  <td><strong>ID: </strong> <span id="dg-id"></span></td>
+  <td><strong>Link: </strong> <span id="dg-link"></span></td>
+ </tr>
+ <tr>
 </table>
 
-<table id="cover-info">
- <tr><th colspan="3"><%name%></th></tr>
- <tr>
-  <td class="heading">Product Owner:</td>
-  <td class="heading">Author:</td>
-  <td class="heading">Date:</td>
- </tr>
- <tr>
-  <td><%owner%></td>
-  <td><%author_link%></td>
-  <td><%date%></td>
- </tr>
+<h1>Summary</h1>
+<p id="dg-summary"></p>
 
- <tr>
-  <td class="heading">Module Name:</td>
-  <td class="heading">Module ID:</td>
-  <td class="heading">Release:</td>
- </tr>
- <tr>
-  <td><%module%></td>
-  <td><%module_id%></td>
-  <td><%release%></td>
- </tr>
-</table>
+<div id="dg-footer">
+  <p><span id="dg-copyright"></span></p>
+  <p>
+    <p id="dg-marking"></p>
+    <p id="dg-legalese"></p>
+    <p id="dg-attribution"></p>
+  </p>
+</div>
 
-<table id="cover-info">
- <tr>
-  <td class="summary" class="heading">Summary:</td>
- </tr>
- <tr>
-  <td class="summary" class="heading"><%summary%></td>
- </tr>
-</table>
-
-<table id="footer">
-  <tr>
-   <td><%protective_marking%></td>
-  </tr>
-  <tr>
-   <td class="weak" colspan="3">
-    <span><%legalese%></span>
-  <span>Generated on <%date%> by CCP DocGen (<%docgen_version%>).</span>
-   </td>
-  </tr>
-</table>
- 
- </body>
+</body>
 </html>

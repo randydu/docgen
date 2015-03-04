@@ -182,31 +182,80 @@ function DocGen (options)
     }
 
     /*
-        insert the parameters into the template
+        insert the parameters into all templates
     */
 
     var insertParameters = function () {
+
         var timestamp = moment().format('DD/MM/YYYY HH:mm:ss');
         var year = moment().format('YYYY');
+        var attribution = 'Created by DocGen on '+timestamp; //+options.version
 
-        //--------------------------------------------------------------------------------------------------------------
-        // main template
-        var $ = templates.main;
-        $('#name').text(meta.parameters.name);
-        if (meta.parameters.version !== '') {
-            $('#version').text(' ('+meta.parameters.version+')');
-            $('#version-date').text('Version '+meta.parameters.version+' generated '+timestamp);
+        var author = '';
+        if (meta.parameters.author.url !== '') {
+            author += '<a href="'+meta.parameters.author.url+'">'+meta.parameters.author.name+'</a>';
         } else {
-            $('#version-date').text('Generated '+timestamp);
+            author += meta.parameters.author.name;
         }
-        $('#year').text(year);
-        $('#organization').text(meta.parameters.organization);
-        $('#legalese').text(meta.parameters.legalese);
-        $('#attribution').text('Created by DocGen version '/*+options.version*/);
 
-        //--------------------------------------------------------------------------------------------------------------
-        // PDF cover template 
-        var $ = templates.pdfCover;
+        var owner = '';
+        if (meta.parameters.owner.url !== '') {
+            owner += '<a href="'+meta.parameters.owner.url+'">'+meta.parameters.owner.name+'</a>';
+        } else {
+            owner += meta.parameters.owner.name;
+        }
+
+        var organization = '';
+        if (meta.parameters.organization.url !== '') {
+            organization += '<a href="'+meta.parameters.organization.url+'">'+meta.parameters.organization.name+'</a>';
+        } else {
+            organization += meta.parameters.organization.name;
+        }
+
+        var link = '';
+        if (meta.parameters.link.url !== '') {
+            link += '<a href="'+meta.parameters.link.url+'">'+meta.parameters.link.name+'</a>';
+        } else {
+            link += meta.parameters.link.name;
+        }
+
+        var contributors = '';
+        meta.parameters.contributors.forEach (function (contributor) {
+            if (contributor.url !== '') {
+                contributors += '<a href="'+contributor.url+'">'+contributor.name+'</a>, ';
+            } else {
+                contributors += contributor.name+', ';
+            }
+        });
+        contributors = contributors.replace(/,\s*$/, ""); //remove trailing commas
+
+        var copyright = '&copy; '+year+' '+organization;
+
+        var webTitle = meta.parameters.title
+
+        var webFooter = 'Version '+meta.parameters.version+' released '+meta.parameters.date;
+
+         for (var key in templates) {
+            if (templates.hasOwnProperty(key)) { //ignore prototype
+                $ = templates[key];
+                $('#dg-title').text(meta.parameters.title);
+                $('#dg-owner').html(owner);
+                $('#dg-version').text(meta.parameters.version);
+                $('#dg-web-title-version').text('('+meta.parameters.version+')');  
+                $('#dg-release-date').text(meta.parameters.date);
+                $('#dg-web-footer').text(webFooter);
+                $('#dg-author').html(author);                
+                $('#dg-contributors').html(contributors);
+                $('#dg-module').text(meta.parameters.module);
+                $('#dg-id').html(meta.parameters.id);
+                $('#dg-link').html(link);
+                $('#dg-summary').text(meta.parameters.summary);
+                $('#dg-copyright').html(copyright);
+                $('#dg-marking').text(meta.parameters.marking);
+                $('#dg-legalese').text(meta.parameters.legalese);
+                $('#dg-attribution').text(attribution);
+            }
+        }
     }
 
     /*
@@ -313,7 +362,7 @@ function DocGen (options)
         command += wkhtmltopdfOptions.join('');
         command += allPages;
         command += ' '+options.output+'/user-guide.pdf';
-console.log(command);
+
         var child = child_process.exec(command, function (error, stdout, stderr) {
             if (error) {
                 //console.log(error);
