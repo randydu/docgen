@@ -1,21 +1,32 @@
 {
-	"name" : "DocGen - a documentation tool",
+	"title" : "DocGen - a documentation tool",
 	"version" : "2.0.0",
-	"module" : "",
-	"reference" : "",
-	"organization" : "Mark Macdonald",
-	"owner" : "",
+	"date" : "XX/XX/XXXX",
+	"organization" : {
+		"name" : "Mark Macdonald",
+		"url" : "https://github.com/mtmacdonald"
+	},
 	"author" : {
 		"name" : "Mark Macdonald",
-		"email" : ""
+		"url" : "https://github.com/mtmacdonald"
+	},
+	"owner" : {
+		"name" : "Mark Macdonald",
+		"url" : "https://github.com/mtmacdonald"
 	},
 	"contributors" : [
 		{
 			"name" : "",
-			"email" : ""
+			"url" : ""
 		}
 	],
-	"summary" : "DocGen is a documentation tool for product software assets. It takes plain text (Markdown) input, and generates both a static website version and a PDF version of the documentation, in a standardised format.",
-	"marking" : "MIT License",
+	"website" : {
+		"name" : "Github",
+		"url" : "https://github.com/mtmacdonald/docgen"
+	},
+	"module" : "",
+	"id" : "",
+	"summary" : "DocGen is a documentation tool for software products. It's a static website generator that takes plain text or Markdown as input, and outputs both a static website and a PDF copy.",
+	"marking" : "MIT License.",
 	"legalese" : ""
 }
