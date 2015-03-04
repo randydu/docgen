@@ -346,8 +346,7 @@ function DocGen (options)
         wkhtmltopdfOptions.push(' --header-html '+options.output+'/pdfHeader.html');
         wkhtmltopdfOptions.push(' --footer-html '+options.output+'/pdfFooter.html');
         wkhtmltopdfOptions.push(' cover '+options.output+'/pdfCover.html');
-        wkhtmltopdfOptions.push(' toc');
-        wkhtmltopdfOptions.push(' --toc-header-text "Table of Contents"');
+        wkhtmltopdfOptions.push(' toc --xsl-style-sheet docgen/pdf-contents.xsl');
         var allPages = '';
         meta.contents.forEach( function (section) {
             section.links.forEach( function (page) {
