@@ -21,24 +21,6 @@ function DocGen (options)
     var pages = {};
 
     /*
-        wkthmltopdf option
-    */
-
-    var wkhtmltopdfOptions = [
-        ' --zoom 0.7297',
-        ' --image-quality 100',
-        ' --print-media-type',
-        ' --orientation portrait',
-        ' --page-size A4',
-        ' --margin-top 25',
-        ' --margin-right 15',
-        ' --margin-bottom 25',
-        ' --margin-left 15',
-        ' --header-spacing 5',
-        ' --footer-spacing 5'
-    ];
-
-    /*
         read any file
     */
 
@@ -187,9 +169,10 @@ function DocGen (options)
 
     var insertParameters = function () {
 
-        var timestamp = moment().format('DD/MM/YYYY HH:mm:ss');
+        var date = moment().format('DD/MM/YYYY');
+        var time = moment().format('HH:mm:ss');
         var year = moment().format('YYYY');
-        var attribution = 'Created by DocGen on '+timestamp; //+options.version
+        var attribution = 'Created by DocGen on '+date+' at '+time+'.'; //+options.version
 
         var author = '';
         if (meta.parameters.author.url !== '') {
@@ -233,7 +216,7 @@ function DocGen (options)
 
         var webTitle = meta.parameters.title
 
-        var webFooter = 'Version '+meta.parameters.version+' released '+meta.parameters.date;
+        var webFooter = 'Version '+meta.parameters.version+' released on '+meta.parameters.date+'.';
 
          for (var key in templates) {
             if (templates.hasOwnProperty(key)) { //ignore prototype
@@ -334,6 +317,24 @@ function DocGen (options)
     var preparePdfTemplates = function () {
         generatePdf();
     }
+
+    /*
+        wkthmltopdf options
+    */
+
+    var wkhtmltopdfOptions = [
+        ' --zoom 0.7297',
+        ' --image-quality 100',
+        ' --print-media-type',
+        ' --orientation portrait',
+        ' --page-size A4',
+        ' --margin-top 25',
+        ' --margin-right 15',
+        ' --margin-bottom 25',
+        ' --margin-left 15',
+        ' --header-spacing 5',
+        ' --footer-spacing 5'
+    ];
 
     /*
         call wkhtmltopdf as an external executable

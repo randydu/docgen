@@ -15,6 +15,7 @@
 
 html {
   background: none;
+  min-height: 100%;
 }
 
 #dg-logo {
@@ -23,27 +24,43 @@ html {
 }
 
 #dg-cover-info {
+  margin-top: 100px;
+  margin-bottom: 50px;
   width: 100%;
-  border-radius: 6px;
 }
 
 #dg-cover-info th {
   background-color: #385691;
   color: white;
-  font-size: 24px;
+  font-size: 28px;
   padding: 15px;
+  border: 2px solid #385691;
+  /*border-radius: 8px 8px 0px 0px;*/
+}
+
+#dg-cover-info td {
+  border: 2px solid #385691;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#dg-summary {
+  margin-bottom: 50px;
 }
 
 #dg-footer {
-   position: fixed;
-   left: 0px;
-   bottom: 0px;
+   /*position: fixed;*/
+   /*bottom: 0px;*/
    width: 100%;
    text-align: center;
 }
 
-</style>
+#footnote {
+  font-size: 9px;
+}
 
+
+</style>
 
 <script src="require/webknife/framework.min.js"></script>
 
@@ -78,10 +95,10 @@ html {
 
 <div id="dg-footer">
   <p><span id="dg-copyright"></span></p>
-  <p>
-    <p id="dg-marking"></p>
-    <p id="dg-legalese"></p>
-    <p id="dg-attribution"></p>
+  <p id="footnote">
+    <span id="dg-marking"></span>
+    <span id="dg-legalese"></span>
+    <span id="dg-attribution"></span>
   </p>
 </div>
 
