@@ -1,5 +1,26 @@
+<!doctype html>
 <html>
 <head>
+
+  <link rel="stylesheet" href="require/webknife/framework.min.css" type="text/css" />
+  <link rel="stylesheet" href="require/docgen.css" type="text/css" />
+  <link rel="stylesheet" href="require/print.css" media="print" />
+
+<style>
+
+#dg-footer {
+  border-top: 1px solid #385691;
+  padding-top: 10px;
+}
+
+#dg-footer table {
+  width: 100%;
+  text-align: center;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+</style>
 
 <script> /*from wkhtmltopdf documenation - substitutes in parameters like page numbers at runtime*/
 function subst() {
@@ -14,59 +35,17 @@ function subst() {
 }
 </script>
 
-<style>
-#footer
-{
- border-top:1px solid #ccc;
- padding: 10px 0 10px 0;
-
-}
-.weak
-{
- color:#999;
- font-size: 8px;
-}
-
-body
-{
- width:100%
- text-align:center;
- font-family:verdana;
- color:#444;
-}
-
-table
-{ 
- font-size: 11px;
- width:100%;
-}
-
-td
-{
- padding: 5px 0 5px 0;
- width:33%;
- text-align:center;
-}
-
-</style>
-
 </head>
 <body onload="subst()">
-<div id="footer">
+
+<div id="dg-footer">
  <table>
   <tr>
-   <td><%name%> <%release%></td>
-   <td><%protective_marking%></td>
+   <td><span id="dg-title"></span> <span id="dg-web-title-version"></span></td>
+   <td><span id="dg-copyright"></td>
    <td>Page <span class="page"></span> of <span class="topage"></span></td>
   </tr>
-  <tr>
-   <td class="weak" colspan="3">
-    <span class="weaker"><%legalese%>
-    </span><span>Release <%release%> generated on <%date%> by CCP DocGen (<%docgen_version%>).</span>
-   </td>
-  </tr>
- </table> 
-
+ </table>
 </div>
 
 </body>

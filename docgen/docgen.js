@@ -277,6 +277,8 @@ function DocGen (options)
         });
         //add extra files
         promises['docgenPdfCover'] = writeFile(options.output+'/pdfCover.html', templates.pdfCover.html());
+        promises['docgenPdfHeader'] = writeFile(options.output+'/pdfHeader.html', templates.pdfHeader.html());
+        promises['docgenPdfFooter'] = writeFile(options.output+'/pdfFooter.html', templates.pdfFooter.html());
         rsvp.hash(promises).then(function (files) {
             copyRequire();
             copyUserFiles();
@@ -330,7 +332,7 @@ function DocGen (options)
         ' --page-size A4',
         ' --margin-top 25',
         ' --margin-right 15',
-        ' --margin-bottom 25',
+        ' --margin-bottom 16',
         ' --margin-left 15',
         ' --header-spacing 5',
         ' --footer-spacing 5'
@@ -340,13 +342,9 @@ function DocGen (options)
         call wkhtmltopdf as an external executable
     */
 
-/*
---header-html "'+File.dirname(__FILE__)+'/temp_header.html"'
---footer-html "'+File.dirname(__FILE__)+'/temp_footer.html"'
- cover "'+File.dirname(__FILE__)+'/temp_cover.html"
-*/
-
     var generatePdf = function () {
+        wkhtmltopdfOptions.push(' --header-html '+options.output+'/pdfHeader.html');
+        wkhtmltopdfOptions.push(' --footer-html '+options.output+'/pdfFooter.html');
         wkhtmltopdfOptions.push(' cover '+options.output+'/pdfCover.html');
         wkhtmltopdfOptions.push(' toc');
         wkhtmltopdfOptions.push(' --toc-header-text "Table of Contents"');
