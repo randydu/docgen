@@ -29,19 +29,32 @@ html {
   width: 100%;
 }
 
+#dg-cover-info {
+  border-collapse: separate; /*http://stackoverflow.com/questions/7625586/*/
+}
+
 #dg-cover-info th {
   background-color: #385691;
   color: white;
   font-size: 28px;
   padding: 15px;
-  border: 2px solid #385691;
-  /*border-radius: 8px 8px 0px 0px;*/
+  border: 1px solid #385691;
+  border-radius: 10px 10px 0 0;
 }
 
-#dg-cover-info td {
-  border: 2px solid #385691;
+#dg-cover-info tr td {
+  border-top: 2px solid #385691;
+  border-left: 2px solid #385691;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+#dg-cover-info td:last-child {
+  border-right: 2px solid #385691;
+}
+
+#dg-cover-info .dg-final-row td {
+  border-bottom: 2px solid #385691;
 }
 
 #dg-summary {
@@ -70,9 +83,14 @@ html {
 <div class="w-clear-after"><div id="dg-logo"><img src="files/images/logo.png" /></div></div>
 
 <table class="w-table w-fixed" id="dg-cover-info">
+<thead>
  <tr>
   <th colspan="3" id="dg-title"></th>
  </tr>
+ </thead>
+ <tfoot>
+ </tfoot>
+ <tbody>
  <tr>
   <td><strong>Owner: </strong> <span id="dg-owner"></span></td>
   <td><strong>Version: </strong> <span id="dg-version"></span></td>
@@ -82,12 +100,13 @@ html {
   <td><strong>Author: </strong> <span id="dg-author"></span></td>
   <td colspan="2"><strong>Contributors: </strong> <span id="dg-contributors"></span></td>
  </tr>
- <tr>
+ <tr class="dg-final-row">
   <td><strong>Module: </strong> <span id="dg-module"></span></td>
   <td><strong>ID: </strong> <span id="dg-id"></span></td>
   <td><strong>Link: </strong> <span id="dg-link"></span></td>
  </tr>
  <tr>
+</tbody>
 </table>
 
 <h1>Summary</h1>
