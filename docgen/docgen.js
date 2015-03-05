@@ -343,6 +343,7 @@ function DocGen (options)
     */
 
     var generatePdf = function () {
+        wkhtmltopdfOptions.push(' --user-style-sheet docgen/pdf-stylesheet.css');
         wkhtmltopdfOptions.push(' --header-html '+options.output+'/pdfHeader.html');
         wkhtmltopdfOptions.push(' --footer-html '+options.output+'/pdfFooter.html');
         wkhtmltopdfOptions.push(' cover '+options.output+'/pdfCover.html');

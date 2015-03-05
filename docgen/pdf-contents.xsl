@@ -12,7 +12,7 @@
         <title>Table of Contents</title>
         <style>
           h1, ul, a {
-            font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+            font-family: 'source-sans-pro', Arial, sans-serif;
             color: black;
           }
           h1 {
