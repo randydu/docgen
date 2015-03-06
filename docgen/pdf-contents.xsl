@@ -14,7 +14,7 @@
         <style>
           h1, ul, a {
             font-family: 'open-sans', Arial, sans-serif;
-            color: black;
+            color: #444;
           }
           h1 {
             text-align: center;
