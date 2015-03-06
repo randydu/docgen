@@ -325,7 +325,7 @@ function DocGen (options)
     */
 
     var wkhtmltopdfOptions = [
-        ' --zoom 0.7297',
+        ' --zoom 1.0',
         ' --image-quality 100',
         ' --print-media-type',
         ' --orientation portrait',
@@ -335,7 +335,8 @@ function DocGen (options)
         ' --margin-bottom 16',
         ' --margin-left 15',
         ' --header-spacing 5',
-        ' --footer-spacing 5'
+        ' --footer-spacing 5',
+        ' --javascript-delay 1000' //code syntax highlight in wkhtmltopdf 0.12.2.1 fails without a delay (but why doesn't --no-stop-slow-scripts work?)
     ];
 
     /*
@@ -364,9 +365,9 @@ function DocGen (options)
 
         var child = child_process.exec(command, function (error, stdout, stderr) {
             if (error) {
-                //console.log(error);
+                console.log(error);
             } else if (stderr) {
-                //console.log(stderr);
+                console.log(stderr);
             }
         });
 

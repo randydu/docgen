@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet version="2.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:outline="http://code.google.com/p/wkhtmltopdf/outline"
+                xmlns:outline="http://wkhtmltopdf.org/outline"
                 xmlns="http://www.w3.org/1999/xhtml">
   <xsl:output doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
               doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
@@ -10,6 +10,7 @@
     <html>
       <head>
         <title>Table of Contents</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style>
           h1, ul, a {
             font-family: 'open-sans', Arial, sans-serif;
@@ -17,7 +18,7 @@
           }
           h1 {
             text-align: center;
-            font-size: 22px;
+            font-size: 21px;
             color: #385691;
           }
           div {
@@ -30,10 +31,10 @@
             list-style: none;
           }
           ul {
-            font-size: 20px;
-            line-height: 25px;
+            font-size: 14px;
+            line-height: 20px;
           }
-          ul ul {font-size: 80%; }
+          ul ul {font-size: 90%; }
           ul {padding-left: 0em;}
           ul ul {padding-left: 1em;}
           a {text-decoration: none; }
@@ -62,9 +63,9 @@
         </div>
       </xsl:if>
       <ul>
+        <xsl:comment>added to prevent self-closing tags in QtXmlPatterns</xsl:comment>
         <xsl:apply-templates select="outline:item"/>
       </ul>
     </li>
   </xsl:template>
 </xsl:stylesheet>
-
