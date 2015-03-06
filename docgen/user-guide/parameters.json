@@ -26,7 +26,7 @@
 	},
 	"module" : "",
 	"id" : "",
-	"summary" : "DocGen is a documentation tool for software products. It's a static website generator that takes plain text or Markdown as input, and outputs both a static website and a PDF copy.",
+	"summary" : "DocGen is a documentation tool for software products. It takes plain text or Markdown as input, and generates both a static website and a PDF copy.",
 	"marking" : "MIT License.",
 	"legalese" : ""
 }
