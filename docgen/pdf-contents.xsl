@@ -12,7 +12,7 @@
         <title>Table of Contents</title>
         <style>
           h1, ul, a {
-            font-family: 'source-sans-pro', Arial, sans-serif;
+            font-family: 'open-sans', Arial, sans-serif;
             color: black;
           }
           h1 {

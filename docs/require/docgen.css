@@ -4,6 +4,10 @@ header > div > a div {
 	padding-left: 85px; /*width+25*/
 }
 
+pre {
+	font-size: 12px; /*todo - move to webknife*/
+}
+
 /******************************** TABLE OF CONTENTS ****************************/
 
 /*Table of contents button to initiate show/hide*/
