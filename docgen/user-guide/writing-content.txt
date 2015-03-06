@@ -221,9 +221,9 @@ and the documentation for the [kramdown](http://kramdown.rubyforge.org/) engine 
 <tr>
  <td class="r1">Diagrams<br/> (embedding images)</td>
  <td><code>  
-  ![](Style/logo.png)
+  ![](files/images/logo.png)
  </code></td>
- <td><img src="Style/logo.png"></td>
+ <td><img src="files/images/logo.png"></td>
 </tr>
 
 <tr>

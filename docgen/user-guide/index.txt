@@ -26,9 +26,9 @@ How it works
   </td>
  </tr>
  <tr style="padding:0; margin:0; ">
-  <td style="padding:0; margin:0; height:392px; background-image:url('files/images/Text.png'); background-repeat:no-repeat;"></td>
-  <td style="padding:0; margin:0; height:392px; background-image:url('files/images/Web.png'); background-repeat:no-repeat;"></td>
-  <td style="padding:0; margin:0; height:392px; background-image:url('files/images/PDF.png'); background-repeat:no-repeat;"></td>
+  <td style="padding:0; margin:0; height:392px; background-image:url('files/images/text.png'); background-repeat:no-repeat;"></td>
+  <td style="padding:0; margin:0; height:392px; background-image:url('files/images/web.png'); background-repeat:no-repeat;"></td>
+  <td style="padding:0; margin:0; height:392px; background-image:url('files/images/pdf.png'); background-repeat:no-repeat;"></td>
  </tr>
 </table>
 
