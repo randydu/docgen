@@ -7,17 +7,32 @@ var moment = require('moment');
 var ncp = require ('ncp');
 var child_process = require("child_process");
 var schema_validator = require("z-schema");
+var chalk = require('chalk');
 
 /**
 * DocGen class
 */
 
-function DocGen (options)
+function DocGen ()
 {
-    var options = options;
+    var version = '2.0.0';
+    var options;
     var templates = {};
     var meta = {};
     var pages = {};
+
+    this.getVersion = function () {
+        return version;
+    }
+
+    this.setOptions = function (userOptions) {
+        options = userOptions;
+    }
+
+    this.run = function () {
+        console.log(chalk.green('DocGen version '+version));
+        loadTemplates();
+    }
 
     /*
         read any file
@@ -55,6 +70,7 @@ function DocGen (options)
     */
 
     var loadTemplates = function () {
+        console.log(chalk.green('Loading templates'));
         var files = {
             main: readFile('docgen/templates/main.html'),
             pdfCover: readFile('docgen/templates/pdfCover.html'),
@@ -193,6 +209,7 @@ function DocGen (options)
     */
 
     var loadMeta = function () {
+        console.log(chalk.green('Loading required JSON files'));
         var files = {
             parameters: readFile(options.input+'/parameters.json'),
             contents: readFile(options.input+'/contents.json'),
@@ -223,6 +240,7 @@ function DocGen (options)
     */
 
     var loadMarkdown = function () {
+        console.log(chalk.green('Loading Markdown files'));
         var keys = [];
         var files = [];
         meta.contents.forEach( function (section) {
@@ -364,6 +382,7 @@ function DocGen (options)
     */
 
     var process = function () {
+        console.log(chalk.green('Generating the web content'));
         webToc();
         insertParameters();
         meta.contents.forEach( function (section) {
@@ -383,6 +402,7 @@ function DocGen (options)
     */
 
     var writePages = function () {
+        console.log(chalk.green('Writing the web page files'));
         var promises = {};
         meta.contents.forEach( function (section) {
             section.links.forEach( function (page) {
@@ -462,26 +482,27 @@ function DocGen (options)
     */
 
     var generatePdf = function () {
-        wkhtmltopdfOptions.push(' --user-style-sheet docgen/pdf-stylesheet.css');
-        wkhtmltopdfOptions.push(' --header-html '+options.output+'/pdfHeader.html');
-        wkhtmltopdfOptions.push(' --footer-html '+options.output+'/pdfFooter.html');
-        wkhtmltopdfOptions.push(' cover '+options.output+'/pdfCover.html');
-        wkhtmltopdfOptions.push(' toc --xsl-style-sheet docgen/pdf-contents.xsl');
-        var allPages = '';
-        meta.contents.forEach( function (section) {
-            section.links.forEach( function (page) {
-                var key = page.src;
-                var name = key.substr(0, page.src.lastIndexOf('.'));
-                var path = options.output+'/'+name+'.html';
-                allPages += ' '+path;
-            });
-        });
-        var command = 'wkhtmltopdf';
-        command += wkhtmltopdfOptions.join('');
-        command += allPages;
-        command += ' '+options.output+'/user-guide.pdf';
-
         if (options.pdf === true) {
+            console.log(chalk.green('Creating the PDF copy'));
+            wkhtmltopdfOptions.push(' --user-style-sheet docgen/pdf-stylesheet.css');
+            wkhtmltopdfOptions.push(' --header-html '+options.output+'/pdfHeader.html');
+            wkhtmltopdfOptions.push(' --footer-html '+options.output+'/pdfFooter.html');
+            wkhtmltopdfOptions.push(' cover '+options.output+'/pdfCover.html');
+            wkhtmltopdfOptions.push(' toc --xsl-style-sheet docgen/pdf-contents.xsl');
+            var allPages = '';
+            meta.contents.forEach( function (section) {
+                section.links.forEach( function (page) {
+                    var key = page.src;
+                    var name = key.substr(0, page.src.lastIndexOf('.'));
+                    var path = options.output+'/'+name+'.html';
+                    allPages += ' '+path;
+                });
+            });
+            var command = 'wkhtmltopdf';
+            command += wkhtmltopdfOptions.join('');
+            command += allPages;
+            command += ' '+options.output+'/user-guide.pdf';
+
             var child = child_process.exec(command, function (error, stdout, stderr) {
                 if (error) {
                     console.log(error);
@@ -490,6 +511,7 @@ function DocGen (options)
                 }
             });
         }
+        cleanUp();
     }
 
     /*
@@ -497,11 +519,7 @@ function DocGen (options)
     */
 
     var cleanUp = function () {
-
-    }
-
-    this.run = function () {
-        loadTemplates();
+        console.log(chalk.green('Complete'));
     }
 }
 
