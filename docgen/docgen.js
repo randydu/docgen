@@ -17,6 +17,7 @@ var spawnArgs = require('spawn-args');
 function DocGen ()
 {
     var version = '2.0.0';
+    var wkhtmltopdfVersion = 'wkhtmltopdf 0.12.2.1 (with patched qt)'; //output from wkhtmltopdf -V
     var options;
     var templates = {};
     var meta = {};
@@ -31,7 +32,7 @@ function DocGen ()
     }
 
     this.run = function () {
-        console.log(chalk.green('DocGen version '+version));
+        console.log(chalk.green.bold('DocGen version '+version));
         loadTemplates();
     }
 
@@ -512,14 +513,22 @@ function DocGen ()
     var createPdf = function () {
         if (options.pdf === true) {
             console.log(chalk.green('Creating the PDF copy'));
-
-            //first check that wkhtmltopdf is installed, and warn if the version is unexpected
+            //first check that wkhtmltopdf is installed
             childProcess.exec('wkhtmltopdf -V', function (error, stdout, stderr) {
                 if (error) {
                     console.log(chalk.red('Unable to run wkhtmltopdf'));
                     //console.log(error);
                 } else {
-                    //todo - check version of wkhtmlptopdf
+                    //warn if the version of wkhtmltopdf is not an expected version
+                    var actualWkhtmltopdfVersion = stdout.trim();
+                    if (actualWkhtmltopdfVersion !== wkhtmltopdfVersion) {
+                        var warning = 'Warning: unexpected version of wkhtmltopdf, which may work but is not tested or supported';
+                        var expectedVersion = '   expected version: '+wkhtmltopdfVersion;
+                        var detectedVersion = '   detected version: '+actualWkhtmltopdfVersion;
+                        console.log(chalk.yellow(warning));
+                        console.log(chalk.yellow(expectedVersion));
+                        console.log(chalk.yellow(detectedVersion));
+                    }
                     generatePdf();
                 }
             });
@@ -556,7 +565,7 @@ function DocGen ()
     */
 
     var cleanUp = function () {
-        console.log(chalk.green('Complete'));
+        console.log(chalk.green.bold('Complete'));
     }
 }
 
