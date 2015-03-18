@@ -269,10 +269,13 @@ function DocGen (options)
         html[++i] = '<li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="cover.html">Ownership</a></li>';
         html[++i] = '<li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="change-log.html">Release Notes</a></li>';
         html[++i] = '</ul><div>';
-        html[++i] = '<button class="w-icon-button" onclick="window.location=\'user-guide.pdf\';">';
-        html[++i] = '<span class="w-icon" data-name="document"></span>';
-        html[++i] = '<span>PDF copy</span>';
-        html[++i] = '</button></div></td>';
+        if (options.pdf) {
+            html[++i] = '<button class="w-icon-button" onclick="window.location=\'user-guide.pdf\';">';
+            html[++i] = '<span class="w-icon" data-name="document"></span>';
+            html[++i] = '<span>PDF copy</span>';
+            html[++i] = '</button>';
+        }
+        html[++i] = '</div></td>';
         html[++i] = '</tr></table></div>';
         $('#toc').html(html.join(''));
         templates.main = $;
@@ -478,14 +481,15 @@ function DocGen (options)
         command += allPages;
         command += ' '+options.output+'/user-guide.pdf';
 
-        var child = child_process.exec(command, function (error, stdout, stderr) {
-            if (error) {
-                console.log(error);
-            } else if (stderr) {
-                console.log(stderr);
-            }
-        });
-
+        if (options.pdf === true) {
+            var child = child_process.exec(command, function (error, stdout, stderr) {
+                if (error) {
+                    console.log(error);
+                } else if (stderr) {
+                    console.log(stderr);
+                }
+            });
+        }
     }
 
     /*
