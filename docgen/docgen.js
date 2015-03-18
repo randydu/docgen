@@ -9,6 +9,7 @@ var childProcess = require("child_process");
 var schemaValidator = require("z-schema");
 var chalk = require('chalk');
 var spawnArgs = require('spawn-args');
+var cliSpinner = require('cli-spinner').Spinner;
 
 /**
 * DocGen class
@@ -512,7 +513,6 @@ function DocGen ()
 
     var createPdf = function () {
         if (options.pdf === true) {
-            console.log(chalk.green('Creating the PDF copy'));
             //first check that wkhtmltopdf is installed
             childProcess.exec('wkhtmltopdf -V', function (error, stdout, stderr) {
                 if (error) {
@@ -542,10 +542,14 @@ function DocGen ()
     */
 
     var generatePdf = function () {
+        console.log(chalk.green('Creating the PDF copy (may take some time)'));
         var args = getPdfArguments();
         var wkhtmltopdf = childProcess.spawn('wkhtmltopdf', args);
+        var spinner = new cliSpinner(chalk.green('   Processing... %s'));
+        spinner.setSpinnerString('|/-\\');
 
         wkhtmltopdf.on('error', function( error ){ console.log(error) });
+        spinner.start();
 
         wkhtmltopdf.stdout.on('data', function (data) {
             //console.log(data);
@@ -556,6 +560,8 @@ function DocGen ()
         });
                 
         wkhtmltopdf.on('close', function (code) {
+            spinner.stop();
+            console.log(''); //newline after spinner stops
             cleanUp();
         });
     }
@@ -565,7 +571,7 @@ function DocGen ()
     */
 
     var cleanUp = function () {
-        console.log(chalk.green.bold('Complete'));
+        console.log(chalk.green.bold('Done!'));
     }
 }
 

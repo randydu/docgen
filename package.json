@@ -12,7 +12,8 @@
     "moment" : "2.9.0",
     "z-schema": "3.6.1",
     "chalk": "1.0.0",
-    "spawn-args": "0.0.4"
+    "spawn-args": "0.0.4",
+    "cli-spinner": "0.2.0"
   },
   "devDependencies": {
     },
