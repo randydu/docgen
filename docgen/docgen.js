@@ -514,7 +514,7 @@ function DocGen ()
         if (options.pdf === true) {
             console.log(chalk.green('Creating the PDF copy'));
             //first check that wkhtmltopdf is installed
-            childProcess.exec('wkhtmltopdfasdfs -V', function (error, stdout, stderr) {
+            childProcess.exec('wkhtmltopdf -V', function (error, stdout, stderr) {
                 if (error) {
                     console.log(chalk.red('Unable to call wkhtmltopdf. Is it installed and in path? See http://wkhtmltopdf.org'));
                     //console.log(error);
