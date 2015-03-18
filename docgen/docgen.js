@@ -6,8 +6,7 @@ var marked = require('marked');
 var moment = require('moment');
 var ncp = require ('ncp');
 var child_process = require("child_process");
-
-
+var schema_validator = require("z-schema");
 
 /**
 * DocGen class
@@ -77,6 +76,119 @@ function DocGen (options)
     }
 
     /*
+        JSON schema validation
+    */
+
+    var schemas = {
+        "parameters" : {
+            title: "DocGen Parameters Schema",
+            type: "object",
+            required: [
+                "title",
+                "version",
+                "date",
+                "organization",
+                "author",
+                "owner",
+                "contributors",
+                "website",
+                "module",
+                "id",
+                "summary",
+                "marking",
+                "legalese"
+            ],
+            properties: {
+                title: { type: "string" },
+                version: { type: "string" },
+                date: { type: "string" },
+                organization: {
+                    type : "object",
+                    required: [ "name", "url"],
+                    properties: {
+                        name: { type: "string" },
+                        url: { type: "string" },
+                    }
+                },
+                author: {
+                    type : "object",
+                    required: [ "name", "url"],
+                    properties: {
+                        name: { type: "string" },
+                        url: { type: "string" },
+                    }
+                },
+                owner: {
+                    type : "object",
+                    required: [ "name", "url"],
+                    properties: {
+                        name: { type: "string" },
+                        url: { type: "string" },
+                    }
+                },
+                contributors: {
+                    type : "array",
+                    items: { oneOf: [ { 
+                        type: "object",
+                        required: [ "name", "url"],
+                        properties: {
+                            name: { type: "string" },
+                            url: { type: "string" },
+                        }
+                    }]}
+                },
+                website: {
+                    type : "object",
+                    required: [ "name", "url"],
+                    properties: {
+                        name: { type: "string" },
+                        url: { type: "string" },
+                    }
+                },
+                module: { type: "string" },
+                id: { type: "string" },
+                summary: { type: "string" },
+                marking: { type: "string" },
+                legalese: { type: "string" },
+            }
+        },
+        "contents" : {
+            title: "DocGen Table of Contents Schema",
+            type : "array",
+            items: { oneOf: [ { 
+                type: "object",
+                required: [ "heading", "column", "links"],
+                properties: {
+                    name: { type: "string" },
+                    column: { type: "integer" },
+                    links: {
+                        type : "array",
+                        items: { oneOf: [ { 
+                            type: "object",
+                            required: [ "title", "src"],
+                            properties: {
+                                title: { type: "string" },
+                                url: { type: "string" },
+                            }
+                        }]}
+                    },
+                }
+            }]}
+        }
+    };
+
+    var validateJSON = function (key, data) {
+        var schema = schemas[key];
+        var validator = new schema_validator();
+        var valid = validator.validate(data, schema);
+        if (!valid) {
+            console.log('There is an error in required file: '+key+'.json');
+            //console.log(validator.getLastError());
+        }
+        return valid;
+    }
+
+    /*
         load all metadata files (JSON)
     */
 
@@ -88,10 +200,13 @@ function DocGen (options)
         rsvp.hash(files).then(function(files) {
             for(var key in files) {
                 if (files.hasOwnProperty(key)) { //ignore prototype
-                    try{
-                        //todo - validate json against a schema
-                        var result = JSON.parse(files[key]);
-                        meta[key] = result;
+                    try {
+                        var file = JSON.parse(files[key]);
+                        if (validateJSON(key, file)) {
+                            meta[key] = file;
+                        } else {
+                            //die?
+                        }
                     } catch (error) {
                         console.log(error);
                     }
