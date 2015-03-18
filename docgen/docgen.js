@@ -42,6 +42,7 @@ function DocGen ()
         return new rsvp.Promise(function (resolve, reject) {
             fs.readFile (path, 'utf8', function (error, data) {
                 if (error) {
+                    console.log(chalk.red('Error reading file: '+path));
                     reject(error);
                 }
                 resolve(data);
@@ -57,6 +58,7 @@ function DocGen ()
         return new rsvp.Promise(function (resolve, reject) {
             fs.writeFile(path, data, function (error) {
                 if (error) {
+                    console.log(chalk.red('Error writing file: '+path));
                     reject(error);
                 } else {
                     resolve(true);
@@ -87,6 +89,7 @@ function DocGen ()
             }
             loadMeta();
         }).catch(function(error) {
+            console.log(chalk.red('Error loading templates'));
             console.log(error);
         });
     }
@@ -198,7 +201,7 @@ function DocGen ()
         var validator = new schema_validator();
         var valid = validator.validate(data, schema);
         if (!valid) {
-            console.log('There is an error in required file: '+key+'.json');
+            console.log(chalk.red('Error parsing required file: '+key+'.json (failed schema validation)'));
             //console.log(validator.getLastError());
         }
         return valid;
@@ -225,13 +228,15 @@ function DocGen ()
                             //die?
                         }
                     } catch (error) {
-                        console.log(error);
+                        console.log(chalk.red('Error parsing required file: '+key+'.json (invalid JSON)'));
+                        //console.log(error);
                     }
                 }
             }
             loadMarkdown();
         }).catch(function(error) {
-            console.log(error);
+            console.log(chalk.red('Error loading required JSON files'));
+            //console.log(error);
         });
     }
 
@@ -256,12 +261,14 @@ function DocGen ()
                     var key = keys[index];
                     pages[key] = html;
                 } catch (error) {
-                    console.log(error);
+                    console.log(chalk.red('Error parsing Markdown file: '+file.src));
+                    //console.log(error);
                 }
             });
             process(); 
         }).catch(function(error) {
-            console.log(error);
+            console.log(chalk.red('Error loading Markdown files'));
+            //console.log(error);
         });
     }
 
@@ -422,6 +429,7 @@ function DocGen ()
             copyUserFiles();
             preparePdfTemplates();
         }).catch(function(error) {
+            console.log(chalk.red('Error writing the web page files'));
             console.log(error);
         });
     }
@@ -433,7 +441,8 @@ function DocGen ()
     var copyRequire = function () {
         ncp('docgen/require', options.output+'/require', function (error) {
             if (error) {
-                console.error(err);
+                console.log(chalk.red('Error copying the require directory'));
+                //console.error(err);
             }
         });
     }
@@ -445,7 +454,8 @@ function DocGen ()
     var copyUserFiles = function () {
         ncp(options.input+'/files', options.output+'/files', function (error) {
             if (error) {
-                console.error(err);
+                console.log(chalk.red('Error copying the attached files'));
+                //console.error(err);
             }
         });
     }
@@ -505,9 +515,11 @@ function DocGen ()
 
             var child = child_process.exec(command, function (error, stdout, stderr) {
                 if (error) {
-                    console.log(error);
+                    console.log(chalk.red('Error running the PDF generator (wkhtmltopdf)'));
+                    //console.log(error);
                 } else if (stderr) {
-                    console.log(stderr);
+                    console.log(chalk.red('Error running the PDF generator (wkhtmltopdf)'))
+                    //console.log(stderr);
                 }
             });
         }
