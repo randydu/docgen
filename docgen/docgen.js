@@ -466,7 +466,7 @@ function DocGen ()
     */
 
     var preparePdfTemplates = function () {
-        generatePdf();
+        createPdf();
     }
 
     /*
@@ -509,47 +509,46 @@ function DocGen ()
         return spawnArgs(args);
     }
 
+    var createPdf = function () {
+        if (options.pdf === true) {
+            console.log(chalk.green('Creating the PDF copy'));
+
+            //first check that wkhtmltopdf is installed, and warn if the version is unexpected
+            childProcess.exec('wkhtmltopdf -V', function (error, stdout, stderr) {
+                if (error) {
+                    console.log(chalk.red('Unable to run wkhtmltopdf'));
+                    //console.log(error);
+                } else {
+                    //todo - check version of wkhtmlptopdf
+                    generatePdf();
+                }
+            });
+        } else {
+            cleanUp();
+        }
+    }
+
     /*
         call wkhtmltopdf as an external executable
     */
 
     var generatePdf = function () {
-        if (options.pdf === true) {
-            console.log(chalk.green('Creating the PDF copy'));
+        var args = getPdfArguments();
+        var wkhtmltopdf = childProcess.spawn('wkhtmltopdf', args);
 
-            var args = getPdfArguments();
-            var wkhtmltopdf = childProcess.spawn('wkhtmltopdf', args);
+        wkhtmltopdf.on('error', function( error ){ console.log(error) });
 
-            wkhtmltopdf.on('error', function( error ){ console.log(error) });
-
-            wkhtmltopdf.stdout.on('data', function (data) {
-                //console.log(data);
-            });
+        wkhtmltopdf.stdout.on('data', function (data) {
+            //console.log(data);
+        });
                 
-            wkhtmltopdf.stderr.on('data', function (data) {
-                //console.log(data);
-            });
+        wkhtmltopdf.stderr.on('data', function (data) {
+            //console.log(data);
+        });
                 
-            wkhtmltopdf.on('close', function (code) {
-                cleanUp();
-            });
-
-            /*
-            child_process.exec(command, function (error, stdout, stderr) {
-                if (error) {
-                    console.log(chalk.red('Error running the PDF generator (wkhtmltopdf)'));
-                    //console.log(error);
-                } else {
-                    cleanUp();
-                    //else if (stderr) {
-                    //console.log(chalk.red('Error running the PDF generator (wkhtmltopdf)'))
-                    //console.log(stderr);
-                }
-            });
-            */
-        } else {
+        wkhtmltopdf.on('close', function (code) {
             cleanUp();
-        }
+        });
     }
 
     /*
