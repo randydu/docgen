@@ -473,7 +473,7 @@ function DocGen ()
         wkthmltopdf options
     */
 
-    var wkhtmltopdfOptions = [
+    var pdfOptions = [
         ' --zoom 1.0',
         ' --image-quality 100',
         ' --print-media-type',
@@ -488,6 +488,27 @@ function DocGen ()
         ' --javascript-delay 1000' //code syntax highlight in wkhtmltopdf 0.12.2.1 fails without a delay (but why doesn't --no-stop-slow-scripts work?)
     ];
 
+    var getPdfArguments = function () {
+        pdfOptions.push(' --user-style-sheet docgen/pdf-stylesheet.css');
+        pdfOptions.push(' --header-html '+options.output+'/pdfHeader.html');
+        pdfOptions.push(' --footer-html '+options.output+'/pdfFooter.html');
+        pdfOptions.push(' cover '+options.output+'/pdfCover.html');
+        pdfOptions.push(' toc --xsl-style-sheet docgen/pdf-contents.xsl');
+        var allPages = '';
+        meta.contents.forEach( function (section) {
+            section.links.forEach( function (page) {
+                var key = page.src;
+                var name = key.substr(0, page.src.lastIndexOf('.'));
+                var path = options.output+'/'+name+'.html';
+                allPages += ' '+path;
+            });
+        });
+        var args = pdfOptions.join('');
+        args += allPages;
+        args += ' '+options.output+'/user-guide.pdf';
+        return spawnArgs(args);
+    }
+
     /*
         call wkhtmltopdf as an external executable
     */
@@ -495,26 +516,9 @@ function DocGen ()
     var generatePdf = function () {
         if (options.pdf === true) {
             console.log(chalk.green('Creating the PDF copy'));
-            wkhtmltopdfOptions.push(' --user-style-sheet docgen/pdf-stylesheet.css');
-            wkhtmltopdfOptions.push(' --header-html '+options.output+'/pdfHeader.html');
-            wkhtmltopdfOptions.push(' --footer-html '+options.output+'/pdfFooter.html');
-            wkhtmltopdfOptions.push(' cover '+options.output+'/pdfCover.html');
-            wkhtmltopdfOptions.push(' toc --xsl-style-sheet docgen/pdf-contents.xsl');
-            var allPages = '';
-            meta.contents.forEach( function (section) {
-                section.links.forEach( function (page) {
-                    var key = page.src;
-                    var name = key.substr(0, page.src.lastIndexOf('.'));
-                    var path = options.output+'/'+name+'.html';
-                    allPages += ' '+path;
-                });
-            });
-            var args = wkhtmltopdfOptions.join('');
-            args += allPages;
-            args += ' '+options.output+'/user-guide.pdf';
-            var wkhtmltopdfArgs = spawnArgs(args);
 
-            var wkhtmltopdf = childProcess.spawn('wkhtmltopdf', wkhtmltopdfArgs);
+            var args = getPdfArguments();
+            var wkhtmltopdf = childProcess.spawn('wkhtmltopdf', args);
 
             wkhtmltopdf.on('error', function( error ){ console.log(error) });
 
