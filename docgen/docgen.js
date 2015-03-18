@@ -315,7 +315,7 @@ function DocGen ()
         var date = moment().format('DD/MM/YYYY');
         var time = moment().format('HH:mm:ss');
         var year = moment().format('YYYY');
-        var attribution = 'Created by DocGen on '+date+' at '+time+'.'; //+options.version
+        var attribution = 'Created by DocGen '+version+' on '+date+' at '+time+'.';
 
         var author = '';
         if (meta.parameters.author.url !== '') {
