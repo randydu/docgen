@@ -5,9 +5,10 @@ var cheerio = require('cheerio');
 var marked = require('marked');
 var moment = require('moment');
 var ncp = require ('ncp');
-var child_process = require("child_process");
-var schema_validator = require("z-schema");
+var childProcess = require("child_process");
+var schemaValidator = require("z-schema");
 var chalk = require('chalk');
+var spawnArgs = require('spawn-args');
 
 /**
 * DocGen class
@@ -198,7 +199,7 @@ function DocGen ()
 
     var validateJSON = function (key, data) {
         var schema = schemas[key];
-        var validator = new schema_validator();
+        var validator = new schemaValidator();
         var valid = validator.validate(data, schema);
         if (!valid) {
             console.log(chalk.red('Error parsing required file: '+key+'.json (failed schema validation)'));
@@ -508,22 +509,43 @@ function DocGen ()
                     allPages += ' '+path;
                 });
             });
-            var command = 'wkhtmltopdf';
-            command += wkhtmltopdfOptions.join('');
-            command += allPages;
-            command += ' '+options.output+'/user-guide.pdf';
+            var args = wkhtmltopdfOptions.join('');
+            args += allPages;
+            args += ' '+options.output+'/user-guide.pdf';
+            var wkhtmltopdfArgs = spawnArgs(args);
 
-            var child = child_process.exec(command, function (error, stdout, stderr) {
+            var wkhtmltopdf = childProcess.spawn('wkhtmltopdf', wkhtmltopdfArgs);
+
+            wkhtmltopdf.on('error', function( error ){ console.log(error) });
+
+            wkhtmltopdf.stdout.on('data', function (data) {
+                //console.log(data);
+            });
+                
+            wkhtmltopdf.stderr.on('data', function (data) {
+                //console.log(data);
+            });
+                
+            wkhtmltopdf.on('close', function (code) {
+                cleanUp();
+            });
+
+            /*
+            child_process.exec(command, function (error, stdout, stderr) {
                 if (error) {
                     console.log(chalk.red('Error running the PDF generator (wkhtmltopdf)'));
                     //console.log(error);
-                } else if (stderr) {
-                    console.log(chalk.red('Error running the PDF generator (wkhtmltopdf)'))
+                } else {
+                    cleanUp();
+                    //else if (stderr) {
+                    //console.log(chalk.red('Error running the PDF generator (wkhtmltopdf)'))
                     //console.log(stderr);
                 }
             });
+            */
+        } else {
+            cleanUp();
         }
-        cleanUp();
     }
 
     /*

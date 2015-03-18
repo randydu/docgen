@@ -11,7 +11,8 @@
     "ncp" : "2.0.0",
     "moment" : "2.9.0",
     "z-schema": "3.6.1",
-    "chalk": "1.0.0"
+    "chalk": "1.0.0",
+    "spawn-args": "0.0.4"
   },
   "devDependencies": {
     },
