@@ -191,6 +191,7 @@ function DocGen ()
                             properties: {
                                 title: { type: "string" },
                                 url: { type: "string" },
+                                html: { type: "boolean" },
                             }
                         }]}
                     },
@@ -253,16 +254,20 @@ function DocGen ()
         var files = [];
         meta.contents.forEach( function (section) {
             section.links.forEach( function (page) {
-                keys.push(page.src);
+                keys.push(page);
                 files.push(options.input+'/'+page.src);
             });
         });
         rsvp.all(files.map(readFile)).then(function (files) {
             files.forEach( function (page, index) {
                 try{
-                    var html = markdown.render(page);
                     var key = keys[index];
-                    pages[key] = html;
+                    if (key.html === true) {   //allow raw HTML input pages
+                        pages[key.src] = page;
+                    } else {                    //otherwise parse input from Markdown into HTML
+                        var html = markdown.render(page);
+                        pages[key.src] = html;
+                    }
                 } catch (error) {
                     console.log(chalk.red('Error parsing Markdown file: '+file.src));
                     //console.log(error);
@@ -401,13 +406,15 @@ function DocGen ()
                 var key = page.src;
                 var content = pages[key];
                 //add relevant container
-                if (page.wide === true) { //full width
+                if (page.html === true) { //raw HTML pages should not be confined to the fixed width
                     $('#content').html('<div id="inner-content"></div>');
-                } else { //fixed width
+                    //console.log(content);
+                } else { //Markdown pages should be configed to the fixed width
                     $('#content').html('<div class="w-fixed-width"><div id="inner-content"></div></div>');
                 }
                 $('#inner-content').html(content);
                 pages[key] =  $;
+                //if (page.wide === true) { console.log($.html()); };
             });
         });
         writePages();

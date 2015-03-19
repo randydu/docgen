@@ -6,8 +6,7 @@
 			{
 				"title": "Overview",
 				"src": "index.txt",
-				"wide": true
-
+				"html": true
 			},
 			{
 				"title": "Installation",
