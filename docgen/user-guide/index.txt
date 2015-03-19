@@ -119,7 +119,7 @@
 </style>
 
 <div id="banner" class="segment"><div class="w-fixed-width">
-  <h1 class="w-massive w-center w-no-underline">Better documentation for software projects.</h1>
+  <h1 class="w-massive w-center w-no-underline">Better documentation for software products.</h1>
   <img class="w-center" src="files/images/overview.png"  alt="overview" />
 </div></div>
  
@@ -130,8 +130,52 @@
   </span>
 </div></div>
 
-<div class="w-fixed-width">
+<div class="segment"><div class="w-fixed-width">
+<p class="heading-text">
+ <strong>DocGen</strong> is a <strong>static website generator</strong> that's ideal for making technical user guides for software products.
+</p>
 
+<ul class="features">
+<li>
+  <h2><span class="w-icon" data-name="monitor"></span><span>Self-contained website</span></h2>
+  <p>Creates a static website that works on any server, or as local files (CD, shared drive etc).</p>
+</li>
+<li>
+  <h2><span class="w-icon" data-name="document"></span><span>Optional PDF</span></h2>
+  <p>Also publishes the website content as a single PDF, using <a href="http://wkhtmltopdf.org">wkhtmltopdf</a>.</p>
+</li>
+<li>
+  <h2><span class="w-icon" data-name="edit"></span><span>Human-friendly input</span></h2>
+  <p>Write content in plain text, or the human-friendly <a href="http://commonmark.org">CommonMark</a> format 
+  (Markdown).</p>
+</li>
+<li>
+  <h2><span class="w-icon" data-name="gear_a"></span><span>Easy to version control</span></h2>
+  <p>Easily version control software documentation in sync with its product.</p>
+</li>
+<li>
+  <h2><span class="w-icon" data-name="clipboard"></span><span>Table of contents</span></h2>
+  <p>Automatically creates document and page tables of contents, with links and PDF page numbers.</p>
+</li>
+<li>
+  <h2><span class="w-icon" data-name="code"></span><span>Code syntax highlighting</span></h2>
+  <p>Automatically highlights code blocks, using <a href="https://highlightjs.org">Highlight.js</a>, with language detection.</p>
+</li>
+<li>
+  <h2><span class="w-icon" data-name="compose"></span><span>Mathematical expressions</span></h2>
+  <p>Displays mathematical expressions natively in all browsers, using <a href="https://www.mathjax.org">MathJax</a>.</p>
+</li>
+<li>
+  <h2><span class="w-icon" data-name="star"></span><span>Branding and metadata</span></h2>
+  <p>Easily brand with a logo, attribute ownership, and attach release notes.</p>
+</li>
+</ul>
+
+<p class="heading-text">DocGen makes it easy for anyone to create high-quality technical documentation.</p>
+
+</div></div>
+
+<div style="padding-top:20px;"><div class="w-fixed-width">
 <h2>How it works</h2>
 
 <table style="color:white; text-align:center; width:100%; border: none; border-collapse: separate; border-spacing: 10px 0px; font-weight:bold; font-style:italic; font-size:14px;padding:0;">
@@ -215,4 +259,4 @@ Content published by DocGen is tested against these browsers:
  </tr>
 </table>
 
-</div>
+</div></div>
