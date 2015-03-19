@@ -88,26 +88,3 @@ pre {
 .toc-icon {width: 18px; height: 18px; float: left;}
 .toc-icon svg {fill: white;}
 
-/**********************************************************/
-
-#banner {
-  color: #385691;
-  font-weight: bold;
-  padding-top: 30px;
-  background-color: #f7f7f7;
-  box-shadow: inset 0px 5px 5px 0px #e7e7e7;
-}
-
-#banner img {
-  padding: 25px 0 25px 0;
-}
-
-#banner-buttons {
-  background-color: #f7f7f7;
-  padding: 20px 0 20px 0;
-  background-color: #999;
-}
-
-.spaced {
-  margin-right: 15px;
-}

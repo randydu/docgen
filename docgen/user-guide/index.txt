@@ -5,6 +5,117 @@
 #banner, #banner-buttons {
   margin: 0;
 }
+
+#banner {
+  color: #385691;
+  font-weight: bold;
+  padding-top: 30px;
+  background-color: #f7f7f7;
+  box-shadow: inset 0px 5px 5px 0px #e7e7e7;
+}
+
+#banner img {
+  padding: 25px 0 25px 0;
+}
+
+#banner-buttons {
+  background-color: #f7f7f7;
+  padding: 20px 0 20px 0;
+  background-color: #999;
+}
+
+.spaced {
+  margin-right: 15px;
+}
+
+.heading-text {
+  font-size: 16px;
+  text-align: center;
+}
+
+.segment {
+  border-bottom: 2px solid #385691;
+  padding: 20px 0 20px 0;
+}
+
+.features, .quick-howto {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.features li {
+  vertical-align: top;
+  display: inline-block;
+  width: 220px;
+  margin: 10px;
+
+}
+
+.features li span {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.features li h2 {
+  margin: 0;
+  padding: 0 0 3px 0;
+  font-size: 14px;
+  border: none;
+}
+
+.features li p {
+  padding-top: 5px;
+  margin: 0;
+
+}
+
+#howto {
+  background-color: #333;
+  box-shadow: inset 0px 5px 5px 0px #4b4b4b;
+}
+
+#howto h1, #browser-warning h1 {
+  border: none;
+}
+
+.quick-howto li {
+  vertical-align: top;
+  display: inline-block;
+  width: 300px;
+  margin: 10px;
+}
+
+.quick-howto li span {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.quick-howto li h2 {
+  margin: 0;
+  padding: 0 0 3px 0;
+  font-size: 16px;
+  border: none;
+  color: white;
+}
+
+.quick-howto li a {
+  color: white;
+}
+
+.quick-howto li p {
+  padding-top: 5px;
+  margin: 0;
+}
+
+.quick-howto .w-icon {
+  width: 50px; height: 50px;
+}
+
+.quick-howto svg {
+  fill: white;
+}
+
 </style>
 
 <div id="banner" class="segment"><div class="w-fixed-width">
