@@ -373,6 +373,7 @@ function DocGen ()
          for (var key in templates) {
             if (templates.hasOwnProperty(key)) { //ignore prototype
                 $ = templates[key];
+                $('title').text(meta.parameters.title);
                 $('#dg-title').text(meta.parameters.title);
                 $('#dg-owner').html(owner);
                 $('#dg-version').text(meta.parameters.version);
