@@ -192,6 +192,7 @@ function DocGen ()
                             properties: {
                                 title: { type: "string" },
                                 url: { type: "string" },
+                                homepage: { type: "boolean" },
                                 html: { type: "boolean" },
                             }
                         }]}
@@ -321,6 +322,10 @@ function DocGen ()
 
     var insertParameters = function () {
 
+        //the homepage is the first link in the first heading
+        var homelink = meta.contents[0].links[0];
+        var homelink = homelink.src.substr(0, homelink.src.lastIndexOf('.'))+'.html';
+
         var date = moment().format('DD/MM/YYYY');
         var time = moment().format('HH:mm:ss');
         var year = moment().format('YYYY');
@@ -374,6 +379,7 @@ function DocGen ()
             if (templates.hasOwnProperty(key)) { //ignore prototype
                 $ = templates[key];
                 $('title').text(meta.parameters.title);
+                $('#homelink').attr('href', homelink);
                 $('#dg-title').text(meta.parameters.title);
                 $('#dg-owner').html(owner);
                 $('#dg-version').text(meta.parameters.version);
