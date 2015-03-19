@@ -2,7 +2,7 @@
 var rsvp = require('rsvp');
 var fs = require('fs');
 var cheerio = require('cheerio');
-var marked = require('marked');
+var markdown = require('markdown-it')('commonmark');
 var moment = require('moment');
 var ncp = require ('ncp');
 var childProcess = require("child_process");
@@ -260,7 +260,7 @@ function DocGen ()
         rsvp.all(files.map(readFile)).then(function (files) {
             files.forEach( function (page, index) {
                 try{
-                    var html = marked(page);
+                    var html = markdown.render(page);
                     var key = keys[index];
                     pages[key] = html;
                 } catch (error) {
@@ -400,7 +400,13 @@ function DocGen ()
                 var $ = cheerio.load(templates.main.html()); //todo - better implementation of clone?
                 var key = page.src;
                 var content = pages[key];
-                $('#content').html(content);
+                //add relevant container
+                if (page.wide === true) { //full width
+                    $('#content').html('<div id="inner-content"></div>');
+                } else { //fixed width
+                    $('#content').html('<div class="w-fixed-width"><div id="inner-content"></div></div>');
+                }
+                $('#inner-content').html(content);
                 pages[key] =  $;
             });
         });

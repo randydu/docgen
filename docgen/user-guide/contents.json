@@ -5,7 +5,9 @@
 		"links" : [
 			{
 				"title": "Overview",
-				"src": "index.txt"
+				"src": "index.txt",
+				"wide": true
+
 			},
 			{
 				"title": "Installation",
