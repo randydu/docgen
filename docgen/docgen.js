@@ -265,7 +265,6 @@ function DocGen ()
                     var key = keys[index];
                     if (key.html === true) {   //allow raw HTML input pages
                         pages[key.src] = page;
-                        console.log(page);
                     } else {                    //otherwise parse input from Markdown into HTML
                         var html = markdown.render(page);
                         pages[key.src] = html;
