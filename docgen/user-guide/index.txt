@@ -12,8 +12,7 @@
 
 <div class="w-fixed-width">
 
-How it works
-------------
+<h2>How it works</h2>
 
 <table style="color:white; text-align:center; width:100%; border: none; border-collapse: separate; border-spacing: 10px 0px; font-weight:bold; font-style:italic; font-size:14px;padding:0;">
  <tr>
@@ -33,10 +32,9 @@ How it works
  </tr>
 </table>
 
-Features
---------
+<h2>Features</h2>
 
-DocGen makes it easy for anyone to make high-quality technical documentation. It is particularly intended for software library 'user guides' and tutorials which need to be versioned **in sync** with the software. It may be useful in other situations where versioned documentation needs to be made accessible, such as process guides or technical product manuals.
+<p>DocGen makes it easy for anyone to make high-quality technical documentation. It is particularly intended for software library 'user guides' and tutorials which need to be versioned **in sync** with the software. It may be useful in other situations where versioned documentation needs to be made accessible, such as process guides or technical product manuals.</p>
 
 <p style="page-break-before: always"></p>
 
@@ -73,7 +71,11 @@ DocGen makes it easy for anyone to make high-quality technical documentation. It
  </tr>
 </table>
 
-> DocGen is probably not the right tool for precision PDF layout, or repeated generation of similar documents from standard templates (e.g. in product configurators). It is meant for free-form, human generated content which is regularly updated and refactored.
+<blockquote>
+DocGen is probably not the right tool for precision PDF layout, or repeated generation of similar documents from 
+standard templates (e.g. in product configurators). It is meant for free-form, human generated content which is 
+regularly updated and refactored.
+</blockquote>
 
 <br/><span style="color:#003972; font-size: 16px; font-weight:bold;">Support for multiple platforms</span>
 
