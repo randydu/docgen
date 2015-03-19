@@ -48,6 +48,7 @@ function DocGen ()
                     console.log(chalk.red('Error reading file: '+path));
                     reject(error);
                 }
+                data = data.replace(/^\uFEFF/, ''); //remove the BOM (byte-order-mark) from UTF-8 files, if present
                 resolve(data);
             });
         });
@@ -85,7 +86,7 @@ function DocGen ()
         rsvp.hash(files).then(function(files) {
             for (var key in files) {
                 if (files.hasOwnProperty(key)) { //ignore prototype
-                    var file = files[key].replace(/^\uFEFF/, ''); //remove BOM, if present
+                    var file = files[key];
                     var dom = cheerio.load(file);
                     templates[key] = dom;
                 }
@@ -264,6 +265,7 @@ function DocGen ()
                     var key = keys[index];
                     if (key.html === true) {   //allow raw HTML input pages
                         pages[key.src] = page;
+                        console.log(page);
                     } else {                    //otherwise parse input from Markdown into HTML
                         var html = markdown.render(page);
                         pages[key.src] = html;
