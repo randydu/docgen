@@ -1,4 +1,13 @@
-﻿<div id="banner" class="segment"><div class="w-fixed-width">
+﻿<style>
+#content, #inner-content {
+  padding-top: 0;
+}
+#banner, #banner-buttons {
+  margin: 0;
+}
+</style>
+
+<div id="banner" class="segment"><div class="w-fixed-width">
   <h1 class="w-massive w-center w-no-underline">Better documentation for software projects.</h1>
   <img class="w-center" src="files/images/overview.png"  alt="overview" />
 </div></div>
