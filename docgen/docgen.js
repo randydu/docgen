@@ -86,7 +86,7 @@ function DocGen ()
         };
         rsvp.hash(files).then(function(files) {
             for (var key in files) {
-                if (files.hasOwnProperty(key)) { //ignore prototype
+                if (files.hasOwnProperty(key)) {
                     var file = files[key];
                     var dom = cheerio.load(file);
                     templates[key] = dom;
@@ -240,6 +240,15 @@ function DocGen ()
                     }
                 }
             }
+            //add the release notes to the contents list
+            var extra = { 
+                heading: 'Extra', 
+                column: 4, 
+                links: [
+                    {title: 'Release notes', src: 'release-notes.txt'}
+                ]
+            };
+            meta.contents.push(extra);
             loadMarkdown();
         }).catch(function(error) {
             console.log(chalk.red('Error loading required JSON files'));
@@ -261,6 +270,9 @@ function DocGen ()
                 files.push(options.input+'/'+page.src);
             });
         });
+        //add the release notes page
+        keys.push('ownership');
+        files.push(options.input+'/release-notes.txt');
         rsvp.all(files.map(readFile)).then(function (files) {
             files.forEach( function (page, index) {
                 try{
@@ -303,7 +315,7 @@ function DocGen ()
         //fixed-width column at end
         html[++i] = '<td class="toc-group" id="toc-fixed-column"><ul>';
         html[++i] = '<li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li>';
-        html[++i] = '<li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="change-log.html">Release Notes</a></li>';
+        html[++i] = '<li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li>';
         html[++i] = '</ul><div>';
         if (options.pdf) {
             html[++i] = '<button class="w-icon-button" onclick="window.location=\'user-guide.pdf\';">';
@@ -376,7 +388,7 @@ function DocGen ()
 
         var webFooter = 'Version '+meta.parameters.version+' released on '+meta.parameters.date+'.';
 
-         for (var key in templates) {
+        for (var key in templates) {
             if (templates.hasOwnProperty(key)) { //ignore prototype
                 $ = templates[key];
                 $('title').text(meta.parameters.title);
