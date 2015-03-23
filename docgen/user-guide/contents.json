@@ -5,12 +5,12 @@
 		"links" : [
 			{
 				"title": "Overview",
-				"src": "index.txt",
+				"source": "index.txt",
 				"html": true
 			},
 			{
 				"title": "Installation",
-				"src": "installation.txt"
+				"source": "installation.txt"
 			}
 		]
 	},
@@ -20,15 +20,15 @@
 		"links" : [
 			{
 				"title": "Writing content",
-				"src": "writing-content.txt"
+				"source": "writing-content.txt"
 			},
 			{
 				"title": "Advanced content",
-				"src": "advanced-content.txt"
+				"source": "advanced-content.txt"
 			},
 			{
 				"title": "Publishing with DocGen",
-				"src": "publishing.txt"
+				"source": "publishing.txt"
 			}
 		]
 	},
@@ -38,15 +38,15 @@
 		"links" : [
 			{
 				"title": "Troubleshooting",
-				"src": "troubleshooting.txt"
+				"source": "troubleshooting.txt"
 			},
 			{
 				"title": "Using with Subversion",
-				"src": "subversion.txt"
+				"source": "subversion.txt"
 			},
 			{
 				"title": "Upgrading",
-				"src": "upgrading.txt"
+				"source": "upgrading.txt"
 			}
 		]
 	}

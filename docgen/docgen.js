@@ -189,11 +189,10 @@ function DocGen ()
                         type : "array",
                         items: { oneOf: [ { 
                             type: "object",
-                            required: [ "title", "src"],
+                            required: [ "title", "source"],
                             properties: {
                                 title: { type: "string" },
-                                url: { type: "string" },
-                                homepage: { type: "boolean" },
+                                source: { type: "string" },
                                 html: { type: "boolean" },
                             }
                         }]}
@@ -245,7 +244,7 @@ function DocGen ()
                 heading: 'Extra', 
                 column: 4, 
                 links: [
-                    {title: 'Release notes', src: 'release-notes.txt'}
+                    {title: 'Release notes', source: 'release-notes.txt'}
                 ]
             };
             meta.contents.push(extra);
@@ -267,7 +266,7 @@ function DocGen ()
         meta.contents.forEach( function (section) {
             section.links.forEach( function (page) {
                 keys.push(page);
-                files.push(options.input+'/'+page.src);
+                files.push(options.input+'/'+page.source);
             });
         });
         //add the release notes page
@@ -278,13 +277,13 @@ function DocGen ()
                 try{
                     var key = keys[index];
                     if (key.html === true) {   //allow raw HTML input pages
-                        pages[key.src] = page;
+                        pages[key.source] = page;
                     } else {                    //otherwise parse input from Markdown into HTML
                         var html = markdown.render(page);
-                        pages[key.src] = html;
+                        pages[key.source] = html;
                     }
                 } catch (error) {
-                    console.log(chalk.red('Error parsing Markdown file: '+file.src));
+                    console.log(chalk.red('Error parsing Markdown file: '+file.source));
                     //console.log(error);
                 }
             });
@@ -306,7 +305,7 @@ function DocGen ()
         meta.contents.forEach( function (section) {
             html[++i] = '<td class="toc-group"><ul><li class="toc-heading">'+section.heading+'</li>';
             section.links.forEach( function (page) {
-                var name = page.src.substr(0, page.src.lastIndexOf('.'));
+                var name = page.source.substr(0, page.source.lastIndexOf('.'));
                 var path = name+'.html';
                 html[++i] = '<li><a href="'+path+'">'+page.title+'</a></li>';
             });
@@ -337,7 +336,7 @@ function DocGen ()
 
         //the homepage is the first link in the first heading
         var homelink = meta.contents[0].links[0];
-        var homelink = homelink.src.substr(0, homelink.src.lastIndexOf('.'))+'.html';
+        var homelink = homelink.source.substr(0, homelink.source.lastIndexOf('.'))+'.html';
 
         var date = moment().format('DD/MM/YYYY');
         var time = moment().format('HH:mm:ss');
@@ -424,7 +423,7 @@ function DocGen ()
         meta.contents.forEach( function (section) {
             section.links.forEach( function (page) {
                 var $ = cheerio.load(templates.main.html()); //clone
-                var key = page.src;
+                var key = page.source;
                 var content = pages[key];
                 //add relevant container
                 if (page.html === true) { //raw HTML pages should not be confined to the fixed width
@@ -453,8 +452,8 @@ function DocGen ()
         var promises = {};
         meta.contents.forEach( function (section) {
             section.links.forEach( function (page) {
-                var key = page.src;
-                var name = key.substr(0, page.src.lastIndexOf('.'));
+                var key = page.source;
+                var name = key.substr(0, page.source.lastIndexOf('.'));
                 var path = options.output+'/'+name+'.html';
                 var html = pages[key].html();
                 promises[key] = writeFile(path, html);
@@ -537,8 +536,8 @@ function DocGen ()
         var allPages = '';
         meta.contents.forEach( function (section) {
             section.links.forEach( function (page) {
-                var key = page.src;
-                var name = key.substr(0, page.src.lastIndexOf('.'));
+                var key = page.source;
+                var name = key.substr(0, page.source.lastIndexOf('.'));
                 var path = options.output+'/'+name+'.html';
                 allPages += ' '+path;
             });
