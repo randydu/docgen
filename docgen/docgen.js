@@ -516,9 +516,13 @@ function DocGen ()
         });
         //add extra files
         promises['ownership'] = writeFile(options.output+'/ownership.html', templates.webCover.html());
-        promises['docgenPdfCover'] = writeFile(options.output+'/pdfCover.html', templates.pdfCover.html());
-        promises['docgenPdfHeader'] = writeFile(options.output+'/pdfHeader.html', templates.pdfHeader.html());
-        promises['docgenPdfFooter'] = writeFile(options.output+'/pdfFooter.html', templates.pdfFooter.html());
+        if (options.pdf === true) {
+            var pdfTempDir = options.output+'/temp';
+            fs.mkdirsSync(pdfTempDir);
+            promises['docgenPdfCover'] = writeFile(pdfTempDir+'/pdfCover.html', templates.pdfCover.html());
+            promises['docgenPdfHeader'] = writeFile(pdfTempDir+'/pdfHeader.html', templates.pdfHeader.html());
+            promises['docgenPdfFooter'] = writeFile(pdfTempDir+'/pdfFooter.html', templates.pdfFooter.html());
+        }
         rsvp.hash(promises).then(function (files) {
             copyRequire();
             copyUserFiles();
@@ -584,9 +588,9 @@ function DocGen ()
 
     var getPdfArguments = function () {
         pdfOptions.push(' --user-style-sheet docgen/pdf-stylesheet.css');
-        pdfOptions.push(' --header-html '+options.output+'/pdfHeader.html');
-        pdfOptions.push(' --footer-html '+options.output+'/pdfFooter.html');
-        pdfOptions.push(' cover '+options.output+'/pdfCover.html');
+        pdfOptions.push(' --header-html '+options.output+'/temp/pdfHeader.html');
+        pdfOptions.push(' --footer-html '+options.output+'/temp/pdfFooter.html');
+        pdfOptions.push(' cover '+options.output+'/temp/pdfCover.html');
         pdfOptions.push(' toc --xsl-style-sheet docgen/pdf-contents.xsl');
         var allPages = '';
         for (var key in sortedPages) {
@@ -668,6 +672,10 @@ function DocGen ()
     */
 
     var cleanUp = function () {
+        //remove temp files
+        if (options.pdf === true) {
+            fs.removeSync(options.output+'/temp');
+        }
         console.log(chalk.green.bold('Done!'));
     }
 }
