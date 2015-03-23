@@ -587,14 +587,19 @@ function DocGen ()
         pdfOptions.push(' cover '+options.output+'/pdfCover.html');
         pdfOptions.push(' toc --xsl-style-sheet docgen/pdf-contents.xsl');
         var allPages = '';
-        meta.contents.forEach( function (section) {
-            section.links.forEach( function (page) {
-                var key = page.source;
-                var name = key.substr(0, page.source.lastIndexOf('.'));
-                var path = options.output+'/'+name+'.html';
-                allPages += ' '+path;
-            });
-        });
+        for (var key in sortedPages) {
+            if (sortedPages.hasOwnProperty(key)) {
+                sortedPages[key].forEach( function (section) {
+                    section.links.forEach( function (page) {
+                        var key = page.source;
+                        var name = key.substr(0, page.source.lastIndexOf('.'));
+                        var path = options.output+'/'+name+'.html';
+                        allPages += ' '+path;
+
+                    });
+                });
+            }
+        }
         var args = pdfOptions.join('');
         args += allPages;
         args += ' '+options.output+'/user-guide.pdf';
