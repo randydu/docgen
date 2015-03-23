@@ -242,9 +242,9 @@ function DocGen ()
             //add the release notes to the contents list
             var extra = { 
                 heading: 'Extra', 
-                column: 4, 
+                column: 5,
                 links: [
-                    {title: 'Release notes', source: 'release-notes.txt'}
+                    { title: 'Release notes', source: 'release-notes.txt' }
                 ]
             };
             meta.contents.push(extra);
@@ -302,15 +302,35 @@ function DocGen ()
         var $ = templates.main;
         var html = [], i = -1;
         html[++i] = '<div><table><tr>';
+
+        //sort the contents by heading
+        var headings = {1: [], 2: [], 3: [], 4: []};
         meta.contents.forEach( function (section) {
-            html[++i] = '<td class="toc-group"><ul><li class="toc-heading">'+section.heading+'</li>';
-            section.links.forEach( function (page) {
-                var name = page.source.substr(0, page.source.lastIndexOf('.'));
-                var path = name+'.html';
-                html[++i] = '<li><a href="'+path+'">'+page.title+'</a></li>';
-            });
-            html[++i] = '</li></ul></td>';
+            if (section.heading !== 'Extra') {
+                if (headings.hasOwnProperty(section.column)) {
+                    headings[section.column].push(section);
+                }
+                
+            }
         });
+
+        //build the contents HTML
+        for (var key in headings) {
+            if (headings.hasOwnProperty(key)) {
+                html[++i] = '<td class="toc-group">';
+                headings[key].forEach( function (section) {
+                    html[++i] = '<ul><li class="toc-heading">'+section.heading+'</li>';
+                    section.links.forEach( function (page) {
+                        var name = page.source.substr(0, page.source.lastIndexOf('.'));
+                        var path = name+'.html';
+                        html[++i] = '<li><a href="'+path+'">'+page.title+'</a></li>';
+                    });
+                    html[++i] = '</li></ul>';
+                });
+                html[++i] = '</td>';
+            }
+        }
+
         //fixed-width column at end
         html[++i] = '<td class="toc-group" id="toc-fixed-column"><ul>';
         html[++i] = '<li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li>';
@@ -388,7 +408,7 @@ function DocGen ()
         var webFooter = 'Version '+meta.parameters.version+' released on '+meta.parameters.date+'.';
 
         for (var key in templates) {
-            if (templates.hasOwnProperty(key)) { //ignore prototype
+            if (templates.hasOwnProperty(key)) {
                 $ = templates[key];
                 $('title').text(meta.parameters.title);
                 $('#homelink').attr('href', homelink);
