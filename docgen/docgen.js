@@ -24,6 +24,7 @@ function DocGen ()
     var templates = {};
     var meta = {};
     var pages = {};
+    var sortedPages = {};
 
     this.getVersion = function () {
         return version;
@@ -295,15 +296,7 @@ function DocGen ()
         });
     }
 
-    /*
-        build the HTML for the table of contents
-    */
-
-    var webToc = function () {
-        var $ = templates.main;
-        var html = [], i = -1;
-        html[++i] = '<div><table><tr>';
-
+    var sortPages = function () {
         //sort the contents by heading
         var headings = {1: [], 2: [], 3: [], 4: []};
         meta.contents.forEach( function (section) {
@@ -314,12 +307,23 @@ function DocGen ()
                 
             }
         });
+        sortedPages = headings;
+    }
 
+    /*
+        build the HTML for the table of contents
+    */
+
+    var webToc = function () {
+        sortPages();
+        var $ = templates.main;
+        var html = [], i = -1;
+        html[++i] = '<div><table><tr>';
         //build the contents HTML
-        for (var key in headings) {
-            if (headings.hasOwnProperty(key)) {
+        for (var key in sortedPages) {
+            if (sortedPages.hasOwnProperty(key)) {
                 html[++i] = '<td class="toc-group">';
-                headings[key].forEach( function (section) {
+                sortedPages[key].forEach( function (section) {
                     html[++i] = '<ul><li class="toc-heading">'+section.heading+'</li>';
                     section.links.forEach( function (page) {
                         var name = page.source.substr(0, page.source.lastIndexOf('.'));
@@ -519,7 +523,7 @@ function DocGen ()
             preparePdfTemplates();
         }).catch(function(error) {
             console.log(chalk.red('Error writing the web page files'));
-            console.log(error);
+            //console.log(error);
         });
     }
 
