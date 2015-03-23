@@ -1,6 +1,6 @@
 
 var rsvp = require('rsvp');
-var fs = require('fs');
+var fs = require('fs-extra');
 var cheerio = require('cheerio');
 var markdown = require('markdown-it')('commonmark');
 var moment = require('moment');
