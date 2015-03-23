@@ -1,7 +1,4 @@
-﻿Changes
-=======
-
-DocGen 2.0.0
+﻿DocGen 2.0.0
 
 - flexible number of TOC columns
 - easier to install (uses node package manager)

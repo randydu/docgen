@@ -1,7 +1,4 @@
-﻿How to publish output with DocGen
-=================================
-
-Overview
+﻿Overview
 --------
 
 You publish content by running **Generator.rb**. This

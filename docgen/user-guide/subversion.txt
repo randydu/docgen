@@ -1,6 +1,3 @@
-How to use DocGen with Subversion
-=================================
-
 Recommended practice
 --------------------
 

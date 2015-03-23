@@ -1,7 +1,4 @@
-﻿How to create content with DocGen
-=================================
-
-Overview
+﻿Overview
 --------
 
 Using DocGen involves working with three folders:

@@ -1,7 +1,3 @@
-Troubleshooting
-===============
-
-
 Why is the PDF font size or layout different when generated on Windows vs. Linux?
 --------------------------------------------------------------------------------
 

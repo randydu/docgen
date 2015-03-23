@@ -448,10 +448,15 @@ function DocGen ()
                 //add relevant container
                 if (page.html === true) { //raw HTML pages should not be confined to the fixed width
                     $('#content').html('<div id="inner-content"></div>');
-                } else { //Markdown pages should be configed to the fixed width
+                } else { //Markdown pages should be confined to the fixed width
                     $('#content').html('<div class="w-fixed-width"><div id="inner-content"></div></div>');
                 }
                 $('#inner-content').html(content);
+                //prepend the auto heading (which makes the PDF table of contents match the web TOC)
+                $('#inner-content').prepend('<h1 id="autoTitle">'+page.title+'</h1>');
+                if (page.html === true) {
+                    $('#autoTitle').addClass('hiddenTitle');
+                }
                 pages[key] =  $;
             });
         });

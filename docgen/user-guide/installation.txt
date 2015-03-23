@@ -1,7 +1,4 @@
-﻿Installing DocGen
-=================
-
-Overview
+﻿Overview
 --------
 
 - Download the **[latest released version](https://github.com/mtmacdonald/docgen)** and save it anywhere, e.g. the Desktop.

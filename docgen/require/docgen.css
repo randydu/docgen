@@ -88,3 +88,20 @@ pre {
 .toc-icon {width: 18px; height: 18px; float: left;}
 .toc-icon svg {fill: white;}
 
+/*
+	Class to make a heading look invisible in web page, but still appear in the PDF table of contents
+		- display:none, visibily: hidden, zero dimensions, and offscreen positioning don't work
+		- so instead take it out of the flow and make it small and translucent
+*/
+
+.hiddenTitle {
+	display: block;
+	border: none;
+	margin: 0;
+	padding: 0;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	background-color: transparent;
+}

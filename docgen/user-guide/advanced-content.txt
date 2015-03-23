@@ -1,7 +1,4 @@
-﻿Writing Advanced Content
-========================
-
-Overview
+﻿Overview
 --------
 
 Any standard **HTML** can be entered in a content (.txt) file if needed (useful in cases where Markdown features are too simple).
