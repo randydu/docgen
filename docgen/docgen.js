@@ -184,7 +184,7 @@ function DocGen ()
                 required: [ "heading", "column", "links"],
                 properties: {
                     name: { type: "string" },
-                    column: { type: "integer" },
+                    column: { type: "integer", minimum: 1, maximum: 4 },
                     links: {
                         type : "array",
                         items: { oneOf: [ { 
