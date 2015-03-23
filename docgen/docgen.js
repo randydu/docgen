@@ -298,14 +298,14 @@ function DocGen ()
 
     var sortPages = function () {
         //sort the contents by heading
-        var headings = {1: [], 2: [], 3: [], 4: []};
+        var headings = {1: [], 2: [], 3: [], 4: [], 5: []};
         meta.contents.forEach( function (section) {
-            if (section.heading !== 'Extra') {
+            //if (section.heading !== 'Extra') {
                 if (headings.hasOwnProperty(section.column)) {
                     headings[section.column].push(section);
                 }
                 
-            }
+            //}
         });
         sortedPages = headings;
     }
@@ -322,17 +322,19 @@ function DocGen ()
         //build the contents HTML
         for (var key in sortedPages) {
             if (sortedPages.hasOwnProperty(key)) {
-                html[++i] = '<td class="toc-group">';
-                sortedPages[key].forEach( function (section) {
-                    html[++i] = '<ul><li class="toc-heading">'+section.heading+'</li>';
-                    section.links.forEach( function (page) {
-                        var name = page.source.substr(0, page.source.lastIndexOf('.'));
-                        var path = name+'.html';
-                        html[++i] = '<li><a href="'+path+'">'+page.title+'</a></li>';
+                if (key != 5) { //skip the extra column
+                    html[++i] = '<td class="toc-group">';
+                    sortedPages[key].forEach( function (section) {
+                        html[++i] = '<ul><li class="toc-heading">'+section.heading+'</li>';
+                        section.links.forEach( function (page) {
+                            var name = page.source.substr(0, page.source.lastIndexOf('.'));
+                            var path = name+'.html';
+                            html[++i] = '<li><a href="'+path+'">'+page.title+'</a></li>';
+                        });
+                        html[++i] = '</li></ul>';
                     });
-                    html[++i] = '</li></ul>';
-                });
-                html[++i] = '</td>';
+                    html[++i] = '</td>';
+                }
             }
         }
 
