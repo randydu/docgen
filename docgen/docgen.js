@@ -79,6 +79,7 @@ function DocGen ()
         console.log(chalk.green('Loading templates'));
         var files = {
             main: readFile('docgen/templates/main.html'),
+            webCover: readFile('docgen/templates/webCover.html'),
             pdfCover: readFile('docgen/templates/pdfCover.html'),
             pdfHeader: readFile('docgen/templates/pdfHeader.html'),
             pdfFooter: readFile('docgen/templates/pdfFooter.html'),
@@ -301,7 +302,7 @@ function DocGen ()
         });
         //fixed-width column at end
         html[++i] = '<td class="toc-group" id="toc-fixed-column"><ul>';
-        html[++i] = '<li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="cover.html">Ownership</a></li>';
+        html[++i] = '<li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li>';
         html[++i] = '<li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="change-log.html">Release Notes</a></li>';
         html[++i] = '</ul><div>';
         if (options.pdf) {
@@ -410,21 +411,24 @@ function DocGen ()
         insertParameters();
         meta.contents.forEach( function (section) {
             section.links.forEach( function (page) {
-                var $ = cheerio.load(templates.main.html()); //todo - better implementation of clone?
+                var $ = cheerio.load(templates.main.html()); //clone
                 var key = page.src;
                 var content = pages[key];
                 //add relevant container
                 if (page.html === true) { //raw HTML pages should not be confined to the fixed width
                     $('#content').html('<div id="inner-content"></div>');
-                    //console.log(content);
                 } else { //Markdown pages should be configed to the fixed width
                     $('#content').html('<div class="w-fixed-width"><div id="inner-content"></div></div>');
                 }
                 $('#inner-content').html(content);
                 pages[key] =  $;
-                //if (page.wide === true) { console.log($.html()); };
             });
         });
+        //add web ownership page
+        var $ = cheerio.load(templates.main.html()); //clone
+        $('#content').html('<div class="w-fixed-width"><div id="inner-content"></div></div>');
+        $('#inner-content').html(templates.webCover.html());
+        templates.webCover = $;
         writePages();
     }
 
@@ -445,6 +449,7 @@ function DocGen ()
             });
         });
         //add extra files
+        promises['ownership'] = writeFile(options.output+'/ownership.html', templates.webCover.html());
         promises['docgenPdfCover'] = writeFile(options.output+'/pdfCover.html', templates.pdfCover.html());
         promises['docgenPdfHeader'] = writeFile(options.output+'/pdfHeader.html', templates.pdfHeader.html());
         promises['docgenPdfFooter'] = writeFile(options.output+'/pdfFooter.html', templates.pdfFooter.html());
