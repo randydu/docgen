@@ -10,6 +10,7 @@ var schemaValidator = require("z-schema");
 var chalk = require('chalk');
 var spawnArgs = require('spawn-args');
 var cliSpinner = require('cli-spinner').Spinner;
+var imageSizeOf = require('image-size');
 
 /**
 * DocGen class
@@ -354,6 +355,20 @@ function DocGen ()
 
     var insertParameters = function () {
 
+        //------------------------------------------------------------------------------------------------------
+        //logo dimensions
+        var logoWidth = 0;
+        var logoHeight = 0;
+        try {
+            var logo = imageSizeOf(options.input+'/files/images/logo.png');
+            logoWidth = logo.width;
+            logoHeight = logo.height;
+        } catch (error) {
+            //console.log(error);
+        }
+
+        //------------------------------------------------------------------------------------------------------
+
         //the homepage is the first link in the first heading
         var homelink = meta.contents[0].links[0];
         var homelink = homelink.source.substr(0, homelink.source.lastIndexOf('.'))+'.html';
@@ -410,8 +425,15 @@ function DocGen ()
         for (var key in templates) {
             if (templates.hasOwnProperty(key)) {
                 $ = templates[key];
+                //logo
+                var logoUrl = 'files/images/logo.png';
+                $('#dg-logo').css('background-image', 'url(' + logoUrl + ')');
+                $('#dg-logo').css('height', logoHeight+'px');
+                $('#dg-logo').css('line-height', logoHeight+'px');
+                $('#dg-logo').css('padding-left', (logoWidth+25)+'px');                
+                //parameters
                 $('title').text(meta.parameters.title);
-                $('#homelink').attr('href', homelink);
+                $('#dg-homelink').attr('href', homelink);
                 $('#dg-title').text(meta.parameters.title);
                 $('#dg-owner').html(owner);
                 $('#dg-version').text(meta.parameters.version);
@@ -452,11 +474,13 @@ function DocGen ()
                     $('#content').html('<div class="w-fixed-width"><div id="inner-content"></div></div>');
                 }
                 $('#inner-content').html(content);
+                //------------------------------------------------------------------------------------------------------
                 //prepend the auto heading (which makes the PDF table of contents match the web TOC)
                 $('#inner-content').prepend('<h1 id="autoTitle">'+page.title+'</h1>');
                 if (page.html === true) {
                     $('#autoTitle').addClass('hiddenTitle');
                 }
+                //------------------------------------------------------------------------------------------------------
                 pages[key] =  $;
             });
         });
