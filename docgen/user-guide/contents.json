@@ -11,6 +11,10 @@
 			{
 				"title": "Installation",
 				"source": "installation.txt"
+			},
+			{
+				"title": "Upgrading",
+				"source": "upgrading.txt"
 			}
 		]
 	},
@@ -43,10 +47,6 @@
 			{
 				"title": "Using with Subversion",
 				"source": "subversion.txt"
-			},
-			{
-				"title": "Upgrading",
-				"source": "upgrading.txt"
 			}
 		]
 	}
