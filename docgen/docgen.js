@@ -1,6 +1,7 @@
 
 var rsvp = require('rsvp');
 var fs = require('fs-extra');
+var path = require('path');
 var cheerio = require('cheerio');
 var markdown = require('markdown-it')('commonmark');
 var moment = require('moment');
@@ -81,6 +82,7 @@ function DocGen ()
         console.log(chalk.green('Loading templates'));
         var files = {
             main: readFile('docgen/templates/main.html'),
+            redirect: readFile('docgen/templates/redirect.html'),
             webCover: readFile('docgen/templates/webCover.html'),
             pdfCover: readFile('docgen/templates/pdfCover.html'),
             pdfHeader: readFile('docgen/templates/pdfHeader.html'),
@@ -670,11 +672,32 @@ function DocGen ()
         });
     }
 
+    var createRedirect = function () {
+        if (options.redirect) {
+            var parent = path.normalize(options.output).replace(/\/$/, ""); //normalize path and trim any trailing slash
+            parent = parent.split(path.sep).slice(-1).pop(); //get name of final directory in the path
+            var homepage = meta.contents[0].links[0];
+            var homepage = homepage.source.substr(0, homepage.source.lastIndexOf('.'))+'.html';
+            var redirectLink = parent+'/'+homepage;
+            $ = templates.redirect;
+            $('a').attr('href', redirectLink);
+            $('meta[http-equiv=REFRESH]').attr('content', '0;url='+redirectLink);
+            var file = path.normalize(options.output+'../')+'index.html';
+            try {
+                fs.outputFileSync(file, $.html(), 'utf-8');
+            } catch (error) {
+                console.log(chalk.red('Error writing redirect file: '+file));
+                //console.log(error);
+            }
+        }
+    }
+
     /*
         cleanup
     */
 
     var cleanUp = function () {
+        createRedirect();
         //remove temp files
         if (options.pdf === true) {
             fs.removeSync(options.output+'/temp');

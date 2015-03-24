@@ -9,6 +9,7 @@ options
 	.option('-i, --input [type]', 'path to input directory (default: pwd)', 'pwd')
 	.option('-o, --output [type]', 'path to output directory (default: ./outputs)', './output')
 	.option('-p, --pdf [type]', 'create a PDF copy (default: false)', false)
+	.option('-r, --redirect [type]', 'create a home redirect page in the parent directory (default: false)', false)
 	//.option('-e, --errors [type]', 'show detailed error messages (default: false)', false)
 	//.option('-H, --homepage [type]', 'set the homepage filename (default: index.html)', 'index.html')
 	//.option('-t, --pagetoc [type]', 'include a page table of contents (default: true)', true)
