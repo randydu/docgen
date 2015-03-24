@@ -1,36 +1,39 @@
-﻿DocGen 2.0.0
+﻿DocGen 2.0.0 released XX/XX/XXXX
+--------------------------------
 
-- flexible number of TOC columns
-- easier to install (uses node package manager)
-- dependencies are now versioned
-- added time to generation timestamp
+- DocGen is now open source
+- Rewritten in JavaScript for Node.js
+- Much easier to install (hosted on npm)
+- Dependencies are now version controlled (using npm)
+- Modernized visual style (uses Webknife CSS framework)
+- Input metadata files are now in JSON rather than YAML format
+- Command-line options are now used for configuration, rather than a config file
+- Command-line output is now color coded (green success, red error)
+- Generating the PDF is now an optional feature
+- Upgraded to the latest version of the PDF generator (wkhtmltopdf)
+- Added support for list of document contributors (multiple authors)
+- Added time to the generation timestamp
+- Renamed 'change log' to 'release notes'
+- Fixed issues with fonts and text kerning in the PDF copy
+- Fixed defect where unexpected text appeared on some pages with a page table of contents
+- Dropped support for Internet Explorer 7 and 8
+- Dropped formal support for tool to run on multiple operating systems
 
-- rewrite in Node/JS
-- simpler installation (automated script)
-- upgraded UI framework (drops support for IE 8)
-- upgraded to support latest version of wkhtmltopdf
-- added support for list of document contributors
+Todo:
 
-?
-- switch on or off PDF copy
-- override the version info
-- mathematical expressions with mathjax
-- 'permalinks' to headings
-- ability to link to figure numbers
-- automatic section numbering
-- check validity of links
+- Ability to override the version information
+- Mathematical expressions with MathJax
+- 'Permalinks' to headings
+- Automatic secion numbering
+- Automatic figure numbering
+- Link checker
 
-
-- dropped support for Internet Explorer 7 and 8
-
-<p class="false-heading">1.1.0 (xx/xx/xxxx)</p> 
-
-- fixed defect where spurious text appeared on some pages with a page table of contents
-
-<p class="false-heading">1.0.1 (18/01/2012)</p> 
+DocGen 1.0.1 released 18/01/2012
+--------------------------------
 
 - Fixed a bug causing the table of contents headings to sometimes appear in the wrong order
 
-<p class="false-heading">1.0.0 (04/11/2011)</p> 
+DocGen 1.0.0 released 04/11/2011
+--------------------------------
 
 - Initial release
