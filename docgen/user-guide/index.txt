@@ -260,4 +260,21 @@ Content published by DocGen is tested against these browsers:
  </tr>
 </table>
 
+<h2>Quick Start</h2>
+
+<ul>
+ <li class="list-heading">In just three commands:</li>
+ <li>Install DocGen</li>
+ <li>Scaffold an empty template</li>
+ <li>Generate a static website</li>
+</ul 
+
+<p>Enter these commands in the terminal:</p>
+
+<pre><code>npm install -g docgen-tool
+node docgen.js --scaffold $HOME/example
+node docgen.js -i $HOME/example -o $HOME/site</code></pre>
+
+<p>See the [installation guide](installation.html) for more detailed instructions.</p>
+
 </div></div>
