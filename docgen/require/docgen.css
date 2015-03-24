@@ -1,6 +1,9 @@
-
 pre {
 	font-size: 12px; /*todo - move to webknife*/
+}
+
+section blockquote p {
+	margin: 0;
 }
 
 /******************************** TABLE OF CONTENTS ****************************/
