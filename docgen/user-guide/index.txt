@@ -41,28 +41,26 @@
 .how-it-works li {
   vertical-align: top;
   display: inline-block;
-  width: 260px;
+  width: 290px;
   margin: 10px;
   padding: 0 0 10px 0;
   border: 2px solid #385691;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
 }
-/*
-.how-it-works li span {
-  vertical-align: middle;
-  margin-right: 5px;
-}
-*/
 
 .how-it-works li p:first-of-type {
   margin: 0;
   padding: 0 0 3px 0;
-  font-size: 18px;
+  font-size: 16px;
   border: none;
   background-color: #385691;
   color: white;
   padding: 10px;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
   border-radius: 7px 7px 0 0;
+  height: 60px;
 }
 
 .how-it-works li p:last-of-type {
@@ -215,7 +213,7 @@
 
 <ul class="how-it-works">
 <li>
-  <p>"You write in plain text or human-friendly <a href="http://daringfireball.net/projects/markdown/basics" style="color:white">Markdown</a>"</p>
+  <p>"You write in plain text or human-friendly human-friendly <a href="http://commonmark.org">CommonMark</a>"</p>
   <p style="background-image:url('files/images/text.png');"></p>
 </li>
 <li>
