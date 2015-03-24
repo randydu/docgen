@@ -49,7 +49,7 @@ $(document).ready( function () {
 
 <body>
 
-<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
+<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
 <div id="navigator">Table of contents</div>
 
 <header>
@@ -104,6 +104,38 @@ $(document).ready( function () {
   padding: 20px 0 20px 0;
 }
 
+.how-it-works li {
+  vertical-align: top;
+  display: inline-block;
+  width: 290px;
+  margin: 10px;
+  padding: 0 0 10px 0;
+  border: 2px solid #385691;
+  border-radius: 10px 10px 0 0;
+}
+
+.how-it-works li p:first-of-type {
+  margin: 0;
+  padding: 0 0 3px 0;
+  font-size: 16px;
+  border: none;
+  background-color: #385691;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  border-radius: 7px 7px 0 0;
+  height: 60px;
+}
+
+.how-it-works li p:last-of-type {
+  padding:0;
+  margin:0;
+  height: 392px;
+  background-repeat:no-repeat;
+}
+
 .features, .quick-howto {
   margin: 0;
   padding: 0;
@@ -131,7 +163,7 @@ $(document).ready( function () {
   border: none;
 }
 
-.features li p {
+.features li p:last-of-type {
   padding-top: 5px;
   margin: 0;
 }
@@ -196,7 +228,7 @@ $(document).ready( function () {
   </span>
 </div></div>
 
-<div class="segment"><div class="w-fixed-width">
+<div class="segment" style="border-bottom: none; margin-bottom:0; padding-bottom:0;"><div class="w-fixed-width">
 <p class="heading-text">
  <strong>DocGen</strong> is a <strong>static website generator</strong> that&apos;s ideal for making technical user guides for software products.
 </p>
@@ -245,86 +277,75 @@ $(document).ready( function () {
 <div style="padding-top:20px;"><div class="w-fixed-width">
 <h2>How it works</h2>
 
-<table style="color:white; text-align:center; width:100%; border: none; border-collapse: separate; border-spacing: 10px 0px; font-weight:bold; font-style:italic; font-size:14px;padding:0;" class="w-table w-fixed w-stripe">
- <tr>
-  <td style="background-color:#999; height:70px; padding:5px; width:33%;text-align:center;">
-   &quot;You write in plain text or human-friendly <a href="http://daringfireball.net/projects/markdown/basics" style="color:white">Markdown</a>&quot;
-  </td>
-  <td style="background-color:#999; height:70px; padding:5px; width:33%;text-align:center;">
-   &quot;DocGen styles and publishes all your content as a website&quot;</td>
-  <td style="background-color:#999; height:70px; padding:5px; width:33%;text-align:center;">
-   &quot;DocGen also creates an equivalent PDF copy&quot;
-  </td>
- </tr>
- <tr style="padding:0; margin:0; ">
-  <td style="padding:0; margin:0; height:392px; background-image:url(&apos;files/images/text.png&apos;); background-repeat:no-repeat;"></td>
-  <td style="padding:0; margin:0; height:392px; background-image:url(&apos;files/images/web.png&apos;); background-repeat:no-repeat;"></td>
-  <td style="padding:0; margin:0; height:392px; background-image:url(&apos;files/images/pdf.png&apos;); background-repeat:no-repeat;"></td>
- </tr>
-</table>
+<ul class="how-it-works">
+<li>
+  <p>&quot;You write in plain text or human-friendly human-friendly <a href="http://commonmark.org">CommonMark</a>&quot;</p>
+  <p style="background-image:url(&apos;files/images/text.png&apos;);"></p>
+</li>
+<li>
+  <p>&quot;DocGen styles and publishes all your content as a website&quot;</p>
+  <p style="background-image:url(&apos;files/images/web.png&apos;);"></p>
+</li>
+<li>
+  <p>&quot;DocGen also creates an equivalent PDF copy&quot;</p>
+  <p style="background-image:url(&apos;files/images/pdf.png&apos;);"></p>
+</li>
+</ul>
 
-<h2>Features</h2>
-
-<p>DocGen makes it easy for anyone to make high-quality technical documentation. It is particularly intended for software library &apos;user guides&apos; and tutorials which need to be versioned **in sync** with the software. It may be useful in other situations where versioned documentation needs to be made accessible, such as process guides or technical product manuals.</p>
-
-<p style="page-break-before: always"></p>
-
-<table style="width:100%; border:none; padding:0;" class="w-table w-fixed w-stripe">
+<table style="width:600px; border:none; padding:0;" class="w-table w-fixed w-stripe">
  <tr style="border:none; padding:0;">
  
   <td style="border:none; text-align:left; padding:0;"><ul>
-   <li class="list-heading">Input Formats</li>
+   <li class="list-heading">Flexible Input Formats</li>
    <li>Plain text</li>
-   <li>Markdown</li>
+   <li>Commonmark (Markdown)</li>
    <li>HTML</li>
+   <li>MathML</li>
    <li>Image diagrams</li>
    <li>Attach other documents</li>
   </ul></td>
   
   <td style="border:none; text-align:left; padding:0;"><ul>
-   <li class="list-heading">Configurable Generator</li>
-   <li>Code syntax highlighting</li>
-   <li>Automatic tables of contents</li>
-   <li>Branding and legal markings</li>
-   <li>Ownership and versioning</li>
-   <li>Change log feature</li>
-  </ul></td>
-
-  <td style="border:none; text-align:left; padding:0;"><ul>
-   <li class="list-heading">Flexible output formats</li>
-   <li>Self-contained HTML website</li>
-   <li>Publish to any web server</li>
-   <li>Publish to CD, shared drive, local folder</li>
-   <li>Author next to code in Subversion</li>
-   <li>Automatic PDF version</li>
+   <li class="list-heading">Configurable Metadata</li>
+   <li>Branding (logo, title, organization)</li>
+   <li>License, copyright, and legal markings</li>
+   <li>Ownership and attribution</li>
+   <li>Version information</li>
+   <li>Release notes (change log)</li>
   </ul></td>
   
  </tr>
 </table>
 
 <blockquote>
-DocGen is probably not the right tool for precision PDF layout, or repeated generation of similar documents from 
-standard templates (e.g. in product configurators). It is meant for free-form, human generated content which is 
-regularly updated and refactored.
+DocGen is probably not the right tool for precision PDF layout. Or for product configurators which need to output 
+variants based on a common template. Docgen is intended more for free-form, human generated content which is regularly 
+updated and refactored, and standardised for each product release.
 </blockquote>
 
-<br><span style="color:#003972; font-size: 16px; font-weight:bold;">Support for multiple platforms</span>
+<h2>Supports modern browsers</h2>
 
-DocGen can be used to publish documentation on **Microsoft Windows**, **Mac OS X**, and **Linux**.
+Output created by DocGen works on modern browsers (desktop and mobile devices).
 
-Content published by DocGen is tested against these browsers:
+<ul><li>tested in <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">Internet Explorer 9+</a>, 
+<a href="http://www.google.com/chrome">Chrome</a>, 
+<a href="https://www.mozilla.org/en-US/firefox/new">Firefox</a>, 
+<a href="https://www.apple.com/safari">Safari</a></li></ul>
 
-<table style="width:400px; border:none;padding:0;" class="w-table w-fixed w-stripe">
- <tr style="border:none;padding:0;">
-  <td style="border:none; padding:0; text-align:center;"><img src="files/images/browsers.png"></td>
-  <td style="border:none; padding:0; text-align:left;"><ul>
-   <li>Internet Explorer 7+</li>
-   <li>Firefox</li>
-   <li>Safari</li>
-   <li>Chrome</li>
-  </ul></td>
- </tr>
-</table>
+<h2>Quick Start</h2>
+
+<ul>
+ <li class="list-heading">In just three commands:</li>
+ <li>Install DocGen</li>
+ <li>Scaffold an empty template</li>
+ <li>Generate a static website</li>
+</ul>Enter these commands in the terminal:<p></p>
+
+<pre><code>npm install -g docgen-tool
+node docgen.js --scaffold $HOME/example
+node docgen.js -i $HOME/example -o $HOME/site</code></pre>
+
+<p>See the <a href="installation.html">installation guide</a> for more detailed instructions.</p>
 
 </div></div></div></section>
 
@@ -335,7 +356,7 @@ Content published by DocGen is tested against these browsers:
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 24/03/2015 at 12:28:54.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 24/03/2015 at 19:03:37.</span>
     </p>
   </div>
  </footer>

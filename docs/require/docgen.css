@@ -2,7 +2,7 @@ pre {
 	font-size: 12px; /*todo - move to webknife*/
 }
 
-section blockquote p {
+section blockquote p, section li p {
 	margin: 0;
 }
 

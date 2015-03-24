@@ -49,7 +49,7 @@ $(document).ready( function () {
 
 <body>
 
-<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
+<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
 <div id="navigator">Table of contents</div>
 
 <header>
@@ -64,15 +64,38 @@ $(document).ready( function () {
  </div>
 </header>
 
-<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Upgrading</h1><p>If you want to upgrade to a newer version of DocGen but still use your existing content from a previous project, this is trivial:</p>
-<ol>
-<li>Download the latest version of DocGen</li>
-<li>Delete the Source folder</li>
-<li>Replace with your existing Source folder</li>
-</ol>
-<p>Sometimes new features will require you to update the configuration files to match those expected by the latest version. In this case look at the reference example in the DocGen Source folder.</p>
+<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Upgrading</h1><p>This section explains how to upgrade from old versions of DocGen.</p>
+<h2>DocGen 1.0.* to DocGen 2.0.0</h2>
+<p>DocGen 2 is not backwards compatible with DocGen 1, but the upgrade is easy with these instructions:</p>
+<ul>
+<li>Install DocGen 2 by following the <a href="installation.html">installation guide</a></li>
+<li>Create a replacement &apos;source&apos; directory, e.g: <code class="w-inline-code">node docgen.js --scaffold $HOME/source</code></li>
+<li>Migrate the source files
+<ul>
+<li>Copy the source (.txt) files from the old &apos;Src&apos; directory to the new &apos;source&apos; directory</li>
+<li>Remove the top-level page headings in each source file (DocGen now inserts these automatically, based on contents.json)</li>
+<li>Rename <em>&apos;change-log.txt&apos;</em> to <em>&apos;release-notes.txt&apos;</em></li>
+</ul>
+</li>
+<li>Migrate the attached content
+<ul>
+<li>Place a logo with filename &apos;logo.png&apos; in &apos;files/images&apos; directory (the logo is now part of the source)</li>
+<li>Copy the images from <em>&apos;Images&apos;</em> to <em>&apos;files/images&apos;</em></li>
+<li>Copy attached files from <em>&apos;Files&apos;</em> to <em>&apos;files&apos;</em></li>
+</ul>
+</li>
+<li>Migrate the metadata
+<ul>
+<li>Edit <em>&apos;parameters.json&apos;</em> with the relevant values from <em>&apos;doc-parameters.yml&apos;</em></li>
+<li>Edit <em>&apos;contents.json&apos;</em> with the relevant values from <em>&apos;table-of-contents.yml&apos;</em></li>
+</ul>
+</li>
+<li>Run DocGen: <code class="w-inline-code">node docgen.js -i $HOME/source -o $HOME/output</code></li>
+<li>Check the styling in the latest version still works well with the old content</li>
+<li>Note that the PDF is no longer generated by default (pass the <em>&apos;-p&apos;</em> option)</li>
+</ul>
 <blockquote>
-<p>You should check the styling in the latest version still works well with your old content.</p>
+<p>DocGen 1 tool-behaviours.yml has been replaced by command-line options See <code class="w-inline-code">node docgen.js -h</code> for help.</p>
 </blockquote>
 </div></div></section>
 
@@ -83,7 +106,7 @@ $(document).ready( function () {
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 24/03/2015 at 12:28:54.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 24/03/2015 at 19:03:37.</span>
     </p>
   </div>
  </footer>

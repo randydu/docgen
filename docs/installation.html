@@ -49,7 +49,7 @@ $(document).ready( function () {
 
 <body>
 
-<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
+<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
 <div id="navigator">Table of contents</div>
 
 <header>
@@ -64,127 +64,35 @@ $(document).ready( function () {
  </div>
 </header>
 
-<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Installation</h1><h2>Overview</h2>
-<ul>
-<li>Download the <strong><a href="https://github.com/mtmacdonald/docgen">latest released version</a></strong> and save it anywhere, e.g. the Desktop.</li>
-</ul>
-<blockquote>
-<p>The first time DocGen is used some dependencies (listed below) must be installed. For help, see the setup instructions on this page.</p>
-</blockquote>
-<ul>
-<li><a href="http://www.ruby-lang.org/en/">Ruby</a> <strong>1.9.x or newer</strong></li>
-<li><a href="http://kramdown.rubyforge.org/">Kramdown RubyGem</a> <strong>0.10.0 or newer</strong></li>
-<li><a href="http://nokogiri.org/">Nokogiri RubyGem</a> <strong>1.4.4.1 or newer</strong></li>
-<li><a href="http://www.kuwata-lab.com/kwalify/">Kwalify RubyGem</a> <strong>0.7.2 or newer</strong></li>
-<li><a href="https://github.com/ahoward/systemu">Systemu RubyGem</a> <strong>2.2.0 or newer</strong></li>
-<li><a href="http://code.google.com/p/wkhtmltopdf/">wkhtmltopdf</a> <strong>0.9.9 or newer</strong></li>
-</ul>
-<h2>Setup - Microsoft Windows</h2>
-<p>Download and run the following installers:</p>
-<ul>
-<li><a href="https://rubyforge.org/frs/?group_id=167">Windows Ruby installer</a> (select <em>&apos;Add Ruby executables to your PATH&apos;</em> and <em>&apos;Associate .rb and .rbw files with this Ruby installation&apos;</em>)</li>
-<li><a href="http://code.google.com/p/wkhtmltopdf/downloads/list">Windows wkhtmltopdf installer</a> (select <em>&apos;Modify PATH&apos;</em>)</li>
-</ul>
-<p>Open the Windows Command Prompt and enter the following commands. (See <a href="#troubleshooting">help with proxy settings</a> in case of network errors).</p>
-<pre><code>gem install kramdown
-gem install nokogiri
-gem install kwalify
-gem install systemu
+<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Installation</h1><p>This section explains how to install DocGen.</p>
+<h2>Supported platform</h2>
+<p><em>&apos;Supported platforms&apos;</em> means the software required to <strong>run</strong> the DocGen tool. The static website <strong>produced</strong> by
+DocGen will work on all modern browsers on all all major operating systems (see <a href="index.html">browser support</a>).</p>
+<p class="w-information">
+    The supported platform for this version of DocGen is: 
+    <strong>Ubuntu 14.04</strong> with <strong>Node.js 0.12.0</strong> 
+    and <strong>wkhtmltopdf 0.12.2.1 </strong>(with patched qt).
+</p>
+<p>While other operating systems and dependency versions may work, they are not tested or officially supported.</p>
+<h2>Dependencies</h2>
+<p>DocGen requires <strong><a href="https://nodejs.org">Node.js</a></strong>. To install on Ubuntu Linux, enter these terminal commands:</p>
+<pre><code>curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
+sudo apt-get install -y nodejs
 </code></pre>
-<blockquote>
-<p>The latest version of systemu is only compatible with Ruby 1.9.3 on Windows. For older Ruby versions, install systemu 2.2.0 by instead entering: <strong>gem install systemu --version &apos;=2.2.0&apos;</strong></p>
-</blockquote>
-<p>Confirm correct wkhtmltopdf installation by entering the following. (See <a href="#troubleshooting">help with wkhtmltopdf path</a> in case of &apos;not recognised&apos; errors).</p>
-<pre><code>wkhtmltopdf --version
+<p>This method uses the
+<a href="https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories">NodeSource Linux Repositories</a>
+(recommended).</p>
+<p>For other platforms (not supported), see the <a href="https://nodejs.org/download">download page</a> or vendor instructions.</p>
+<h2>Optional dependencies (only for PDF)</h2>
+<p>For optional PDF support, DocGen requires <strong><a href="http://wkhtmltopdf.org">wkhtmltopdf</a></strong>. See the wkthmltopdf website for
+installation instructions.</p>
+<h2>Quick install with NPM</h2>
+<p>The quickest way to install DocGen is with <strong><a href="https://www.npmjs.com">npm</a></strong> (the JavaScript package manager). Enter
+these terminal commands:</p>
+<pre><code>npm install -g docgen-tool
 </code></pre>
-<h2>Setup - Linux</h2>
-<p>Normally a suitable version of Ruby is already installed. Check this by opening a terminal and entering:</p>
-<pre><code>ruby -v
-</code></pre>
-<p>If Ruby is not installed or the version is too old, follow the <a href="#troubleshooting">installing or upgrading Ruby</a> help.</p>
-<p>Then, in the terminal, enter the following commands. (See <a href="#troubleshooting">help with proxy settings</a> in case of network errors).</p>
-<pre><code>sudo gem install kramdown
-sudo gem install kwalify
-sudo gem install systemu
-sudo apt-get install libxslt-dev libxml2-dev
-sudo gem install nokogiri
-</code></pre>
-<p>Download the <a href="http://code.google.com/p/wkhtmltopdf/downloads/list">wkhtmltopdf Linux static binary</a> to your desktop. If needed, rename it to <strong>wkhtmltopdf</strong> (i.e. remove version suffix). In the terminal, enter:</p>
-<pre><code>sudo cp Desktop/wkhtmltopdf /usr/local/bin
-sudo chmod 755 /usr/local/bin/wkhtmltopdf
-</code></pre>
-<h2>Setup - Apple OS X</h2>
-<p>OS X already has Ruby, but you probably need to <a href="#troubleshooting">upgrade the Ruby version</a>. To check the version, open a terminal and enter:</p>
-<pre><code>ruby -v
-</code></pre>
-<p>After upgrading, enter the following commands in the terminal. (See <a href="#troubleshooting">help with proxy settings</a> in case of network errors).</p>
-<pre><code>sudo gem install kramdown
-sudo gem install nokogiri
-sudo gem install kwalify
-sudo gem install systemu
-</code></pre>
-<p>Download the <a href="http://code.google.com/p/wkhtmltopdf/downloads/list">wkhtmltopdf OS X static binary</a> to your desktop. If needed, rename it to <strong>wkhtmltopdf</strong> (i.e. remove version suffix). In the terminal, enter:</p>
-<pre><code>sudo cp Desktop/wkhtmltopdf /usr/local/bin
-sudo chmod 755 /usr/local/bin/wkhtmltopdf
-</code></pre>
-<p>OS X additionally needs to have <strong>/usr/local/bin</strong> added to the PATH. In the terminal, enter:</p>
-<pre><code>pico ~./bash_profile
-</code></pre>
-<p>Add the following line to the file. Save it and exit pico using the on-screen instructions (i.e. CTRL+O then CTRL+X)</p>
-<pre><code>export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-</code></pre>
-<p>In ther terminal, enter:</p>
-<pre><code>source ~/.bash_profile
-</code></pre>
-<h2>Test the installation</h2>
-<p>Run DocGen to test the installation. Use the Command Prompt on Windows or the terminal on Linux / OS X and enter (substituting the correct path):</p>
-<pre><code>cd /path/to/DocGen/Generator
-ruby Generator.rb
-</code></pre>
-<p>Now open <strong>documentation.html</strong> in the DocGen Output folder. If everything is working, you will see an empty template website. If there were problems, see troubleshooting (below).</p>
-<p><a name="troubleshooting"></a></p>
-<h2>Troubleshooting</h2>
-<p class="false-heading">Help with proxy settings when installing Ruby gems</p>
-<p>When behind a proxy, add the option <strong>-p proxy_url</strong>. For example:</p>
-<pre><code>gem install kramdown -p http://&lt;IP&gt;:8080
-</code></pre>
-<p>Alternatively, <strong><a href="http://rubygems.org/">download the gems</a></strong> manually and install them from a local directory (using the normal instructions above).</p>
-<p class="false-heading">Help with wkhtmltopdf path issues (Windows only)</p>
-<p>The wkhtmltopdf 0.9.9 installer does not have an option to add wkhtmltopdf to the PATH environment variable. Instead:</p>
-<ul>
-<li>either use wkhtmltopdf 0.10.0 or later (recommended)</li>
-<li>or manually add wkhtmltopdf.exe to the PATH environment variable: (My Computer | Properties | Advanced | Environment Variables).</li>
-</ul>
-<p class="false-heading">Missing Nokogiri dependencies (Linux and OS X)</p>
-<p>The Nokogiri RubyGem requires libxml2 and libxslt on Linux and OS X. Usually these are already present. If not, follow:</p>
-<ul>
-<li><a href="http://nokogiri.org/tutorials/installing_nokogiri.html">detailed instructions for installing nokogiri</a></li>
-</ul>
-<p class="false-heading">Installing or upgrading Ruby (Linux and OS X)</p>
-<blockquote>
-<p>These instructions install a fresh copy of the latest stable Ruby and make it the default interpreter. Existing vendor Ruby installations are unaffected.</p>
-</blockquote>
-<ul>
-<li>download and unzip the <a href="http://www.ruby-lang.org/en/downloads/">Ruby source code</a></li>
-<li>(OS X only) install <a href="http://developer.apple.com/technologies/tools/xcode.html">XCode</a> if not already present</li>
-</ul>
-<p>To make and install Ruby, open a terminal and enter (substituting the correct path):</p>
-<pre><code>cd /path/to/ruby-download
-autoconf
-./configure --prefix=/usr/local --enable-shared
-make
-sudo make install
-</code></pre>
-<p class="false-heading">Extra help for Debian Linux</p>
-<p>Make sure these packages are installed <em>before</em> configuring Ruby:</p>
-<ul>
-<li>build-essential</li>
-<li>libssl-dev</li>
-<li>libreadline5</li>
-<li>libreadline5-dev</li>
-<li>zlib1g</li>
-<li>zlib1g-dev</li>
-</ul>
+<h2>Install by direct download</h2>
+<p>DocGen can also be installed by <a href="https://github.com/mtmacdonald/docgen">direct download</a>.</p>
 </div></div></section>
 
  <footer>
@@ -194,7 +102,7 @@ sudo make install
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 24/03/2015 at 12:28:54.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 24/03/2015 at 19:03:37.</span>
     </p>
   </div>
  </footer>
