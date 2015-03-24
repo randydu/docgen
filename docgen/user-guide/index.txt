@@ -162,7 +162,7 @@
   </span>
 </div></div>
 
-<div class="segment"><div class="w-fixed-width">
+<div class="segment" style="border-bottom: none; margin-bottom:0; padding-bottom:0;"><div class="w-fixed-width">
 <p class="heading-text">
  <strong>DocGen</strong> is a <strong>static website generator</strong> that's ideal for making technical user guides for software products.
 </p>
@@ -226,68 +226,45 @@
 </li>
 </ul>
 
-<h2>Features</h2>
-
-<p>DocGen makes it easy for anyone to make high-quality technical documentation. It is particularly intended for software library 'user guides' and tutorials which need to be versioned **in sync** with the software. It may be useful in other situations where versioned documentation needs to be made accessible, such as process guides or technical product manuals.</p>
-
-<p style="page-break-before: always"></p>
-
-<table style="width:100%; border:none; padding:0;">
+<table style="width:600px; border:none; padding:0;">
  <tr style="border:none; padding:0;">
  
   <td style="border:none; text-align:left; padding:0;"><ul>
-   <li class="list-heading">Input Formats</li>
+   <li class="list-heading">Flexible Input Formats</li>
    <li>Plain text</li>
-   <li>Markdown</li>
+   <li>Commonmark (Markdown)</li>
    <li>HTML</li>
+   <li>MathML</li>
    <li>Image diagrams</li>
    <li>Attach other documents</li>
   </ul></td>
   
   <td style="border:none; text-align:left; padding:0;"><ul>
-   <li class="list-heading">Configurable Generator</li>
-   <li>Code syntax highlighting</li>
-   <li>Automatic tables of contents</li>
-   <li>Branding and legal markings</li>
-   <li>Ownership and versioning</li>
-   <li>Change log feature</li>
-  </ul></td>
-
-  <td style="border:none; text-align:left; padding:0;"><ul>
-   <li class="list-heading">Flexible output formats</li>
-   <li>Self-contained HTML website</li>
-   <li>Publish to any web server</li>
-   <li>Publish to CD, shared drive, local folder</li>
-   <li>Author next to code in Subversion</li>
-   <li>Automatic PDF version</li>
+   <li class="list-heading">Configurable Metadata</li>
+   <li>Branding (logo, title, organization)</li>
+   <li>License, copyright, and legal markings</li>
+   <li>Ownership and attribution</li>
+   <li>Version information</li>
+   <li>Release notes (change log)</li>
   </ul></td>
   
  </tr>
 </table>
 
 <blockquote>
-DocGen is probably not the right tool for precision PDF layout, or repeated generation of similar documents from 
-standard templates (e.g. in product configurators). It is meant for free-form, human generated content which is 
-regularly updated and refactored.
+DocGen is probably not the right tool for precision PDF layout. Or for product configurators which need to output 
+variants based on a common template. Docgen is intended more for free-form, human generated content which is regularly 
+updated and refactored, and standardised for each product release.
 </blockquote>
 
-<br/><span style="color:#003972; font-size: 16px; font-weight:bold;">Support for multiple platforms</span>
+<h2>Supports modern browsers</h2>
 
-DocGen can be used to publish documentation on **Microsoft Windows**, **Mac OS X**, and **Linux**.
+Output created by DocGen works on modern browsers (desktop and mobile devices).
 
-Content published by DocGen is tested against these browsers:
-
-<table style="width:400px; border:none;padding:0;">
- <tr style="border:none;padding:0;">
-  <td style="border:none; padding:0; text-align:center;"><img src="files/images/browsers.png" /></td>
-  <td style="border:none; padding:0; text-align:left;"><ul>
-   <li>Internet Explorer 7+</li>
-   <li>Firefox</li>
-   <li>Safari</li>
-   <li>Chrome</li>
-  </ul></td>
- </tr>
-</table>
+<ul><li/>tested in <a href= "http://windows.microsoft.com/en-us/internet-explorer/download-ie">Internet Explorer 9+</a>, 
+<a href= "http://www.google.com/chrome">Chrome</a>, 
+<a href= "https://www.mozilla.org/en-US/firefox/new">Firefox</a>, 
+<a href= "https://www.apple.com/safari">Safari</a></li></ul>
 
 <h2>Quick Start</h2>
 

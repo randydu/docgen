@@ -20,6 +20,9 @@
 - automatic section numbering
 - check validity of links
 
+
+- dropped support for Internet Explorer 7 and 8
+
 <p class="false-heading">1.1.0 (xx/xx/xxxx)</p> 
 
 - fixed defect where spurious text appeared on some pages with a page table of contents

@@ -1,9 +1,10 @@
 ﻿This section explains how to install DocGen.
 
-Supported platforms
--------------------
+Supported platform
+------------------
 
-### Tool platform support
+*'Supported platforms'* means the software required to **run** the DocGen tool. The static website **produced** by 
+DocGen will work on all modern browsers on all all major operating systems (see [browser support](index.html)).
 
 <p class="w-information">
 	The supported platform for this version of DocGen is: 
@@ -12,16 +13,6 @@ Supported platforms
 </p>
 
 While other operating systems and dependency versions may work, they are not tested or officially supported.
-
-### Content platform support
-
-The static website produced by DocGen will work on **modern browsers** on all all major operating systems.
-
-- [Internet Exlorer 9+](http://windows.microsoft.com/en-us/internet-explorer/download-ie), 
-[Chrome](http://www.google.com/chrome), [Firefox](https://www.mozilla.org/en-US/firefox/new/), 
-and [Safari](https://www.apple.com/safari)
-- [Windows](http://windows.microsoft.com/en-us/windows/home), [OS X](https://www.apple.com/osx/), Linux and 
-mobile operating systems
 
 Dependencies
 ------------
