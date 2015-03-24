@@ -37,6 +37,9 @@ function DocGen ()
 
     this.run = function () {
         console.log(chalk.green.bold('DocGen version '+version));
+        //delete and recreate the output directory
+        fs.removeSync(path.normalize(options.output));
+        fs.mkdirp(path.normalize(options.output));
         loadTemplates();
     }
 
