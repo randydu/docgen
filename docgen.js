@@ -10,8 +10,7 @@ options
 	.option('-o, --output [type]', 'path to output directory (default: ./outputs)', './output')
 	.option('-p, --pdf [type]', 'create a PDF copy (default: false)', false)
 	.option('-r, --redirect [type]', 'create a home redirect page in the parent directory (default: false)', false)
-	//.option('-e, --errors [type]', 'show detailed error messages (default: false)', false)
-	//.option('-H, --homepage [type]', 'set the homepage filename (default: index.html)', 'index.html')
+	.option('-v, --verbose [type]', 'verbose output, including detailed errors (default: false)', false)
 	//.option('-t, --pagetoc [type]', 'include a page table of contents (default: true)', true)
 	.parse(process.argv);
 

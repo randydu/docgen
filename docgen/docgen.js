@@ -102,7 +102,9 @@ function DocGen ()
             loadMeta();
         }).catch(function(error) {
             console.log(chalk.red('Error loading templates'));
-            console.log(error);
+            if (options.verbose === true) {
+                console.log(chalk.red(error));
+            }
         });
     }
 
@@ -217,7 +219,9 @@ function DocGen ()
         var valid = validator.validate(data, schema);
         if (!valid) {
             console.log(chalk.red('Error parsing required file: '+key+'.json (failed schema validation)'));
-            //console.log(validator.getLastError());
+            if (options.verbose === true) {
+                console.log(chalk.red(validator.getLastError()));
+            }
         }
         return valid;
     }
@@ -244,7 +248,9 @@ function DocGen ()
                         }
                     } catch (error) {
                         console.log(chalk.red('Error parsing required file: '+key+'.json (invalid JSON)'));
-                        //console.log(error);
+                        if (options.verbose === true) {
+                            console.log(chalk.red(error));
+                        }
                     }
                 }
             }
@@ -260,7 +266,9 @@ function DocGen ()
             loadMarkdown();
         }).catch(function(error) {
             console.log(chalk.red('Error loading required JSON files'));
-            //console.log(error);
+            if (options.verbose === true) {
+                console.log(chalk.red(error));
+            }
         });
     }
 
@@ -293,13 +301,17 @@ function DocGen ()
                     }
                 } catch (error) {
                     console.log(chalk.red('Error parsing Markdown file: '+file.source));
-                    //console.log(error);
+                    if (options.verbose === true) {
+                        console.log(chalk.red(error));
+                    }
                 }
             });
             process(); 
         }).catch(function(error) {
             console.log(chalk.red('Error loading Markdown files'));
-            //console.log(error);
+            if (options.verbose === true) {
+                console.log(chalk.red(error));
+            }
         });
     }
 
@@ -307,12 +319,10 @@ function DocGen ()
         //sort the contents by heading
         var headings = {1: [], 2: [], 3: [], 4: [], 5: []};
         meta.contents.forEach( function (section) {
-            //if (section.heading !== 'Extra') {
-                if (headings.hasOwnProperty(section.column)) {
-                    headings[section.column].push(section);
-                }
-                
-            //}
+            if (headings.hasOwnProperty(section.column)) {
+                headings[section.column].push(section);
+            }
+
         });
         sortedPages = headings;
     }
@@ -378,7 +388,7 @@ function DocGen ()
             logoWidth = logo.width;
             logoHeight = logo.height;
         } catch (error) {
-            //console.log(error);
+            //do nothing. If logo file cannot be read, logo is not shown
         }
 
         //------------------------------------------------------------------------------------------------------
@@ -540,7 +550,9 @@ function DocGen ()
             preparePdfTemplates();
         }).catch(function(error) {
             console.log(chalk.red('Error writing the web page files'));
-            //console.log(error);
+            if (options.verbose === true) {
+                console.log(chalk.red(error));
+            }
         });
     }
 
@@ -552,7 +564,9 @@ function DocGen ()
         ncp('docgen/require', options.output+'/require', function (error) {
             if (error) {
                 console.log(chalk.red('Error copying the require directory'));
-                //console.error(err);
+                if (options.verbose === true) {
+                    console.log(chalk.red(error));
+                }
             }
         });
     }
@@ -565,7 +579,9 @@ function DocGen ()
         ncp(options.input+'/files', options.output+'/files', function (error) {
             if (error) {
                 console.log(chalk.red('Error copying the attached files'));
-                //console.error(err);
+                if (options.verbose === true) {
+                    console.log(chalk.red(error));
+                }
             }
         });
     }
@@ -629,7 +645,9 @@ function DocGen ()
             childProcess.exec('wkhtmltopdf -V', function (error, stdout, stderr) {
                 if (error) {
                     console.log(chalk.red('Unable to call wkhtmltopdf. Is it installed and in path? See http://wkhtmltopdf.org'));
-                    //console.log(error);
+                    if (options.verbose === true) {
+                        console.log(chalk.red(error));
+                    }
                 } else {
                     //warn if the version of wkhtmltopdf is not an expected version
                     var actualWkhtmltopdfVersion = stdout.trim();
@@ -693,7 +711,9 @@ function DocGen ()
                 fs.outputFileSync(file, $.html(), 'utf-8');
             } catch (error) {
                 console.log(chalk.red('Error writing redirect file: '+file));
-                //console.log(error);
+                if (options.verbose === true) {
+                    console.log(chalk.red(error));
+                }
             }
         }
     }
