@@ -1,5 +1,6 @@
 {
 	"title" : "DocGen - a documentation tool",
+	"name": "DocGen",
 	"version" : "2.0.0",
 	"date" : "XX/XX/XXXX",
 	"organization" : {

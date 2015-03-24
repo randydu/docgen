@@ -113,6 +113,7 @@ function DocGen ()
             type: "object",
             required: [
                 "title",
+                "name",
                 "version",
                 "date",
                 "organization",
@@ -128,6 +129,7 @@ function DocGen ()
             ],
             properties: {
                 title: { type: "string" },
+                name: { type: "string" },
                 version: { type: "string" },
                 date: { type: "string" },
                 organization: {
@@ -318,6 +320,7 @@ function DocGen ()
 
     var webToc = function () {
         sortPages();
+        var pdfName = meta.parameters.name.toLowerCase()+'.pdf';
         var $ = templates.main;
         var html = [], i = -1;
         html[++i] = '<div><table class="unstyled"><tr>';
@@ -346,7 +349,7 @@ function DocGen ()
         html[++i] = '<li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li>';
         html[++i] = '</ul><div>';
         if (options.pdf) {
-            html[++i] = '<button class="w-icon-button" onclick="window.location=\'user-guide.pdf\';">';
+            html[++i] = '<button class="w-icon-button" onclick="window.location=\''+pdfName+'\';">';
             html[++i] = '<span class="w-icon" data-name="document"></span>';
             html[++i] = '<span>PDF copy</span>';
             html[++i] = '</button>';
@@ -592,6 +595,7 @@ function DocGen ()
     ];
 
     var getPdfArguments = function () {
+        var pdfName = meta.parameters.name.toLowerCase()+'.pdf';
         pdfOptions.push(' --user-style-sheet docgen/pdf-stylesheet.css');
         pdfOptions.push(' --header-html '+options.output+'/temp/pdfHeader.html');
         pdfOptions.push(' --footer-html '+options.output+'/temp/pdfFooter.html');
@@ -606,14 +610,13 @@ function DocGen ()
                         var name = key.substr(0, page.source.lastIndexOf('.'));
                         var path = options.output+'/'+name+'.html';
                         allPages += ' '+path;
-
                     });
                 });
             }
         }
         var args = pdfOptions.join('');
         args += allPages;
-        args += ' '+options.output+'/user-guide.pdf';
+        args += ' '+options.output+pdfName;
         return spawnArgs(args);
     }
 
