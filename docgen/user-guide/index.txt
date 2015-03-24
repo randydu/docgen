@@ -38,6 +38,40 @@
   padding: 20px 0 20px 0;
 }
 
+.how-it-works li {
+  vertical-align: top;
+  display: inline-block;
+  width: 260px;
+  margin: 10px;
+  padding: 0 0 10px 0;
+  border: 2px solid #385691;
+  border-radius: 10px;
+}
+/*
+.how-it-works li span {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+*/
+
+.how-it-works li p:first-of-type {
+  margin: 0;
+  padding: 0 0 3px 0;
+  font-size: 18px;
+  border: none;
+  background-color: #385691;
+  color: white;
+  padding: 10px;
+  border-radius: 7px 7px 0 0;
+}
+
+.how-it-works li p:last-of-type {
+  padding:0;
+  margin:0;
+  height: 392px;
+  background-repeat:no-repeat;
+}
+
 .features, .quick-howto {
   margin: 0;
   padding: 0;
@@ -65,7 +99,7 @@
   border: none;
 }
 
-.features li p {
+.features li p:last-of-type {
   padding-top: 5px;
   margin: 0;
 }
@@ -179,23 +213,20 @@
 <div style="padding-top:20px;"><div class="w-fixed-width">
 <h2>How it works</h2>
 
-<table style="color:white; text-align:center; width:100%; border: none; border-collapse: separate; border-spacing: 10px 0px; font-weight:bold; font-style:italic; font-size:14px;padding:0;">
- <tr>
-  <td style="background-color:#999; height:70px; padding:5px; width:33%;text-align:center;" >
-   "You write in plain text or human-friendly <a href="http://daringfireball.net/projects/markdown/basics" style="color:white">Markdown</a>"
-  </td>
-  <td style="background-color:#999; height:70px; padding:5px; width:33%;text-align:center;" >
-   "DocGen styles and publishes all your content as a website"</td>
-  <td style="background-color:#999; height:70px; padding:5px; width:33%;text-align:center;" >
-   "DocGen also creates an equivalent PDF copy"
-  </td>
- </tr>
- <tr style="padding:0; margin:0; ">
-  <td style="padding:0; margin:0; height:392px; background-image:url('files/images/text.png'); background-repeat:no-repeat;"></td>
-  <td style="padding:0; margin:0; height:392px; background-image:url('files/images/web.png'); background-repeat:no-repeat;"></td>
-  <td style="padding:0; margin:0; height:392px; background-image:url('files/images/pdf.png'); background-repeat:no-repeat;"></td>
- </tr>
-</table>
+<ul class="how-it-works">
+<li>
+  <p>"You write in plain text or human-friendly <a href="http://daringfireball.net/projects/markdown/basics" style="color:white">Markdown</a>"</p>
+  <p style="background-image:url('files/images/text.png');"></p>
+</li>
+<li>
+  <p>"DocGen styles and publishes all your content as a website"</p>
+  <p style="background-image:url('files/images/web.png');"></p>
+</li>
+<li>
+  <p>"DocGen also creates an equivalent PDF copy"</p>
+  <p style="background-image:url('files/images/pdf.png');"></p>
+</li>
+</ul>
 
 <h2>Features</h2>
 
