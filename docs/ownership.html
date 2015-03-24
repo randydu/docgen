@@ -64,27 +64,79 @@ $(document).ready( function () {
  </div>
 </header>
 
-<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Using with Subversion</h1><h2>Recommended practice</h2>
-<p>When using DocGen with Subversion, the following practice is recommended (see the setup steps for help)</p>
-<ul>
-<li><strong>Add</strong> the <strong>Source</strong> directory and its files directly to your repository (e.g. in any suitable docs directory)</li>
-<li><strong>Ignore</strong> the <strong>Output</strong> directory, using Subversion properties</li>
-<li>Use <strong>Subversion externals</strong> to reference a specific release of the DocGen <strong>Generator</strong> and <strong>User Guide</strong> directories</li>
-<li><strong>Ignore log.txt</strong> in the <strong>Generator</strong> directory, using Subversion properties</li>
-</ul>
-<blockquote>
-<p>Do not try to directly version the Output Folder (DocGen overwrites it). If you want to also version control the generated content files (not necessary), you must move them from the <strong>Output</strong> directory into another suitable folder, taking care to manually perform Subversion commands like file renames, deletions, or additions.</p>
-</blockquote>
-<h2>Setup - using DocGen in a Subversion project</h2>
-<p>i) Create a directory in your Subversion repository for DocGen documentation and perform <strong>svn add</strong></p>
-<p>ii) Apply the following Subversion property to the directory (e.g. on Windows, right click and choose <strong>TortoiseSVN | Properties</strong>): property - <strong>svn:ignore</strong>, value - <strong>Output</strong></p>
-<p>iii) Similarly, create the <strong>svn:externals</strong> property and set its value as follows, substituting X and A.B.C for the the desired release version from the DocGen repository tags directory:</p>
-<pre><code>^/../svnccpcommonplatformtoolbox/tags/DocGen/releases/Xx/A.B.C/Generator/ Generator
-^/../svnccpcommonplatformtoolbox/tags/DocGen/releases/Xx/A.B.C/DocGen/User%20Guide/ &quot;Generator User Guide&quot;
-</code></pre>
-<p>iv) Create a child directory called <strong>Source</strong>, copy in the desired content files and perform <strong>svn add</strong></p>
-<p>v) Perform <strong>svn update</strong></p>
-<p>vi) Apply the following Subversion properties to the <strong>Generator</strong> directory: property - <strong>svn:ignore</strong> value - <strong>log.txt</strong></p>
+<section id="content"><div class="w-fixed-width"><div id="inner-content"><style>
+
+#dg-cover-info {
+  margin-top: 100px;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+#dg-cover-info {
+  border-collapse: separate; /*http://stackoverflow.com/questions/7625586/*/
+}
+
+#dg-cover-info th {
+  background-color: #385691;
+  color: white;
+  font-size: 34px;
+  padding: 20px;
+  border: 1px solid #385691;
+  border-radius: 10px 10px 0 0;
+}
+
+#dg-cover-info tr td {
+  border-top: 2px solid #385691;
+  border-left: 2px solid #385691;
+  border-bottom: none;
+  border-right: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#dg-cover-info td:last-child {
+  border-right: 2px solid #385691;
+}
+
+#dg-cover-info .dg-final-row td {
+  border-bottom: 2px solid #385691;
+}
+
+#dg-summary {
+  margin-bottom: 100px;
+}
+
+</style>
+
+<table class="w-table w-fixed" id="dg-cover-info">
+<thead>
+ <tr>
+  <th colspan="3" id="dg-title">DocGen - a documentation tool</th>
+ </tr>
+ </thead>
+ <tfoot>
+ </tfoot>
+ <tbody>
+ <tr>
+  <td><strong>Owner: </strong> <span id="dg-owner"><a href="https://github.com/mtmacdonald">Mark Macdonald</a></span></td>
+  <td><strong>Version: </strong> <span id="dg-version">2.0.0</span></td>
+  <td><strong>Released: </strong> <span id="dg-release-date">XX/XX/XXXX</span></td>
+ </tr>
+ <tr>
+  <td><strong>Author: </strong> <span id="dg-author"><a href="https://github.com/mtmacdonald">Mark Macdonald</a></span></td>
+  <td colspan="2"><strong>Contributors: </strong> <span id="dg-contributors"></span></td>
+ </tr>
+ <tr class="dg-final-row">
+  <td><strong>Module: </strong> <span id="dg-module"></span></td>
+  <td><strong>ID: </strong> <span id="dg-id"></span></td>
+  <td><strong>Link: </strong> <span id="dg-website"><a href="https://github.com/mtmacdonald/docgen">Github</a></span></td>
+ </tr>
+ <tr>
+</tr></tbody>
+</table>
+
+<h1>Summary</h1>
+<p id="dg-summary">DocGen is a documentation tool for software products. It takes plain text or Markdown as input, and generates both a static website and a PDF copy.</p>
 </div></div></section>
 
  <footer>

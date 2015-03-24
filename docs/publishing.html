@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Prevent IE using compatibility mode on local or intranet pages. Do not put scripts before this line.-->
   <meta name="viewport" content="width=device-width, user-scalable=yes"><!--Mobile device scaling-->
   <meta charset="UTF-8">
-  <title>DocGen</title>
+  <title>DocGen - a documentation tool</title>
 
   <!--load stylesheets first (rationale: https://developers.google.com/speed/docs/best-practices/rtt#PutStylesBeforeScripts)-->
   <link rel="stylesheet" href="require/webknife/framework.min.css" type="text/css">
@@ -49,13 +49,13 @@ $(document).ready( function () {
 
 <body>
 
-<div id="toc"><div><table><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="cover.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="change-log.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;user-guide.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
+<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
 <div id="navigator">Table of contents</div>
 
 <header>
  <div class="w-fixed-width">
-  <a href="&lt;%homepage%&gt;">
-    <div style="background-image:url(&apos;files/images/logo.png&apos;);">
+  <a id="dg-homelink" href="index.html">
+    <div id="dg-logo" style="background-image: url(files/images/logo.png); height: 42px; line-height: 42px; padding-left: 85px;">
       <span id="dg-title">DocGen - a documentation tool</span> <span id="dg-web-title-version" style="font-weight:normal;">(2.0.0)</span>
     </div>
   </a>
@@ -64,18 +64,14 @@ $(document).ready( function () {
  </div>
 </header>
 
-<section>
-<div class="w-fixed-width">
-
-<div id="content"><h1 id="-how-to-publish-output-with-docgen">&#xFEFF;How to publish output with DocGen</h1>
-<h2 id="overview">Overview</h2>
+<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Publishing with DocGen</h1><h2>Overview</h2>
 <p>You publish content by running <strong>Generator.rb</strong>. This</p>
 <ul>
 <li><strong>creates a static website</strong> (each text file in Source is converter to an HTML file in Output, e.g. content.txt becomes content.html)</li>
 <li><strong>converts the whole website into a single PDF</strong></li>
 </ul>
-<h2 id="before-running-the-generator">Before running the Generator</h2>
-<h3 id="update-the-configuration-files">Update the configuration files</h3>
+<h2>Before running the Generator</h2>
+<p>###Update the configuration files</p>
 <p>These are in the &apos;Source&apos; folder.</p>
 <ul>
 <li><em>doc-parameters.yml</em> sets the attributes that will appear inside the document. Most only need to entered the first time you create a new document, <strong>but you should make sure to always update the release field when releasing a new product version</strong></li>
@@ -84,7 +80,7 @@ $(document).ready( function () {
 <blockquote>
 <p>All config files (.yml) <strong>must</strong> be saved with UTF-8 encoding (their default format).</p>
 </blockquote>
-<h3 id="complete-table-of-contents-yml">Complete table-of-contents.yml</h3>
+<p>###Complete table-of-contents.yml</p>
 <p>This is also in the &apos;Source&apos; folder. It sets:</p>
 <ol>
 <li>what to call each file in the HTML table of contents and which column it should appear in.</li>
@@ -92,13 +88,14 @@ $(document).ready( function () {
 </ol>
 <p>Note that the table of contents in the PDF is based on the page headings in your text files. The only bearing that &apos;table-of-contents.yml&apos; has on the PDF is to decide the order of the chapters.
 You can include links to other documents or external websites in the table of contents, but they won&apos;t appear anywhere in the PDF copy.</p>
-<h3 id="update-change_log-txt">Update change_log.txt</h3>
+<p>###Update change_log.txt</p>
 <p>If you are releasing a new version of a product, you should summarise the changes for this version and add it to the top of the page.</p>
-<h2 id="run-the-generator">Run the Generator</h2>
+<h2>Run the Generator</h2>
 <p>Use the Command Prompt on Windows or the terminal on Linux / OS X and enter (substituting the correct path):</p>
 <pre><code>cd /path/to/DocGen/Generator
 ruby Generator.rb
-</code></pre><p><strong>Advanced Usage</strong></p>
+</code></pre>
+<p><strong>Advanced Usage</strong></p>
 <p>DocGen looks for the &apos;Source&apos; files in this order:</p>
 <ul>
 <li>the sourcePath option (e.g. run <code>ruby Generator --sourcePath &quot;C:/Example Source/&quot;</code> noting forward slashes and quote marks)</li>
@@ -106,14 +103,11 @@ ruby Generator.rb
 <li><strong>default</strong>: ../Source (relative to the working directory)</li>
 </ul>
 <p>The DocGen Output location can be changed in tool-behaviours.yml</p>
-<h2 id="review-the-generated-content">Review the generated content</h2>
+<h2>Review the generated content</h2>
 <p>Open <strong>Output/documentation.html</strong> and check the website and PDF are as desired.</p>
-<h2 id="deploy-your-documentation">Deploy your documentation</h2>
+<h2>Deploy your documentation</h2>
 <p>The self contained website can be placed on any web server, or used locally from a computer folder.</p>
-</div>
-
-</div>
-</section>
+</div></div></section>
 
  <footer>
   <div><p class="w-fixed-width"><span id="dg-web-footer">Version 2.0.0 released on XX/XX/XXXX.</span></p></div>
@@ -122,7 +116,7 @@ ruby Generator.rb
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen on 06/03/2015 at 16:35:57.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 24/03/2015 at 12:28:54.</span>
     </p>
   </div>
  </footer>

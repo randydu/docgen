@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Prevent IE using compatibility mode on local or intranet pages. Do not put scripts before this line.-->
   <meta name="viewport" content="width=device-width, user-scalable=yes"><!--Mobile device scaling-->
   <meta charset="UTF-8">
-  <title>DocGen</title>
+  <title>DocGen - a documentation tool</title>
 
   <!--load stylesheets first (rationale: https://developers.google.com/speed/docs/best-practices/rtt#PutStylesBeforeScripts)-->
   <link rel="stylesheet" href="require/webknife/framework.min.css" type="text/css">
@@ -49,13 +49,13 @@ $(document).ready( function () {
 
 <body>
 
-<div id="toc"><div><table><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="cover.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="change-log.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;user-guide.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
+<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
 <div id="navigator">Table of contents</div>
 
 <header>
  <div class="w-fixed-width">
-  <a href="&lt;%homepage%&gt;">
-    <div style="background-image:url(&apos;files/images/logo.png&apos;);">
+  <a id="dg-homelink" href="index.html">
+    <div id="dg-logo" style="background-image: url(files/images/logo.png); height: 42px; line-height: 42px; padding-left: 85px;">
       <span id="dg-title">DocGen - a documentation tool</span> <span id="dg-web-title-version" style="font-weight:normal;">(2.0.0)</span>
     </div>
   </a>
@@ -64,15 +64,131 @@ $(document).ready( function () {
  </div>
 </header>
 
-<section>
-<div class="w-fixed-width">
+<section id="content"><div id="inner-content"><h1 id="autoTitle" class="hiddenTitle">Overview</h1><style>
+#content, #inner-content {
+  padding-top: 0;
+}
+#banner, #banner-buttons {
+  margin: 0;
+}
 
-<div id="content"><p>&#xFEFF;</p>
+#banner {
+  color: #385691;
+  font-weight: bold;
+  padding-top: 30px;
+  background-color: #f7f7f7;
+  box-shadow: inset 0px 5px 5px 0px #e7e7e7;
+}
+
+#banner img {
+  padding: 25px 0 25px 0;
+}
+
+#banner-buttons {
+  background-color: #f7f7f7;
+  padding: 20px 0 20px 0;
+  background-color: #999;
+}
+
+.spaced {
+  margin-right: 15px;
+}
+
+.heading-text {
+  font-size: 16px;
+  text-align: center;
+}
+
+.segment {
+  border-bottom: 2px solid #385691;
+  padding: 20px 0 20px 0;
+}
+
+.features, .quick-howto {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.features li {
+  vertical-align: top;
+  display: inline-block;
+  width: 220px;
+  margin: 10px;
+}
+
+.features li span {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.features li p:first-of-type {
+  margin: 0;
+  padding: 0 0 3px 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: #385691;
+  border: none;
+}
+
+.features li p {
+  padding-top: 5px;
+  margin: 0;
+}
+
+#howto {
+  background-color: #333;
+  box-shadow: inset 0px 5px 5px 0px #4b4b4b;
+}
+
+#howto h1, #browser-warning h1 {
+  border: none;
+}
+
+.quick-howto li {
+  vertical-align: top;
+  display: inline-block;
+  width: 300px;
+  margin: 10px;
+}
+
+.quick-howto li span {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.quick-howto li h2 {
+  margin: 0;
+  padding: 0 0 3px 0;
+  font-size: 16px;
+  border: none;
+  color: white;
+}
+
+.quick-howto li a {
+  color: white;
+}
+
+.quick-howto li p {
+  padding-top: 5px;
+  margin: 0;
+}
+
+.quick-howto .w-icon {
+  width: 50px; height: 50px;
+}
+
+.quick-howto svg {
+  fill: white;
+}
+
+</style>
+
 <div id="banner" class="segment"><div class="w-fixed-width">
-  <h1 class="w-massive w-center w-no-underline">Better documentation for software projects.</h1>
+  <p class="w-massive w-center w-no-underline">Better documentation for software products.</p>
   <img class="w-center" src="files/images/overview.png" alt="overview">
 </div></div>
-
+ 
 <div id="banner-buttons" class="segment"><div class="w-fixed-width">
   <span class="w-center">
   <a href="https://github.com/mtmacdonald/docgen/releases" class="w-button-link w-colored w-large spaced">Download</a>
@@ -80,8 +196,56 @@ $(document).ready( function () {
   </span>
 </div></div>
 
-<h2 id="how-it-works">How it works</h2>
-<table style="color:white; text-align:center; width:100%; border: none; border-collapse: separate; border-spacing: 10px 0px; font-weight:bold; font-style:italic; font-size:14px;padding:0;">
+<div class="segment"><div class="w-fixed-width">
+<p class="heading-text">
+ <strong>DocGen</strong> is a <strong>static website generator</strong> that&apos;s ideal for making technical user guides for software products.
+</p>
+
+<h2 class="hiddenTitle">Features</h2>
+<ul class="features">
+<li>
+  <p><span class="w-icon" data-name="monitor"></span><span>Self-contained website</span></p>
+  <p>Creates a static website that works on any server, or as local files (CD, shared drive etc).</p>
+</li>
+<li>
+  <p><span class="w-icon" data-name="document"></span><span>Optional PDF</span></p>
+  <p>Also publishes the website content as a single PDF, using <a href="http://wkhtmltopdf.org">wkhtmltopdf</a>.</p>
+</li>
+<li>
+  <p><span class="w-icon" data-name="edit"></span><span>Human-friendly input</span></p>
+  <p>Write content in plain text, or the human-friendly <a href="http://commonmark.org">CommonMark</a> format 
+  (Markdown).</p>
+</li>
+<li>
+  <p><span class="w-icon" data-name="gear_a"></span><span>Easy to version control</span></p>
+  <p>Easily version control software documentation in sync with its product.</p>
+</li>
+<li>
+  <p><span class="w-icon" data-name="clipboard"></span><span>Table of contents</span></p>
+  <p>Automatically creates document and page tables of contents, with links and PDF page numbers.</p>
+</li>
+<li>
+  <p><span class="w-icon" data-name="code"></span><span>Code syntax highlighting</span></p>
+  <p>Automatically highlights code blocks, using <a href="https://highlightjs.org">Highlight.js</a>, with language detection.</p>
+</li>
+<li>
+  <p><span class="w-icon" data-name="compose"></span><span>Mathematical expressions</span></p>
+  <p>Displays mathematical expressions natively in all browsers, using <a href="https://www.mathjax.org">MathJax</a>.</p>
+</li>
+<li>
+  <p><span class="w-icon" data-name="star"></span><span>Branding and metadata</span></p>
+  <p>Easily brand with a logo, attribute ownership, and attach release notes.</p>
+</li>
+</ul>
+
+<p class="heading-text">DocGen makes it easy for anyone to create high-quality technical documentation.</p>
+
+</div></div>
+
+<div style="padding-top:20px;"><div class="w-fixed-width">
+<h2>How it works</h2>
+
+<table style="color:white; text-align:center; width:100%; border: none; border-collapse: separate; border-spacing: 10px 0px; font-weight:bold; font-style:italic; font-size:14px;padding:0;" class="w-table w-fixed w-stripe">
  <tr>
   <td style="background-color:#999; height:70px; padding:5px; width:33%;text-align:center;">
    &quot;You write in plain text or human-friendly <a href="http://daringfireball.net/projects/markdown/basics" style="color:white">Markdown</a>&quot;
@@ -99,13 +263,15 @@ $(document).ready( function () {
  </tr>
 </table>
 
-<h2 id="features">Features</h2>
-<p>DocGen makes it easy for anyone to make high-quality technical documentation. It is particularly intended for software library &apos;user guides&apos; and tutorials which need to be versioned <strong>in sync</strong> with the software. It may be useful in other situations where versioned documentation needs to be made accessible, such as process guides or technical product manuals.</p>
+<h2>Features</h2>
+
+<p>DocGen makes it easy for anyone to make high-quality technical documentation. It is particularly intended for software library &apos;user guides&apos; and tutorials which need to be versioned **in sync** with the software. It may be useful in other situations where versioned documentation needs to be made accessible, such as process guides or technical product manuals.</p>
+
 <p style="page-break-before: always"></p>
 
-<table style="width:100%; border:none; padding:0;">
+<table style="width:100%; border:none; padding:0;" class="w-table w-fixed w-stripe">
  <tr style="border:none; padding:0;">
-
+ 
   <td style="border:none; text-align:left; padding:0;"><ul>
    <li class="list-heading">Input Formats</li>
    <li>Plain text</li>
@@ -114,7 +280,7 @@ $(document).ready( function () {
    <li>Image diagrams</li>
    <li>Attach other documents</li>
   </ul></td>
-
+  
   <td style="border:none; text-align:left; padding:0;"><ul>
    <li class="list-heading">Configurable Generator</li>
    <li>Code syntax highlighting</li>
@@ -132,17 +298,23 @@ $(document).ready( function () {
    <li>Author next to code in Subversion</li>
    <li>Automatic PDF version</li>
   </ul></td>
-
+  
  </tr>
 </table>
 
 <blockquote>
-<p>DocGen is probably not the right tool for precision PDF layout, or repeated generation of similar documents from standard templates (e.g. in product configurators). It is meant for free-form, human generated content which is regularly updated and refactored.</p>
+DocGen is probably not the right tool for precision PDF layout, or repeated generation of similar documents from 
+standard templates (e.g. in product configurators). It is meant for free-form, human generated content which is 
+regularly updated and refactored.
 </blockquote>
-<p><br><span style="color:#003972; font-size: 16px; font-weight:bold;">Support for multiple platforms</span></p>
-<p>DocGen can be used to publish documentation on <strong>Microsoft Windows</strong>, <strong>Mac OS X</strong>, and <strong>Linux</strong>.</p>
-<p>Content published by DocGen is tested against these browsers:</p>
-<table style="width:400px; border:none;padding:0;">
+
+<br><span style="color:#003972; font-size: 16px; font-weight:bold;">Support for multiple platforms</span>
+
+DocGen can be used to publish documentation on **Microsoft Windows**, **Mac OS X**, and **Linux**.
+
+Content published by DocGen is tested against these browsers:
+
+<table style="width:400px; border:none;padding:0;" class="w-table w-fixed w-stripe">
  <tr style="border:none;padding:0;">
   <td style="border:none; padding:0; text-align:center;"><img src="files/images/browsers.png"></td>
   <td style="border:none; padding:0; text-align:left;"><ul>
@@ -152,10 +324,9 @@ $(document).ready( function () {
    <li>Chrome</li>
   </ul></td>
  </tr>
-</table></div>
+</table>
 
-</div>
-</section>
+</div></div></div></section>
 
  <footer>
   <div><p class="w-fixed-width"><span id="dg-web-footer">Version 2.0.0 released on XX/XX/XXXX.</span></p></div>
@@ -164,7 +335,7 @@ $(document).ready( function () {
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen on 06/03/2015 at 16:35:57.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 24/03/2015 at 12:28:54.</span>
     </p>
   </div>
  </footer>

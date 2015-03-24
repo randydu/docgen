@@ -1,11 +1,9 @@
-header > div > a div {
-	height: 42px;
-	line-height: 42px;
-	padding-left: 85px; /*width+25*/
-}
-
 pre {
 	font-size: 12px; /*todo - move to webknife*/
+}
+
+section blockquote p {
+	margin: 0;
 }
 
 /******************************** TABLE OF CONTENTS ****************************/
@@ -88,26 +86,20 @@ pre {
 .toc-icon {width: 18px; height: 18px; float: left;}
 .toc-icon svg {fill: white;}
 
-/**********************************************************/
+/*
+	Class to make a heading look invisible in web page, but still appear in the PDF table of contents
+		- display:none, visibily: hidden, zero dimensions, and offscreen positioning don't work
+		- so instead take it out of the flow and make it small and translucent
+*/
 
-#banner {
-  color: #385691;
-  font-weight: bold;
-  padding-top: 30px;
-  background-color: #f7f7f7;
-  box-shadow: inset 0px 5px 5px 0px #e7e7e7;
-}
-
-#banner img {
-  padding: 25px 0 25px 0;
-}
-
-#banner-buttons {
-  background-color: #f7f7f7;
-  padding: 20px 0 20px 0;
-  background-color: #999;
-}
-
-.spaced {
-  margin-right: 15px;
+.hiddenTitle {
+	display: block;
+	border: none;
+	margin: 0;
+	padding: 0;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	background-color: transparent;
 }

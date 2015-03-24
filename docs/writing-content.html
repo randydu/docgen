@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Prevent IE using compatibility mode on local or intranet pages. Do not put scripts before this line.-->
   <meta name="viewport" content="width=device-width, user-scalable=yes"><!--Mobile device scaling-->
   <meta charset="UTF-8">
-  <title>DocGen</title>
+  <title>DocGen - a documentation tool</title>
 
   <!--load stylesheets first (rationale: https://developers.google.com/speed/docs/best-practices/rtt#PutStylesBeforeScripts)-->
   <link rel="stylesheet" href="require/webknife/framework.min.css" type="text/css">
@@ -49,13 +49,13 @@ $(document).ready( function () {
 
 <body>
 
-<div id="toc"><div><table><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="cover.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="change-log.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;user-guide.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
+<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
 <div id="navigator">Table of contents</div>
 
 <header>
  <div class="w-fixed-width">
-  <a href="&lt;%homepage%&gt;">
-    <div style="background-image:url(&apos;files/images/logo.png&apos;);">
+  <a id="dg-homelink" href="index.html">
+    <div id="dg-logo" style="background-image: url(files/images/logo.png); height: 42px; line-height: 42px; padding-left: 85px;">
       <span id="dg-title">DocGen - a documentation tool</span> <span id="dg-web-title-version" style="font-weight:normal;">(2.0.0)</span>
     </div>
   </a>
@@ -64,11 +64,7 @@ $(document).ready( function () {
  </div>
 </header>
 
-<section>
-<div class="w-fixed-width">
-
-<div id="content"><h1 id="-how-to-create-content-with-docgen">&#xFEFF;How to create content with DocGen</h1>
-<h2 id="overview">Overview</h2>
+<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Writing content</h1><h2>Overview</h2>
 <p>Using DocGen involves working with three folders:</p>
 <ul>
 <li><strong>Source</strong> (the document master, where all your content goes)</li>
@@ -76,19 +72,18 @@ $(document).ready( function () {
 <li><strong>Output</strong> (where the generated HTML website and PDF will appear)</li>
 </ul>
 <p>&apos;Source&apos; and &apos;Generator&apos; are included in the DocGen download, and &apos;Output&apos; will appear the first time you run Generator.rb.</p>
-<h2 id="writing-content">Writing content</h2>
-<p>DocGen takes any text file (extension .txt) in the Source folder and converts it. 
+<h2>Writing content</h2>
+<p>DocGen takes any text file (extension .txt) in the Source folder and converts it.
 Each text file will be a separate page in the website and a separate chapter in the PDF.
 You can create as many new files as you wish (start by editing the example file called index.txt).</p>
 <blockquote>
 <p>Make sure you save content files (.txt) with <strong>UTF-8 encoding</strong>. This makes non-standard characters (&#xF8; &#xA9; &#xE9; etc) work.</p>
 </blockquote>
-<p>You mostly write paragraphs of plain text using any text editor. Stylistic effects can be achieved by using a plain-text 
-publishing format called <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>. 
+<p>You mostly write paragraphs of plain text using any text editor. Stylistic effects can be achieved by using a plain-text
+publishing format called <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>.
 The best way to learn is to see an example (below), and then read the <a href="#markdown-reference">Markdown reference</a>.</p>
 <hr>
 <p class="false-heading">What you type:</p>
-
 <p><code>
 Headings give structure<br>
 -----------------------<br>
@@ -105,29 +100,28 @@ Some paragraphs will contain <a href="http://www.google.com">example links</a>.<
 </code></p>
 <hr>
 <p class="false-heading">What it looks like in the website and the PDF:</p>
-
 <div style="text-decoration:none; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin: 25px 0 25px 0; font-weight: bold;  color: #003972;  font-size:14px;">
  Headings give structure
 </div>
-
 <p>Paragraphs are big blocks of text with lots of sentences.
 Some sentences have <em>significant</em> concepts or <strong>very important ones</strong>.</p>
 <p>A new paragraph starts when the line before looks blank.
 Some paragraphs will contain <a href="http://www.google.com">example links</a>.</p>
 <pre><code>#To make a code block, just indent with a tab. &quot;Hello World&quot; in Ruby:
 5.times { puts &quot;Hello!&quot; }
-</code></pre><hr>
-<h2 id="adding-diagrams-and-other-files">Adding diagrams and other files</h2>
+</code></pre>
+<hr>
+<h2>Adding diagrams and other files</h2>
 <ul>
 <li>Any diagrams (in image form, e.g. JPEG, PNG, GIF etc) should be put the Source/Images folder.</li>
-<li>Any other files you want to attach should go into Source/Docs. </li>
+<li>Any other files you want to attach should go into Source/Docs.</li>
 </ul>
-<p>See the <a href="#markdown-reference">Markdown reference</a> for how to attach them. Images are embedded 
+<p>See the <a href="#markdown-reference">Markdown reference</a> for how to attach them. Images are embedded
 directly into the website and PDF, but files are only attached as links.</p>
-<h2 id="markdown-reference">Markdown Reference</h2>
+<h2>Markdown Reference</h2>
 <p>Markdown is a human-friendly, plain text publishing format (the text files are easily readable without
 being obfuscated by markup tags). The most useful Markdown features
-are shown below. Some specialist topics are explained on the <a href="advanced-content.html">advanced content</a> page. 
+are shown below. Some specialist topics are explained on the <a href="advanced-content.html">advanced content</a> page.
 See also the original <a href="http://daringfireball.net/projects/markdown/">Markdown specification</a>
 and the documentation for the <a href="http://kramdown.rubyforge.org/">kramdown</a> engine used by DocGen.</p>
 <blockquote>
@@ -141,16 +135,13 @@ and the documentation for the <a href="http://kramdown.rubyforge.org/">kramdown<
 #reference td pre, #reference td code { background:none;}
 .r1 { font-weight:bold; background-color:#ddd; text-align:center!important; }
 </style>
-
 <div id="reference">
-
-<table>
-
+<table class="w-table w-fixed w-stripe">
 <tr><th>Style</th><th>What you type</th><th>What it looks like</th></tr>
-
 <tr>
  <td class="r1">Page Heading</td>
- <td><code><br>  Page Heading<br>
+ <td><code>  
+  Page Heading<br>
   ============
  </code></td>
  <td>
@@ -159,10 +150,10 @@ and the documentation for the <a href="http://kramdown.rubyforge.org/">kramdown<
   </div>
 </td>
 </tr>
-
 <tr>
  <td class="r1">Section Heading</td>
- <td><code><br>  Section Heading<br>
+ <td><code>  
+  Section Heading<br>
   ---------------
  </code></td>
  <td>
@@ -171,10 +162,10 @@ and the documentation for the <a href="http://kramdown.rubyforge.org/">kramdown<
   </div>
  </td>
 </tr>
-
 <tr>
  <td class="r1">Minor Heading</td>
- <td><code><br>  ###Minor Heading<br>
+ <td><code>  
+  ###Minor Heading<br>
  </code></td>
  <td>
   <div style="text-decoration:none; border-bottom: 1px solid #ddd; padding-bottom: 2px; margin: 32px 0 15px 0; font-weight: bold;  color: #003972;  font-size:14px;">
@@ -182,7 +173,6 @@ and the documentation for the <a href="http://kramdown.rubyforge.org/">kramdown<
   </div>
  </td>
 </tr>
-
 <tr>
  <td class="r1">False Heading<br>(not in PDF contents list)</td>
  <td><code>
@@ -194,97 +184,88 @@ and the documentation for the <a href="http://kramdown.rubyforge.org/">kramdown<
   </div>
  </td>
 </tr>
-
 <tr>
  <td class="r1">Emphasis (italic)</td>
- <td><code><br>  This text has <em>emphasis</em>
+ <td><code>  
+  This text has *emphasis*
  </code></td>
  <td>This text has <em>emphasis</em></td>
 </tr>
-
 <tr>
  <td class="r1">Strong (bold)</td>
- <td><code><br>  This text is <strong>bold</strong>
+ <td><code>  
+  This text is **bold**
  </code></td>
  <td>This text is <strong>bold</strong></td>
 </tr>
-
 <tr>
  <td class="r1">Block quotes</td>
- <td><code><br>  &gt; This is a block quote.
+ <td><code>  
+  &gt; This is a block quote.
  </code></td>
  <td><blockquote style="padding-top:5px;padding-bottom:5px;">This is a block quote</blockquote></td>
 </tr>
-
 <tr>
  <td class="r1">Code block<br> (indent with tab)</td>
- <td><code><br> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;int some_code=0
+ <td><code>  
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;int some_code=0
  </code></td>
- <td><pre style="background-color:#eee!important; padding: 0px;"><code style="padding:7px;"><br>  int some_code=0
+ <td><pre style="background-color:#eee!important; padding: 0px;"><code style="padding:7px;">  
+  int some_code=0
  </code></pre></td>
 </tr>
-
 <tr>
  <td class="r1">Unordered List</td>
- <td><code><br>  <em> unordered list<br>
-  </em> (items)
+ <td><code>  
+  * unordered list<br>
+  * (items)
  </code></td>
  <td><ul><li>unordered list</li><li>(items)</li></ul></td>
 </tr>
-
 <tr>
  <td class="r1">Ordered List</td>
- <td><code><br>  1. ordered list<br>
+ <td><code>  
+  1. ordered list<br>
   2. (items)
  </code></td>
  <td><ol><li>ordered list</li><li>(items)</li></ol></td>
 </tr>
-
 <tr>
  <td class="r1">External Links</td>
- <td><code><br>  <a href="http://www.google.com">link to Google</a>
+ <td><code>  
+  [link to Google](http://www.google.com)
  </code></td>
  <td><a href="http://www.google.com">link to Google</a></td>
 </tr>
-
 <tr>
  <td class="r1">Links to a local file</td>
- <td><code><br>  <a href="user_guide.pdf">user guide</a>
+ <td><code>  
+  [user guide](user_guide.pdf)
  </code></td>
  <td><a href="user_guide.pdf">user guide</a></td>
 </tr>
-
-
 <tr>
  <td class="r1">Diagrams<br> (embedding images)</td>
- <td><code><br>  <img src="files/images/logo.png" alt="">
+ <td><code>  
+  ![](files/images/logo.png)
  </code></td>
  <td><img src="files/images/logo.png"></td>
 </tr>
-
 <tr>
  <td class="r1">Simple table</td>
- <td><code><br>  | Cell 1 | Cell 2 | Cell 3 |<br>
+ <td><code>  
+  | Cell 1 | Cell 2 | Cell 3 |<br>
   | Cell 4 | Cell 5 | Cell 6 |
  </code></td>
  <td>
-
-
-  <table style="width:200px; text-align:center!important;">
+  <table style="width:200px; text-align:center!important;" class="w-table w-fixed w-stripe">
    <tr><td style="text-align:center;">Cell 1</td><td style="text-align:center;">Cell 2</td><td style="text-align:center;">Cell 3</td></tr><tr><td style="text-align:center;">Cell 4</td><td style="text-align:center;">Cell 5</td><td style="text-align:center;">Cell 6</td></tr>
   </table>
-
-
  </td>
 </tr>
-
 </table>
 </div>
-
-</div>
-
-</div>
-</section>
+</div></div></section>
 
  <footer>
   <div><p class="w-fixed-width"><span id="dg-web-footer">Version 2.0.0 released on XX/XX/XXXX.</span></p></div>
@@ -293,7 +274,7 @@ and the documentation for the <a href="http://kramdown.rubyforge.org/">kramdown<
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen on 06/03/2015 at 16:35:57.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 24/03/2015 at 12:28:54.</span>
     </p>
   </div>
  </footer>
