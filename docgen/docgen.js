@@ -318,7 +318,7 @@ function DocGen ()
         sortPages();
         var $ = templates.main;
         var html = [], i = -1;
-        html[++i] = '<div><table><tr>';
+        html[++i] = '<div><table class="unstyled"><tr>';
         //build the contents HTML
         for (var key in sortedPages) {
             if (sortedPages.hasOwnProperty(key)) {
@@ -486,6 +486,9 @@ function DocGen ()
                 if (page.html === true) {
                     $('#autoTitle').addClass('hiddenTitle');
                 }
+                //------------------------------------------------------------------------------------------------------
+                //apply the w-table class
+                $('table:not(.unstyled)').addClass('w-table w-fixed w-stripe');
                 //------------------------------------------------------------------------------------------------------
                 pages[key] =  $;
             });
