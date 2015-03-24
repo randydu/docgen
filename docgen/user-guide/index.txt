@@ -275,6 +275,6 @@ Content published by DocGen is tested against these browsers:
 node docgen.js --scaffold $HOME/example
 node docgen.js -i $HOME/example -o $HOME/site</code></pre>
 
-<p>See the [installation guide](installation.html) for more detailed instructions.</p>
+<p>See the <a href="installation.html">installation guide</a> for more detailed instructions.</p>
 
 </div></div>
