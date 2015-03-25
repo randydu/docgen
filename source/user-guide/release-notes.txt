@@ -7,6 +7,8 @@
 - Dependencies are now version controlled (using npm)
 - Modernized visual style (uses Webknife CSS framework)
 - Input metadata files are now in JSON rather than YAML format
+- Top-level page headings are now inserted automatically (from contents.json)
+- The web and PDF tables of contents both correspond to contents.json
 - Command-line options are now used for configuration, rather than a config file
 - Command-line output is now color coded (green success, red error)
 - Generating the PDF is now an optional feature

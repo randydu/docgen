@@ -23,21 +23,21 @@
 		"column" : 2,
 		"links" : [
 			{
+				"title": "Running DocGen",
+				"source": "running.txt"
+			},
+			{
 				"title": "Writing content",
 				"source": "writing-content.txt"
 			},
 			{
 				"title": "Advanced content",
 				"source": "advanced-content.txt"
-			},
-			{
-				"title": "Publishing with DocGen",
-				"source": "publishing.txt"
 			}
 		]
 	},
 	{
-		"heading" : "Troubleshooting",
+		"heading" : "Help",
 		"column" : 3,
 		"links" : [
 			{
@@ -45,8 +45,8 @@
 				"source": "troubleshooting.txt"
 			},
 			{
-				"title": "Using with Subversion",
-				"source": "subversion.txt"
+				"title": "Using with version control",
+				"source": "version-control.txt"
 			}
 		]
 	}
