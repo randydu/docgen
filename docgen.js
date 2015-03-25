@@ -15,6 +15,11 @@ options
 	//.option('-t, --pagetoc [type]', 'include a page table of contents (default: true)', true)
 	.parse(process.argv);
 
+//if no options were provided, show help and then exit
+if (!process.argv.slice(2).length) {
+	options.help();
+}
+
 generator.setOptions(options);
 if (options.scaffold === false) {
 	generator.run();
