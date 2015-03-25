@@ -232,7 +232,7 @@
   <td style="border:none; text-align:left; padding:0;"><ul>
    <li class="list-heading">Flexible Input Formats</li>
    <li>Plain text</li>
-   <li>Commonmark (Markdown)</li>
+   <li>CommonMark (Markdown)</li>
    <li>HTML</li>
    <li>MathML</li>
    <li>Image diagrams</li>
@@ -257,7 +257,7 @@ variants based on a common template. Docgen is intended more for free-form, huma
 updated and refactored, and standardised for each product release.
 </blockquote>
 
-<h2>Supports modern browsers</h2>
+<h2>Browser support</h2>
 
 Output created by DocGen works on modern browsers (desktop and mobile devices).
 

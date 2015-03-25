@@ -3,7 +3,7 @@
 Supported platform
 ------------------
 
-*'Supported platforms'* means the software required to **run** the DocGen tool. The static website **produced** by 
+*'Supported platform'* means the software required to **run** the DocGen tool. The static website **produced** by 
 DocGen will work on all modern browsers on all all major operating systems (see [browser support](index.html)).
 
 <p class="w-information">
