@@ -49,7 +49,7 @@ $(document).ready( function () {
 
 <body>
 
-<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li><li><a href="publishing.html">Publishing with DocGen</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Troubleshooting</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="subversion.html">Using with Subversion</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
+<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="running.html">Running DocGen</a></li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Help</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="version-control.html">Using with version control</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
 <div id="navigator">Table of contents</div>
 
 <header>
@@ -72,6 +72,8 @@ $(document).ready( function () {
 <li>Dependencies are now version controlled (using npm)</li>
 <li>Modernized visual style (uses Webknife CSS framework)</li>
 <li>Input metadata files are now in JSON rather than YAML format</li>
+<li>Top-level page headings are now inserted automatically (from contents.json)</li>
+<li>The web and PDF tables of contents both correspond to contents.json</li>
 <li>Command-line options are now used for configuration, rather than a config file</li>
 <li>Command-line output is now color coded (green success, red error)</li>
 <li>Generating the PDF is now an optional feature</li>
@@ -110,7 +112,7 @@ $(document).ready( function () {
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 25/03/2015 at 15:30:25.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 25/03/2015 at 18:47:52.</span>
     </p>
   </div>
  </footer>
