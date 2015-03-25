@@ -17,8 +17,9 @@ var imageSizeOf = require('image-size');
 * DocGen class
 */
 
-function DocGen ()
+function DocGen (process)
 {
+    var process = process;
     var version = '2.0.0';
     var wkhtmltopdfVersion = 'wkhtmltopdf 0.12.2.1 (with patched qt)'; //output from wkhtmltopdf -V
     var options;
@@ -48,6 +49,7 @@ function DocGen ()
             console.log(chalk.red('Error copying files to directory'));
             if (options.verbose === true) {
                 console.log(chalk.red(error));
+                process.exit(1);
             }
         }
     }
@@ -123,6 +125,7 @@ function DocGen ()
             if (options.verbose === true) {
                 console.log(chalk.red(error));
             }
+            process.exit(1);
         });
     }
 
@@ -262,13 +265,14 @@ function DocGen ()
                         if (validateJSON(key, file)) {
                             meta[key] = file;
                         } else {
-                            //die?
+                            process.exit(1);
                         }
                     } catch (error) {
                         console.log(chalk.red('Error parsing required file: '+key+'.json (invalid JSON)'));
                         if (options.verbose === true) {
                             console.log(chalk.red(error));
                         }
+                        process.exit(1);
                     }
                 }
             }
@@ -287,6 +291,7 @@ function DocGen ()
             if (options.verbose === true) {
                 console.log(chalk.red(error));
             }
+            process.exit(1);
         });
     }
 
@@ -322,6 +327,7 @@ function DocGen ()
                     if (options.verbose === true) {
                         console.log(chalk.red(error));
                     }
+                    process.exit(1);
                 }
             });
             process(); 
@@ -330,6 +336,7 @@ function DocGen ()
             if (options.verbose === true) {
                 console.log(chalk.red(error));
             }
+            process.exit(1);
         });
     }
 
@@ -406,7 +413,7 @@ function DocGen ()
             logoWidth = logo.width;
             logoHeight = logo.height;
         } catch (error) {
-            //do nothing. If logo file cannot be read, logo is not shown
+            //do nothing. If logo file cannot be read, logo is simply not shown
         }
 
         //------------------------------------------------------------------------------------------------------
@@ -571,6 +578,7 @@ function DocGen ()
             if (options.verbose === true) {
                 console.log(chalk.red(error));
             }
+            process.exit(1);
         });
     }
 
@@ -585,6 +593,7 @@ function DocGen ()
                 if (options.verbose === true) {
                     console.log(chalk.red(error));
                 }
+                process.exit(1);
             }
         });
     }
@@ -600,6 +609,7 @@ function DocGen ()
                 if (options.verbose === true) {
                     console.log(chalk.red(error));
                 }
+                process.exit(1);
             }
         });
     }
@@ -666,6 +676,7 @@ function DocGen ()
                     if (options.verbose === true) {
                         console.log(chalk.red(error));
                     }
+                    process.exit(1);
                 } else {
                     //warn if the version of wkhtmltopdf is not an expected version
                     var actualWkhtmltopdfVersion = stdout.trim();
@@ -732,6 +743,7 @@ function DocGen ()
                 if (options.verbose === true) {
                     console.log(chalk.red(error));
                 }
+                //don't exit because redirect error is not a fatal error
             }
         }
     }
