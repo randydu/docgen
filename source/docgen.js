@@ -43,7 +43,7 @@ function DocGen ()
         try {
             var directory = path.normalize(options.output);
             console.log(chalk.green('Creating scaffold template in directory: '+directory));
-            fs.copySync('example', directory);
+            fs.copySync('source/example', directory);
         } catch (error) {
             console.log(chalk.red('Error copying files to directory'));
             if (options.verbose === true) {

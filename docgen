@@ -1,5 +1,6 @@
+#!/usr/bin/env node
 
-var docgen = require ('./docgen/docgen.js');
+var docgen = require ('./source/docgen.js');
 var program = require('commander');
 var EOL = require('os').EOL;
 
