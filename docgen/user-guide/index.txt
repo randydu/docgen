@@ -278,8 +278,8 @@ Output created by DocGen works on modern browsers (desktop and mobile devices).
 <p>Enter these commands in the terminal:</p>
 
 <pre><code>npm install -g docgen-tool
-node docgen.js --scaffold $HOME/example
-node docgen.js -i $HOME/example -o $HOME/site</code></pre>
+node docgen.js scaffold
+node docgen.js run -o $HOME/docgen-example</code></pre>
 
 <p>See the <a href="installation.html">installation guide</a> for more detailed instructions.</p>
 

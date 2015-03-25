@@ -26,6 +26,7 @@ program
 	.usage('[command] [--option]');
 
 program.command('scaffold')
+	.usage('[--option]')
 	.description('create a template input directory')
 	.option('-o, --output [path]', 'path to the output directory (default: ./)', './')
 	.option('-v, --verbose', 'show verbose output including detailed errors')
@@ -34,6 +35,7 @@ program.command('scaffold')
 	})
 
 program.command('run')
+	.usage('[--option]')
 	.description('create a static website from an input directory')
 	.option('-i, --input [path]', 'path to the input directory [default: ./]', './')
 	.option('-o, --output [path]', 'path to the output directory [default: ./output]', './output')
