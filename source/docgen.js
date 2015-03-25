@@ -34,6 +34,13 @@ function DocGen (process)
 
     this.setOptions = function (userOptions) {
         options = userOptions;
+        //all user-specified paths must be normalized and have a trailing slash
+        if (options.input) {
+            options.input = path.normalize(options.input+'/');
+        }
+        if (options.output) {
+            options.output = path.normalize(options.output+'/');
+        }
     }
 
     /*
@@ -42,9 +49,8 @@ function DocGen (process)
 
     this.scaffold = function () {
         try {
-            var directory = path.normalize(options.output);
-            console.log(chalk.green('Creating scaffold template in directory: '+directory));
-            fs.copySync(__dirname+'/example', directory);
+            console.log(chalk.green('Creating scaffold template in directory: '+options.output));
+            fs.copySync(__dirname+'/example', options.output);
         } catch (error) {
             console.log(chalk.red('Error copying files to directory'));
             if (options.verbose === true) {
@@ -57,8 +63,8 @@ function DocGen (process)
     this.run = function () {
         console.log(chalk.green.bold('DocGen version '+version));
         //delete and recreate the output directory
-        fs.removeSync(path.normalize(options.output));
-        fs.mkdirp(path.normalize(options.output));
+        fs.removeSync(options.output);
+        fs.mkdirp(options.output);
         loadTemplates();
     }
 
@@ -555,19 +561,19 @@ function DocGen (process)
             section.links.forEach( function (page) {
                 var key = page.source;
                 var name = key.substr(0, page.source.lastIndexOf('.'));
-                var path = options.output+'/'+name+'.html';
+                var path = options.output+name+'.html';
                 var html = pages[key].html();
                 promises[key] = writeFile(path, html);
             });
         });
         //add extra files
-        promises['ownership'] = writeFile(options.output+'/ownership.html', templates.webCover.html());
+        promises['ownership'] = writeFile(options.output+'ownership.html', templates.webCover.html());
         if (options.pdf === true) {
-            var pdfTempDir = options.output+'/temp';
+            var pdfTempDir = options.output+'temp/';
             fs.mkdirsSync(pdfTempDir);
-            promises['docgenPdfCover'] = writeFile(pdfTempDir+'/pdfCover.html', templates.pdfCover.html());
-            promises['docgenPdfHeader'] = writeFile(pdfTempDir+'/pdfHeader.html', templates.pdfHeader.html());
-            promises['docgenPdfFooter'] = writeFile(pdfTempDir+'/pdfFooter.html', templates.pdfFooter.html());
+            promises['docgenPdfCover'] = writeFile(pdfTempDir+'pdfCover.html', templates.pdfCover.html());
+            promises['docgenPdfHeader'] = writeFile(pdfTempDir+'pdfHeader.html', templates.pdfHeader.html());
+            promises['docgenPdfFooter'] = writeFile(pdfTempDir+'pdfFooter.html', templates.pdfFooter.html());
         }
         rsvp.hash(promises).then(function (files) {
             copyRequire();
@@ -587,7 +593,7 @@ function DocGen (process)
     */
 
     var copyRequire = function () {
-        ncp(__dirname+'/require', options.output+'/require', function (error) {
+        ncp(__dirname+'/require', options.output+'require', function (error) {
             if (error) {
                 console.log(chalk.red('Error copying the require directory'));
                 if (options.verbose === true) {
@@ -603,7 +609,7 @@ function DocGen (process)
     */
 
     var copyUserFiles = function () {
-        ncp(options.input+'/files', options.output+'/files', function (error) {
+        ncp(options.input+'/files', options.output+'files', function (error) {
             if (error) {
                 console.log(chalk.red('Error copying the attached files'));
                 if (options.verbose === true) {
@@ -644,9 +650,9 @@ function DocGen (process)
     var getPdfArguments = function () {
         var pdfName = meta.parameters.name.toLowerCase()+'.pdf';
         pdfOptions.push(' --user-style-sheet '+__dirname+'/pdf-stylesheet.css');
-        pdfOptions.push(' --header-html '+options.output+'/temp/pdfHeader.html');
-        pdfOptions.push(' --footer-html '+options.output+'/temp/pdfFooter.html');
-        pdfOptions.push(' cover '+options.output+'/temp/pdfCover.html');
+        pdfOptions.push(' --header-html '+options.output+'temp/pdfHeader.html');
+        pdfOptions.push(' --footer-html '+options.output+'temp/pdfFooter.html');
+        pdfOptions.push(' cover '+options.output+'temp/pdfCover.html');
         pdfOptions.push(' toc --xsl-style-sheet '+__dirname+'/pdf-contents.xsl');
         var allPages = '';
         for (var key in sortedPages) {
@@ -655,7 +661,7 @@ function DocGen (process)
                     section.links.forEach( function (page) {
                         var key = page.source;
                         var name = key.substr(0, page.source.lastIndexOf('.'));
-                        var path = options.output+'/'+name+'.html';
+                        var path = options.output+name+'.html';
                         allPages += ' '+path;
                     });
                 });
@@ -727,7 +733,7 @@ function DocGen (process)
 
     var createRedirect = function () {
         if (options.redirect) {
-            var parent = path.normalize(options.output).replace(/\/$/, ""); //normalize path and trim any trailing slash
+            var parent = options.output.replace(/\/$/, ""); //trim any trailing slash
             parent = parent.split(path.sep).slice(-1).pop(); //get name of final directory in the path
             var homepage = meta.contents[0].links[0];
             var homepage = homepage.source.substr(0, homepage.source.lastIndexOf('.'))+'.html';
@@ -735,7 +741,7 @@ function DocGen (process)
             $ = templates.redirect;
             $('a').attr('href', redirectLink);
             $('meta[http-equiv=REFRESH]').attr('content', '0;url='+redirectLink);
-            var file = path.normalize(options.output+'../')+'index.html';
+            var file = options.output+'../'+'index.html';
             try {
                 fs.outputFileSync(file, $.html(), 'utf-8');
             } catch (error) {
@@ -756,7 +762,7 @@ function DocGen (process)
         createRedirect();
         //remove temp files
         if (options.pdf === true) {
-            fs.removeSync(options.output+'/temp');
+            fs.removeSync(options.output+'temp');
         }
         console.log(chalk.green.bold('Done!'));
     }
