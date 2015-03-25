@@ -22,7 +22,7 @@
   border-radius: 6px;
   padding: 0 18px 0 18px;
 }
-table {
+#content table {
   width: 400px!important;
 }
 </style>
