@@ -41,7 +41,7 @@ function DocGen ()
 
     this.scaffold = function () {
         try {
-            var directory = path.normalize(options.scaffold);
+            var directory = path.normalize(options.output);
             console.log(chalk.green('Creating scaffold template in directory: '+directory));
             fs.copySync('example', directory);
         } catch (error) {

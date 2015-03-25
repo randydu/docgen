@@ -1,31 +1,52 @@
 
 var docgen = require ('./docgen/docgen.js');
-var options = require('commander');
+var program = require('commander');
+var EOL = require('os').EOL;
 
 var generator = new docgen();
 
-options
-	.version(generator.getVersion())
-	.option('-i, --input [type]', 'path to the input directory (default: pwd)', 'pwd')
-	.option('-o, --output [type]', 'path to the output directory (default: ./outputs)', './output')
-	.option('-p, --pdf [type]', 'create a PDF copy (default: false)', false)
-	.option('-s, --scaffold [type]', 'create a template source (input) directory (default: false)', false)
-	.option('-r, --redirect [type]', 'create a page in the parent directory that redirects to the homepage (default: false)', false)
-	.option('-v, --verbose [type]', 'verbose output, including detailed errors (default: false)', false)
-	//.option('-t, --pagetoc [type]', 'include a page table of contents (default: true)', true)
-	.parse(process.argv);
-
-//if no options were provided, show help and then exit
-if (!process.argv.slice(2).length) {
-	options.help();
-}
-
-generator.setOptions(options);
-if (options.scaffold === false) {
-	generator.run();
-} else {
+function scaffold (command) {
+	generator.setOptions(command);
 	generator.scaffold();
 }
 
+function run (command) {
+	generator.setOptions(command);
+	generator.run();
+}
 
+/*
+	parse command-line arguments with node commander
+		commander help: http://slides.com/timsanteford/conquering-commander-js
+		command-line conventions: http://docopt.org
+*/
 
+program
+	.version(generator.getVersion())
+	.usage('[command] [--option]');
+
+program.command('scaffold')
+	.description('create a template input directory')
+	.option('-o, --output [path]', 'path to the output directory (default: ./)', './')
+	.option('-v, --verbose', 'show verbose output including detailed errors')
+	.action(function (command) {
+		scaffold(command);
+	})
+
+program.command('run')
+	.description('create a static website from an input directory')
+	.option('-i, --input [path]', 'path to the input directory [default: ./]', './')
+	.option('-o, --output [path]', 'path to the output directory [default: ./output]', './output')
+	.option('-p, --pdf', 'create a PDF document')
+	.option('-r, --redirect', 'create an index.html in the parent directory that redirects to the homepage')
+	.option('-v, --verbose', 'show verbose output including detailed errors')
+	.action(function (command) {
+		run(command);
+	});
+
+program.parse(process.argv);
+
+//if no arguments were provided, show help and then exit
+if (!process.argv.slice(2).length) {
+	program.help();
+}
