@@ -4,7 +4,7 @@ var docgen = require ('./source/docgen.js');
 var program = require('commander');
 var EOL = require('os').EOL;
 
-var generator = new docgen();
+var generator = new docgen(process);
 
 function scaffold (command) {
 	generator.setOptions(command);
