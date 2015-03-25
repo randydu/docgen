@@ -219,11 +219,11 @@ function DocGen (process)
             type : "array",
             items: { oneOf: [ { 
                 type: "object",
-                required: [ "heading", "column", "links"],
+                required: [ "heading", "column", "pages"],
                 properties: {
                     name: { type: "string" },
                     column: { type: "integer", minimum: 1, maximum: 4 },
-                    links: {
+                    pages: {
                         type : "array",
                         items: { oneOf: [ { 
                             type: "object",
@@ -286,7 +286,7 @@ function DocGen (process)
             var extra = { 
                 heading: 'Extra', 
                 column: 5,
-                links: [
+                pages: [
                     { title: 'Release notes', source: 'release-notes.txt' }
                 ]
             };
@@ -310,7 +310,7 @@ function DocGen (process)
         var keys = [];
         var files = [];
         meta.contents.forEach( function (section) {
-            section.links.forEach( function (page) {
+            section.pages.forEach( function (page) {
                 keys.push(page);
                 files.push(options.input+'/'+page.source);
             });
@@ -375,7 +375,7 @@ function DocGen (process)
                     html[++i] = '<td class="toc-group">';
                     sortedPages[key].forEach( function (section) {
                         html[++i] = '<ul><li class="toc-heading">'+section.heading+'</li>';
-                        section.links.forEach( function (page) {
+                        section.pages.forEach( function (page) {
                             var name = page.source.substr(0, page.source.lastIndexOf('.'));
                             var path = name+'.html';
                             html[++i] = '<li><a href="'+path+'">'+page.title+'</a></li>';
@@ -425,7 +425,7 @@ function DocGen (process)
         //------------------------------------------------------------------------------------------------------
 
         //the homepage is the first link in the first heading
-        var homelink = meta.contents[0].links[0];
+        var homelink = meta.contents[0].pages[0];
         var homelink = homelink.source.substr(0, homelink.source.lastIndexOf('.'))+'.html';
 
         var date = moment().format('DD/MM/YYYY');
@@ -518,7 +518,7 @@ function DocGen (process)
         webToc();
         insertParameters();
         meta.contents.forEach( function (section) {
-            section.links.forEach( function (page) {
+            section.pages.forEach( function (page) {
                 var $ = cheerio.load(templates.main.html()); //clone
                 var key = page.source;
                 var content = pages[key];
@@ -558,7 +558,7 @@ function DocGen (process)
         console.log(chalk.green('Writing the web page files'));
         var promises = {};
         meta.contents.forEach( function (section) {
-            section.links.forEach( function (page) {
+            section.pages.forEach( function (page) {
                 var key = page.source;
                 var name = key.substr(0, page.source.lastIndexOf('.'));
                 var path = options.output+name+'.html';
@@ -658,7 +658,7 @@ function DocGen (process)
         for (var key in sortedPages) {
             if (sortedPages.hasOwnProperty(key)) {
                 sortedPages[key].forEach( function (section) {
-                    section.links.forEach( function (page) {
+                    section.pages.forEach( function (page) {
                         var key = page.source;
                         var name = key.substr(0, page.source.lastIndexOf('.'));
                         var path = options.output+name+'.html';
@@ -735,7 +735,7 @@ function DocGen (process)
         if (options.redirect) {
             var parent = options.output.replace(/\/$/, ""); //trim any trailing slash
             parent = parent.split(path.sep).slice(-1).pop(); //get name of final directory in the path
-            var homepage = meta.contents[0].links[0];
+            var homepage = meta.contents[0].pages[0];
             var homepage = homepage.source.substr(0, homepage.source.lastIndexOf('.'))+'.html';
             var redirectLink = parent+'/'+homepage;
             $ = templates.redirect;

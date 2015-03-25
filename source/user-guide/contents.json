@@ -2,7 +2,7 @@
 	{
 		"heading" : "Quick Start",
 		"column" : 1,
-		"links" : [
+		"pages" : [
 			{
 				"title": "Overview",
 				"source": "index.txt",
@@ -21,7 +21,7 @@
 	{
 		"heading" : "User Guide",
 		"column" : 2,
-		"links" : [
+		"pages" : [
 			{
 				"title": "Running DocGen",
 				"source": "running.txt"
@@ -39,7 +39,7 @@
 	{
 		"heading" : "Help",
 		"column" : 3,
-		"links" : [
+		"pages" : [
 			{
 				"title": "Troubleshooting",
 				"source": "troubleshooting.txt"
