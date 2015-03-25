@@ -35,6 +35,23 @@ function DocGen ()
         options = userOptions;
     }
 
+    /*
+        copy the example source files (template) to any directory, when scaffold command is invoked
+    */
+
+    this.scaffold = function () {
+        try {
+            var directory = path.normalize(options.scaffold);
+            console.log(chalk.green('Creating scaffold template in directory: '+directory));
+            fs.copySync('example', directory);
+        } catch (error) {
+            console.log(chalk.red('Error copying files to directory'));
+            if (options.verbose === true) {
+                console.log(chalk.red(error));
+            }
+        }
+    }
+
     this.run = function () {
         console.log(chalk.green.bold('DocGen version '+version));
         //delete and recreate the output directory
