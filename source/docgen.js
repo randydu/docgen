@@ -70,9 +70,10 @@ function DocGen ()
                 if (error) {
                     console.log(chalk.red('Error reading file: '+path));
                     reject(error);
+                } else {
+                    data = data.replace(/^\uFEFF/, ''); //remove the BOM (byte-order-mark) from UTF-8 files, if present
+                    resolve(data);
                 }
-                data = data.replace(/^\uFEFF/, ''); //remove the BOM (byte-order-mark) from UTF-8 files, if present
-                resolve(data);
             });
         });
     }
