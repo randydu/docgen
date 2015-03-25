@@ -43,7 +43,7 @@ function DocGen ()
         try {
             var directory = path.normalize(options.output);
             console.log(chalk.green('Creating scaffold template in directory: '+directory));
-            fs.copySync('source/example', directory);
+            fs.copySync(__dirname+'/example', directory);
         } catch (error) {
             console.log(chalk.red('Error copying files to directory'));
             if (options.verbose === true) {
@@ -102,12 +102,12 @@ function DocGen ()
     var loadTemplates = function () {
         console.log(chalk.green('Loading templates'));
         var files = {
-            main: readFile('docgen/templates/main.html'),
-            redirect: readFile('docgen/templates/redirect.html'),
-            webCover: readFile('docgen/templates/webCover.html'),
-            pdfCover: readFile('docgen/templates/pdfCover.html'),
-            pdfHeader: readFile('docgen/templates/pdfHeader.html'),
-            pdfFooter: readFile('docgen/templates/pdfFooter.html'),
+            main: readFile(__dirname+'/templates/main.html'),
+            redirect: readFile(__dirname+'/templates/redirect.html'),
+            webCover: readFile(__dirname+'/templates/webCover.html'),
+            pdfCover: readFile(__dirname+'/templates/pdfCover.html'),
+            pdfHeader: readFile(__dirname+'/templates/pdfHeader.html'),
+            pdfFooter: readFile(__dirname+'/templates/pdfFooter.html'),
         };
         rsvp.hash(files).then(function(files) {
             for (var key in files) {
@@ -579,7 +579,7 @@ function DocGen ()
     */
 
     var copyRequire = function () {
-        ncp('docgen/require', options.output+'/require', function (error) {
+        ncp(__dirname+'/require', options.output+'/require', function (error) {
             if (error) {
                 console.log(chalk.red('Error copying the require directory'));
                 if (options.verbose === true) {
@@ -633,11 +633,11 @@ function DocGen ()
 
     var getPdfArguments = function () {
         var pdfName = meta.parameters.name.toLowerCase()+'.pdf';
-        pdfOptions.push(' --user-style-sheet docgen/pdf-stylesheet.css');
+        pdfOptions.push(' --user-style-sheet '+__dirname+'/pdf-stylesheet.css');
         pdfOptions.push(' --header-html '+options.output+'/temp/pdfHeader.html');
         pdfOptions.push(' --footer-html '+options.output+'/temp/pdfFooter.html');
         pdfOptions.push(' cover '+options.output+'/temp/pdfCover.html');
-        pdfOptions.push(' toc --xsl-style-sheet docgen/pdf-contents.xsl');
+        pdfOptions.push(' toc --xsl-style-sheet '+__dirname+'/pdf-contents.xsl');
         var allPages = '';
         for (var key in sortedPages) {
             if (sortedPages.hasOwnProperty(key)) {
