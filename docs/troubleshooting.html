@@ -72,30 +72,23 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
  </div>
 </header>
 
-<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Troubleshooting</h1><h2>Why is the PDF font size or layout different when generated on Windows vs. Linux?</h2>
-<p>DocGen does not guarantee that the PDF will be precisely identical when generated on different platforms. If this matters, choose one platform and use it consistently.</p>
-<h2>Why does Chrome PDF Viewer open or print the PDF incorrectly?</h2>
-<p>These are known issues. Only <strong>Adobe Reader</strong> is officially supported at this time.</p>
-<h2>Why do the links not work in the PDF?</h2>
-<p>This feature is unsupported in <strong>wkhtmltopdf 0.9.9</strong> but will be supported in version <strong>0.10.0</strong>.</p>
-<h2>Why is there an &quot;Internet Explorer has restricted this webpage&quot; warning?</h2>
-<p>It is a known issue that Internet Explorer prevents pages opened from a local folder from running scripts. The following warning may be seen:</p>
-<p><img src="files/images/warning.png" alt=""></p>
-<p>There are two solutions:</p>
-<ul>
-<li>view the pages from any web server (simply upload them)</li>
-<li>disable scipts in tool-behaviours.yml by setting <code>suppress_IE_warning: true</code>. This is not recommended for production use and will also disable the code syntax highlighting in Internet Explorer.</li>
-</ul>
+<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Troubleshooting</h1><p>This page gives help on solving common issues with DocGen.</p>
+<h2>Displaying detailed errors</h2>
+<p>Pass the <strong>-v</strong> (verbose) option when running DocGen to get more detailed error messages.</p>
+<h2>PDF missing content</h2>
+<p>In complex pages, the PDF generator (wkhtmltopdf) needs to be given enough time for dynamic content to be rendered.
+Pass the <strong>-d [milliseconds]</strong> option to increase the rendering time for each page, if required.</p>
+<h2>PDF display errors</h2>
+<p>There are known text display issues in Firefox PDF viewer. Try an
+<a href="https://support.mozilla.org/en-US/kb/disable-built-pdf-viewer-and-use-another-viewer">alternative viewer</a>.</p>
+<h2>Attached files not in PDF</h2>
+<p>Attached files are not converted to PDF, only the web content is.</p>
+<h2>Corrupted text characters</h2>
+<p>Make sure all the input text files are saved with UTF-8 encoding.</p>
+<h2>Missing logo</h2>
+<p>The logo must be PNG format and saved with the path <em>files/images/logo.png</em>.</p>
 <h2>Other issues</h2>
-<p>For any other problems, please submit a <a href="https://github.com/mtmacdonald/docgen">an issue ticket</a> with the following information:</p>
-<ul>
-<li>Describe the problem</li>
-<li>Describe the steps needed to reproduce the problem</li>
-<li>Attach any sample files needed to reproduce the problem</li>
-</ul>
-<blockquote>
-<p>Please always attach <strong>log.txt</strong> (in the Generator folder) when requesting support.</p>
-</blockquote>
+<p>For any other problems, please submit a <a href="https://github.com/mtmacdonald/docgen/issues">an issue ticket</a>.</p>
 </div></div></section>
 
  <footer>
@@ -105,7 +98,7 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 26/03/2015 at 17:42:03.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 26/03/2015 at 18:51:48.</span>
     </p>
   </div>
  </footer>

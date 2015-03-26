@@ -42,8 +42,9 @@ Metadata
 
 **parameters.json**
 
-
 **contents.json**
+
+**release-notes.txt**
 
 Plain text
 ----------
