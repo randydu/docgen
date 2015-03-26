@@ -40,12 +40,20 @@ $(document).ready( function () {
     $("#toc").slideToggle("fast");
     $(this).toggleClass("active");
   });
- 
+
 });
 </script>
 
+<script type="text/x-mathjax-config">
+//MathJax configuration is the same as used by math.stackexchange.com
+MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+  tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+  TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+  messageStyle: "none"
+});
+</script>
 
-</head>
+<link rel="stylesheet" href="require/katex/katex.min.css" type="text/css"><script type="text/javascript" src="require/katex/katex.min.js"></script><script type="text/javascript" src="require/katexInjector.js"></script><script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script></head>
 
 <body>
 
@@ -262,7 +270,9 @@ $(document).ready( function () {
 </li>
 <li>
   <p><span class="w-icon" data-name="compose"></span><span>Mathematical expressions</span></p>
-  <p>Displays mathematical expressions natively in all browsers, using <a href="https://www.mathjax.org">MathJax</a>.</p>
+  <p>Displays mathematical expressions without plugins, using either
+  <a href="http://khan.github.io/KaTeX/">KaTeX</a> or
+  <a href="https://www.mathjax.org">MathJax</a>.</p>
 </li>
 <li>
   <p><span class="w-icon" data-name="star"></span><span>Branding and metadata</span></p>
@@ -356,7 +366,7 @@ docgen run -o $HOME/docgen-example</code></pre>
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 25/03/2015 at 18:50:14.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 26/03/2015 at 16:12:04.</span>
     </p>
   </div>
  </footer>

@@ -40,12 +40,20 @@ $(document).ready( function () {
     $("#toc").slideToggle("fast");
     $(this).toggleClass("active");
   });
- 
+
 });
 </script>
 
+<script type="text/x-mathjax-config">
+//MathJax configuration is the same as used by math.stackexchange.com
+MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+  tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+  TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+  messageStyle: "none"
+});
+</script>
 
-</head>
+<link rel="stylesheet" href="require/katex/katex.min.css" type="text/css"><script type="text/javascript" src="require/katex/katex.min.js"></script><script type="text/javascript" src="require/katexInjector.js"></script><script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script></head>
 
 <body>
 
@@ -135,8 +143,7 @@ Here is an [example link](http://www.google.com).
 </div><br class="w-clear">
 <p>For more examples, see <a href="advanced-content.html">writing advanced content</a>.</p>
 <h2>HTML</h2>
-<p>CommonMark syntax allows only basic page elements. For more complex pages not covered by CommonMark&apos;s syntax,
-simply use inline HTML:</p>
+<p>For more complex pages not covered by CommonMark&apos;s syntax, simply use inline HTML:</p>
 <div class="container codeContainer">
 <pre><code>&lt;table&gt;
   &lt;tr&gt;
@@ -160,7 +167,58 @@ simply use inline HTML:</p>
 <p>It is also possible to bypass the CommonMark parser altogether and specify a pure HTML input page, by setting
 <code class="w-inline-code">&quot;html&quot;: true</code> in a page object in <em>contents.json</em>.</p>
 </blockquote>
-<h2>MathML</h2>
+<h2>Mathematical Expressions</h2>
+<p><a href="http://en.wikipedia.org/wiki/LaTeX">Latex</a> is the most common markup format for mathematical expressions.</p>
+<p>Modern web browsers do not yet consistently support a common standard for authoring mathematical expressions. For this
+reason, extra libraries are needed. DocGen supports two widely-used web mathematics libraries out-the-box:</p>
+<ul>
+<li><strong><a href="http://khan.github.io/KaTeX/">KaTeX</a></strong> is fast, lightweight, and <a href="http://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX">supports fewer features</a></li>
+<li><strong><a href="https://www.mathjax.org/">MathJax</a></strong> is slower, larger, and <a href="http://docs.mathjax.org/en/latest/tex.html#supported-latex-commands">supports more features</a></li>
+</ul>
+<p>The document author decides which one (or both) to use.</p>
+<h3>Mathematics using KaTeX</h3>
+<p>KaTeX is the recommended choice. It is bundled with DocGen but must be enabled by passing the
+<strong>-m</strong> option.</p>
+<div class="container codeContainer">
+<pre><code>&lt;div class=&quot;katex-math&quot;&gt;
+f(x) = \int_{-\infty}^\infty
+    \hat f(\xi)\,e^{2 \pi i \xi x}
+    \,d\xi
+&lt;/div&gt;</code></pre>
+</div>
+<div class="container exampleContainer">
+<div class="katex-math">
+f(x) = \int_{-\infty}^\infty
+    \hat f(\xi)\,e^{2 \pi i \xi x}
+    \,d\xi
+</div>
+</div><br class="w-clear">
+<h3>Mathematics using MathJax</h3>
+<p>MathJax is the fallback choice for expressions not yet supported by KaTex. When required, MathJax can be enabled by
+passing the <strong>-n</strong> option.</p>
+<blockquote>
+<p>Because MathJax is a very large library, it is not bundled with DocGen, but is served from a third-party CDN
+(content delivery network). This means users need an active Internet connection for the MathJax feature to work.</p>
+</blockquote>
+<p class="w-information">DocGen uses the same MathJax configuration as the popular 
+<a href="http://math.stackexchange.com">Stack Exchange</a> websites.
+</p>
+<div class="container codeContainer">
+<pre><code>$$
+f(n) = \begin{cases}
+    n/2,  &amp; \text{if $n$ is even} \\
+    3n+1, &amp; \text{if $n$ is odd}
+    \end{cases}
+$$</code></pre>
+</div>
+<div class="container exampleContainer">
+$$
+f(n) = \begin{cases}
+    n/2,  &amp; \text{if $n$ is even} \\
+    3n+1, &amp; \text{if $n$ is odd}
+    \end{cases}
+$$
+</div><br class="w-clear">
 </div></div></section>
 
  <footer>
@@ -170,7 +228,7 @@ simply use inline HTML:</p>
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 25/03/2015 at 18:50:14.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 26/03/2015 at 16:12:04.</span>
     </p>
   </div>
  </footer>
