@@ -673,12 +673,12 @@ function DocGen (process)
         ' --margin-left 15',
         ' --header-spacing 5',
         ' --footer-spacing 5',
-        ' --javascript-delay 1000', //code syntax highlight in wkhtmltopdf 0.12.2.1 fails without a delay (but why doesn't --no-stop-slow-scripts work?)
         ' --no-stop-slow-scripts'
     ];
 
     var getPdfArguments = function () {
         var pdfName = meta.parameters.name.toLowerCase()+'.pdf';
+        pdfOptions.push(' --javascript-delay '+options.pdfDelay);  //code syntax highlight in wkhtmltopdf 0.12.2.1 fails without a delay (but why doesn't --no-stop-slow-scripts work?)
         pdfOptions.push(' --user-style-sheet '+__dirname+'/pdf-stylesheet.css');
         pdfOptions.push(' --header-html '+options.output+'temp/pdfHeader.html');
         pdfOptions.push(' --footer-html '+options.output+'temp/pdfFooter.html');

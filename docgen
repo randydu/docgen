@@ -39,12 +39,15 @@ program.command('run')
     .usage('[--option]')
     .description('create a static website from an input directory')
     .option('-i, --input [path]', 'path to the input directory [default: ./]', './')
+    .option('-o, --output [path]', 'path to the output directory [default: ./output]', './output')
+    .option('-v, --verbose', 'show verbose output including detailed errors')
+    .option('-p, --pdf', 'create a PDF document')
+    .option('-d, --pdf-delay [milliseconds]', 'delay PDF printing to allow time for dynamic rendering [default: 2000]', '2000')
+    .option('-w, --wkhtmltopdf-path [path]', 'custom path to wkhtmltopdf [default: $PATH]', './')
     .option('-m, --math-katex', 'enable KaTex mathematical expressions')
     .option('-n, --math-mathjax', 'enable MathJax mathematical expressions')
-    .option('-o, --output [path]', 'path to the output directory [default: ./output]', './output')
-    .option('-p, --pdf', 'create a PDF document')
     .option('-r, --redirect', 'create an index.html in the parent directory that redirects to the homepage')
-    .option('-v, --verbose', 'show verbose output including detailed errors')
+
     .action(function (command) {
         run(command);
     });
