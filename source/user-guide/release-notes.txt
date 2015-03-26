@@ -21,6 +21,8 @@
 - Dropped support for Internet Explorer 7 and 8
 - Dropped formal support for tool to run on multiple operating systems
 
+- Removed support for Mark of the Web
+
 Todo:
 
 - Ability to override the version information

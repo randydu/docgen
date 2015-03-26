@@ -22,6 +22,11 @@ Attached files not in PDF
 
 Attached files are not converted to PDF, only the web content is.
 
+Corrupted text characters
+-------------------------
+
+Make sure all the input text files are saved with UTF-8 encoding.
+
 Missing logo
 ------------
 
