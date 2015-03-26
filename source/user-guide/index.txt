@@ -196,7 +196,9 @@
 </li>
 <li>
   <p><span class="w-icon" data-name="compose"></span><span>Mathematical expressions</span></p>
-  <p>Displays mathematical expressions natively in all browsers, using <a href="https://www.mathjax.org">MathJax</a>.</p>
+  <p>Displays mathematical expressions without plugins, using either
+  <a href="http://khan.github.io/KaTeX/">KaTeX</a> or
+  <a href="https://www.mathjax.org">MathJax</a>.</p>
 </li>
 <li>
   <p><span class="w-icon" data-name="star"></span><span>Branding and metadata</span></p>
