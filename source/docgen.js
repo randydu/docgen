@@ -403,7 +403,29 @@ function DocGen (process)
         $('#toc').html(html.join(''));
         templates.main = $;
     }
-
+/*
+    var mathjaxConfig = {
+        "extensions": [
+            "tex2jax.js"
+        ],
+        "jax": [
+            "input/TeX",
+            "output/HTML-CSS"
+        ],
+        "tex2jax": {
+            "inlineMath": [ ["$","$"], ["\\(","\\)"] ],
+            "displayMath": [ ["$$","$$"], ["\\[","\\]"] ],
+            "processEscapes": true
+        },
+        "HTML-CSS": {
+            "availableFonts": ["STIX"], //look for local copy of font
+            "preferredFont": "STIX", //preferred font from available fonts
+            "webFont": "STIX-Web", //web font when local copy of font not available
+            "imageFont": null //do not allow image font fallback
+        },
+        "showProcessingMessages": false
+    };
+*/
     /*
         insert the parameters into all templates
     */
@@ -507,6 +529,15 @@ function DocGen (process)
                 $('#dg-attribution').text(attribution);
             }
         }
+        if (options.math === true) {
+            $ = templates.main;
+            $('head').append('<link rel="stylesheet" href="require/katex/katex.min.css" type="text/css">');
+            $('head').append('<script type="text/javascript" src="require/katex/katex.min.js"></script>');
+            $('head').append('<script type="text/javascript" src="require/katexInjector.js"></script>');
+            //var config = 'MathJax.Hub.Config('+JSON.stringify(mathjaxConfig)+');';
+            //$('head').append('<script type="text/x-mathjax-config">'+config+'</script>');
+            //$('head').append('<script type="text/javascript" src="require/mathjax/MathJax.js"></script>'); //?config=MML_HTMLorMML-full
+        }
     }
 
     /*
@@ -578,6 +609,9 @@ function DocGen (process)
         rsvp.hash(promises).then(function (files) {
             copyRequire();
             copyUserFiles();
+            if (options.math === true) {
+                copyKatex();
+            }
             preparePdfTemplates();
         }).catch(function(error) {
             console.log(chalk.red('Error writing the web page files'));
@@ -596,6 +630,18 @@ function DocGen (process)
         ncp(__dirname+'/require', options.output+'require', function (error) {
             if (error) {
                 console.log(chalk.red('Error copying the require directory'));
+                if (options.verbose === true) {
+                    console.log(chalk.red(error));
+                }
+                process.exit(1);
+            }
+        });
+    }
+
+    var copyKatex = function () {
+        ncp(__dirname+'/optional/katex', options.output+'require/katex', function (error) {
+            if (error) {
+                console.log(chalk.red('Error copying the katex directory'));
                 if (options.verbose === true) {
                     console.log(chalk.red(error));
                 }
