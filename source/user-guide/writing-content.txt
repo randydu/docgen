@@ -92,8 +92,7 @@ For more examples, see [writing advanced content](advanced-content.html).
 HTML
 ----
 
-CommonMark syntax allows only basic page elements. For more complex pages not covered by CommonMark's syntax,
-simply use inline HTML:
+For more complex pages not covered by CommonMark's syntax, simply use inline HTML:
 
 <div class="container codeContainer">
 <pre><code>&lt;table&gt;
@@ -122,13 +121,20 @@ For more examples, see [writing advanced content](advanced-content.html).
 Mathematical Expressions
 ------------------------
 
+[Latex](http://en.wikipedia.org/wiki/LaTeX) is the most common markup format for mathematical expressions.
+
 Modern web browsers do not yet consistently support a common standard for authoring mathematical expressions. For this
 reason, extra libraries are needed. DocGen supports two widely-used web mathematics libraries out-the-box:
 
 - **[KaTeX](http://khan.github.io/KaTeX/)** is fast, lightweight, and [supports fewer features](http://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX)
 - **[MathJax](https://www.mathjax.org/)** is slower, larger, and [supports more features](http://docs.mathjax.org/en/latest/tex.html#supported-latex-commands)
 
-**Mathematics using KaTeX**
+The document author decides which one (or both) to use.
+
+### Mathematics using KaTeX
+
+KaTeX is the recommended choice. It is bundled with DocGen but must be enabled by passing the 
+**-m** option.
 
 <div class="container codeContainer">
 <pre><code>&lt;div class=&quot;katex-math&quot;&gt;
@@ -145,3 +151,31 @@ f(x) = \int_{-\infty}^\infty
 </div>
 </div><br class="w-clear"/>
 
+### Mathematics using MathJax
+
+MathJax is the fallback choice for expressions not yet supported by KaTex. When required, MathJax can be enabled by 
+passing the **-n** option.
+
+> Because MathJax is a very large library, it is not bundled with DocGen, but is served from a third-party CDN 
+(content delivery network). This means users need an active Internet connection for the MathJax feature to work.
+
+<p class="w-information">DocGen uses the same MathJax configuration as the popular 
+<a href="http://math.stackexchange.com">Stack Exchange</a> websites.
+</p>
+
+<div class="container codeContainer">
+<pre><code>$$
+f(n) = \begin{cases}
+    n/2,  & \text{if $n$ is even} \\
+    3n+1, & \text{if $n$ is odd}
+    \end{cases}
+$$</code></pre>
+</div>
+<div class="container exampleContainer">
+$$
+f(n) = \begin{cases}
+    n/2,  & \text{if $n$ is even} \\
+    3n+1, & \text{if $n$ is odd}
+    \end{cases}
+$$
+</div><br class="w-clear"/>

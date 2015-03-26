@@ -404,34 +404,6 @@ function DocGen (process)
         templates.main = $;
     }
 
-    //MathJax configuration, based on the settings used by math.stackexchange.com
-    var mathjaxConfig = {
-
-
-    };
-/*
-    var mathjaxConfig = {
-        "extensions": [
-            "tex2jax.js"
-        ],
-        "jax": [
-            "input/TeX",
-            "output/HTML-CSS"
-        ],
-        "tex2jax": {
-            "inlineMath": [ ["$","$"], ["\\(","\\)"] ],
-            "displayMath": [ ["$$","$$"], ["\\[","\\]"] ],
-            "processEscapes": true
-        },
-        "HTML-CSS": {
-            "availableFonts": ["STIX"], //look for local copy of font
-            "preferredFont": "STIX", //preferred font from available fonts
-            "webFont": "STIX-Web", //web font when local copy of font not available
-            "imageFont": null //do not allow image font fallback
-        },
-        "showProcessingMessages": false
-    };
-*/
     /*
         insert the parameters into all templates
     */
@@ -543,11 +515,10 @@ function DocGen (process)
             $('head').append('<script type="text/javascript" src="require/katexInjector.js"></script>');
 
         }
-        if (options.mathMathJax === true) {
+        if (options.mathMathjax === true) {
             //support for MathJax (only supported via CDN due to very large size)
-            var config = 'MathJax.Hub.Config('+JSON.stringify(mathjaxConfig)+');';
-            $('head').append('<script type="text/x-mathjax-config">'+config+'</script>');
-            $('head').append('<script type="text/javascript" src="require/mathjax/MathJax.js?config=MML_HTMLorMML-full"></script>');
+            //MathJax configuration is the same as used by math.stackexchange.com
+            $('head').append('<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>');
         }
     }
 
