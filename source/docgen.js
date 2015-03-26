@@ -518,7 +518,8 @@ function DocGen (process)
         if (options.mathMathjax === true) {
             //support for MathJax (only supported via CDN due to very large size)
             //MathJax configuration is the same as used by math.stackexchange.com
-            $('head').append('<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>');
+                //Note - wkhtmlpdf //cdn urls - see https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1634
+            $('head').append('<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>');
         }
     }
 
@@ -672,7 +673,8 @@ function DocGen (process)
         ' --margin-left 15',
         ' --header-spacing 5',
         ' --footer-spacing 5',
-        ' --javascript-delay 1000' //code syntax highlight in wkhtmltopdf 0.12.2.1 fails without a delay (but why doesn't --no-stop-slow-scripts work?)
+        ' --javascript-delay 1000', //code syntax highlight in wkhtmltopdf 0.12.2.1 fails without a delay (but why doesn't --no-stop-slow-scripts work?)
+        ' --no-stop-slow-scripts'
     ];
 
     var getPdfArguments = function () {
