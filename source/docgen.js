@@ -535,16 +535,19 @@ function DocGen (process)
                 $('#dg-attribution').text(attribution);
             }
         }
-        if (options.math === true) {
+        if (options.mathKatex === true) {
             $ = templates.main;
             //support for KaTeX (bundled with DocGen)
             $('head').append('<link rel="stylesheet" href="require/katex/katex.min.css" type="text/css">');
             $('head').append('<script type="text/javascript" src="require/katex/katex.min.js"></script>');
             $('head').append('<script type="text/javascript" src="require/katexInjector.js"></script>');
+
+        }
+        if (options.mathMathJax === true) {
             //support for MathJax (only supported via CDN due to very large size)
-            //var config = 'MathJax.Hub.Config('+JSON.stringify(mathjaxConfig)+');';
-            //$('head').append('<script type="text/x-mathjax-config">'+config+'</script>');
-            //$('head').append('<script type="text/javascript" src="require/mathjax/MathJax.js?config=MML_HTMLorMML-full"></script>');
+            var config = 'MathJax.Hub.Config('+JSON.stringify(mathjaxConfig)+');';
+            $('head').append('<script type="text/x-mathjax-config">'+config+'</script>');
+            $('head').append('<script type="text/javascript" src="require/mathjax/MathJax.js?config=MML_HTMLorMML-full"></script>');
         }
     }
 
@@ -617,7 +620,7 @@ function DocGen (process)
         rsvp.hash(promises).then(function (files) {
             copyRequire();
             copyUserFiles();
-            if (options.math === true) {
+            if (options.mathKatex === true) {
                 copyKatex();
             }
             preparePdfTemplates();
