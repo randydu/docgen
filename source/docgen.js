@@ -403,6 +403,12 @@ function DocGen (process)
         $('#toc').html(html.join(''));
         templates.main = $;
     }
+
+    //MathJax configuration, based on the settings used by math.stackexchange.com
+    var mathjaxConfig = {
+
+
+    };
 /*
     var mathjaxConfig = {
         "extensions": [
@@ -531,12 +537,14 @@ function DocGen (process)
         }
         if (options.math === true) {
             $ = templates.main;
+            //support for KaTeX (bundled with DocGen)
             $('head').append('<link rel="stylesheet" href="require/katex/katex.min.css" type="text/css">');
             $('head').append('<script type="text/javascript" src="require/katex/katex.min.js"></script>');
             $('head').append('<script type="text/javascript" src="require/katexInjector.js"></script>');
+            //support for MathJax (only supported via CDN due to very large size)
             //var config = 'MathJax.Hub.Config('+JSON.stringify(mathjaxConfig)+');';
             //$('head').append('<script type="text/x-mathjax-config">'+config+'</script>');
-            //$('head').append('<script type="text/javascript" src="require/mathjax/MathJax.js"></script>'); //?config=MML_HTMLorMML-full
+            //$('head').append('<script type="text/javascript" src="require/mathjax/MathJax.js?config=MML_HTMLorMML-full"></script>');
         }
     }
 
