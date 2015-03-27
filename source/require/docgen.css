@@ -114,3 +114,14 @@ section blockquote p, section li p {
 	position: absolute;
 	background-color: transparent;
 }
+
+.dg-fakeHeading { /*todo - move to webknife*/
+	text-decoration:none;
+	font-weight: bold;
+	color: #385691;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #999; 
+	margin: 20px 0 20px 0;
+	font-size: 16px; 
+	padding-bottom: 4px;
+}
