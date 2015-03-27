@@ -57,7 +57,7 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
 
 <body>
 
-<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="running.html">Running DocGen</a></li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Help</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="version-control.html">Using with version control</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
+<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="running.html">Running DocGen</a></li><li><a href="writing-content.html">Writing content</a></li><li><a href="commonmark.html">CommonMark reference</a></li><li><a href="advanced-content.html">Advanced content</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Help</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="version-control.html">Using with version control</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
 <div id="navigator">Table of contents</div>
 
 <header>
@@ -108,7 +108,7 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
 }
 
 .segment {
-  border-bottom: 2px solid #385691;
+  border-bottom: 2px solid #4d4d4d;
   padding: 20px 0 20px 0;
 }
 
@@ -118,23 +118,24 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
   width: 290px;
   margin: 10px;
   padding: 0 0 10px 0;
-  border: 2px solid #385691;
+  border: 2px solid #4d4d4d;
   border-radius: 10px 10px 0 0;
 }
 
 .how-it-works li p:first-of-type {
   margin: 0;
-  padding: 0 0 3px 0;
-  font-size: 16px;
   border: none;
-  background-color: #385691;
+  background-color: #4d4d4d;
   color: white;
-  padding: 10px;
+  padding: 18px 10px 18px 10px;
   text-align: center;
   font-style: italic;
   font-weight: bold;
   border-radius: 7px 7px 0 0;
-  height: 60px;
+}
+
+.how-it-works li p:first-of-type a {
+  color: white;
 }
 
 .how-it-works li p:last-of-type {
@@ -144,7 +145,7 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
   background-repeat:no-repeat;
 }
 
-.features, .quick-howto {
+.features {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -176,52 +177,6 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
   margin: 0;
 }
 
-#howto {
-  background-color: #333;
-  box-shadow: inset 0px 5px 5px 0px #4b4b4b;
-}
-
-#howto h1, #browser-warning h1 {
-  border: none;
-}
-
-.quick-howto li {
-  vertical-align: top;
-  display: inline-block;
-  width: 300px;
-  margin: 10px;
-}
-
-.quick-howto li span {
-  vertical-align: middle;
-  margin-right: 5px;
-}
-
-.quick-howto li h2 {
-  margin: 0;
-  padding: 0 0 3px 0;
-  font-size: 16px;
-  border: none;
-  color: white;
-}
-
-.quick-howto li a {
-  color: white;
-}
-
-.quick-howto li p {
-  padding-top: 5px;
-  margin: 0;
-}
-
-.quick-howto .w-icon {
-  width: 50px; height: 50px;
-}
-
-.quick-howto svg {
-  fill: white;
-}
-
 </style>
 
 <div id="banner" class="segment"><div class="w-fixed-width">
@@ -241,7 +196,7 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
  <strong>DocGen</strong> is a <strong>static website generator</strong> that&apos;s ideal for making technical user guides for software products.
 </p>
 
-<h2 class="hiddenTitle">Features</h2>
+<h2 class="hiddenTitle" id="features">Features</h2>
 <ul class="features">
 <li>
   <p><span class="w-icon" data-name="monitor"></span><span>Self-contained website</span></p>
@@ -285,9 +240,9 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
 </div></div>
 
 <div style="padding-top:20px;"><div class="w-fixed-width">
-<h2>How it works</h2>
+<h2 id="how-it-works">How it works</h2>
 
-<ul class="how-it-works">
+<ul class="how-it-works" id="how-it-works">
 <li>
   <p>&quot;You write in plain text or human-friendly human-friendly <a href="http://commonmark.org">CommonMark</a>&quot;</p>
   <p style="background-image:url(&apos;files/images/text.png&apos;);"></p>
@@ -333,7 +288,7 @@ variants based on a common template. Docgen is intended more for free-form, huma
 updated and refactored, and standardised for each product release.
 </blockquote>
 
-<h2>Browser support</h2>
+<h2 id="browser-support">Browser support</h2>
 
 Output created by DocGen works on modern browsers (desktop and mobile devices).
 
@@ -342,7 +297,7 @@ Output created by DocGen works on modern browsers (desktop and mobile devices).
 <a href="https://www.mozilla.org/en-US/firefox/new">Firefox</a>, 
 <a href="https://www.apple.com/safari">Safari</a></li></ul>
 
-<h2>Quick Start</h2>
+<h2 id="quick-start">Quick start</h2>
 
 <ul>
  <li class="list-heading">In just three commands:</li>
@@ -366,7 +321,7 @@ docgen run -o $HOME/docgen-example</code></pre>
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 26/03/2015 at 18:51:48.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 27/03/2015 at 17:06:26.</span>
     </p>
   </div>
  </footer>

@@ -57,7 +57,7 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
 
 <body>
 
-<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="running.html">Running DocGen</a></li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Help</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="version-control.html">Using with version control</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
+<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="running.html">Running DocGen</a></li><li><a href="writing-content.html">Writing content</a></li><li><a href="commonmark.html">CommonMark reference</a></li><li><a href="advanced-content.html">Advanced content</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Help</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="version-control.html">Using with version control</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
 <div id="navigator">Table of contents</div>
 
 <header>
@@ -72,7 +72,7 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
  </div>
 </header>
 
-<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Writing content</h1><style>
+<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Writing content</h1><ul class="pageToc"><li><a href="#overview">Overview</a></li><li><a href="#metadata">Metadata</a></li><li><a href="#plain-text">Plain text</a></li><li><a href="#commonmark-(markdown)">CommonMark (Markdown)</a></li><li><a href="#commonmark-example">CommonMark Example</a></li><li><a href="#html">HTML</a></li><li><a href="#mathematical-expressions">Mathematical Expressions</a></li><li><a href="#mathematics-using-katex">Mathematics using KaTeX</a></li><li><a href="#mathematics-using-mathjax">Mathematics using MathJax</a></li></ul><style>
 .container {
   box-sizing: border-box;
   float:left;
@@ -100,19 +100,46 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
   width: 400px!important;
 }
 </style>
-<h2>Overview</h2>
-<p>Content for a DocGen website is authored in plain text. Image files can be embedded, and other types of files can be
-attached as links.</p>
+<p>Content for a DocGen website is authored in plain text, using any text editor. Image files can be embedded, and
+other types of files can be attached as links.</p>
 <p>Additionally, website metadata is configured via <a href="http://json.org">JSON</a> files.</p>
+<h2 id="overview">Overview</h2>
+<p>DocGen transforms source files from an input directory into files in an output directory.</p>
+<p>It takes every source file (plain text) specified in <strong>contents.json</strong> and converts it. Each source file becomes a
+separate page in the website and a separate chapter in the PDF.</p>
+<p>DocGen adds metadata that is specified in <strong>parameters.json</strong>, and copies the images and files in the <strong>files</strong>
+directory to the output.</p>
 <blockquote>
 <p>Always save input files with <strong>UTF-8</strong> encoding. This makes non-standard characters (&#xF8; &#xA9; &#xE9; etc) work.</p>
 </blockquote>
-<h2>Metadata</h2>
+<h2 id="metadata">Metadata</h2>
 <p><strong>parameters.json</strong></p>
+<p>The parameters file is used to specify metadata describing the product.</p>
+<ul>
+<li><strong>title</strong> - the product title</li>
+<li><strong>name</strong> - the product name (also used to name the PDF)</li>
+<li><strong>version</strong> - the release version</li>
+<li><strong>date</strong> - the release date</li>
+<li><strong>organization</strong> - the company or organization</li>
+<li><strong>author</strong> - the lead author of the document</li>
+<li><strong>owner</strong> - the owner of the product</li>
+<li><strong>contributors</strong> - list of contributors</li>
+<li><strong>website</strong> - a link to the product website</li>
+<li><strong>module</strong> - module name (useful for larger products with submodules)</li>
+<li><strong>id</strong> - reference number (e.g. product id in a change management tool)</li>
+<li><strong>summary</strong> - a descriptive summary of the product</li>
+<li><strong>marking</strong> - license or other protective markings</li>
+<li><strong>legalese</strong> - document markings (confidentiality, disclaimers, smallprint etc)</li>
+</ul>
+<p>Values can be empty strings, but the elements are required in the JSON file.</p>
+<p>Parameters with URLs can be either website URLs, or email addresses (specify <em>&apos;mailto:name@address.com&apos;</em>).</p>
 <p><strong>contents.json</strong></p>
+<p>The contents file specifies the names, locations, order, and structure of the source files.</p>
 <p><strong>release-notes.txt</strong></p>
-<h2>Plain text</h2>
-<h2>CommonMark (Markdown)</h2>
+<p>The release notes source file is a mandatory source file (that does not need to be listed in contents.json). Use it to
+summarize the change history for each version of the product.</p>
+<h2 id="plain-text">Plain text</h2>
+<h2 id="commonmark-(markdown)">CommonMark (Markdown)</h2>
 <p><a href="http://commonmark.org/">CommonMark</a> (also known as <a href="http://daringfireball.net/projects/markdown/">MarkDown</a>) is a
 human-friendly plain text format. The source format is easy to read and write, and CommonMark translates it into HTML.
 DocGen uses the <a href="https://markdown-it.github.io">markdown-it</a> implementation of CommonMark. Here is an
@@ -133,7 +160,7 @@ Here is an [example link](http://www.google.com).
 </code></pre>
 </div>
 <div class="container exampleContainer">
-<h2>CommonMark Example</h2>
+<h2 id="commonmark-example">CommonMark Example</h2>
 <p>Paragraphs are text blocks separated by new lines.</p>
 <p>Text can be styled: <em>emphasised</em> and <strong>strong</strong>.</p>
 <p>Here is an <a href="http://www.google.com">example link</a>.</p>
@@ -143,7 +170,7 @@ Here is an [example link](http://www.google.com).
 </code></pre>
 </div><br class="w-clear">
 <p>For more examples, see <a href="advanced-content.html">writing advanced content</a>.</p>
-<h2>HTML</h2>
+<h2 id="html">HTML</h2>
 <p>For more complex pages not covered by CommonMark&apos;s syntax, simply use inline HTML:</p>
 <div class="container codeContainer">
 <pre><code>&lt;table&gt;
@@ -163,12 +190,12 @@ Here is an [example link](http://www.google.com).
   </tr>
 </table>
 </div><br class="w-clear">
-<p>For more examples, see <a href="advanced-content.html">writing advanced content</a>.</p>
+<p>For more examples, see the <a href="commonmark.html">CommonMark Reference</a>.</p>
 <blockquote>
 <p>It is also possible to bypass the CommonMark parser altogether and specify a pure HTML input page, by setting
 <code class="w-inline-code">&quot;html&quot;: true</code> in a page object in <em>contents.json</em>.</p>
 </blockquote>
-<h2>Mathematical Expressions</h2>
+<h2 id="mathematical-expressions">Mathematical Expressions</h2>
 <p><a href="http://en.wikipedia.org/wiki/LaTeX">LaTeX</a> is the most common markup format for mathematical expressions.</p>
 <p>Modern web browsers do not yet consistently support a common standard for authoring mathematical expressions. For this
 reason, extra libraries are needed. DocGen supports two widely-used web mathematics libraries out-the-box:</p>
@@ -177,7 +204,7 @@ reason, extra libraries are needed. DocGen supports two widely-used web mathemat
 <li><strong><a href="https://www.mathjax.org/">MathJax</a></strong> is slower, larger, and <a href="http://docs.mathjax.org/en/latest/tex.html#supported-latex-commands">supports more features</a></li>
 </ul>
 <p>The document author decides which one (or both) to use.</p>
-<h3>Mathematics using KaTeX</h3>
+<h3 id="mathematics-using-katex">Mathematics using KaTeX</h3>
 <p>KaTeX is the recommended choice. It is bundled with DocGen but must be enabled by passing the
 <strong>-m</strong> option.</p>
 <div class="container codeContainer">
@@ -194,7 +221,7 @@ f(x) = \int_{-\infty}^\infty
     \,d\xi
 </div>
 </div><br class="w-clear">
-<h3>Mathematics using MathJax</h3>
+<h3 id="mathematics-using-mathjax">Mathematics using MathJax</h3>
 <p>MathJax is the fallback choice for expressions not yet supported by KaTex. When required, MathJax can be enabled by
 passing the <strong>-n</strong> option.</p>
 <blockquote>
@@ -233,7 +260,7 @@ $$
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 26/03/2015 at 18:51:48.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 27/03/2015 at 17:06:26.</span>
     </p>
   </div>
  </footer>

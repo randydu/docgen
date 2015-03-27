@@ -57,7 +57,7 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
 
 <body>
 
-<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="running.html">Running DocGen</a></li><li><a href="writing-content.html">Writing content</a></li><li><a href="advanced-content.html">Advanced content</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Help</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="version-control.html">Using with version control</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
+<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="running.html">Running DocGen</a></li><li><a href="writing-content.html">Writing content</a></li><li><a href="commonmark.html">CommonMark reference</a></li><li><a href="advanced-content.html">Advanced content</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Help</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="version-control.html">Using with version control</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
 <div id="navigator">Table of contents</div>
 
 <header>
@@ -72,8 +72,8 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
  </div>
 </header>
 
-<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Installation</h1><p>This section explains how to install DocGen.</p>
-<h2>Supported platform</h2>
+<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Installation</h1><ul class="pageToc"><li><a href="#supported-platform">Supported platform</a></li><li><a href="#dependencies">Dependencies</a></li><li><a href="#optional-dependencies-(only-for-pdf)">Optional dependencies (only for PDF)</a></li><li><a href="#quick-install-with-npm">Quick install with NPM</a></li><li><a href="#install-by-direct-download">Install by direct download</a></li></ul><p>This section explains how to install DocGen.</p>
+<h2 id="supported-platform">Supported platform</h2>
 <p><em>&apos;Supported platform&apos;</em> means the software required to <strong>run</strong> the DocGen tool. The static website <strong>produced</strong> by
 DocGen will work on all modern browsers on all all major operating systems (see <a href="index.html">browser support</a>).</p>
 <p class="w-information">
@@ -82,7 +82,7 @@ DocGen will work on all modern browsers on all all major operating systems (see 
     and <strong>wkhtmltopdf 0.12.2.1 </strong>(with patched qt).
 </p>
 <p>While other operating systems and dependency versions may work, they are not tested or officially supported.</p>
-<h2>Dependencies</h2>
+<h2 id="dependencies">Dependencies</h2>
 <p>DocGen requires <strong><a href="https://nodejs.org">Node.js</a></strong>. To install on Ubuntu Linux, enter these terminal commands:</p>
 <pre><code>curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
 sudo apt-get install -y nodejs
@@ -91,15 +91,15 @@ sudo apt-get install -y nodejs
 <a href="https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories">NodeSource Linux Repositories</a>
 (recommended).</p>
 <p>For other platforms (not supported), see the <a href="https://nodejs.org/download">download page</a> or vendor instructions.</p>
-<h2>Optional dependencies (only for PDF)</h2>
+<h2 id="optional-dependencies-(only-for-pdf)">Optional dependencies (only for PDF)</h2>
 <p>For optional PDF support, DocGen requires <strong><a href="http://wkhtmltopdf.org">wkhtmltopdf</a></strong>. See the wkthmltopdf website for
 installation instructions.</p>
-<h2>Quick install with NPM</h2>
+<h2 id="quick-install-with-npm">Quick install with NPM</h2>
 <p>The quickest way to install DocGen is with <strong><a href="https://www.npmjs.com">npm</a></strong> (the JavaScript package manager). Enter
 these terminal commands:</p>
 <pre><code>npm install -g docgen-tool
 </code></pre>
-<h2>Install by direct download</h2>
+<h2 id="install-by-direct-download">Install by direct download</h2>
 <p>DocGen can also be installed by <a href="https://github.com/mtmacdonald/docgen">direct download</a>.</p>
 </div></div></section>
 
@@ -110,7 +110,7 @@ these terminal commands:</p>
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 26/03/2015 at 18:51:48.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 27/03/2015 at 17:06:26.</span>
     </p>
   </div>
  </footer>

@@ -72,39 +72,141 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
  </div>
 </header>
 
-<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Running DocGen</h1><ul class="pageToc"><li><a href="#overview">Overview</a></li><li><a href="#command-line-usage">Command-line usage</a></li><li><a href="#scaffold-command">Scaffold command</a></li><li><a href="#run-command">Run command</a></li></ul><h2 id="overview">Overview</h2>
-<p>DocGen is a command-line tool which takes plain text input files and outputs a static website.</p>
-<h2 id="command-line-usage">Command-line usage</h2>
-<p>The DocGen command-line interface includes usage help for both the tool and its subcommands:</p>
-<pre><code>docgen --help
-docgen run --help
-</code></pre>
-<h2 id="scaffold-command">Scaffold command</h2>
-<p>The <strong>scaffold</strong> command creates an <em>example</em> input directory. It outputs the minumum files required by DocGen, which
-can then be used as a template for making any new website.</p>
-<p><strong>Create a scaffold template in the working directory</strong> (./)<strong>:</strong></p>
-<pre><code>docgen scaffold
-</code></pre>
-<p><strong>Create a scaffold template in a specified directory:</strong></p>
-<pre><code>docgen scaffold -o $HOME/docgen-example
-</code></pre>
-<h2 id="run-command">Run command</h2>
-<p>The <strong>run</strong> command transforms an input directory (plain text source) into an output directory (HTML+PDF).</p>
-<p><strong>Basic usage:</strong></p>
-<pre><code>docgen run -i $HOME/docgen-example -o $HOME/docgen-output
-</code></pre>
-<p><strong>Optionally create a PDF:</strong></p>
-<pre><code>docgen run -i $HOME/docgen-example -o $HOME/docgen-output -p
-</code></pre>
-<p><strong>Optionally create a redirect page:</strong></p>
-<pre><code>docgen run -i $HOME/docgen-example -o $HOME/docgen-output -r
-</code></pre>
-<blockquote>
-<p>The optional redirect page is an &apos;index.html&apos; file that is placed in the output&apos;s parent directory. The redirect page
-redirects the user to the homepage in the output directory. This is mostly useful for hosting the website without having
-to place all the files in the root directory.</p>
-</blockquote>
-</div></div></section>
+<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">CommonMark reference</h1><ul class="pageToc"><li><a href="#page-heading">Page Heading</a></li><li><a href="#section-heading">Section Heading</a></li><li><a href="#minor-heading">Minor Heading</a></li></ul><p>This page shows examples of how to write content with CommonMark. See the <a href="http://spec.commonmark.org">CommonMark Spec</a>
+for more detailed information.</p>
+<style>
+.reference pre, .reference table, .reference blockquote {
+  margin: 0;
+}
+.reference .codeCell pre {
+  border: none;
+  border-radius: 0;
+}
+.reference .codeCell {
+  padding: 0;
+}
+</style>
+<div>
+<table class="reference w-table w-fixed w-stripe" style="width: 100%">
+<tr><th>Element</th><th>What you type</th><th>What it looks like in DocGen</th></tr>
+<tr>
+ <td class="r1">Page Heading</td>
+ <td class="codeCell"><pre><code>  
+  Page Heading
+  ============
+ </code></pre></td>
+ <td>
+  <h1 id="page-heading">Page Heading</h1>
+</td>
+</tr>
+<tr>
+ <td class="r1">Section Heading</td>
+ <td class="codeCell"><pre><code> 
+  Section Heading
+  ---------------
+ </code></pre></td>
+ <td>
+  <h2 id="section-heading">Section Heading</h2>
+ </td>
+</tr>
+<tr>
+ <td class="r1">Minor Heading</td>
+ <td class="codeCell"><pre><code> 
+  ### Minor Heading
+ </code></pre></td>
+ <td>
+  <h3 id="minor-heading">Minor Heading</h3>
+ </td>
+</tr>
+<tr>
+ <td class="r1">Fake Heading<br>(not in PDF contents list)</td>
+ <td class="codeCell"><pre><code> 
+  &lt;p class=&quot;dg-fakeHeading&quot;&gt;Fake&lt;/p&gt;
+ </code></pre></td>
+ <td>
+  <p class="dg-fakeHeading">Fake</p>
+ </td>
+</tr>
+<tr>
+ <td class="r1">Emphasis (italic)</td>
+ <td class="codeCell"><pre><code> 
+  This text has *emphasis*
+ </code></pre></td>
+ <td>This text has <em>emphasis</em></td>
+</tr>
+<tr>
+ <td class="r1">Strong (bold)</td>
+ <td class="codeCell"><pre><code> 
+  This text is **bold**
+ </code></pre></td>
+ <td>This text is <strong>bold</strong></td>
+</tr>
+<tr>
+ <td class="r1">Block quotes</td>
+<td class="codeCell"><pre><code>   
+  &gt; This is a block quote.
+ </code></pre></td>
+ <td><blockquote>This is a block quote</blockquote></td>
+</tr>
+<tr>
+ <td class="r1">Code block<br> (indent with tab)</td>
+ <td class="codeCell"><pre><code> 
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;int some_code=0
+ </code></pre></td>
+ <td><pre><code>int some_code=0;</code></pre></td>
+</tr>
+<tr>
+ <td class="r1">Unordered List</td>
+ <td class="codeCell"><pre><code> 
+  * unordered list
+  * (items)
+ </code></pre></td>
+ <td><ul><li>unordered list</li><li>(items)</li></ul></td>
+</tr>
+<tr>
+ <td class="r1">Ordered List</td>
+ <td class="codeCell"><pre><code> 
+  1. ordered list
+  2. (items)
+ </code></pre></td>
+ <td><ol><li>ordered list</li><li>(items)</li></ol></td>
+</tr>
+<tr>
+ <td class="r1">External Links</td>
+ <td class="codeCell"><pre><code> 
+  [link](http://www.google.com)
+ </code></pre></td>
+ <td><a href="http://www.google.com">link</a></td>
+</tr>
+<tr>
+ <td class="r1">Links to a local file</td>
+ <td class="codeCell"><pre><code> 
+  [attachment](user_guide.pdf)
+ </code></pre></td>
+ <td><a href="user_guide.pdf">attachment</a></td>
+</tr>
+<tr>
+ <td class="r1">Diagrams<br> (embedding images)</td>
+ <td class="codeCell"><pre><code> 
+  ![](files/images/logo.png)
+ </code></pre></td>
+ <td><img src="files/images/logo.png"></td>
+</tr>
+<tr>
+ <td class="r1">Simple table</td>
+ <td class="codeCell"><pre><code>  
+  | Cell 1 | Cell 2 | Cell 3 |
+  | Cell 4 | Cell 5 | Cell 6 |
+ </code></pre></td>
+ <td>
+  <table style="width:300px;" class="w-table w-fixed w-stripe">
+   <tr><td>Cell 1</td><td>Cell 2</td><td>Cell 3</td></tr>
+   <tr><td>Cell 4</td><td>Cell 5</td><td>Cell 6</td></tr>
+  </table>
+ </td>
+</tr>
+</table>
+</div></div></div></section>
 
  <footer>
   <div><p class="w-fixed-width"><span id="dg-web-footer">Version 2.0.0 released on XX/XX/XXXX.</span></p></div>
