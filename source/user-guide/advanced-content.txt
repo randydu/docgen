@@ -35,7 +35,7 @@ DocGen already tries to eliminate unsightly page breaks *inside* code blocks, bl
 
 	<p class="avoid-break">A long paragraph</p>
 
-Basic Tables
+Basic tables
 ------------
 
 An extended Markdown syntax allows basic tables to be created. Basic tables: 
@@ -60,7 +60,7 @@ An extended Markdown syntax allows basic tables to be created. Basic tables:
 | Another    | More commentary  | ?       |
 | One more   | More commentary  | ?       |
 
-Custom Tables
+Custom tables
 -------------
 
 For better control of table styling, revert to HTML. Either embed custom CSS styles in the 

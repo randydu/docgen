@@ -122,7 +122,7 @@
  <strong>DocGen</strong> is a <strong>static website generator</strong> that's ideal for making technical user guides for software products.
 </p>
 
-<h2 class="hiddenTitle">Features</h2>
+<h2 class="hiddenTitle" id="features">Features</h2>
 <ul class="features">
 <li>
   <p><span class="w-icon" data-name="monitor"></span><span>Self-contained website</span></p>
@@ -168,7 +168,7 @@
 <div style="padding-top:20px;"><div class="w-fixed-width">
 <h2>How it works</h2>
 
-<ul class="how-it-works">
+<ul class="how-it-works" id="how-it-works">
 <li>
   <p>"You write in plain text or human-friendly human-friendly <a href="http://commonmark.org">CommonMark</a>"</p>
   <p style="background-image:url('files/images/text.png');"></p>
@@ -214,7 +214,7 @@ variants based on a common template. Docgen is intended more for free-form, huma
 updated and refactored, and standardised for each product release.
 </blockquote>
 
-<h2>Browser support</h2>
+<h2 id="browser-support">Browser support</h2>
 
 Output created by DocGen works on modern browsers (desktop and mobile devices).
 
@@ -223,7 +223,7 @@ Output created by DocGen works on modern browsers (desktop and mobile devices).
 <a href= "https://www.mozilla.org/en-US/firefox/new">Firefox</a>, 
 <a href= "https://www.apple.com/safari">Safari</a></li></ul>
 
-<h2>Quick Start</h2>
+<h2 id="quick-start">Quick start</h2>
 
 <ul>
  <li class="list-heading">In just three commands:</li>
