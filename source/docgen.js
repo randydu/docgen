@@ -544,6 +544,21 @@ function DocGen (process)
                 }
                 $('#inner-content').html(content);
                 //------------------------------------------------------------------------------------------------------
+                //insert permalinks for every page heading
+                //when pageToc is enabled, also insert a page-level table of contents
+                var html = [], i = -1;
+                html[++i] = '<ul class="pageToc">';
+                $('h1, h2, h3, h4, h5, h6').each(function( index ) {
+                    var label = $(this).text();
+                    var anchor = label.toLowerCase().replace(/\s+/g, "-");
+                    $(this).attr('id', anchor);
+                    html[++i] = '<li><a href="#'+anchor+'">'+label+'</a></li>';
+                });
+                html[++i] = '</ul>';
+                if (options.pageToc === true && page.html !== true) {
+                    $('#inner-content').prepend(html.join(''));
+                }
+                //------------------------------------------------------------------------------------------------------
                 //prepend the auto heading (which makes the PDF table of contents match the web TOC)
                 $('#inner-content').prepend('<h1 id="autoTitle">'+page.title+'</h1>');
                 if (page.html === true) {

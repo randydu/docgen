@@ -87,6 +87,17 @@ section blockquote p, section li p {
 .toc-icon svg {fill: white;}
 
 /*
+	Page table of contents
+*/
+
+.pageToc {
+	list-style: none;
+	padding: 10px;
+	border: 1px solid #999;
+	background-color: #eee;
+}
+
+/*
 	Class to make a heading look invisible in web page, but still appear in the PDF table of contents
 		- display:none, visibily: hidden, zero dimensions, and offscreen positioning don't work
 		- so instead take it out of the flow and make it small and translucent
