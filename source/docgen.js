@@ -106,7 +106,15 @@ function DocGen (process)
     */
 
     var copyDirSync = function (source, destination) {
-        fs.copySync(source, destination);
+        try {
+            fs.copySync(source, destination);
+        } catch (error) {
+            console.log(chalk.red('Error copying directory: '+source+' to '+destination));
+            if (options.verbose === true) {
+                console.log(chalk.red(error));
+                process.exit(1);
+            }
+        }
     }
 
     /*
@@ -114,8 +122,16 @@ function DocGen (process)
     */
 
     var remakeDirSync = function (path) {
-        fs.removeSync(path);
-        fs.mkdirpSync(path);
+        try {
+            fs.removeSync(path);
+            fs.mkdirpSync(path);
+        } catch (error) {
+            console.log(chalk.red('Error recreating directory: '+path));
+            if (options.verbose === true) {
+                console.log(chalk.red(error));
+                process.exit(1);
+            }
+        }
     }
 
     /*
@@ -123,7 +139,15 @@ function DocGen (process)
     */
 
     var removeDirSync = function (path) {
-        fs.removeSync(path);
+        try {
+            fs.removeSync(path);
+        } catch (error) {
+            console.log(chalk.red('Error removing directory: '+path));
+            if (options.verbose === true) {
+                console.log(chalk.red(error));
+                process.exit(1);
+            }
+        }
     }
 
     /*
