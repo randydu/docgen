@@ -125,7 +125,7 @@ for more detailed information.
  <td class="codeCell"><pre><code> 
   [attachment](user_guide.pdf)
  </code></pre></td>
- <td><a href="user_guide.pdf">attachments</a></td>
+ <td><a href="user_guide.pdf">attachment</a></td>
 </tr>
 
 <tr>
