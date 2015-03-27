@@ -62,8 +62,7 @@ function DocGen (process)
     this.run = function () {
         console.log(chalk.green.bold('DocGen version '+version));
         //delete and recreate the output directory
-        fs.removeSync(options.output);
-        fs.mkdirp(options.output);
+        remakeDirSync(options.output);
         loadTemplates();
     }
 
@@ -108,6 +107,23 @@ function DocGen (process)
 
     var copyDirSync = function (source, destination) {
         fs.copySync(source, destination);
+    }
+
+    /*
+        remake a directory (sync) ... remove and then mkdir in one operation
+    */
+
+    var remakeDirSync = function (path) {
+        fs.removeSync(path);
+        fs.mkdirpSync(path);
+    }
+
+    /*
+        remove any directory (sync)
+    */
+
+    var removeDirSync = function (path) {
+        fs.removeSync(path);
     }
 
     /*
@@ -770,7 +786,7 @@ function DocGen (process)
         createRedirect();
         //remove temp files
         if (options.pdf === true) {
-            fs.removeSync(options.output+'temp');
+            removeDirSync(options.output+'temp');
         }
         console.log(chalk.green.bold('Done!'));
     }
