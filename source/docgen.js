@@ -5,7 +5,6 @@ var path = require('path');
 var cheerio = require('cheerio');
 var markdown = require('markdown-it')('commonmark');
 var moment = require('moment');
-var ncp = require ('ncp');
 var childProcess = require("child_process");
 var schemaValidator = require("z-schema");
 var chalk = require('chalk');
@@ -69,7 +68,7 @@ function DocGen (process)
     }
 
     /*
-        read any file
+        read any file (async)
     */
 
     var readFile = function (path) {
@@ -87,7 +86,7 @@ function DocGen (process)
     }
 
     /*
-        write any file
+        write any file (async)
     */
 
     var writeFile = function (path, data) {
@@ -101,6 +100,14 @@ function DocGen (process)
                 }
             });
         });
+    }
+
+    /*
+        copy any directory (sync)
+    */
+
+    var copyDirSync = function (source, destination) {
+        fs.copySync(source, destination);
     }
 
     /*
@@ -605,10 +612,10 @@ function DocGen (process)
             promises['docgenPdfFooter'] = writeFile(pdfTempDir+'pdfFooter.html', templates.pdfFooter.html());
         }
         rsvp.hash(promises).then(function (files) {
-            copyRequire();
-            copyUserFiles();
+            copyDirSync(__dirname+'/require', options.output+'require'); //CSS, JavaScript
+            copyDirSync(options.input+'/files', options.output+'files'); //user-attached files and images
             if (options.mathKatex === true) {
-                copyKatex();
+                copyDirSync(__dirname+'/optional/katex', options.output+'require/katex');
             }
             preparePdfTemplates();
         }).catch(function(error) {
@@ -617,50 +624,6 @@ function DocGen (process)
                 console.log(chalk.red(error));
             }
             process.exit(1);
-        });
-    }
-
-    /*
-        copy the require directory (CSS, JavaScript)
-    */
-
-    var copyRequire = function () {
-        ncp(__dirname+'/require', options.output+'require', function (error) {
-            if (error) {
-                console.log(chalk.red('Error copying the require directory'));
-                if (options.verbose === true) {
-                    console.log(chalk.red(error));
-                }
-                process.exit(1);
-            }
-        });
-    }
-
-    var copyKatex = function () {
-        ncp(__dirname+'/optional/katex', options.output+'require/katex', function (error) {
-            if (error) {
-                console.log(chalk.red('Error copying the katex directory'));
-                if (options.verbose === true) {
-                    console.log(chalk.red(error));
-                }
-                process.exit(1);
-            }
-        });
-    }
-
-    /*
-        copy the files directory (user attached files)
-    */
-
-    var copyUserFiles = function () {
-        ncp(options.input+'/files', options.output+'files', function (error) {
-            if (error) {
-                console.log(chalk.red('Error copying the attached files'));
-                if (options.verbose === true) {
-                    console.log(chalk.red(error));
-                }
-                process.exit(1);
-            }
         });
     }
 
