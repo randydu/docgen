@@ -47,16 +47,8 @@ function DocGen (process)
     */
 
     this.scaffold = function () {
-        try {
-            console.log(chalk.green('Creating scaffold template in directory: '+options.output));
-            fs.copySync(__dirname+'/example', options.output);
-        } catch (error) {
-            console.log(chalk.red('Error copying files to directory'));
-            if (options.verbose === true) {
-                console.log(chalk.red(error));
-                process.exit(1);
-            }
-        }
+        console.log(chalk.green('Creating scaffold template directory'));
+        copyDirSync(__dirname+'/example', options.output);
     }
 
     this.run = function () {
