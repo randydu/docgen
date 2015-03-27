@@ -3,6 +3,16 @@
 
 Any standard **HTML** can be entered in a content (.txt) file if needed (useful in cases where Markdown features are too simple).
 
+Adding images
+-------------
+
+* Any diagrams (in image form, e.g. JPEG, PNG, GIF etc) should be put the Source/Images folder.
+
+Attaching files
+---------------
+
+* Any other files you want to attach should go into Source/Docs. 
+
 Creating internal links to page sections
 ----------------------------------------
 

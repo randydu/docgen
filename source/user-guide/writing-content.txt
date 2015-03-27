@@ -27,13 +27,21 @@
 }
 </style>
 
+Content for a DocGen website is authored in plain text, using any text editor. Image files can be embedded, and 
+other types of files can be attached as links.
+
+Additionally, website metadata is configured via [JSON](http://json.org) files.
+
 Overview
 --------
 
-Content for a DocGen website is authored in plain text. Image files can be embedded, and other types of files can be 
-attached as links.
+DocGen transforms source files from an input directory into files in an output directory.
 
-Additionally, website metadata is configured via [JSON](http://json.org) files.
+It takes every source file (plain text) specified in **contents.json** and converts it. Each source file becomes a 
+separate page in the website and a separate chapter in the PDF.
+
+DocGen adds metadata that is specified in **parameters.json**, and copies the images and files in the **files**
+directory to the output.
 
 > Always save input files with **UTF-8** encoding. This makes non-standard characters (ø © é etc) work.
 
@@ -42,9 +50,35 @@ Metadata
 
 **parameters.json**
 
+The parameters file is used to specify metadata describing the product. 
+
+- **title** - the product title
+- **name** - the product name (also used to name the PDF)
+- **version** - the release version
+- **date** - the release date
+- **organization** - the company or organization 
+- **author** - the lead author of the document
+- **owner** - the owner of the product
+- **contributors** - list of contributors
+- **website** - a link to the product website
+- **module** - module name (useful for larger products with submodules)
+- **id** - reference number (e.g. product id in a change management tool)
+- **summary** - a descriptive summary of the product
+- **marking** - license or other protective markings
+- **legalese** - document markings (confidentiality, disclaimers, smallprint etc)
+
+Values can be empty strings, but the elements are required in the JSON file. 
+
+Parameters with URLs can be either website URLs, or email addresses (specify *'mailto:name@address.com'*).
+
 **contents.json**
 
+The contents file specifies the names, locations, order, and structure of the source files.
+
 **release-notes.txt**
+
+The release notes source file is a mandatory source file (that does not need to be listed in contents.json). Use it to
+summarize the change history for each version of the product.
 
 Plain text
 ----------
@@ -114,7 +148,7 @@ For more complex pages not covered by CommonMark's syntax, simply use inline HTM
 </table>
 </div><br class="w-clear"/>
 
-For more examples, see [writing advanced content](advanced-content.html).
+For more examples, see the [CommonMark Reference](commonmark.html).
 
 > It is also possible to bypass the CommonMark parser altogether and specify a pure HTML input page, by setting 
 <code class="w-inline-code">"html": true</code> in a page object in *contents.json*.
