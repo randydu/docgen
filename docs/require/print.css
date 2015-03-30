@@ -2,14 +2,18 @@
  background-color :white; /*otherwise background artefacts appear as a feint outline in PDF*/
 }
 
-#toc, #navigator, header, footer {
+.dg-pageToc {
 	display: none;
 }
 
-.no-break, #content th, #content tr, #content .styled-table tr, #content blockquote, #content pre {
+#dg-toc, #dg-navigator, header, footer {
+	display: none;
+}
+
+.dg-avoidBreak, #dg-content th, #dg-content tr, #dg-content blockquote, #dg-content pre {
 	page-break-inside: avoid;
 }
 
-.force-break {
+.dg-forceBreak {
 	page-break-after: always;
 }

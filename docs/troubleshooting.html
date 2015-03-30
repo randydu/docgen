@@ -23,7 +23,7 @@
 <script type="text/javascript">
 
 $(document).ready( function () {
-  $("#toc").hide(); //hide the table of contents
+  $("#dg-toc").hide(); //hide the table of contents
 
   //instantiate an svg injector to show SVG icons
   var injector = new svgInject();
@@ -35,9 +35,9 @@ $(document).ready( function () {
   });
 
   //toggle visibility of table of contents
-  $("#navigator").click(function()
+  $("#dg-navigator").click(function()
   {
-    $("#toc").slideToggle("fast");
+    $("#dg-toc").slideToggle("fast");
     $(this).toggleClass("active");
   });
 
@@ -57,8 +57,8 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
 
 <body>
 
-<div id="toc"><div><table class="unstyled"><tr><td class="toc-group"><ul><li class="toc-heading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">User Guide</li><li><a href="running.html">Running DocGen</a></li><li><a href="writing-content.html">Writing content</a></li><li><a href="commonmark.html">CommonMark reference</a></li><li><a href="advanced-content.html">Advanced content</a></li></ul></td><td class="toc-group"><ul><li class="toc-heading">Help</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="version-control.html">Using with version control</a></li></ul></td><td class="toc-group"></td><td class="toc-group" id="toc-fixed-column"><ul><li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
-<div id="navigator">Table of contents</div>
+<div id="dg-toc"><div><table class="unstyled"><tr><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Quick Start</li><li><a href="index.html">Overview</a></li><li><a href="installation.html">Installation</a></li><li><a href="upgrading.html">Upgrading</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">User Guide</li><li><a href="running.html">Running DocGen</a></li><li><a href="writing-content.html">Writing content</a></li><li><a href="commonmark.html">CommonMark reference</a></li><li><a href="advanced-content.html">Advanced content</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Help</li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="version-control.html">Using with version control</a></li></ul></td><td class="dg-tocGroup"></td><td class="dg-tocGroup" id="dg-tocFixedColumn"><ul><li><span class="w-icon dg-tocIcon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon dg-tocIcon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div><button class="w-icon-button" onclick="window.location=&apos;docgen.pdf&apos;;"><span class="w-icon" data-name="document"></span><span>PDF copy</span></button></div></td></tr></table></div></div>
+<div id="dg-navigator">Table of contents</div>
 
 <header>
  <div class="w-fixed-width">
@@ -72,7 +72,7 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
  </div>
 </header>
 
-<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Troubleshooting</h1><ul class="pageToc"><li><a href="#displaying-detailed-errors">Displaying detailed errors</a></li><li><a href="#pdf-missing-content">PDF missing content</a></li><li><a href="#pdf-display-errors">PDF display errors</a></li><li><a href="#attached-files-not-in-pdf">Attached files not in PDF</a></li><li><a href="#corrupted-text-characters">Corrupted text characters</a></li><li><a href="#missing-logo">Missing logo</a></li><li><a href="#other-issues">Other issues</a></li></ul><p>This page gives help on solving common issues with DocGen.</p>
+<section id="dg-content"><div class="w-fixed-width"><div id="dg-innerContent"><h1 id="dg-autoTitle">Troubleshooting</h1><ul class="dg-pageToc"><li><a href="#displaying-detailed-errors">Displaying detailed errors</a></li><li><a href="#pdf-missing-content">PDF missing content</a></li><li><a href="#pdf-display-errors">PDF display errors</a></li><li><a href="#attached-files-not-in-pdf">Attached files not in PDF</a></li><li><a href="#corrupted-text-characters">Corrupted text characters</a></li><li><a href="#missing-logo">Missing logo</a></li><li><a href="#other-issues">Other issues</a></li></ul><p>This page gives help on solving common issues with DocGen.</p>
 <h2 id="displaying-detailed-errors">Displaying detailed errors</h2>
 <p>Pass the <strong>-v</strong> (verbose) option when running DocGen to get more detailed error messages.</p>
 <h2 id="pdf-missing-content">PDF missing content</h2>
@@ -98,7 +98,7 @@ Pass the <strong>-d [milliseconds]</strong> option to increase the rendering tim
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 30/03/2015 at 14:32:44.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 30/03/2015 at 16:21:47.</span>
     </p>
   </div>
  </footer>
