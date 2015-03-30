@@ -586,14 +586,19 @@ function DocGen (process)
                 //insert permalinks for every page heading
                 //when pageToc is enabled, also insert a page-level table of contents
                 var html = [], i = -1;
-                html[++i] = '<ul class="pageToc">';
-                $('h1, h2, h3, h4, h5, h6').each(function( index ) {
+                var headings = $('h1, h2, h3, h4, h5, h6');
+                if (headings.length > 0) {
+                    html[++i] = '<ul class="pageToc">';
+                }
+                headings.each(function( index ) {
                     var label = $(this).text();
                     var anchor = label.toLowerCase().replace(/\s+/g, "-");
                     $(this).attr('id', anchor);
                     html[++i] = '<li><a href="#'+anchor+'">'+label+'</a></li>';
                 });
-                html[++i] = '</ul>';
+                if (headings.length > 0) {
+                    html[++i] = '</ul>';
+                }
                 if (options.pageToc === true && page.html !== true) {
                     $('#inner-content').prepend(html.join(''));
                 }
@@ -607,7 +612,7 @@ function DocGen (process)
                 //apply the w-table class
                 $('table:not(.unstyled)').addClass('w-table w-fixed w-stripe');
                 //------------------------------------------------------------------------------------------------------
-                pages[key] =  $;
+                pages[key] = $;
             });
         });
         //add web ownership page
