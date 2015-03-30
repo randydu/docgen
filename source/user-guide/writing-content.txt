@@ -22,8 +22,14 @@
   border-radius: 6px;
   padding: 0 18px 0 18px;
 }
+.exampleContainer img {
+  margin-top: 5px;
+}
 #content table {
   width: 400px!important;
+}
+.hljs-change {
+  background-color: initial!important;
 }
 </style>
 
@@ -152,6 +158,30 @@ For more examples, see the [CommonMark Reference](commonmark.html).
 
 > It is also possible to bypass the CommonMark parser altogether and specify a pure HTML input page, by setting 
 <code class="w-inline-code">"html": true</code> in a page object in *contents.json*.
+
+Adding images
+-------------
+
+Diagrams (in image form, e.g. JPEG, PNG, GIF etc) should be put the *files/images* directory, and embedded as images.
+
+<div class="container codeContainer">
+<pre><code>![](files/images/logo.png)</code></pre>
+</div>
+<div class="container exampleContainer">
+<img src="files/images/logo.png" />
+</div><br class="w-clear"/>
+
+Attaching files
+---------------
+
+Other files you want to attach should go into *files* directory.
+
+<div class="container codeContainer">
+<pre><code>[attachment](user_guide.pdf)</code></pre>
+</div>
+<div class="container exampleContainer">
+<a href="user_guide.pdf">attachment</a>
+</div><br class="w-clear"/>
 
 Mathematical Expressions
 ------------------------
