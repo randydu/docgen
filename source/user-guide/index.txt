@@ -134,7 +134,7 @@
 </li>
 <li>
   <p><span class="w-icon" data-name="edit"></span><span>Human-friendly input</span></p>
-  <p>Write content in plain text, or the human-friendly <a href="http://commonmark.org">CommonMark</a> format 
+  <p>Write in plain text, or the human-friendly <a href="http://commonmark.org">CommonMark</a> format 
   (Markdown).</p>
 </li>
 <li>
@@ -143,7 +143,7 @@
 </li>
 <li>
   <p><span class="w-icon" data-name="clipboard"></span><span>Table of contents</span></p>
-  <p>Automatically creates document and page tables of contents, with links and PDF page numbers.</p>
+  <p>Automatically creates tables of contents, with links and PDF page numbers.</p>
 </li>
 <li>
   <p><span class="w-icon" data-name="code"></span><span>Code syntax highlighting</span></p>
