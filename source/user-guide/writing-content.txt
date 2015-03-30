@@ -102,6 +102,8 @@ Example paragraph.
 
 </div><br class="w-clear"/>
 
+<p class="dg-forceBreak"></p>
+
 CommonMark (Markdown)
 ---------------------
 
@@ -208,6 +210,8 @@ reason, extra libraries are needed. DocGen supports two widely-used web mathemat
 - **[MathJax](https://www.mathjax.org/)** is slower, larger, and [supports more features](http://docs.mathjax.org/en/latest/tex.html#supported-latex-commands)
 
 The document author decides which one (or both) to use.
+
+<p class="dg-forceBreak"></p>
 
 ### Mathematics using KaTeX
 

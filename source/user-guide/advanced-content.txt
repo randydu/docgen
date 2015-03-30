@@ -163,7 +163,7 @@ issues (the most common problem).
 
 To *force* a page break, insert the following before an element that should appear on a new page:
 
-	<span class="dg-forceBreak"></span>
+	<p class="dg-forceBreak"></p>
 
 DocGen automatically tries to eliminate page breaks *inside* code blocks, block quotes, and table rows. 
 To apply the same technique to other elements, revert to HTML and apply the **dg-avoidBreak** class. For example:
