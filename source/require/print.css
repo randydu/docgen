@@ -2,6 +2,10 @@
  background-color :white; /*otherwise background artefacts appear as a feint outline in PDF*/
 }
 
+.dg-pageToc {
+	display: none;
+}
+
 #toc, #navigator, header, footer {
 	display: none;
 }
