@@ -451,12 +451,14 @@ function DocGen (process)
 
         //------------------------------------------------------------------------------------------------------
         //logo dimensions
+        var hasLogo = false;
         var logoWidth = 0;
         var logoHeight = 0;
         try {
             var logo = imageSizeOf(options.input+'/files/images/logo.png');
             logoWidth = logo.width;
             logoHeight = logo.height;
+            hasLogo = true;
         } catch (error) {
             //do nothing. If logo file cannot be read, logo is simply not shown
         }
@@ -520,11 +522,15 @@ function DocGen (process)
             if (templates.hasOwnProperty(key)) {
                 $ = templates[key];
                 //logo
-                var logoUrl = 'files/images/logo.png';
-                $('#dg-logo').css('background-image', 'url(' + logoUrl + ')');
-                $('#dg-logo').css('height', logoHeight+'px');
-                $('#dg-logo').css('line-height', logoHeight+'px');
-                $('#dg-logo').css('padding-left', (logoWidth+25)+'px');                
+                if (hasLogo === true) {
+                    var logoUrl = 'files/images/logo.png';
+                    $('#dg-logo').css('background-image', 'url(' + logoUrl + ')');
+                    $('#dg-logo').css('height', logoHeight+'px');
+                    $('#dg-logo').css('line-height', logoHeight+'px');
+                    $('#dg-logo').css('padding-left', (logoWidth+25)+'px'); 
+                } else {
+                    $('#dg-logo').css('padding-left', '0'); 
+                }
                 //parameters
                 $('title').text(meta.parameters.title);
                 $('#dg-homelink').attr('href', homelink);
