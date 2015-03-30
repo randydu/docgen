@@ -411,9 +411,9 @@ function DocGen (process)
         for (var key in sortedPages) {
             if (sortedPages.hasOwnProperty(key)) {
                 if (key != 5) { //skip the extra column
-                    html[++i] = '<td class="toc-group">';
+                    html[++i] = '<td class="dg-tocGroup">';
                     sortedPages[key].forEach( function (section) {
-                        html[++i] = '<ul><li class="toc-heading">'+section.heading+'</li>';
+                        html[++i] = '<ul><li class="dg-tocHeading">'+section.heading+'</li>';
                         section.pages.forEach( function (page) {
                             var name = page.source.substr(0, page.source.lastIndexOf('.'));
                             var path = name+'.html';
@@ -427,9 +427,9 @@ function DocGen (process)
         }
 
         //fixed-width column at end
-        html[++i] = '<td class="toc-group" id="toc-fixed-column"><ul>';
-        html[++i] = '<li><span class="w-icon toc-icon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li>';
-        html[++i] = '<li><span class="w-icon toc-icon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li>';
+        html[++i] = '<td class="dg-tocGroup" id="dg-tocFixedColumn"><ul>';
+        html[++i] = '<li><span class="w-icon dg-tocIcon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li>';
+        html[++i] = '<li><span class="w-icon dg-tocIcon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li>';
         html[++i] = '</ul><div>';
         if (options.pdf) {
             html[++i] = '<button class="w-icon-button" onclick="window.location=\''+pdfName+'\';">';
@@ -439,7 +439,7 @@ function DocGen (process)
         }
         html[++i] = '</div></td>';
         html[++i] = '</tr></table></div>';
-        $('#toc').html(html.join(''));
+        $('#dg-toc').html(html.join(''));
         templates.main = $;
     }
 

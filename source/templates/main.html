@@ -23,7 +23,7 @@
 <script type="text/javascript">
 
 $(document).ready( function () {
-  $("#toc").hide(); //hide the table of contents
+  $("#dg-toc").hide(); //hide the table of contents
 
   //instantiate an svg injector to show SVG icons
   var injector = new svgInject();
@@ -35,9 +35,9 @@ $(document).ready( function () {
   });
 
   //toggle visibility of table of contents
-  $("#navigator").click(function()
+  $("#dg-navigator").click(function()
   {
-    $("#toc").slideToggle("fast");
+    $("#dg-toc").slideToggle("fast");
     $(this).toggleClass("active");
   });
 
@@ -57,8 +57,8 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
 
 <body>
 
-<div id="toc"></div>
-<div id="navigator">Table of contents</div>
+<div id="dg-toc"></div>
+<div id="dg-navigator">Table of contents</div>
 
 <header>
  <div class="w-fixed-width">

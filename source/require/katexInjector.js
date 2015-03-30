@@ -2,7 +2,7 @@
 $(document).ready( function () {
 
   //mathematical expressions using katex, if enabled
-  $('.katex-math').each(function() {
+  $('.dg-katexMath').each(function() {
     var texTxt = $(this).text();
 
     el = $(this).get(0);

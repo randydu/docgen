@@ -215,14 +215,14 @@ KaTeX is the recommended choice. It is bundled with DocGen but must be enabled b
 **-m** option.
 
 <div class="container codeContainer">
-<pre><code>&lt;div class=&quot;katex-math&quot;&gt;
+<pre><code>&lt;div class=&quot;dg-katexMath&quot;&gt;
 f(x) = \int_{-\infty}^\infty
     \hat f(\xi)\,e^{2 \pi i \xi x}
     \,d\xi
 &lt;/div&gt;</code></pre>
 </div>
 <div class="container exampleContainer">
-<div class="katex-math">
+<div class="dg-katexMath">
 f(x) = \int_{-\infty}^\infty
     \hat f(\xi)\,e^{2 \pi i \xi x}
     \,d\xi

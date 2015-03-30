@@ -9,7 +9,7 @@ section blockquote p, section li p {
 /******************************** TABLE OF CONTENTS ****************************/
 
 /*Table of contents button to initiate show/hide*/
-#navigator 
+#dg-navigator 
 {
  float: right;
  background-color: #4d4d4d;
@@ -23,74 +23,74 @@ section blockquote p, section li p {
 }
 
 /*Table of contents container*/ 
-#toc {
+#dg-toc {
 	color: white;
 	background-color: #4d4d4d;
 }
 
-#toc table {
+#dg-toc table {
 	table-layout: auto; 
 	width: 100%;
 }
 
-#toc div {
+#dg-toc div {
 	padding: 15px 0 15px 0;
 }
 
 /*Columns in table of contents*/
 
-#toc td {
+#dg-toc td {
 	border-right: 1px solid #666;
 	vertical-align: top;
 	text-align: left;
 	padding: 0 20px 0 20px;
 }
 
-#toc ul {
+#dg-toc ul {
 	padding: 0;
 	list-style-type: none;
 }
 
-#toc li {
+#dg-toc li {
 	font-weight: bold;
 }
 
-#toc table td a {
+#dg-toc table td a {
 	color: white;
 	font-weight: normal;
 	text-decoration: none;
 	margin-left: 10px;
 }
 
-#toc table td a:hover { 
+#dg-toc table td a:hover { 
 	text-decoration: underline;
 }
 
-#toc-fixed-column { 
+#dg-tocFixedColumn { 
 	border-right: none; 
 }
 
-#toc table #toc-fixed-column a {
+#dg-toc table #dg-tocFixedColumn a {
 	vertical-align: middle;
 	margin-left: 4px;
 }
 
-.toc-group {
+.dg-tocGroup {
 	width: 22%;
 }
 
-.toc-heading {
+.dg-tocHeading {
 	font-size: 16px;
 }
 
-.toc-icon {width: 18px; height: 18px; float: left;}
-.toc-icon svg {fill: white;}
+.dg-tocIcon {width: 18px; height: 18px; float: left;}
+.dg-tocIcon svg {fill: white;}
 
 /*
 	Page table of contents
 */
 
-.pageToc {
+.dg-pageToc {
 	list-style: none;
 	padding: 10px;
 	border: 1px solid #999;
