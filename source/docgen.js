@@ -612,7 +612,7 @@ function DocGen (process)
                 //prepend the auto heading (which makes the PDF table of contents match the web TOC)
                 $('#inner-content').prepend('<h1 id="autoTitle">'+page.title+'</h1>');
                 if (page.html === true) {
-                    $('#autoTitle').addClass('hiddenTitle');
+                    $('#autoTitle').addClass('dg-hiddenTitle');
                 }
                 //------------------------------------------------------------------------------------------------------
                 //apply the w-table class

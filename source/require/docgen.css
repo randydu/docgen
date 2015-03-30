@@ -103,7 +103,7 @@ section blockquote p, section li p {
 		- so instead take it out of the flow and make it small and translucent
 */
 
-.hiddenTitle {
+.dg-hiddenTitle {
 	display: block;
 	border: none;
 	margin: 0;
