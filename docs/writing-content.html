@@ -72,7 +72,7 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
  </div>
 </header>
 
-<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Writing content</h1><ul class="pageToc"><li><a href="#overview">Overview</a></li><li><a href="#metadata">Metadata</a></li><li><a href="#plain-text">Plain text</a></li><li><a href="#commonmark-(markdown)">CommonMark (Markdown)</a></li><li><a href="#commonmark-example">CommonMark Example</a></li><li><a href="#html">HTML</a></li><li><a href="#mathematical-expressions">Mathematical Expressions</a></li><li><a href="#mathematics-using-katex">Mathematics using KaTeX</a></li><li><a href="#mathematics-using-mathjax">Mathematics using MathJax</a></li></ul><style>
+<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Writing content</h1><ul class="pageToc"><li><a href="#overview">Overview</a></li><li><a href="#metadata">Metadata</a></li><li><a href="#plain-text">Plain text</a></li><li><a href="#commonmark-(markdown)">CommonMark (Markdown)</a></li><li><a href="#html">HTML</a></li><li><a href="#embedding-images">Embedding images</a></li><li><a href="#attaching-files">Attaching files</a></li><li><a href="#mathematical-expressions">Mathematical Expressions</a></li><li><a href="#mathematics-using-katex">Mathematics using KaTeX</a></li><li><a href="#mathematics-using-mathjax">Mathematics using MathJax</a></li></ul><style>
 .container {
   box-sizing: border-box;
   float:left;
@@ -96,15 +96,21 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
   border-radius: 6px;
   padding: 0 18px 0 18px;
 }
+.exampleContainer img {
+  margin-top: 5px;
+}
 #content table {
   width: 400px!important;
 }
+.hljs-change {
+  background-color: initial!important;
+}
 </style>
 <p>Content for a DocGen website is authored in plain text, using any text editor. Image files can be embedded, and
-other types of files can be attached as links.</p>
-<p>Additionally, website metadata is configured via <a href="http://json.org">JSON</a> files.</p>
+other types of files can be attached as links. Additionally, website metadata is configured
+via <a href="http://json.org">JSON</a> files.</p>
 <h2 id="overview">Overview</h2>
-<p>DocGen transforms source files from an input directory into files in an output directory.</p>
+<p>DocGen transforms source files from an input directory into output files in an output directory.</p>
 <p>It takes every source file (plain text) specified in <strong>contents.json</strong> and converts it. Each source file becomes a
 separate page in the website and a separate chapter in the PDF.</p>
 <p>DocGen adds metadata that is specified in <strong>parameters.json</strong>, and copies the images and files in the <strong>files</strong>
@@ -134,16 +140,25 @@ directory to the output.</p>
 <p>Values can be empty strings, but the elements are required in the JSON file.</p>
 <p>Parameters with URLs can be either website URLs, or email addresses (specify <em>&apos;mailto:name@address.com&apos;</em>).</p>
 <p><strong>contents.json</strong></p>
-<p>The contents file specifies the names, locations, order, and structure of the source files.</p>
+<p>The contents file specifies the names, locations, order, and hierarchy of the source files. It is used to generate both
+the web and PDF table of contents.</p>
 <p><strong>release-notes.txt</strong></p>
 <p>The release notes source file is a mandatory source file (that does not need to be listed in contents.json). Use it to
 summarize the change history for each version of the product.</p>
 <h2 id="plain-text">Plain text</h2>
+<p>The simplest input format is just to write in plain text. Here is an example of the source and output:</p>
+<div class="container codeContainer">
+<pre><code>Example paragraph.
+</code></pre>
+</div>
+<div class="container exampleContainer">
+<p>Example paragraph.</p>
+</div><br class="w-clear">
 <h2 id="commonmark-(markdown)">CommonMark (Markdown)</h2>
 <p><a href="http://commonmark.org/">CommonMark</a> (also known as <a href="http://daringfireball.net/projects/markdown/">MarkDown</a>) is a
-human-friendly plain text format. The source format is easy to read and write, and CommonMark translates it into HTML.
-DocGen uses the <a href="https://markdown-it.github.io">markdown-it</a> implementation of CommonMark. Here is an
-example of the source and output:</p>
+human-friendly plain text markup format. The source format is easy to read and write, and the CommonMark parser
+translates it into HTML. DocGen uses the <a href="https://markdown-it.github.io">markdown-it</a> implementation
+of CommonMark. Here is an example of the source and output:</p>
 <div class="container codeContainer">
 <pre><code>CommonMark Example
 ------------------
@@ -160,7 +175,7 @@ Here is an [example link](http://www.google.com).
 </code></pre>
 </div>
 <div class="container exampleContainer">
-<h2 id="commonmark-example">CommonMark Example</h2>
+<p class="dg-fakeHeading" style="font-size: 18px; padding-bottom: 4px;">CommonMark Example</p>
 <p>Paragraphs are text blocks separated by new lines.</p>
 <p>Text can be styled: <em>emphasised</em> and <strong>strong</strong>.</p>
 <p>Here is an <a href="http://www.google.com">example link</a>.</p>
@@ -169,7 +184,7 @@ Here is an [example link](http://www.google.com).
 5.times { puts &quot;Hello!&quot; }
 </code></pre>
 </div><br class="w-clear">
-<p>For more examples, see <a href="advanced-content.html">writing advanced content</a>.</p>
+<p>For more examples, see the <a href="commonmark.html">CommonMark reference</a>.</p>
 <h2 id="html">HTML</h2>
 <p>For more complex pages not covered by CommonMark&apos;s syntax, simply use inline HTML:</p>
 <div class="container codeContainer">
@@ -190,11 +205,28 @@ Here is an [example link](http://www.google.com).
   </tr>
 </table>
 </div><br class="w-clear">
-<p>For more examples, see the <a href="commonmark.html">CommonMark Reference</a>.</p>
+<p>For more examples, see <a href="advanced-content.html">writing advanced content</a>.</p>
 <blockquote>
-<p>It is also possible to bypass the CommonMark parser altogether and specify a pure HTML input page, by setting
+<p>Inline HTML is still parsed by the CommonMark parser (HTML is allowed in CommonMark documents). In DocGen, it is also
+possible to bypass the CommonMark parser altogether and specify a pure HTML input page, by setting
 <code class="w-inline-code">&quot;html&quot;: true</code> in a page object in <em>contents.json</em>.</p>
 </blockquote>
+<h2 id="embedding-images">Embedding images</h2>
+<p>Diagrams (in image form, e.g. JPEG, PNG, GIF etc) should be put the <em>files/images</em> directory, and embedded as images.</p>
+<div class="container codeContainer">
+<pre><code>![](files/images/logo.png)</code></pre>
+</div>
+<div class="container exampleContainer">
+<img src="files/images/logo.png">
+</div><br class="w-clear">
+<h2 id="attaching-files">Attaching files</h2>
+<p>Other files you want to attach should go into <em>files</em> directory.</p>
+<div class="container codeContainer">
+<pre><code>[attachment](user_guide.pdf)</code></pre>
+</div>
+<div class="container exampleContainer">
+<a href="user_guide.pdf">attachment</a>
+</div><br class="w-clear">
 <h2 id="mathematical-expressions">Mathematical Expressions</h2>
 <p><a href="http://en.wikipedia.org/wiki/LaTeX">LaTeX</a> is the most common markup format for mathematical expressions.</p>
 <p>Modern web browsers do not yet consistently support a common standard for authoring mathematical expressions. For this
@@ -260,7 +292,7 @@ $$
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 27/03/2015 at 17:06:26.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 30/03/2015 at 14:32:44.</span>
     </p>
   </div>
  </footer>

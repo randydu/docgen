@@ -74,75 +74,28 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
 
 <section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Release notes</h1><ul class="pageToc"><li><a href="#docgen-2.0.0-released-xx/xx/xxxx">DocGen 2.0.0 released XX/XX/XXXX</a></li><li><a href="#docgen-1.0.1-released-18/01/2012">DocGen 1.0.1 released 18/01/2012</a></li><li><a href="#docgen-1.0.0-released-04/11/2011">DocGen 1.0.0 released 04/11/2011</a></li></ul><h2 id="docgen-2.0.0-released-xx/xx/xxxx">DocGen 2.0.0 released XX/XX/XXXX</h2>
 <ul>
-<li>
-<p>DocGen is now open source</p>
-</li>
-<li>
-<p>Rewritten in JavaScript for Node.js</p>
-</li>
-<li>
-<p>Much easier to install (hosted on npm)</p>
-</li>
-<li>
-<p>Dependencies are now version controlled (using npm)</p>
-</li>
-<li>
-<p>Modernized visual style (uses Webknife CSS framework)</p>
-</li>
-<li>
-<p>Input metadata files are now in JSON rather than YAML format</p>
-</li>
-<li>
-<p>Top-level page headings are now inserted automatically (from contents.json)</p>
-</li>
-<li>
-<p>The web and PDF tables of contents both correspond to contents.json</p>
-</li>
-<li>
-<p>Command-line options are now used for configuration, rather than a config file</p>
-</li>
-<li>
-<p>Command-line output is now color coded (green success, red error)</p>
-</li>
-<li>
-<p>Generating the PDF is now an optional feature</p>
-</li>
-<li>
-<p>Upgraded to the latest version of the PDF generator (wkhtmltopdf)</p>
-</li>
-<li>
-<p>Added support for list of document contributors (multiple authors)</p>
-</li>
-<li>
-<p>Added time to the generation timestamp</p>
-</li>
-<li>
-<p>Renamed &apos;change log&apos; to &apos;release notes&apos;</p>
-</li>
-<li>
-<p>Fixed issues with fonts and text kerning in the PDF copy</p>
-</li>
-<li>
-<p>Fixed defect where unexpected text appeared on some pages with a page table of contents</p>
-</li>
-<li>
-<p>Dropped support for Internet Explorer 7 and 8</p>
-</li>
-<li>
-<p>Dropped formal support for tool to run on multiple operating systems</p>
-</li>
-<li>
-<p>Removed support for Mark of the Web</p>
-</li>
-</ul>
-<p>Todo:</p>
-<ul>
-<li>Ability to override the version information</li>
-<li>Mathematical expressions with MathJax</li>
-<li>&apos;Permalinks&apos; to headings</li>
-<li>Automatic secion numbering</li>
-<li>Automatic figure numbering</li>
-<li>Link checker</li>
+<li>DocGen is now open source</li>
+<li>Rewritten in JavaScript for Node.js</li>
+<li>Much easier to install (hosted on npm)</li>
+<li>Dependencies are now version controlled (using npm)</li>
+<li>Modernized visual style (uses Webknife CSS framework)</li>
+<li>Input metadata files are now in JSON rather than YAML format</li>
+<li>Top-level page headings are now inserted automatically (from contents.json)</li>
+<li>The web and PDF tables of contents both correspond to contents.json</li>
+<li>Command-line options are now used for configuration, rather than a config file</li>
+<li>Command-line output is now color coded (green success, red error)</li>
+<li>Added usage information to the command line interface</li>
+<li>Generating the PDF is now an optional feature</li>
+<li>Upgraded to the latest version of the PDF generator (wkhtmltopdf)</li>
+<li>Added support for mathematical expressions (with KaTex or MathJax)</li>
+<li>Added support for a list of document contributors (for multiple authors)</li>
+<li>Added time to the generation timestamp</li>
+<li>Renamed &apos;change log&apos; to &apos;release notes&apos;</li>
+<li>Fixed issues with fonts and text kerning in the PDF copy</li>
+<li>Fixed defect where unexpected text appeared on some pages with a page table of contents</li>
+<li>Dropped support for Internet Explorer 7 and 8</li>
+<li>Dropped formal support for tool to run on multiple operating systems</li>
+<li>Removed support for &apos;Mark of the Web&apos;</li>
 </ul>
 <h2 id="docgen-1.0.1-released-18/01/2012">DocGen 1.0.1 released 18/01/2012</h2>
 <ul>
@@ -150,7 +103,9 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
 </ul>
 <h2 id="docgen-1.0.0-released-04/11/2011">DocGen 1.0.0 released 04/11/2011</h2>
 <ul>
-<li>Initial release</li>
+<li>Ruby implementation (not released as open source)</li>
+<li>Creates a static website from Markdown input files</li>
+<li>Also creates a PDF copy using wkhtmltopdf</li>
 </ul>
 </div></div></section>
 
@@ -161,7 +116,7 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 27/03/2015 at 17:06:26.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 30/03/2015 at 14:32:44.</span>
     </p>
   </div>
  </footer>

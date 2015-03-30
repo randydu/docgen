@@ -72,16 +72,132 @@ MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX",
  </div>
 </header>
 
-<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Advanced content</h1><ul class="pageToc"><li><a href="#overview">Overview</a></li><li><a href="#adding-images">Adding images</a></li><li><a href="#attaching-files">Attaching files</a></li><li><a href="#creating-internal-links-to-page-sections">Creating internal links to page sections</a></li><li><a href="#creating-internal-links-to-other-pages">Creating internal links to other pages</a></li><li><a href="#control-of-page-breaks-in-the-pdf">Control of page breaks in the PDF</a></li><li><a href="#basic-tables">Basic tables</a></li><li><a href="#custom-tables">Custom tables</a></li></ul><h2 id="overview">Overview</h2>
-<p>Any standard <strong>HTML</strong> can be entered in a content (.txt) file if needed (useful in cases where Markdown features are too simple).</p>
-<h2 id="adding-images">Adding images</h2>
-<ul>
-<li>Any diagrams (in image form, e.g. JPEG, PNG, GIF etc) should be put the Source/Images folder.</li>
-</ul>
-<h2 id="attaching-files">Attaching files</h2>
-<ul>
-<li>Any other files you want to attach should go into Source/Docs.</li>
-</ul>
+<section id="content"><div class="w-fixed-width"><div id="inner-content"><h1 id="autoTitle">Advanced content</h1><ul class="pageToc"><li><a href="#advanced-styles">Advanced styles</a></li><li><a href="#basic-tables">Basic tables</a></li><li><a href="#html-tables">HTML tables</a></li><li><a href="#creating-internal-links-to-page-sections">Creating internal links to page sections</a></li><li><a href="#creating-internal-links-to-other-pages">Creating internal links to other pages</a></li><li><a href="#control-of-page-breaks-in-the-pdf">Control of page breaks in the PDF</a></li></ul><style>
+.container {
+  box-sizing: border-box;
+  float:left;
+  width: 480px;
+}
+.codeContainer {
+  margin: 0 20px 0 0;
+}
+.codeContainer pre {
+  margin: 0;
+}
+.codeContainer code {
+}
+.codeContainer p {
+  margin: 0;
+  padding: 0;
+}
+.exampleContainer {
+  margin: 0;
+  border: 1px solid #666;
+  border-radius: 6px;
+  padding: 0 18px 0 18px;
+}
+.exampleContainer img {
+  margin-top: 5px;
+}
+#content table {
+  width: 400px!important;
+}
+.hljs-change {
+  background-color: initial!important;
+}
+</style>
+<h2 id="advanced-styles">Advanced styles</h2>
+<p>DocGen is built on the <a href="http://mtmacdonald.github.io/webknife">Webknife CSS framework</a>. Any of the HTML elements and
+styles from Webknife can be used in a DocGen source file. For details, see
+the <a href="http://mtmacdonald.github.io/webknife/docs/reference.html">Webknife reference guide</a>.</p>
+<h2 id="basic-tables">Basic tables</h2>
+<p>Basic tables can be inserted with the Github-flavoured Markdown
+<a href="https://help.github.com/articles/github-flavored-markdown/#tables">table extension</a>.</p>
+<div class="container codeContainer">
+<pre><code>| Heading    | Heading    | Heading |
+|:-----------:----------:|--------:|
+| Something  | Something  | ?       |
+| Another    | Another    | ?       |
+| One more   | One more   | ?       |</code></pre>
+</div>
+<div class="container exampleContainer">
+<table class="w-table w-fixed w-stripe">
+<thead>
+<tr>
+<th style="text-align:left">Heading</th>
+<th style="text-align:center">Heading</th>
+<th style="text-align:right">Heading</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Something</td>
+<td style="text-align:center">Something</td>
+<td style="text-align:right">?</td>
+</tr>
+<tr>
+<td style="text-align:left">Another</td>
+<td style="text-align:center">Another</td>
+<td style="text-align:right">?</td>
+</tr>
+<tr>
+<td style="text-align:left">One more</td>
+<td style="text-align:center">One more</td>
+<td style="text-align:right">?</td>
+</tr>
+</tbody>
+</table>
+</div><br class="w-clear">
+<h2 id="html-tables">HTML tables</h2>
+<p>Regular HTML can also be used for tables, allowing full custom styling (including table and column widths).</p>
+<div class="container codeContainer">
+<pre><code>&lt;table style=&quot;width:100%;&quot;&gt;
+ &lt;tr&gt;
+  &lt;th&gt;Heading&lt;/th&gt;
+  &lt;th&gt;Heading&lt;/th&gt;
+  &lt;th&gt;Heading&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td class=&quot;bold&quot;&gt;Example&lt;/td&gt;
+  &lt;td&gt;Example&lt;/td&gt;
+  &lt;td&gt;Example&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/td&gt;
+  &lt;td class=&quot;w-success-text&quot;&gt;Example&lt;/td&gt;
+  &lt;td&gt;&lt;span class=&quot;w-icon&quot; data-name=&quot;checkmark&quot;&gt;&lt;/span&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/td&gt;
+  &lt;td class=&quot;w-error-text&quot;&gt;Example&lt;/td&gt;
+  &lt;td&gt;&lt;span class=&quot;w-icon&quot; data-name=&quot;close&quot;&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+</div>
+<div class="container exampleContainer">
+<table style="width:100%;" class="w-table w-fixed w-stripe">
+ <tr>
+  <th>Heading</th>
+  <th>Heading</th>
+  <th>Heading</th>
+ </tr>
+ <tr>
+  <td class="bold">Example</td>
+  <td>Example</td>
+  <td>Example</td>
+ </tr>
+ <tr>
+  <td><strong>Example</strong></td>
+  <td class="w-success-text">Example</td>
+  <td><span class="w-icon" data-name="checkmark"></span></td>
+ </tr>
+ <tr>
+  <td><strong>Example</strong></td>
+  <td class="w-error-text">Example</td>
+  <td><span class="w-icon" data-name="close"></span></td>
+ </tr>
+</table>
+</div><br class="w-clear">
 <h2 id="creating-internal-links-to-page-sections">Creating internal links to page sections</h2>
 <p>To create links to other sections within one content page, put hyphens between the words in the heading and prepend with #:</p>
 <pre><code>[link to heading](#this-is-a-heading)
@@ -96,105 +212,15 @@ This is a heading
 <pre><code>[link to heading](example-page.html)
 </code></pre>
 <h2 id="control-of-page-breaks-in-the-pdf">Control of page breaks in the PDF</h2>
-<p>DocGen does not provide precision control over PDF layout. However, some steps can be taken in case of page break issues (the most common problem).</p>
-<p>To <em>force</em> a page break, insert the following before the item you want to appear on a new page:</p>
+<p>DocGen does not provide precision control over PDF layout. However, some steps can be taken in case of page break
+issues (the most common problem).</p>
+<p>To <em>force</em> a page break, insert the following before an element that should appear on a new page:</p>
 <pre><code>&lt;span class=&quot;force-break&quot;&gt;&lt;/span&gt;
 </code></pre>
-<p>DocGen already tries to eliminate unsightly page breaks <em>inside</em> code blocks, block quotes, and table rows. To apply the same technique to other elements, revert to HTML and apply the <strong>avoid-break</strong> class. For example:</p>
-<pre><code>&lt;p class=&quot;avoid-break&quot;&gt;A long paragraph&lt;/p&gt;
-</code></pre>
-<h2 id="basic-tables">Basic tables</h2>
-<p>An extended Markdown syntax allows basic tables to be created. Basic tables:</p>
-<ul>
-<li>have fixed width</li>
-<li>do not allow control of column widths</li>
-<li>do not provide for custom styling</li>
-</ul>
-<p class="false-heading">What you type</p>
-<pre><code>| Heading    | Heading          | Heading |
-|:-----------|:----------------:|--------:|
-| Something  | Some commentary  | ?       |
-| Another    | More commentary  | ?       |
-| One more   | More commentary  | ?       |
-</code></pre>
-<p class="false-heading">What it looks like</p>
-<p>| Heading    | Heading          | Heading |
-|:-----------|:----------------:|--------:|
-| Something  | Some commentary  | ?       |
-| Another    | More commentary  | ?       |
-| One more   | More commentary  | ?       |</p>
-<h2 id="custom-tables">Custom tables</h2>
-<p>For better control of table styling, revert to HTML. Either embed custom CSS styles in the
-content page (total control), or use the DocGen built-in style called <strong>styled-table</strong>.
-With <strong>styled-table</strong> it is possible to:</p>
-<ul>
-<li>adjust the table width and set the column widths exactly</li>
-<li>have zebra (alternate shaded) rows and bold columns</li>
-<li>have red or green text in cells, or ticks and crosses</li>
-</ul>
-<p class="false-heading">What you type</p>
-<pre><code>&lt;table class=&quot;styled-table&quot; style=&quot;width:100%;&quot;&gt;
-
- &lt;tr&gt;
-  &lt;th style=&quot;width:200px;&quot;&gt;Heading&lt;/th&gt;
-  &lt;th style=&quot;width:500px;&quot;&gt;Heading&lt;/th&gt;
-  &lt;th&gt;Heading&lt;/th&gt;
- &lt;/tr&gt;
- 
- &lt;tr&gt;
-  &lt;td class=&quot;bold&quot;&gt;Example&lt;/td&gt;
-  &lt;td&gt;Example&lt;/td&gt;
-  &lt;td&gt;Example&lt;/td&gt;
- &lt;/tr&gt;
- 
- &lt;tr class=&quot;shaded&quot;&gt;
-  &lt;td class=&quot;bold&quot;&gt;Example&lt;/td&gt;
-  &lt;td&gt;Example&lt;/td&gt;
-  &lt;td&gt;&lt;/td&gt;
- &lt;/tr&gt;
-
- &lt;tr&gt;
-  &lt;td class=&quot;bold&quot;&gt;Example&lt;/td&gt;
-  &lt;td class=&quot;green&quot;&gt;Example&lt;/td&gt;
-  &lt;td class=&quot;tick&quot;&gt;&lt;/td&gt;
- &lt;/tr&gt;
-
- &lt;tr class=&quot;shaded&quot;&gt;
-  &lt;td class=&quot;bold&quot;&gt;Example&lt;/td&gt;
-  &lt;td class=&quot;red&quot;&gt;Example&lt;/td&gt;
-  &lt;td class=&quot;cross&quot;&gt;&lt;/td&gt;
- &lt;/tr&gt;
-
-&lt;/table&gt;
-</code></pre>
-<p class="false-heading">What it looks like</p>
-<table class="styled-table w-table w-fixed w-stripe" style="width:100%;">
- <tr>
-  <th style="width:200px;">Heading</th>
-  <th style="width:500px;">Heading</th>
-  <th>Heading</th>
- </tr>
- <tr>
-  <td class="bold">Example</td>
-  <td>Example</td>
-  <td>Example</td>
- </tr>
- <tr class="shaded">
-  <td class="bold">Example</td>
-  <td>Example</td>
-  <td></td>
- </tr>
- <tr>
-  <td class="bold">Example</td>
-  <td class="green">Example</td>
-  <td class="tick"></td>
- </tr>
- <tr class="shaded">
-  <td class="bold">Example</td>
-  <td class="red">Example</td>
-  <td class="cross"></td>
- </tr>
-</table></div></div></section>
+<p>DocGen automatically tries to eliminate page breaks <em>inside</em> code blocks, block quotes, and table rows.
+To apply the same technique to other elements, revert to HTML and apply the <strong>avoid-break</strong> class. For example:</p>
+<pre><code>&lt;p class=&quot;avoid-break&quot;&gt;A long paragraph&lt;/p&gt;</code></pre>
+</div></div></section>
 
  <footer>
   <div><p class="w-fixed-width"><span id="dg-web-footer">Version 2.0.0 released on XX/XX/XXXX.</span></p></div>
@@ -203,7 +229,7 @@ With <strong>styled-table</strong> it is possible to:</p>
     <p>
       <span id="dg-marking">MIT License.</span>
       <span id="dg-legalese"></span>
-      <span id="dg-attribution">Created by DocGen 2.0.0 on 27/03/2015 at 17:06:26.</span>
+      <span id="dg-attribution">Created by DocGen 2.0.0 on 30/03/2015 at 14:32:44.</span>
     </p>
   </div>
  </footer>
