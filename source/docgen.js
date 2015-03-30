@@ -623,7 +623,7 @@ function DocGen (process)
         });
         //add web ownership page
         var $ = cheerio.load(templates.main.html()); //clone
-        $('#content').html('<div class="w-fixed-width"><div id="dg-innerContent"></div></div>');
+        $('#dg-content').html('<div class="w-fixed-width"><div id="dg-innerContent"></div></div>');
         $('#dg-innerContent').html(templates.webCover.html());
         templates.webCover = $;
         writePages();
