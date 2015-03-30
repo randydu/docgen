@@ -186,7 +186,7 @@
 <table style="width:600px; border:none; padding:0;">
  <tr style="border:none; padding:0;">
  
-  <td style="border:none; text-align:left; padding:0;"><ul>
+  <td style="border:none; text-align:left; padding:0; vertical-align: top;"><ul>
    <li class="list-heading">Flexible Input Formats</li>
    <li>Plain text</li>
    <li>CommonMark (Markdown)</li>
@@ -196,7 +196,7 @@
    <li>Attach other documents</li>
   </ul></td>
   
-  <td style="border:none; text-align:left; padding:0;"><ul>
+  <td style="border:none; text-align:left; padding:0; vertical-align: top;"><ul>
    <li class="list-heading">Configurable Metadata</li>
    <li>Branding (logo, title, organization)</li>
    <li>License, copyright, and legal markings</li>
