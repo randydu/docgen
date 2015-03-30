@@ -474,6 +474,15 @@ function DocGen (process)
         var year = moment().format('YYYY');
         var attribution = 'Created by DocGen '+version+' on '+date+' at '+time+'.';
 
+        var releaseVersion = meta.parameters.version;
+        if (options.setVersion !== false) {
+            releaseVersion = options.setVersion;
+        }
+        var releaseDate = meta.parameters.date;
+        if (options.setReleaseDate !== false) {
+            releaseDate = options.setReleaseDate;
+        }
+
         var author = '';
         if (meta.parameters.author.url !== '') {
             author += '<a href="'+meta.parameters.author.url+'">'+meta.parameters.author.name+'</a>';
@@ -516,7 +525,7 @@ function DocGen (process)
 
         var webTitle = meta.parameters.title
 
-        var webFooter = 'Version '+meta.parameters.version+' released on '+meta.parameters.date+'.';
+        var webFooter = 'Version '+releaseVersion+' released on '+releaseDate+'.';
 
         for (var key in templates) {
             if (templates.hasOwnProperty(key)) {
@@ -536,9 +545,9 @@ function DocGen (process)
                 $('#dg-homelink').attr('href', homelink);
                 $('#dg-title').text(meta.parameters.title);
                 $('#dg-owner').html(owner);
-                $('#dg-version').text(meta.parameters.version);
-                $('#dg-web-title-version').text('('+meta.parameters.version+')');  
-                $('#dg-release-date').text(meta.parameters.date);
+                $('#dg-version').text(releaseVersion);
+                $('#dg-web-title-version').text('('+releaseVersion+')');  
+                $('#dg-release-date').text(releaseDate);
                 $('#dg-web-footer').text(webFooter);
                 $('#dg-author').html(author);                
                 $('#dg-contributors').html(contributors);
