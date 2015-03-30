@@ -11,12 +11,6 @@ PDF missing content
 In complex pages, the PDF generator (wkhtmltopdf) needs to be given enough time for dynamic content to be rendered. 
 Pass the **-d [milliseconds]** option to increase the rendering time for each page, if required.
 
-PDF display errors
-------------------
-
-There are known text display issues in Firefox PDF viewer. Try an 
-[alternative viewer](https://support.mozilla.org/en-US/kb/disable-built-pdf-viewer-and-use-another-viewer).
-
 Attached files not in PDF
 -------------------------
 
