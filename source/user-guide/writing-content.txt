@@ -34,14 +34,13 @@
 </style>
 
 Content for a DocGen website is authored in plain text, using any text editor. Image files can be embedded, and 
-other types of files can be attached as links.
-
-Additionally, website metadata is configured via [JSON](http://json.org) files.
+other types of files can be attached as links. Additionally, website metadata is configured 
+via [JSON](http://json.org) files.
 
 Overview
 --------
 
-DocGen transforms source files from an input directory into files in an output directory.
+DocGen transforms source files from an input directory into output files in an output directory.
 
 It takes every source file (plain text) specified in **contents.json** and converts it. Each source file becomes a 
 separate page in the website and a separate chapter in the PDF.
@@ -79,7 +78,8 @@ Parameters with URLs can be either website URLs, or email addresses (specify *'m
 
 **contents.json**
 
-The contents file specifies the names, locations, order, and structure of the source files.
+The contents file specifies the names, locations, order, and hierarchy of the source files. It is used to generate both
+the web and PDF table of contents.
 
 **release-notes.txt**
 
@@ -89,13 +89,26 @@ summarize the change history for each version of the product.
 Plain text
 ----------
 
+The simplest input format is just to write in plain text. Here is an example of the source and output:
+
+<div class="container codeContainer">
+
+    Example paragraph.
+
+</div>
+<div class="container exampleContainer">
+
+Example paragraph.
+
+</div><br class="w-clear"/>
+
 CommonMark (Markdown)
 ---------------------
 
 [CommonMark](http://commonmark.org/) (also known as [MarkDown](http://daringfireball.net/projects/markdown/)) is a 
-human-friendly plain text format. The source format is easy to read and write, and CommonMark translates it into HTML.
-DocGen uses the <a href="https://markdown-it.github.io">markdown-it</a> implementation of CommonMark. Here is an 
-example of the source and output:
+human-friendly plain text markup format. The source format is easy to read and write, and the CommonMark parser 
+translates it into HTML. DocGen uses the <a href="https://markdown-it.github.io">markdown-it</a> implementation 
+of CommonMark. Here is an example of the source and output:
 
 <div class="container codeContainer">
 
@@ -114,8 +127,7 @@ example of the source and output:
 </div>
 <div class="container exampleContainer">
 
-CommonMark Example
-------------------
+<p class="dg-fakeHeading" style="font-size: 18px; padding-bottom: 4px;">CommonMark Example</p>
 
 Paragraphs are text blocks separated by new lines.
 
@@ -128,7 +140,7 @@ Here is an [example link](http://www.google.com).
     5.times { puts "Hello!" }
 </div><br class="w-clear"/>
 
-For more examples, see [writing advanced content](advanced-content.html).
+For more examples, see the [CommonMark reference](commonmark.html).
 
 HTML
 ----
@@ -154,13 +166,14 @@ For more complex pages not covered by CommonMark's syntax, simply use inline HTM
 </table>
 </div><br class="w-clear"/>
 
-For more examples, see the [CommonMark Reference](commonmark.html).
+For more examples, see [writing advanced content](advanced-content.html).
 
-> It is also possible to bypass the CommonMark parser altogether and specify a pure HTML input page, by setting 
+> Inline HTML is still parsed by the CommonMark parser (HTML is allowed in CommonMark documents). In DocGen, it is also 
+possible to bypass the CommonMark parser altogether and specify a pure HTML input page, by setting 
 <code class="w-inline-code">"html": true</code> in a page object in *contents.json*.
 
-Adding images
--------------
+Embedding images
+----------------
 
 Diagrams (in image form, e.g. JPEG, PNG, GIF etc) should be put the *files/images* directory, and embedded as images.
 

@@ -11,26 +11,18 @@
 - The web and PDF tables of contents both correspond to contents.json
 - Command-line options are now used for configuration, rather than a config file
 - Command-line output is now color coded (green success, red error)
+- Added usage information to the command line interface
 - Generating the PDF is now an optional feature
 - Upgraded to the latest version of the PDF generator (wkhtmltopdf)
-- Added support for list of document contributors (multiple authors)
+- Added support for mathematical expressions (with KaTex or MathJax)
+- Added support for a list of document contributors (for multiple authors)
 - Added time to the generation timestamp
 - Renamed 'change log' to 'release notes'
 - Fixed issues with fonts and text kerning in the PDF copy
 - Fixed defect where unexpected text appeared on some pages with a page table of contents
 - Dropped support for Internet Explorer 7 and 8
 - Dropped formal support for tool to run on multiple operating systems
-
-- Removed support for Mark of the Web
-
-Todo:
-
-- Ability to override the version information
-- Mathematical expressions with MathJax
-- 'Permalinks' to headings
-- Automatic secion numbering
-- Automatic figure numbering
-- Link checker
+- Removed support for 'Mark of the Web'
 
 DocGen 1.0.1 released 18/01/2012
 --------------------------------
@@ -40,4 +32,6 @@ DocGen 1.0.1 released 18/01/2012
 DocGen 1.0.0 released 04/11/2011
 --------------------------------
 
-- Initial release
+- Ruby implementation (not released as open source)
+- Creates a static website from Markdown input files
+- Also creates a PDF copy using wkhtmltopdf

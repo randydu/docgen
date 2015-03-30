@@ -27,7 +27,7 @@ for more detailed information.
   ============
  </code></pre></td>
  <td>
-  <h1>Page Heading</h1>
+  <p class="dg-fakeHeading" style="font-size: 20px; padding-bottom: 6px;">Page Heading</p>
 </td>
 </tr>
 
@@ -38,7 +38,7 @@ for more detailed information.
   ---------------
  </code></pre></td>
  <td>
-  <h2>Section Heading</h2>
+  <p class="dg-fakeHeading" style="font-size: 18px; padding-bottom: 4px;">Section Heading</p>
  </td>
 </tr>
 
@@ -48,7 +48,7 @@ for more detailed information.
   ### Minor Heading
  </code></pre></td>
  <td>
-  <h3>Minor Heading</h3>
+  <p class="dg-fakeHeading" style="font-size: 16px; padding-bottom: 4px;">Minor Heading</p>
  </td>
 </tr>
 

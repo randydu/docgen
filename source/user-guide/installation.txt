@@ -4,7 +4,8 @@ Supported platform
 ------------------
 
 *'Supported platform'* means the software required to **run** the DocGen tool. The static website **produced** by 
-DocGen will work on all modern browsers on all all major operating systems (see [browser support](index.html)).
+DocGen will work on all modern browsers on all all major operating systems 
+(see [browser support](index.html#browser-support)).
 
 <p class="w-information">
 	The supported platform for this version of DocGen is: 

@@ -191,7 +191,7 @@
    <li>Plain text</li>
    <li>CommonMark (Markdown)</li>
    <li>HTML</li>
-   <li>MathML</li>
+   <li>LaTeX mathematical expressions</li>
    <li>Image diagrams</li>
    <li>Attach other documents</li>
   </ul></td>
