@@ -499,7 +499,7 @@ function DocGen (process)
         if (meta.parameters.website.url !== '') {
             website += '<a href="'+meta.parameters.website.url+'">'+meta.parameters.website.name+'</a>';
         } else {
-            website += meta.parameters.websitename;
+            website += meta.parameters.website.name;
         }
 
         var contributors = '';
