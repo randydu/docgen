@@ -1,21 +1,33 @@
 {
-	"name" : "Empty Template",
+	"title" : "DocGen - empty template",
+	"name": "",
 	"version" : "1.0.0",
-	"module" : "",
-	"reference" : "",
-	"organization" : "Company",
-	"owner" : "",
+	"date" : "XX/XX/XXXX",
+	"organization" : {
+		"name" : "",
+		"url" : ""
+	},
 	"author" : {
 		"name" : "",
-		"email" : ""
+		"url" : ""
+	},
+	"owner" : {
+		"name" : "",
+		"url" : ""
 	},
 	"contributors" : [
 		{
 			"name" : "",
-			"email" : ""
+			"url" : ""
 		}
 	],
-	"summary" : "This is the empty template for DocGen",
-	"marking" : "Protective marking",
-	"legalese" : "Copyright notices"
+	"website" : {
+		"name" : "",
+		"url" : ""
+	},
+	"module" : "",
+	"id" : "",
+	"summary" : "",
+	"marking" : "",
+	"legalese" : ""
 }

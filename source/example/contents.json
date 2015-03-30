@@ -2,10 +2,10 @@
 	{
 		"heading" : "Quick Start",
 		"column" : 1,
-		"links" : [
+		"pages" : [
 			{
 				"title": "Overview",
-				"src": "index.txt"
+				"source": "index.txt"
 			}
 		]
 	}

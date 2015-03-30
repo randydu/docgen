@@ -1,6 +1,4 @@
-﻿DocGen - Empty template
-===========================
+﻿This is the empty template page for DocGen.
 
-This is the default template page for DocGen.
-
-To get started, edit **Source/index.txt** and run **Generator/Generator.rb**. For more information see the user guide.
+To get started, edit **index.txt** and run DocGen. For more help see the 
+[user guide](http://mtmacdonald.github.io/docgen/).
