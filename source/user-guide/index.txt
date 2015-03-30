@@ -1,5 +1,5 @@
 ﻿<style>
-#content, #inner-content {
+#dg-content, #dg-innerContent {
   padding-top: 0;
 }
 #banner, #banner-buttons {

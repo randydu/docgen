@@ -6,6 +6,10 @@ section blockquote p, section li p {
 	margin: 0;
 }
 
+.w-table {
+	width: 100%;
+}
+
 /******************************** TABLE OF CONTENTS ****************************/
 
 /*Table of contents button to initiate show/hide*/

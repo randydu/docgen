@@ -583,11 +583,11 @@ function DocGen (process)
                 var content = pages[key];
                 //add relevant container
                 if (page.html === true) { //raw HTML pages should not be confined to the fixed width
-                    $('#content').html('<div id="inner-content"></div>');
+                    $('#dg-content').html('<div id="dg-innerContent"></div>');
                 } else { //Markdown pages should be confined to the fixed width
-                    $('#content').html('<div class="w-fixed-width"><div id="inner-content"></div></div>');
+                    $('#dg-content').html('<div class="w-fixed-width"><div id="dg-innerContent"></div></div>');
                 }
-                $('#inner-content').html(content);
+                $('#dg-innerContent').html(content);
                 //------------------------------------------------------------------------------------------------------
                 //insert permalinks for every page heading
                 //when pageToc is enabled, also insert a page-level table of contents
@@ -606,11 +606,11 @@ function DocGen (process)
                     html[++i] = '</ul>';
                 }
                 if (options.pageToc === true && page.html !== true) {
-                    $('#inner-content').prepend(html.join(''));
+                    $('#dg-innerContent').prepend(html.join(''));
                 }
                 //------------------------------------------------------------------------------------------------------
                 //prepend the auto heading (which makes the PDF table of contents match the web TOC)
-                $('#inner-content').prepend('<h1 id="autoTitle">'+page.title+'</h1>');
+                $('#dg-innerContent').prepend('<h1 id="autoTitle">'+page.title+'</h1>');
                 if (page.html === true) {
                     $('#autoTitle').addClass('dg-hiddenTitle');
                 }
@@ -623,8 +623,8 @@ function DocGen (process)
         });
         //add web ownership page
         var $ = cheerio.load(templates.main.html()); //clone
-        $('#content').html('<div class="w-fixed-width"><div id="inner-content"></div></div>');
-        $('#inner-content').html(templates.webCover.html());
+        $('#content').html('<div class="w-fixed-width"><div id="dg-innerContent"></div></div>');
+        $('#dg-innerContent').html(templates.webCover.html());
         templates.webCover = $;
         writePages();
     }
