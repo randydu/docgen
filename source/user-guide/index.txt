@@ -43,7 +43,7 @@
   display: inline-block;
   width: 290px;
   margin: 10px;
-  padding: 0 0 10px 0;
+  padding: 0;
   border: 2px solid #4d4d4d;
   border-radius: 10px 10px 0 0;
 }
@@ -67,7 +67,7 @@
 .how-it-works li p:last-of-type {
   padding:0;
   margin:0;
-  height: 392px;
+  height: 400px;
   background-repeat:no-repeat;
 }
 
@@ -170,7 +170,7 @@
 
 <ul class="how-it-works" id="how-it-works">
 <li>
-  <p>"You write in plain text or human-friendly human-friendly <a href="http://commonmark.org">CommonMark</a>"</p>
+  <p>"You write in plain text or human-friendly <a href="http://commonmark.org">CommonMark</a>"</p>
   <p style="background-image:url('files/images/text.png');"></p>
 </li>
 <li>
