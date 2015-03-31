@@ -1,4 +1,4 @@
-﻿DocGen 2.0.0 released XX/XX/XXXX
+﻿DocGen 2.0.0 released 31/03/2015
 --------------------------------
 
 - DocGen is now open source

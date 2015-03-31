@@ -2,7 +2,7 @@
 	"title" : "DocGen - a documentation tool",
 	"name": "DocGen",
 	"version" : "2.0.0",
-	"date" : "XX/XX/XXXX",
+	"date" : "31/03/2015",
 	"organization" : {
 		"name" : "Mark Macdonald",
 		"url" : "https://github.com/mtmacdonald"
