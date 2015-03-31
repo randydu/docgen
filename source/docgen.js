@@ -685,7 +685,7 @@ function DocGen (process)
             if (options.mathKatex === true) {
                 copyDirSync(__dirname+'/optional/katex', options.output+'require/katex');
             }
-            preparePdfTemplates();
+            checkPdfVersion();
         }).catch(function(error) {
             console.log(chalk.red('Error writing the web page files'));
             if (options.verbose === true) {
@@ -693,14 +693,6 @@ function DocGen (process)
             }
             mainProcess.exit(1);
         });
-    }
-
-    /*
-        insert the parameters into the PDF templates, and copy them to a temporary directory
-    */
-
-    var preparePdfTemplates = function () {
-        createPdf();
     }
 
     /*
@@ -749,7 +741,7 @@ function DocGen (process)
         return spawnArgs(args);
     }
 
-    var createPdf = function () {
+    var checkPdfVersion = function () {
         if (options.pdf === true) {
             //first check that wkhtmltopdf is installed
             childProcess.exec('wkhtmltopdf -V', function (error, stdout, stderr) {
