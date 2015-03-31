@@ -29,7 +29,7 @@
   width: 400px!important;
 }
 .hljs-change {
-  background-color: initial!important;
+  background-color: transparent!important;
 }
 </style>
 
