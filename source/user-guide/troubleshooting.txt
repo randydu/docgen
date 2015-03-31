@@ -1,4 +1,4 @@
-This page gives help on solving common issues with DocGen.
+This section gives help on solving common issues with DocGen.
 
 Displaying detailed errors
 --------------------------

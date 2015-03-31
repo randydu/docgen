@@ -1,4 +1,4 @@
-This page shows examples of how to write content with CommonMark. See the [CommonMark Spec](http://spec.commonmark.org)
+This section shows examples of how to write content with CommonMark. See the [CommonMark Spec](http://spec.commonmark.org)
 for more detailed information.
 
 <style>
