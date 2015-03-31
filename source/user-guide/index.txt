@@ -218,7 +218,7 @@ updated and refactored, and standardised for each product release.
 
 <h2 id="browser-support">Browser support</h2>
 
-Output created by DocGen works on modern browsers (desktop and mobile devices).
+Output created by DocGen works in modern browsers (desktop and mobile devices).
 
 <ul><li/>tested in <a href= "http://windows.microsoft.com/en-us/internet-explorer/download-ie">Internet Explorer 9+</a>, 
 <a href= "http://www.google.com/chrome">Chrome</a>, 
