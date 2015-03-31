@@ -18,7 +18,7 @@ var imageSizeOf = require('image-size');
 
 function DocGen (process)
 {
-    var process = process;
+    var mainProcess = process;
     var version = '2.0.0';
     var wkhtmltopdfVersion = 'wkhtmltopdf 0.12.2.1 (with patched qt)'; //output from wkhtmltopdf -V
     var options;
@@ -104,7 +104,7 @@ function DocGen (process)
             console.log(chalk.red('Error copying directory: '+source+' to '+destination));
             if (options.verbose === true) {
                 console.log(chalk.red(error));
-                process.exit(1);
+                mainProcess.exit(1);
             }
         }
     }
@@ -121,7 +121,7 @@ function DocGen (process)
             console.log(chalk.red('Error recreating directory: '+path));
             if (options.verbose === true) {
                 console.log(chalk.red(error));
-                process.exit(1);
+                mainProcess.exit(1);
             }
         }
     }
@@ -137,7 +137,7 @@ function DocGen (process)
             console.log(chalk.red('Error removing directory: '+path));
             if (options.verbose === true) {
                 console.log(chalk.red(error));
-                process.exit(1);
+                mainProcess.exit(1);
             }
         }
     }
@@ -170,7 +170,7 @@ function DocGen (process)
             if (options.verbose === true) {
                 console.log(chalk.red(error));
             }
-            process.exit(1);
+            mainProcess.exit(1);
         });
     }
 
@@ -318,14 +318,14 @@ function DocGen (process)
                         if (validateJSON(key, file)) {
                             meta[key] = file;
                         } else {
-                            process.exit(1);
+                            mainProcess.exit(1);
                         }
                     } catch (error) {
                         console.log(chalk.red('Error parsing required file: '+key+'.json (invalid JSON)'));
                         if (options.verbose === true) {
                             console.log(chalk.red(error));
                         }
-                        process.exit(1);
+                        mainProcess.exit(1);
                     }
                 }
             }
@@ -344,7 +344,7 @@ function DocGen (process)
             if (options.verbose === true) {
                 console.log(chalk.red(error));
             }
-            process.exit(1);
+            mainProcess.exit(1);
         });
     }
 
@@ -380,7 +380,7 @@ function DocGen (process)
                     if (options.verbose === true) {
                         console.log(chalk.red(error));
                     }
-                    process.exit(1);
+                    mainProcess.exit(1);
                 }
             });
             process(); 
@@ -389,7 +389,7 @@ function DocGen (process)
             if (options.verbose === true) {
                 console.log(chalk.red(error));
             }
-            process.exit(1);
+            mainProcess.exit(1);
         });
     }
 
@@ -691,7 +691,7 @@ function DocGen (process)
             if (options.verbose === true) {
                 console.log(chalk.red(error));
             }
-            process.exit(1);
+            mainProcess.exit(1);
         });
     }
 
@@ -758,7 +758,7 @@ function DocGen (process)
                     if (options.verbose === true) {
                         console.log(chalk.red(error));
                     }
-                    process.exit(1);
+                    mainProcess.exit(1);
                 } else {
                     //warn if the version of wkhtmltopdf is not an expected version
                     var actualWkhtmltopdfVersion = stdout.trim();
