@@ -1,8 +1,8 @@
 {
-  "name": "docgen",
+  "name": "docgen-tool",
   "version": "2.0.0",
   "description": "A documentation generator",
-  "main": "docgen.js",
+  "main": "docgen",
   "dependencies": {
     "rsvp": "3.0.17",
     "commander": "2.6.0",
