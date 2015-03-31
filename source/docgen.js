@@ -711,7 +711,7 @@ function DocGen (process)
         ' --margin-left 15',
         ' --header-spacing 5',
         ' --footer-spacing 5',
-        ' --no-stop-slow-scripts'
+        ' --no-stop-slow-scripts',
     ];
 
     var getPdfArguments = function () {
@@ -787,19 +787,29 @@ function DocGen (process)
                 console.log(chalk.red(error));
             }
         });
-        spinner.start();
+
+        if (options.verbose !== true) {
+            spinner.start(); //only show spinner when verbose is off (otherwise show raw wkhtmltopdf output)
+        } else {
+            //pipe the output from wkhtmltopdf back to stdout
+            //however, wkhtmltpdf outputs to stderr, not stdout. See:
+            //https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1980
+            wkhtmltopdf.stderr.pipe(mainProcess.stdout);
+        }
 
         wkhtmltopdf.stdout.on('data', function (data) {
-
+            //do nothing
         });
-                
+
         wkhtmltopdf.stderr.on('data', function (data) {
-
+            //do nothing
         });
-                
+             
         wkhtmltopdf.on('close', function (code) {
-            spinner.stop();
-            console.log(''); //newline after spinner stops
+            if (options.verbose !== true) {
+                spinner.stop();
+                console.log(''); //newline after spinner stops
+            }
             cleanUp();
         });
     }
