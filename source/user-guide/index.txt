@@ -236,7 +236,7 @@ Output created by DocGen works in modern browsers (desktop and mobile devices).
 
 <p>Enter these commands in the terminal:</p>
 
-<pre><code>npm install -g docgen-tool
+<pre><code>sudo npm install -g docgen-tool
 docgen scaffold
 docgen run -o $HOME/docgen-example</code></pre>
 

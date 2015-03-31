@@ -41,7 +41,7 @@ Quick install with NPM
 The quickest way to install DocGen is with **[npm](https://www.npmjs.com)** (the JavaScript package manager). Enter 
 these terminal commands:
 
-	npm install -g docgen-tool
+	sudo npm install -g docgen-tool
 
 Install by direct download
 --------------------------
