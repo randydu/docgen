@@ -305,7 +305,7 @@ function DocGen (process)
     */
 
     var loadMeta = function () {
-        console.log(chalk.green('Loading required JSON files'));
+        console.log(chalk.green('Loading required JSON metadata files'));
         var files = {
             parameters: readFile(options.input+'/parameters.json'),
             contents: readFile(options.input+'/contents.json'),
@@ -340,7 +340,7 @@ function DocGen (process)
             meta.contents.push(extra);
             loadMarkdown();
         }).catch(function(error) {
-            console.log(chalk.red('Error loading required JSON files'));
+            console.log(chalk.red('Error loading required JSON metadata files'));
             if (options.verbose === true) {
                 console.log(chalk.red(error));
             }
@@ -353,7 +353,7 @@ function DocGen (process)
     */
 
     var loadMarkdown = function () {
-        console.log(chalk.green('Loading Markdown files'));
+        console.log(chalk.green('Loading source files'));
         var keys = [];
         var files = [];
         meta.contents.forEach( function (section) {
@@ -385,7 +385,7 @@ function DocGen (process)
             });
             process(); 
         }).catch(function(error) {
-            console.log(chalk.red('Error loading Markdown files'));
+            console.log(chalk.red('Error loading source files'));
             if (options.verbose === true) {
                 console.log(chalk.red(error));
             }
@@ -598,7 +598,7 @@ function DocGen (process)
     */
 
     var process = function () {
-        console.log(chalk.green('Generating the web content'));
+        console.log(chalk.green('Generating the static web content'));
         webToc();
         insertParameters();
         meta.contents.forEach( function (section) {
