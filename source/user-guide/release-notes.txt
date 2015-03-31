@@ -1,4 +1,9 @@
-﻿DocGen 2.0.0 released 31/03/2015
+﻿DocGen 2.0.1 released 31/03/2015
+--------------------------------
+
+- Fixed the node package and user guide for installing with npm install -g
+
+DocGen 2.0.0 released 31/03/2015
 --------------------------------
 
 - DocGen is now open source
