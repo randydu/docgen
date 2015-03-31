@@ -781,15 +781,20 @@ function DocGen (process)
         var spinner = new cliSpinner(chalk.green('   Processing... %s'));
         spinner.setSpinnerString('|/-\\');
 
-        wkhtmltopdf.on('error', function( error ){ console.log(error) });
+        wkhtmltopdf.on('error', function (error) {
+            console.log(chalk.red('Error calling wkhtmltopdf to generate the PDF'));
+            if (options.verbose === true) {
+                console.log(chalk.red(error));
+            }
+        });
         spinner.start();
 
         wkhtmltopdf.stdout.on('data', function (data) {
-            //console.log(data);
+
         });
                 
         wkhtmltopdf.stderr.on('data', function (data) {
-            //console.log(data);
+
         });
                 
         wkhtmltopdf.on('close', function (code) {
