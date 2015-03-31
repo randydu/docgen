@@ -810,6 +810,10 @@ function DocGen (process)
                 spinner.stop();
                 console.log(''); //newline after spinner stops
             }
+            if (code !== 0) {
+                var warning = 'wkhtmltopdf exited with a warning or error: try the -v option for details';
+                console.log(chalk.yellow(warning));
+            }
             cleanUp();
         });
     }
