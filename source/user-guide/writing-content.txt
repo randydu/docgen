@@ -66,6 +66,7 @@ The parameters file is used to specify metadata describing the product.
 - **owner** - the owner of the product
 - **contributors** - list of contributors
 - **website** - a link to the product website
+- **backlink** - a link back to product user interface (useful for integrated documentation)
 - **module** - module name (useful for larger products with submodules)
 - **id** - reference number (e.g. product id in a change management tool)
 - **summary** - a descriptive summary of the product

@@ -246,6 +246,14 @@ function DocGen (process)
                         url: { type: "string" },
                     }
                 },
+                backlink: {
+                    type : "object",
+                    required: [ "name", "url"],
+                    properties: {
+                        name: { type: "string" },
+                        url: { type: "string" },
+                    }
+                },
                 module: { type: "string" },
                 id: { type: "string" },
                 summary: { type: "string" },
@@ -511,6 +519,13 @@ function DocGen (process)
             website += meta.parameters.website.name;
         }
 
+        var backlink = '';
+        if (meta.parameters.backlink.url !== '') {
+            backlink += '<a href="'+meta.parameters.backlink.url+'">'+meta.parameters.backlink.name+'</a>';
+        } else {
+            backlink += meta.parameters.backlink.name;
+        }
+
         var contributors = '';
         meta.parameters.contributors.forEach (function (contributor) {
             if (contributor.url !== '') {
@@ -549,11 +564,12 @@ function DocGen (process)
                 $('#dg-web-title-version').text('('+releaseVersion+')');  
                 $('#dg-release-date').text(releaseDate);
                 $('#dg-web-footer').text(webFooter);
-                $('#dg-author').html(author);                
+                $('#dg-author').html(author);
                 $('#dg-contributors').html(contributors);
                 $('#dg-module').text(meta.parameters.module);
                 $('#dg-id').html(meta.parameters.id);
                 $('#dg-website').html(website);
+                $('#dg-backlink').html(backlink);
                 $('#dg-summary').text(meta.parameters.summary);
                 $('#dg-copyright').html(copyright);
                 $('#dg-marking').text(meta.parameters.marking);

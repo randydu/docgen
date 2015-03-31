@@ -16,6 +16,7 @@
 - Upgraded to the latest version of the PDF generator (wkhtmltopdf)
 - Added support for mathematical expressions (with KaTex or MathJax)
 - Added support for a list of document contributors (for multiple authors)
+- Added support for a header link back to the application (integrated docs)
 - Added time to the generation timestamp
 - Renamed 'change log' to 'release notes'
 - Fixed issues with fonts and text kerning in the PDF copy
