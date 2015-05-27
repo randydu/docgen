@@ -1,6 +1,6 @@
 {
   "name": "docgen-tool",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "A tool for creating HTML and PDF documentation",
   "main": "docgen",
   "bin" : { "docgen" : "./docgen" },

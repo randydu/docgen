@@ -1,8 +1,8 @@
 {
 	"title" : "DocGen - a documentation tool",
 	"name": "DocGen",
-	"version" : "2.0.1",
-	"date" : "31/03/2015",
+	"version" : "2.1.0",
+	"date" : "27/05/2015",
 	"organization" : {
 		"name" : "Mark Macdonald",
 		"url" : "https://github.com/mtmacdonald"

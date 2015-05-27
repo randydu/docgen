@@ -1,4 +1,9 @@
-﻿DocGen 2.0.1 released 31/03/2015
+﻿DocGen 2.1.0 released 27/05/2015
+--------------------------------
+
+- Added a command-line option for specifying a custom path to wkhtmltopdf
+
+DocGen 2.0.1 released 31/03/2015
 --------------------------------
 
 - Fixed the node package and user guide for installing with npm install -g
