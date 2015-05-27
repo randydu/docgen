@@ -33,12 +33,17 @@ function DocGen (process)
 
     this.setOptions = function (userOptions) {
         options = userOptions;
-        //all user-specified paths must be normalized and have a trailing slash
+        //all user-specified paths must be normalized
         if (options.input) {
             options.input = path.normalize(options.input+'/');
         }
         if (options.output) {
             options.output = path.normalize(options.output+'/');
+        }
+
+        //wkhtmltopdf path does not need a trailing slash
+        if (options.wkhtmltopdfPath !== '') {
+            options.wkhtmltopdfPath = path.normalize(options.wkhtmltopdfPath);
         }
     }
 
@@ -743,8 +748,8 @@ function DocGen (process)
 
     var checkPdfVersion = function () {
         if (options.pdf === true) {
-            //first check that wkhtmltopdf is installed
-            childProcess.exec('wkhtmltopdf -V', function (error, stdout, stderr) {
+            //first check that wkhtmltopdf is installed           
+            childProcess.exec(options.wkhtmltopdfPath+' -V', function (error, stdout, stderr) {
                 if (error) {
                     console.log(chalk.red('Unable to call wkhtmltopdf. Is it installed and in path? See http://wkhtmltopdf.org'));
                     if (options.verbose === true) {
@@ -777,7 +782,7 @@ function DocGen (process)
     var generatePdf = function () {
         console.log(chalk.green('Creating the PDF copy (may take some time)'));
         var args = getPdfArguments();
-        var wkhtmltopdf = childProcess.spawn('wkhtmltopdf', args);
+        var wkhtmltopdf = childProcess.spawn(options.wkhtmltopdfPath, args);
         var spinner = new cliSpinner(chalk.green('   Processing... %s'));
         spinner.setSpinnerString('|/-\\');
 

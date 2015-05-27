@@ -48,7 +48,8 @@ program.command('run')
     .option('-n, --math-mathjax', 'enable MathJax mathematical expressions')
     .option('-r, --redirect', 'create an index.html in the parent directory that redirects to the homepage')
     .option('-s, --set-version [version]', 'override parameters.version (useful for build tools) [default: false]', false)
-    .option('-R, --set-release-date [date]', 'override parameters.date (useful for build tools) [default: false]', false)    
+    .option('-R, --set-release-date [date]', 'override parameters.date (useful for build tools) [default: false]', false)
+    .option('-w, --wkhtmltopdf-path [path]', 'specify a custom path to wkhtmltopdf [default: wkhtmltopdf]', 'wkhtmltopdf')
     .action(function (command) {
         run(command);
     });
