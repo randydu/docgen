@@ -1,4 +1,10 @@
-﻿DocGen 2.1.0 released 27/05/2015
+﻿DocGen 2.1.1 released 28/05/2015
+--------------------------------
+
+- Upgraded all node dependencies to the latest versions
+- Upgraded styles to the latest release of Webknife (1.4.0)
+
+DocGen 2.1.0 released 27/05/2015
 --------------------------------
 
 - Added a command-line option for specifying a custom path to wkhtmltopdf

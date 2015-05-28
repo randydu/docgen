@@ -19,7 +19,7 @@ var imageSizeOf = require('image-size');
 function DocGen (process)
 {
     var mainProcess = process;
-    var version = '2.1.0';
+    var version = '2.1.1';
     var wkhtmltopdfVersion = 'wkhtmltopdf 0.12.2.1 (with patched qt)'; //output from wkhtmltopdf -V
     var options;
     var templates = {};
