@@ -19,7 +19,7 @@ var imageSizeOf = require('image-size');
 function DocGen (process)
 {
     var mainProcess = process;
-    var version = '2.1.1';
+    var version = '2.1.2';
     var wkhtmltopdfVersion = 'wkhtmltopdf 0.12.2.1 (with patched qt)'; //output from wkhtmltopdf -V
     var options;
     var templates = {};
@@ -42,7 +42,7 @@ function DocGen (process)
         }
 
         //wkhtmltopdf path does not need a trailing slash
-        if (options.wkhtmltopdfPath !== '') {
+        if (options.wkhtmltopdfPath && options.wkhtmltopdfPath !== '') {
             options.wkhtmltopdfPath = path.normalize(options.wkhtmltopdfPath);
         }
     }

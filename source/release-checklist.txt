@@ -13,7 +13,7 @@ Update release notes
 
 Build the user guide
 
-	sudo ./docgen run -i ./source/user-guide -o ./docs -p -d 20000 -t -m -n
+	./docgen run -i ./source/user-guide -o ./docs -p -d 20000 -t -m -n
 
 Publish to Github
 
