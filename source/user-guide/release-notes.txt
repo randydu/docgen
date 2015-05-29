@@ -1,4 +1,9 @@
-﻿DocGen 2.1.2 released 28/05/2015
+﻿DocGen 2.1.3 released 29/05/2015
+--------------------------------
+
+- Allow more protocols in CommonMark links (see markdown-it [ticket #108](https://github.com/markdown-it/markdown-it/issues/108))
+
+DocGen 2.1.2 released 28/05/2015
 --------------------------------
 
 - Fixed a regression defect (exception when running docgen scaffold) that first appeared in DocGen 2.1.0

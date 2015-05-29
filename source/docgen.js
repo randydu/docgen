@@ -12,6 +12,11 @@ var spawnArgs = require('spawn-args');
 var cliSpinner = require('cli-spinner').Spinner;
 var imageSizeOf = require('image-size');
 
+//Allow CommonMark links that use other protocols, such as file:///
+//The markdown-it implementation is more restrictive than the CommonMark spec
+//See https://github.com/markdown-it/markdown-it/issues/108
+markdown.validateLink = function () { return true; } 
+
 /**
 * DocGen class
 */
@@ -19,7 +24,7 @@ var imageSizeOf = require('image-size');
 function DocGen (process)
 {
     var mainProcess = process;
-    var version = '2.1.2';
+    var version = '2.1.3';
     var wkhtmltopdfVersion = 'wkhtmltopdf 0.12.2.1 (with patched qt)'; //output from wkhtmltopdf -V
     var options;
     var templates = {};
