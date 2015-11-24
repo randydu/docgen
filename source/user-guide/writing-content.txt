@@ -72,6 +72,7 @@ The parameters file is used to specify metadata describing the product.
 - **summary** - a descriptive summary of the product
 - **marking** - license or other protective markings
 - **legalese** - document markings (confidentiality, disclaimers, smallprint etc)
+- **macros** - global macros ( output pages will parse and replace these macros with their values )
 
 Values can be empty strings, but the elements are required in the JSON file. 
 

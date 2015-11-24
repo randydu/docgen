@@ -213,7 +213,7 @@ function DocGen (process)
                 "id",
                 "summary",
                 "marking",
-                "legalese"
+                "legalese",
             ],
             properties: {
                 title: { type: "string" },
@@ -276,6 +276,9 @@ function DocGen (process)
                 summary: { type: "string" },
                 marking: { type: "string" },
                 legalese: { type: "string" },
+
+                //Global Macros
+                macros: { type: "object" },
             }
         },
         "contents" : {
@@ -601,8 +604,24 @@ function DocGen (process)
     }
 
     /*
-        process each input into an output
+        make sure the input str is escaped for regular expression
     */
+    function escapeRegExp(str) {
+        return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+    }
+    
+    function processMacros(cxt){
+        var str = cxt + "";
+        var macros = meta.parameters.macros;
+        if(macros){
+            for(var key in macros){
+                if(macros.hasOwnProperty(key)){
+                    str = str.replace(new RegExp(escapeRegExp(key), 'g'), macros[key]);                    
+                }
+            }
+        }
+        return str;
+    }
 
     var process = function () {
         console.log(chalk.green('Generating the static web content'));
@@ -648,12 +667,17 @@ function DocGen (process)
                 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
                 var content = pages[key];
+                //Replace Macros
+                content = processMacros(content);
+                
                 //add relevant container
                 if (page.html === true) { //raw HTML pages should not be confined to the fixed width
                     $('#dg-content').html('<div id="dg-innerContent"></div>');
                 } else { //Markdown pages should be confined to the fixed width
                     $('#dg-content').html('<div class="w-fixed-width"><div id="dg-innerContent"></div></div>');
                 }
+                
+                
                 $('#dg-innerContent').html(content);
                 //------------------------------------------------------------------------------------------------------
                 //insert permalinks for every page heading
