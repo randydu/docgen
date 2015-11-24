@@ -31,6 +31,13 @@ function DocGen (process)
     var meta = {};
     var pages = {};
     var sortedPages = {};
+    //logo
+    var hasLogo = false;
+    //logo dimensions
+    var logoWidth = 0;
+    var logoHeight = 0;
+
+    var homelink;
 
     this.getVersion = function () {
         return version;
@@ -419,10 +426,10 @@ function DocGen (process)
         build the HTML for the table of contents
     */
 
-    var webToc = function () {
+    var webToc = function (page, relDir) {
         sortPages();
         var pdfName = meta.parameters.name.toLowerCase()+'.pdf';
-        var $ = templates.main;
+        var $ = page;
         var html = [], i = -1;
         html[++i] = '<div><table class="unstyled"><tr>';
         //build the contents HTML
@@ -434,8 +441,8 @@ function DocGen (process)
                         html[++i] = '<ul><li class="dg-tocHeading">'+section.heading+'</li>';
                         section.pages.forEach( function (page) {
                             var name = page.source.substr(0, page.source.lastIndexOf('.'));
-                            var path = name+'.html';
-                            html[++i] = '<li><a href="'+path+'">'+page.title+'</a></li>';
+                            var target = name+'.html';
+                            html[++i] = '<li><a href="'+ path.join(relDir, target) +'">'+page.title+'</a></li>';
                         });
                         html[++i] = '</li></ul>';
                     });
@@ -458,7 +465,14 @@ function DocGen (process)
         html[++i] = '</div></td>';
         html[++i] = '</tr></table></div>';
         $('#dg-toc').html(html.join(''));
-        templates.main = $;
+        page = $;
+    }
+
+
+    var resolveHomePage = function(){
+        //the homepage is the first link in the first heading
+        homelink = meta.contents[0].pages[0];
+        homelink = homelink.source.substr(0, homelink.source.lastIndexOf('.'))+'.html';
     }
 
     /*
@@ -468,10 +482,6 @@ function DocGen (process)
     var insertParameters = function () {
 
         //------------------------------------------------------------------------------------------------------
-        //logo dimensions
-        var hasLogo = false;
-        var logoWidth = 0;
-        var logoHeight = 0;
         try {
             var logo = imageSizeOf(options.input+'/files/images/logo.png');
             logoWidth = logo.width;
@@ -481,11 +491,9 @@ function DocGen (process)
             //do nothing. If logo file cannot be read, logo is simply not shown
         }
 
+        resolveHomePage();
         //------------------------------------------------------------------------------------------------------
 
-        //the homepage is the first link in the first heading
-        var homelink = meta.contents[0].pages[0];
-        var homelink = homelink.source.substr(0, homelink.source.lastIndexOf('.'))+'.html';
 
         var date = moment().format('DD/MM/YYYY');
         var time = moment().format('HH:mm:ss');
@@ -555,19 +563,8 @@ function DocGen (process)
         for (var key in templates) {
             if (templates.hasOwnProperty(key)) {
                 $ = templates[key];
-                //logo
-                if (hasLogo === true) {
-                    var logoUrl = 'files/images/logo.png';
-                    $('#dg-logo').css('background-image', 'url(' + logoUrl + ')');
-                    $('#dg-logo').css('height', logoHeight+'px');
-                    $('#dg-logo').css('line-height', logoHeight+'px');
-                    $('#dg-logo').css('padding-left', (logoWidth+25)+'px'); 
-                } else {
-                    $('#dg-logo').css('padding-left', '0'); 
-                }
                 //parameters
                 $('title').text(meta.parameters.title);
-                $('#dg-homelink').attr('href', homelink);
                 $('#dg-title').text(meta.parameters.title);
                 $('#dg-owner').html(owner);
                 $('#dg-version').text(releaseVersion);
@@ -609,12 +606,47 @@ function DocGen (process)
 
     var process = function () {
         console.log(chalk.green('Generating the static web content'));
-        webToc();
+        //Per-page toc for local browsering
+        //webToc();
+        sortPages();
+
         insertParameters();
         meta.contents.forEach( function (section) {
             section.pages.forEach( function (page) {
                 var $ = cheerio.load(templates.main.html()); //clone
                 var key = page.source;
+
+                //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                //Relative path to built-in css/script/logo for local browsing
+                var relDir = path.relative(path.dirname(key), "");
+                //Toc
+                webToc($, relDir);
+
+                $('link').each(function(i,lk){
+                  $(this).attr('href', path.join(relDir, $(this).attr('href')));
+                });
+
+                $('script').each(function(i,s){
+                  var src = $(this).attr('src');
+                  if(src) $(this).attr('src', path.join(relDir, src));
+                });
+
+                //logo
+                if (hasLogo === true) {
+                    var logoUrl = 'files/images/logo.png';
+                    $('#dg-logo').css('background-image', 'url(' + path.join(relDir, logoUrl) + ')');
+                    $('#dg-logo').css('height', logoHeight+'px');
+                    $('#dg-logo').css('line-height', logoHeight+'px');
+                    $('#dg-logo').css('padding-left', (logoWidth+25)+'px'); 
+                } else {
+                    $('#dg-logo').css('padding-left', '0'); 
+                }
+                //relative home link
+                var from = path.dirname(key);
+                var to = path.dirname(homelink);
+                $('#dg-homelink').attr('href', path.join(path.relative(from, to), path.basename(homelink)));
+                //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
                 var content = pages[key];
                 //add relevant container
                 if (page.html === true) { //raw HTML pages should not be confined to the fixed width
@@ -674,10 +706,18 @@ function DocGen (process)
         meta.contents.forEach( function (section) {
             section.pages.forEach( function (page) {
                 var key = page.source;
-                var name = key.substr(0, page.source.lastIndexOf('.'));
-                var path = options.output+name+'.html';
-                var html = pages[key].html();
-                promises[key] = writeFile(path, html);
+                //Create output file path before writing
+                var dir = path.normalize(path.join(options.output, path.dirname(key)));
+
+                fs.mkdirp(dir, function(err){
+                  if(err) console.error(err)
+                  else {
+                    var name = key.substr(0, page.source.lastIndexOf('.'));
+                    var path = options.output+name+'.html';
+                    var html = pages[key].html();
+                    promises[key] = writeFile(path, html);
+                  }
+                });
             });
         });
         //add extra files
