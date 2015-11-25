@@ -37,6 +37,8 @@ function DocGen (process)
     var logoWidth = 0;
     var logoHeight = 0;
 
+    //Home Page
+    var homepage;
     var homelink;
 
     this.getVersion = function () {
@@ -443,9 +445,11 @@ function DocGen (process)
                     sortedPages[key].forEach( function (section) {
                         html[++i] = '<ul><li class="dg-tocHeading">'+section.heading+'</li>';
                         section.pages.forEach( function (page) {
-                            var name = page.source.substr(0, page.source.lastIndexOf('.'));
-                            var target = name+'.html';
-                            html[++i] = '<li><a href="'+ path.join(relDir, target) +'">'+page.title+'</a></li>';
+                            if(page !== homepage){//Do not add home page to TOC because its link is rendered on every page.
+                                var name = page.source.substr(0, page.source.lastIndexOf('.'));
+                                var target = name+'.html';
+                                html[++i] = '<li><a href="'+ path.join(relDir, target) +'">'+page.title+'</a></li>';
+                            }
                         });
                         html[++i] = '</li></ul>';
                     });
@@ -473,9 +477,21 @@ function DocGen (process)
 
 
     var resolveHomePage = function(){
-        //the homepage is the first link in the first heading
-        homelink = meta.contents[0].pages[0];
-        homelink = homelink.source.substr(0, homelink.source.lastIndexOf('.'))+'.html';
+        homepage = null;
+        
+        meta.contents.forEach(function(section){
+            section.pages.forEach(function(page){
+                if(page.home){
+                    homepage = page;
+                }
+            });            
+        });
+        
+        if(homepage === null){
+            //the homepage is the first link in the first heading
+            homepage = meta.contents[0].pages[0];
+        }
+        homelink = homepage.source.substr(0, homepage.source.lastIndexOf('.'))+'.html';
     }
 
     /*
@@ -681,23 +697,28 @@ function DocGen (process)
                 $('#dg-innerContent').html(content);
                 //------------------------------------------------------------------------------------------------------
                 //insert permalinks for every page heading
-                //when pageToc is enabled, also insert a page-level table of contents
-                var html = [], i = -1;
-                var headings = $('h1, h2, h3, h4, h5, h6');
-                if (headings.length > 0) {
-                    html[++i] = '<ul class="dg-pageToc">';
-                }
-                headings.each(function( index ) {
-                    var label = $(this).text();
-                    var anchor = label.toLowerCase().replace(/\s+/g, "-");
-                    $(this).attr('id', anchor);
-                    html[++i] = '<li><a href="#'+anchor+'">'+label+'</a></li>';
-                });
-                if (headings.length > 0) {
-                    html[++i] = '</ul>';
-                }
-                if (options.pageToc === true && page.html !== true) {
-                    $('#dg-innerContent').prepend(html.join(''));
+                //when page-specific "toc" is enabled, or page-specific "toc" is not specified explicitly and the global
+                //pageToc is enabled, we insert a page-level table of contents
+                //
+                //TODO: indented table of content
+                if(page.html !== true){
+                    if((typeof page.toc === 'undefined' &&  options.pageToc === true) || page.toc){
+                        var html = [], i = -1;
+                        var headings = $('h1, h2, h3, h4, h5, h6');
+                        if (headings.length > 0) {
+                            html[++i] = '<ul class="dg-pageToc">';
+                        }
+                        headings.each(function( index ) {
+                            var label = $(this).text();
+                            var anchor = label.toLowerCase().replace(/\s+/g, "-");
+                            $(this).attr('id', anchor);
+                            html[++i] = '<li><a href="#'+anchor+'">'+label+'</a></li>';
+                        });
+                        if (headings.length > 0) {
+                            html[++i] = '</ul>';
+                        }
+                        $('#dg-innerContent').prepend(html.join(''));
+                    }
                 }
                 //------------------------------------------------------------------------------------------------------
                 //prepend the auto heading (which makes the PDF table of contents match the web TOC)
