@@ -723,6 +723,8 @@ function DocGen (process)
     /*
         write each html page
     */
+    
+    var local_dirs = ['img', 'files'];
 
     var writePages = function () {
         console.log(chalk.green('Writing the web page files'));
@@ -730,16 +732,32 @@ function DocGen (process)
         meta.contents.forEach( function (section) {
             section.pages.forEach( function (page) {
                 var key = page.source;
+                var pageRelDir = path.dirname(key);
                 //Create output file path before writing
-                var dir = path.normalize(path.join(options.output, path.dirname(key)));
+                var tgtDir = path.normalize(path.join(options.output, pageRelDir));
 
-                fs.mkdirp(dir, function(err){
+                fs.mkdirp(tgtDir, function(err){
                   if(err) console.error(err)
                   else {
+                      
+                    //prepare local files/, img/
+                    var srcDir = path.normalize(path.join(options.input, pageRelDir));
+                    local_dirs.forEach(function(dir){
+                        var src = path.join(srcDir, dir);
+                        if(fs.existsSync(src)){
+                            var tgt = path.join(tgtDir, dir);
+                            //has local dir
+                            if(!fs.existsSync(tgt)){
+                                copyDirSync(src, tgt);
+                            }
+                        }
+                    });
+                    
+                      
                     var name = key.substr(0, page.source.lastIndexOf('.'));
-                    var path = options.output+name+'.html';
+                    var outfile = options.output+name+'.html';
                     var html = pages[key].html();
-                    promises[key] = writeFile(path, html);
+                    promises[key] = writeFile(outfile, html);
                   }
                 });
             });
