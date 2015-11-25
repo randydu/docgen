@@ -12,6 +12,7 @@ var spawnArgs = require('spawn-args');
 var cliSpinner = require('cli-spinner').Spinner;
 var imageSizeOf = require('image-size');
 
+
 //Allow CommonMark links that use other protocols, such as file:///
 //The markdown-it implementation is more restrictive than the CommonMark spec
 //See https://github.com/markdown-it/markdown-it/issues/108
@@ -669,7 +670,12 @@ function DocGen (process)
                 //logo
                 if (hasLogo === true) {
                     var logoUrl = 'files/images/logo.png';
-                    $('#dg-logo').css('background-image', 'url(' + path.join(relDir, logoUrl) + ')');
+                    
+                    var imgpath = path.join(relDir, logoUrl);
+                    if(path.sep != '/'){//windows: path.join() will change '/' to '\', which will create bad url
+                        imgpath = imgpath.replace(new RegExp(escapeRegExp(path.sep), 'g'), '/');
+                    }
+                    $('#dg-logo').css('background-image', 'url(' + imgpath + ')');
                     $('#dg-logo').css('height', logoHeight+'px');
                     $('#dg-logo').css('line-height', logoHeight+'px');
                     $('#dg-logo').css('padding-left', (logoWidth+25)+'px'); 
