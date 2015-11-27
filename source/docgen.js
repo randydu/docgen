@@ -939,11 +939,7 @@ function DocGen (process)
 
     var createRedirect = function () {
         if (options.redirect) {
-            var parent = options.output.replace(/\/$/, ""); //trim any trailing slash
-            parent = parent.split(path.sep).slice(-1).pop(); //get name of final directory in the path
-            var homepage = meta.contents[0].pages[0];
-            var homepage = homepage.source.substr(0, homepage.source.lastIndexOf('.'))+'.html';
-            var redirectLink = parent+'/'+homepage;
+            var redirectLink = path.parse(options.output).base+'/'+homelink;
             $ = templates.redirect;
             $('a').attr('href', redirectLink);
             $('meta[http-equiv=REFRESH]').attr('content', '0;url='+redirectLink);
@@ -959,6 +955,15 @@ function DocGen (process)
             }
         }
     }
+    
+    //Azure compatible
+    var createAzureCompatibleFiles = function(){
+        if(options.azure){
+            var azDir = path.join(__dirname, 'optional/azure');
+            var tgtDir = path.join(options.output, options.redirect ? '..' : '');
+            copyDirSync(azDir, tgtDir);
+        }
+    }
 
     /*
         cleanup
@@ -966,6 +971,7 @@ function DocGen (process)
 
     var cleanUp = function () {
         createRedirect();
+        createAzureCompatibleFiles();
         //remove temp files
         if (options.pdf === true) {
             removeDirSync(options.output+'temp');

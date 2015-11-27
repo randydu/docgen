@@ -50,6 +50,7 @@ program.command('run')
     .option('-s, --set-version [version]', 'override parameters.version (useful for build tools) [default: false]', false)
     .option('-R, --set-release-date [date]', 'override parameters.date (useful for build tools) [default: false]', false)
     .option('-w, --wkhtmltopdf-path [path]', 'specify a custom path to wkhtmltopdf [default: wkhtmltopdf]', 'wkhtmltopdf')
+    .option('-z, --azure', "Microsoft Azure platform compatible")
     .action(function (command) {
         run(command);
     });
