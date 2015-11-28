@@ -11,6 +11,7 @@ var chalk = require('chalk');
 var spawnArgs = require('spawn-args');
 var cliSpinner = require('cli-spinner').Spinner;
 var imageSizeOf = require('image-size');
+var HashMap = require('hashmap');
 
 
 //Allow CommonMark links that use other protocols, such as file:///
@@ -640,11 +641,61 @@ function DocGen (process)
         return str;
     }
 
+    //Cross-Reference Management    
+    function ReferenceMan() {
+        //define a reference:  \label{tab1}(Table 1: Demo A)
+        var reg_def  = /\\label{(\w+)}\((.+)\)/g
+        //ref toL  \ref{tab1}  or \ref{tab1}(Table 1)
+        var reg_ref = /\\ref{(\w+)}(\(.+\))?/g
+        var idmap = new HashMap();
+        
+        this.parseCrossReferences = function(){
+            meta.contents.forEach( function (section) {
+                section.pages.forEach( function (page) {
+                    var key = page.source;
+                    var content = pages[key];
+                    pages[key] = content.replace(reg_def, function(match, $1, $2){
+                        var id = $1;
+                        var caption = $2;
+                        idmap.set(id, { 'page': page, 'caption': caption });  
+                        return "<span id='" + id + "'></span>"; //define an anchor with the id
+                    });
+                });
+            });        
+        }
+
+        //resolve cross-reference for the content of page
+        this.processCrossReferences = function(cnt, srcPage){
+            return cnt.replace(reg_ref, function(match, $1, $2){
+                var id = $1;
+                var target = idmap.get(id);
+                if(target){
+                    var caption;
+                    if(typeof $2 !== 'undefined'){
+                        //caption explicitly specified as (xxx)
+                        caption = $2.substring(1, $2.length -2);
+                    }else caption = target.caption;
+                    
+                    var tgtPage = target.page;
+                    var tgtDir = path.dirname(tgtPage.source);
+                    var toDir = path.relative(path.dirname(srcPage.source), tgtDir);
+                    var pagename = path.parse(tgtPage.source).name + '.html';
+                    var to = path.join(toDir, pagename + '#' + id);
+                    return "<a href='" + to + "'>" + caption + "</a>";
+                }
+            });
+        }
+    };
+    
+
     var process = function () {
         console.log(chalk.green('Generating the static web content'));
         //Per-page toc for local browsering
         //webToc();
         sortPages();
+        
+        var refMan = new ReferenceMan();
+        refMan.parseCrossReferences();
 
         insertParameters();
         meta.contents.forEach( function (section) {
@@ -691,6 +742,8 @@ function DocGen (process)
                 var content = pages[key];
                 //Replace Macros
                 content = processMacros(content);
+                //Process Cross-References
+                content = refMan.processCrossReferences(content, page);
                 
                 //add relevant container
                 if (page.html === true) { //raw HTML pages should not be confined to the fixed width
