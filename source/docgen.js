@@ -645,7 +645,7 @@ function DocGen (process)
     function ReferenceMan() {
         //define a reference:  \label{tab1}(Table 1: Demo A)
         var reg_def  = /\\label{(\w+)}\((.+)\)/g
-        //ref toL  \ref{tab1}  or \ref{tab1}(Table 1)
+        //ref to predefined label:  \ref{tab1}  or \ref{tab1}(Table 1)
         var reg_ref = /\\ref{(\w+)}(\(.+\))?/g
         var idmap = new HashMap();
         
@@ -657,7 +657,7 @@ function DocGen (process)
                     pages[key] = content.replace(reg_def, function(match, $1, $2){
                         var id = $1;
                         var caption = $2;
-                        idmap.set(id, { 'page': page, 'caption': caption });  
+                        idmap.set(id, { 'target_source': page.source, 'caption': caption });  
                         return "<span id='" + id + "'></span>"; //define an anchor with the id
                     });
                 });
@@ -673,15 +673,12 @@ function DocGen (process)
                     var caption;
                     if(typeof $2 !== 'undefined'){
                         //caption explicitly specified as (xxx)
-                        caption = $2.substring(1, $2.length -2);
+                        caption = $2.substring(1, $2.length -1);
                     }else caption = target.caption;
                     
-                    var tgtPage = target.page;
-                    var tgtDir = path.dirname(tgtPage.source);
-                    var toDir = path.relative(path.dirname(srcPage.source), tgtDir);
-                    var pagename = path.parse(tgtPage.source).name + '.html';
-                    var to = path.join(toDir, pagename + '#' + id);
-                    return "<a href='" + to + "'>" + caption + "</a>";
+                    var tgtSrc = target.target_source;
+                    var toDir = path.relative(path.dirname(srcPage.source), path.dirname(tgtSrc));
+                    return "<a href='" + path.join(toDir, path.parse(tgtSrc).name + '.html' + '#' + id) + "'>" + caption + "</a>";
                 }
             });
         }
