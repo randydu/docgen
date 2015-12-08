@@ -619,6 +619,12 @@ function DocGen (process)
                 //Note - wkhtmlpdf //cdn urls - see https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1634
             $('head').append('<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>');
         }
+        
+        //Insert site-wide css in folder "files/css/"
+        var sitecss ='/files/css/site.css';
+        if(fs.existsSync( options.input + sitecss)){
+            $('head').append('<link rel="stylesheet" href="files/css/site.css" type="text/css">');
+        }
     }
 
     /*
