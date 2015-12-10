@@ -3,7 +3,22 @@ var rsvp = require('rsvp');
 var fs = require('fs-extra');
 var path = require('path');
 var cheerio = require('cheerio');
-var markdown = require('markdown-it')('commonmark').enable('table');;
+var hljs = require('highlight.js') // https://highlightjs.org/
+var markdown = require('markdown-it')('commonmark', {
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, str).value;
+      } catch (__) {}
+    }
+
+    try {
+      return hljs.highlightAuto(str).value;
+    } catch (__) {}
+
+    return ''; // use external default escaping
+  }
+}).enable('table');;
 var moment = require('moment');
 var childProcess = require("child_process");
 var schemaValidator = require("z-schema");
