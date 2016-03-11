@@ -101,6 +101,12 @@ section blockquote p, section li p {
 	background-color: #eee;
 }
 
+.dg-pageToc a {
+	color: midnightblue;
+	font-weight: normal;
+	text-decoration: none;
+	margin-left: 10px;
+}
 /*
 	Class to make a heading look invisible in web page, but still appear in the PDF table of contents
 		- display:none, visibily: hidden, zero dimensions, and offscreen positioning don't work

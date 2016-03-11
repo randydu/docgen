@@ -777,22 +777,47 @@ function DocGen (process)
                 //when page-specific "toc" is enabled, or page-specific "toc" is not specified explicitly and the global
                 //pageToc is enabled, we insert a page-level table of contents
                 //
-                //TODO: indented table of content
                 if(page.html !== true){
                     if((typeof page.toc === 'undefined' &&  options.pageToc === true) || page.toc){
                         var html = [], i = -1;
                         var headings = $('h1, h2, h3, h4, h5, h6');
                         if (headings.length > 0) {
-                            html[++i] = '<ul class="dg-pageToc">';
+                            html[++i] = '<div class="dg-pageToc">';
                         }
+                        
+                        //find smallest h{j}
+                        var j = 100;
+                        headings.each(function( index ) {
+                            if($(this).is("h1")) j = 1;
+                            else if($(this).is("h2")) j = Math.min(j, 2);
+                            else if($(this).is("h3")) j = Math.min(j, 3);
+                            else if($(this).is("h4")) j = Math.min(j, 4);
+                            else if($(this).is("h5")) j = Math.min(j, 5);
+                            else if($(this).is("h6")) j = Math.min(j, 6);
+                        });                        
+                        
+                        var br = '';
                         headings.each(function( index ) {
                             var label = $(this).text();
                             var anchor = label.toLowerCase().replace(/\s+/g, "-");
                             $(this).attr('id', anchor);
-                            html[++i] = '<li><a href="#'+anchor+'">'+label+'</a></li>';
+                            
+                            var indent = '';
+                            var tab_size = 8;
+                            var tab_char = '&nbsp;';
+                            //var tab_char = '.';
+                            if($(this).is("h2")) indent = Array(tab_size *(2-j) +1).join(tab_char);
+                            else if($(this).is("h3")) indent = Array(tab_size*(3-j) + 1).join(tab_char);
+                            else if($(this).is("h4")) indent = Array(tab_size*(4-j) + 1).join(tab_char);
+                            else if($(this).is("h5")) indent = Array(tab_size*(5-j) + 1).join(tab_char);
+                            else if($(this).is("h6")) indent = Array(tab_size*(6-j) + 1).join(tab_char);
+                            
+                            
+                            html[++i] = br + indent + '<a href="#'+anchor+'">' + label+'</a>';
+                            if(i >= 1) br = '<br>'; 
                         });
                         if (headings.length > 0) {
-                            html[++i] = '</ul>';
+                            html[++i] = '</div>';
                         }
                         $('#dg-innerContent').prepend(html.join(''));
                     }
