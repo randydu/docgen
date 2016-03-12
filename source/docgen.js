@@ -782,7 +782,7 @@ function DocGen (process)
                         var html = [], i = -1;
                         var headings = $('h1, h2, h3, h4, h5, h6');
                         if (headings.length > 0) {
-                            html[++i] = '<div id="TOC" class="dg-pageToc">';
+                            html[++i] = '<div class="dg-pageToc">';
                         }
                         
                         //find smallest h{j}
@@ -817,7 +817,7 @@ function DocGen (process)
                             
                             //adds toc icon
                             var title = $(this).text();
-                            var newTitle = title + '<a href="#TOC"><span style="float:right;" class="w-icon" data-name="home" title="home"></span></a>';
+                            var newTitle = title + '<a href="#dg-navigator"><span style="float:right;" class="w-icon" data-name="home" title="home"></span></a>';
                             $(this).html(newTitle);
                             
                             html[++i] = br + indent + '<a href="#'+anchor+'">' + label+'</a>';
