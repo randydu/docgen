@@ -450,6 +450,7 @@ function DocGen (process)
 
     var webToc = function (page, relDir) {
         sortPages();
+        var myreg = new RegExp(escapeRegExp(path.sep), 'g');
         var pdfName = meta.parameters.name.toLowerCase()+'.pdf';
         var $ = page;
         var html = [], i = -1;
@@ -465,7 +466,9 @@ function DocGen (process)
                             if(page !== homepage){//Do not add home page to TOC because its link is rendered on every page.
                                 var name = page.source.substr(0, page.source.lastIndexOf('.'));
                                 var target = name+'.html';
-                                html[++i] = '<li><a href="'+ path.join(relDir, target) +'">'+page.title+'</a></li>';
+                                var link = path.join(relDir, target);
+                                link.replace(myreg, '/');
+                                html[++i] = '<li><a href="'+ link +'">'+page.title+'</a></li>';
                             }
                         });
                         html[++i] = '</li></ul>';
