@@ -3,6 +3,9 @@ example/output
 
 #VI swap file
 *.swp
+
+*.json~
+
 #Visual Code
 .vscode/
 typings/

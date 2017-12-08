@@ -467,7 +467,7 @@ function DocGen (process)
                                 var name = page.source.substr(0, page.source.lastIndexOf('.'));
                                 var target = name+'.html';
                                 var link = path.join(relDir, target);
-                                link.replace(myreg, '/');
+                                link = link.replace(myreg, '/');
                                 html[++i] = '<li><a href="'+ link +'">'+page.title+'</a></li>';
                             }
                         });
